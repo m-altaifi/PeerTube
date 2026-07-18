@@ -1613,17 +1613,17 @@
           <context context-type="linenumber">61,62</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4629449147054812250" datatype="html">
+      <trans-unit id="4629449147054812250" datatype="html" xml:space="preserve">
         <source>Remove the category</source>
-        <target state="new">Remove the category</target>
+        <target state="translated">カテゴリーを削除</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">71,72</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2654857983483034266" datatype="html">
+      <trans-unit id="2654857983483034266" datatype="html" xml:space="preserve">
         <source>Remove the licence</source>
-        <target state="new">Remove the licence</target>
+        <target state="translated">ライセンスを削除</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">81,82</context>
