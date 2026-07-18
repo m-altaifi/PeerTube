@@ -1581,9 +1581,9 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5479133824073842793" datatype="html">
+      <trans-unit id="5479133824073842793" datatype="html" xml:space="preserve">
         <source>Configure</source>
-        <target state="new">Configure</target>
+        <target state="translated">設定</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">11,12</context>
@@ -1597,17 +1597,17 @@
           <context context-type="linenumber">16,18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8801202056963655948" datatype="html">
+      <trans-unit id="8801202056963655948" datatype="html" xml:space="preserve">
         <source>Remove this field</source>
-        <target state="new">Remove this field</target>
+        <target state="translated">このフィールドを削除</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8246543299161932823" datatype="html">
+      <trans-unit id="8246543299161932823" datatype="html" xml:space="preserve">
         <source>Remove the language</source>
-        <target state="new">Remove the language</target>
+        <target state="translated">言語を削除</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">61,62</context>
