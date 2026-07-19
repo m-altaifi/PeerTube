@@ -839,7 +839,7 @@
       </trans-unit>
       <trans-unit id="5630101530611188113" datatype="html" xml:space="preserve">
         <source>If you think PeerTube is wrong (video in broken state after a crash etc.), you can force transcoding on this video.</source>
-        <target state="needs-translation">Se, laŭ vi, PirTubo eraras (filmeto estas rompita post haltiĝo), vi povas ŝalti devigan transkodadon.</target>
+        <target state="translated">Se laŭ vi PeerTube eraras (filmeto estas rompita post haltiĝo), vi povas devigi transkodadon.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-main/video/video.service.ts</context>
           <context context-type="linenumber">424</context>
@@ -847,7 +847,7 @@
       </trans-unit>
       <trans-unit id="3524359509497681458" datatype="html" xml:space="preserve">
         <source>Force transcoding</source>
-        <target state="needs-translation">Devigi transkodadon</target>
+        <target state="translated">Devigi transkodadon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-main/video/video.service.ts</context>
           <context context-type="linenumber">427</context>
@@ -869,9 +869,9 @@
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5769875620432097351" datatype="html">
+      <trans-unit id="5769875620432097351" datatype="html" xml:space="preserve">
         <source>max size: <x id="PH" equiv-text="getBytes(this.maxAvatarSize)"/> extensions: <x id="PH_1" equiv-text="this.avatarExtensions"/></source>
-        <target state="new">max size: <x id="PH" equiv-text="getBytes(this.maxAvatarSize)"/> extensions: <x id="PH_1" equiv-text="this.avatarExtensions"/></target>
+        <target state="translated">maksimuma grandeco: <x id="PH" equiv-text="getBytes(this.maxAvatarSize)"/> aldonaĵoj: <x id="PH_1" equiv-text="this.avatarExtensions"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-actor-image-edit/actor-avatar-edit.component.ts</context>
           <context context-type="linenumber">65</context>
@@ -973,25 +973,25 @@
           <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5747059683731578771" datatype="html">
+      <trans-unit id="5747059683731578771" datatype="html" xml:space="preserve">
         <source>No change to save</source>
-        <target state="new">No change to save</target>
+        <target state="translated">Neniu ŝanĝo por konservi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-playlist/bulk-update-videos-in-playlist-modal.component.ts</context>
           <context context-type="linenumber">192</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2541208579604639843" datatype="html">
+      <trans-unit id="2541208579604639843" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {Video added to <x id="playlistName"/>} other {<x id="count"/> videos added to <x id="playlistName"/>}}</source>
-        <target state="new">{count, plural, =1 {Video added to <x id="playlistName"/>} other {<x id="count"/> videos added to <x id="playlistName"/>}}</target>
+        <target state="translated">{count, plural, =1 {Video aldonita al <x id="playlistName"/>} other {<x id="count"/> Videoj aldonita al <x id="playlistName"/>}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-playlist/bulk-update-videos-in-playlist-modal.component.ts</context>
           <context context-type="linenumber">229</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2674770304057463868" datatype="html">
+      <trans-unit id="2674770304057463868" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {Video removed from <x id="playlistName"/>} other {<x id="count"/> videos removed from <x id="playlistName"/>}}</source>
-        <target state="new">{count, plural, =1 {Video removed from <x id="playlistName"/>} other {<x id="count"/> videos removed from <x id="playlistName"/>}}</target>
+        <target state="translated">{count, plural, =1 {Video forigita de <x id="playlistName"/>} other {<x id="count"/> Videoj forigita de <x id="playlistName"/>}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-playlist/bulk-update-videos-in-playlist-modal.component.ts</context>
           <context context-type="linenumber">250</context>
@@ -1227,9 +1227,9 @@
           <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="369207086271337598" datatype="html">
+      <trans-unit id="369207086271337598" datatype="html" xml:space="preserve">
         <source>Your report will be sent to moderators of <x id="INTERPOLATION" equiv-text="{{ currentHost }}"/>.</source>
-        <target state="new">Your report will be sent to moderators of <x id="INTERPOLATION" equiv-text="{{ currentHost }}"/>.</target>
+        <target state="translated">Via raporto estos sendita al moderatoroj de <x id="INTERPOLATION" equiv-text="{{ currentHost }}"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-moderation/report-modals/report.component.html</context>
           <context context-type="linenumber">43,45</context>
@@ -1243,9 +1243,9 @@
           <context context-type="linenumber">77,79</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8626321887384466186" datatype="html">
+      <trans-unit id="8626321887384466186" datatype="html" xml:space="preserve">
         <source>It will be forwarded to the comment origin (<x id="INTERPOLATION" equiv-text="{{ originHost }}"/>) too.</source>
-        <target state="new">It will be forwarded to the comment origin (<x id="INTERPOLATION" equiv-text="{{ originHost }}"/>) too.</target>
+        <target state="translated">Ĝi ankaŭ estos plusendita al la origino de la komento (<x id="INTERPOLATION" equiv-text="{{ originHost }}"/>).</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-moderation/report-modals/report.component.html</context>
           <context context-type="linenumber">46,47</context>
@@ -1383,9 +1383,9 @@
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6228776284010440551" datatype="html">
+      <trans-unit id="6228776284010440551" datatype="html" xml:space="preserve">
         <source>HLS</source>
-        <target state="new">HLS</target>
+        <target state="translated">HLS</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.html</context>
           <context context-type="linenumber">69</context>
@@ -1455,9 +1455,9 @@
           <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2501174398701912574" datatype="html">
+      <trans-unit id="2501174398701912574" datatype="html" xml:space="preserve">
         <source>HLS:</source>
-        <target state="new">HLS:</target>
+        <target state="translated">HLS:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.html</context>
           <context context-type="linenumber">140</context>
@@ -1465,7 +1465,7 @@
       </trans-unit>
       <trans-unit id="6083161764743152765" datatype="html" xml:space="preserve">
         <source>No videos found matching current filters.</source>
-        <target state="needs-translation">Neniuj filmetoj laŭ elektitaj markoj estis trovitaj.</target>
+        <target state="translated">Neniuj videoj trovitaj, kiuj kongruas kun la nunaj filtriloj.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.html</context>
           <context context-type="linenumber">166</context>
@@ -1473,7 +1473,7 @@
       </trans-unit>
       <trans-unit id="8613376202616911579" datatype="html" xml:space="preserve">
         <source>Your platform doesn't have videos.</source>
-        <target state="needs-translation">Ne estas filmetoj ĉe via platformo.</target>
+        <target state="translated">Via platformo ne havas videojn.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.html</context>
           <context context-type="linenumber">168</context>
@@ -1509,7 +1509,7 @@
       </trans-unit>
       <trans-unit id="4435640428611044716" datatype="html" xml:space="preserve">
         <source>Are you sure you want to delete Web Video files of {count, plural, =1 {1 video} other {<x id="count"/> videos}}?</source>
-        <target state="needs-translation">Ĉu vi certas, ke vi volas forigi Retajn Filmetojn de {count, plural, =1 {1 video} aliaj {<x id="count"/> videos}}?</target>
+        <target state="translated">Ĉu vi certas, ke vi volas forigi Retajn Videodosierojn de {count, plural, =1 {1 video} aliaj {<x id="count"/> videoj}}?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.ts</context>
           <context context-type="linenumber">536</context>
@@ -1533,31 +1533,31 @@
       </trans-unit>
       <trans-unit id="5112667021094836629" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {1 transcription job created.} other {<x id="count"/> transcription jobs created.}}</source>
-        <target state="needs-translation">{count, plural, =1 {1 transskriba tasko kreita.} aliaj {<x id="count"/> transskribaj taskoj kreitaj.}}</target>
+        <target state="translated">{count, plural, =1 {1 transskriba tasko estis kreita.} aliaj {<x id="count"/> transskribaj taskoj estis kreitaj.}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.ts</context>
           <context context-type="linenumber">575</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2376618077234059570" datatype="html">
+      <trans-unit id="2376618077234059570" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {1 video already has captions.} other {<x id="count"/> videos already have captions.}}</source>
-        <target state="new">{count, plural, =1 {1 video already has captions.} other {<x id="count"/> videos already have captions.}}</target>
+        <target state="translated">{count, plural, =1 {1 video jam havas subtekstojn.} other {<x id="count"/> videoj jam havas subtekstojn.}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.ts</context>
           <context context-type="linenumber">584</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1403418704976301994" datatype="html">
+      <trans-unit id="1403418704976301994" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {1 video is already being transcribed.} other {<x id="count"/> videos are already being transcribed.}}</source>
-        <target state="new">{count, plural, =1 {1 video is already being transcribed.} other {<x id="count"/> videos are already being transcribed.}}</target>
+        <target state="translated">{count, plural, =1 {1 video jam estas transskribata.} other {<x id="count"/> videoj jam estas transskribataj.}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.ts</context>
           <context context-type="linenumber">594</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2126000025358835171" datatype="html">
+      <trans-unit id="2126000025358835171" datatype="html" xml:space="preserve">
         <source>Retry import requested for {count, plural, =1 {1 video} other {<x id="count"/> videos}}.</source>
-        <target state="new">Retry import requested for {count, plural, =1 {1 video} other {<x id="count"/> videos}}.</target>
+        <target state="translated">Reprovo de importado por {count, plural, =1 {1 video} other {<x id="count"/> videoj}} petita.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.ts</context>
           <context context-type="linenumber">611</context>
@@ -1571,121 +1571,121 @@
           <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5286419098318801180" datatype="html">
+      <trans-unit id="5286419098318801180" datatype="html" xml:space="preserve">
         <source>{VAR_PLURAL, plural, =1 {Bulk update 1 video} other {Bulk update <x id="INTERPOLATION"/> videos}}</source>
-        <target state="new">{VAR_PLURAL, plural, =1 {Bulk update 1 video} other {Bulk update <x id="INTERPOLATION"/> videos}}</target>
+        <target state="translated">{VAR_PLURAL, plural, =1 {Amasa ĝisdatigo de 1 video} other {Amasa ĝisdatigo de <x id="INTERPOLATION"/> videoj}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5479133824073842793" datatype="html">
+      <trans-unit id="5479133824073842793" datatype="html" xml:space="preserve">
         <source>Configure</source>
-        <target state="new">Configure</target>
+        <target state="translated">Agordi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">11,12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9072500254918792872" datatype="html">
+      <trans-unit id="9072500254918792872" datatype="html" xml:space="preserve">
         <source>Add a field to update...</source>
-        <target state="new">Add a field to update...</target>
+        <target state="translated">Aldonu kampon por ĝisdatigi...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">16,18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8801202056963655948" datatype="html">
+      <trans-unit id="8801202056963655948" datatype="html" xml:space="preserve">
         <source>Remove this field</source>
-        <target state="new">Remove this field</target>
+        <target state="translated">Forigu ĉi tiun kampon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8246543299161932823" datatype="html">
+      <trans-unit id="8246543299161932823" datatype="html" xml:space="preserve">
         <source>Remove the language</source>
-        <target state="new">Remove the language</target>
+        <target state="translated">Forigi la lingvon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">61,62</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4629449147054812250" datatype="html">
+      <trans-unit id="4629449147054812250" datatype="html" xml:space="preserve">
         <source>Remove the category</source>
-        <target state="new">Remove the category</target>
+        <target state="translated">Forigi la kategorion</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">71,72</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2654857983483034266" datatype="html">
+      <trans-unit id="2654857983483034266" datatype="html" xml:space="preserve">
         <source>Remove the licence</source>
-        <target state="new">Remove the licence</target>
+        <target state="translated">Forigi la licencon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">81,82</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3885497195825665706" datatype="html">
+      <trans-unit id="3885497195825665706" datatype="html" xml:space="preserve">
         <source>Next</source>
-        <target state="new">Next</target>
+        <target state="translated">Sekva</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9038514142182022734" datatype="html">
+      <trans-unit id="9038514142182022734" datatype="html" xml:space="preserve">
         <source>You are about to update the following <x id="ICU" equiv-text="{activeFields().size, plural, =1 {field} other {fields}}" xid="2337568529008297902"/> for <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" equiv-text="{videos.length, plural, =1 {1 video} other {{{ videos.length }} videos}}" xid="8837942330449784285"/>:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
-        <target state="new"> You are about to update the following <x id="ICU" equiv-text="{activeFields().size, plural, =1 {field} other {fields}}" xid="2337568529008297902"/> for <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" equiv-text="{videos.length, plural, =1 {1 video} other {{{ videos.length }} videos}}" xid="8837942330449784285"/>:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <target state="translated">Vi estas ĝisdatiganta la sekvajn <x id="ICU" xid="2337568529008297902" equiv-text="{activeFields().size, plural, =1 {field} other {fields}}"/> por <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" xid="8837942330449784285" equiv-text="{videos.length, plural, =1 {1 video} other {{{ videos.length }} videos}}"/>:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">111,115</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2337568529008297902" datatype="html">
+      <trans-unit id="2337568529008297902" datatype="html" xml:space="preserve">
         <source>{VAR_PLURAL, plural, =1 {field} other {fields}}</source>
-        <target state="new">{VAR_PLURAL, plural, =1 {field} other {fields}}</target>
+        <target state="translated">{VAR_PLURAL, plural, =1 {kampo} other {kampoj}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4591438961769458035" datatype="html">
+      <trans-unit id="4591438961769458035" datatype="html" xml:space="preserve">
         <source>{VAR_PLURAL, plural, =1 {1 video} other {<x id="INTERPOLATION"/> videos}}</source>
-        <target state="new">{VAR_PLURAL, plural, =1 {1 video} other {<x id="INTERPOLATION"/> videos}}</target>
+        <target state="translated">{VAR_PLURAL, plural, =1 {1 video} other {<x id="INTERPOLATION"/> videoj}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">112</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6354228211812618739" datatype="html">
+      <trans-unit id="6354228211812618739" datatype="html" xml:space="preserve">
         <source>Channel is required.</source>
-        <target state="new">Channel is required.</target>
+        <target state="translated">Kanalo estas bezonata.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.ts</context>
           <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4933210538840626810" datatype="html">
+      <trans-unit id="4933210538840626810" datatype="html" xml:space="preserve">
         <source>Comments policy is required.</source>
-        <target state="new">Comments policy is required.</target>
+        <target state="translated">Politiko pri komentoj estas postulata.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.ts</context>
           <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2526668322478941170" datatype="html">
+      <trans-unit id="2526668322478941170" datatype="html" xml:space="preserve">
         <source>Comment policy</source>
-        <target state="new">Comment policy</target>
+        <target state="translated">Politiko pri komentoj</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.ts</context>
           <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2085611136494552870" datatype="html">
+      <trans-unit id="2085611136494552870" datatype="html" xml:space="preserve">
         <source>Not set</source>
-        <target state="new">Not set</target>
+        <target state="translated">Ne agordita</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.ts</context>
           <context context-type="linenumber">193</context>
@@ -1695,49 +1695,49 @@
           <context context-type="linenumber">218</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7920422780199126266" datatype="html">
+      <trans-unit id="7920422780199126266" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {1 video updated} other {<x id="count"/> videos updated}}</source>
-        <target state="new">{count, plural, =1 {1 video updated} other {<x id="count"/> videos updated}}</target>
+        <target state="translated">{count, plural, =1 {1 video ĝisdatigita} other {<x id="count"/> videoj ĝisdatigitaj}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.ts</context>
           <context context-type="linenumber">273</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7391051635981764507" datatype="html">
+      <trans-unit id="7391051635981764507" datatype="html" xml:space="preserve">
         <source>Scheduled on <x id="PH" equiv-text="updateAt"/></source>
-        <target state="new">Scheduled on <x id="PH" equiv-text="updateAt"/></target>
+        <target state="translated">Planita por la <x id="PH" equiv-text="updateAt"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/privacy-badge.component.ts</context>
           <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3119791189889910286" datatype="html">
+      <trans-unit id="3119791189889910286" datatype="html" xml:space="preserve">
         <source>In your library</source>
-        <target state="new">In your library</target>
+        <target state="translated">En via biblioteko</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/video-state-badge.component.ts</context>
           <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7613848541793135105" datatype="html">
+      <trans-unit id="7613848541793135105" datatype="html" xml:space="preserve">
         <source>Internal</source>
-        <target state="new">Internal</target>
+        <target state="translated">Interna</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/video-state-badge.component.ts</context>
           <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4853472797848575859" datatype="html">
+      <trans-unit id="4853472797848575859" datatype="html" xml:space="preserve">
         <source>Waiting live</source>
-        <target state="new">Waiting live</target>
+        <target state="translated">Atendante vive</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/video-state-utils.ts</context>
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="423716195876655711" datatype="html">
+      <trans-unit id="423716195876655711" datatype="html" xml:space="preserve">
         <source>Live ended</source>
-        <target state="new">Live ended</target>
+        <target state="translated">Tujelsendado finiĝis</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/video-state-utils.ts</context>
           <context context-type="linenumber">14</context>
@@ -1803,41 +1803,41 @@
           <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4744048847996177791" datatype="html">
+      <trans-unit id="4744048847996177791" datatype="html" xml:space="preserve">
         <source>Updating platform configuration from the web interface is disabled by the system administrator.</source>
-        <target state="new"> Updating platform configuration from the web interface is disabled by the system administrator. </target>
+        <target state="translated">La ĝisdatigo de la platforma agordo per la retinterfaco estas malŝaltita de la sistemadministranto.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/shared/admin-save-bar.component.html</context>
           <context context-type="linenumber">14,15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5141290027775290309" datatype="html">
+      <trans-unit id="5141290027775290309" datatype="html" xml:space="preserve">
         <source>There are errors in the configuration:</source>
-        <target state="new">There are errors in the configuration:</target>
+        <target state="translated">Estas eraroj en la agordoj:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/shared/admin-save-bar.component.html</context>
           <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8498446960371639827" datatype="html">
+      <trans-unit id="8498446960371639827" datatype="html" xml:space="preserve">
         <source>followers per page</source>
-        <target state="new">followers per page</target>
+        <target state="translated">sekvantoj po paĝo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/follows/followers-list/followers-list.component.html</context>
           <context context-type="linenumber">6,7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4661730871956076914" datatype="html">
+      <trans-unit id="4661730871956076914" datatype="html" xml:space="preserve">
         <source>{VAR_PLURAL, plural, =0 {No follower} =1 {1 follower} other {<x id="INTERPOLATION"/> followers}}</source>
-        <target state="new">{VAR_PLURAL, plural, =0 {No follower} =1 {1 follower} other {<x id="INTERPOLATION"/> followers}}</target>
+        <target state="translated">{VAR_PLURAL, plural, =0 {Neniu sekvanto} =1 {1 sekvanto} other {<x id="INTERPOLATION"/> sekvantoj}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/follows/followers-list/followers-list.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7828808805120058354" datatype="html">
+      <trans-unit id="7828808805120058354" datatype="html" xml:space="preserve">
         <source>Revert</source>
-        <target state="new">Revert</target>
+        <target state="translated">Malfari</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/captions/video-caption-edit-modal.component.html</context>
           <context context-type="linenumber">109</context>
@@ -1871,17 +1871,17 @@
           <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5439080010715965293" datatype="html">
+      <trans-unit id="5439080010715965293" datatype="html" xml:space="preserve">
         <source>Quick access:</source>
-        <target state="new">Quick access:</target>
+        <target state="translated">Rapida aliro:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-list/overview/video-overview.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5937251202465808296" datatype="html">
+      <trans-unit id="5937251202465808296" datatype="html" xml:space="preserve">
         <source>More</source>
-        <target state="new">More</target>
+        <target state="translated">Pli</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/my-video-space.component.ts</context>
           <context context-type="linenumber">60</context>
@@ -1891,49 +1891,49 @@
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7855115715004732406" datatype="html">
+      <trans-unit id="7855115715004732406" datatype="html" xml:space="preserve">
         <source>Browse "<x id="PH" equiv-text="value.category.label"/>" videos</source>
-        <target state="new">Browse "<x id="PH" equiv-text="value.category.label"/>" videos</target>
+        <target state="translated">Trarigardu "<x id="PH" equiv-text="value.category.label"/>" videojn</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-list/overview/video-overview.component.ts</context>
           <context context-type="linenumber">154</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6981830104215014781" datatype="html">
+      <trans-unit id="6981830104215014781" datatype="html" xml:space="preserve">
         <source>category</source>
-        <target state="new">category</target>
+        <target state="translated">kategorio</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-list/overview/video-overview.component.ts</context>
           <context context-type="linenumber">159</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8844207666221087270" datatype="html">
+      <trans-unit id="8844207666221087270" datatype="html" xml:space="preserve">
         <source>Browse "#<x id="PH" equiv-text="value.tag"/>" videos</source>
-        <target state="new">Browse "#<x id="PH" equiv-text="value.tag"/>" videos</target>
+        <target state="translated">Trarigardu "#<x id="PH" equiv-text="value.tag"/>" videojn</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-list/overview/video-overview.component.ts</context>
           <context context-type="linenumber">165</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6402703264596649214" datatype="html">
+      <trans-unit id="6402703264596649214" datatype="html" xml:space="preserve">
         <source>tag</source>
-        <target state="new">tag</target>
+        <target state="translated">etikedo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-list/overview/video-overview.component.ts</context>
           <context context-type="linenumber">170</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7116189699742808060" datatype="html">
+      <trans-unit id="7116189699742808060" datatype="html" xml:space="preserve">
         <source>Browse <x id="PH" equiv-text="channelName"/> channel</source>
-        <target state="new">Browse <x id="PH" equiv-text="channelName"/> channel</target>
+        <target state="translated">Trarigardu <x id="PH" equiv-text="channelName"/> kanalo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-list/overview/video-overview.component.ts</context>
           <context context-type="linenumber">180</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="674351509173816083" datatype="html">
+      <trans-unit id="674351509173816083" datatype="html" xml:space="preserve">
         <source>channel</source>
-        <target state="new">channel</target>
+        <target state="translated">kanalo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-list/overview/video-overview.component.ts</context>
           <context context-type="linenumber">186</context>
@@ -1987,9 +1987,9 @@
           <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8994207260868115497" datatype="html">
+      <trans-unit id="8994207260868115497" datatype="html" xml:space="preserve">
         <source>&lt;a href="https://docs.joinmastodon.org/user/profile/#verification" target="_blank" rel="noopener noreferrer"&gt;Mastodon verification link&lt;/a&gt; is also supported.</source>
-        <target state="new">&lt;a href="https://docs.joinmastodon.org/user/profile/#verification" target="_blank" rel="noopener noreferrer"&gt;Mastodon verification link&lt;/a&gt; is also supported.</target>
+        <target state="translated">&lt;a href="https://docs.joinmastodon.org/user/profile/#verification" target="_blank" rel="noopener noreferrer"&gt;Konfirma ligilo de Mastodon&lt;/a&gt; ankaŭ estas subtenata.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-main/buttons/help.component.ts</context>
           <context context-type="linenumber">67</context>
@@ -2007,33 +2007,33 @@
           <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1295614462098694869" datatype="html">
+      <trans-unit id="1295614462098694869" datatype="html" xml:space="preserve">
         <source>Preview</source>
-        <target state="new">Preview</target>
+        <target state="translated">Antaŭrigardo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-forms/image-input.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4399848502465507221" datatype="html">
+      <trans-unit id="4399848502465507221" datatype="html" xml:space="preserve">
         <source>Delete the image</source>
-        <target state="new">Delete the image</target>
+        <target state="translated">Forigi la bildon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-forms/image-input.component.html</context>
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7523440000124910081" datatype="html">
+      <trans-unit id="7523440000124910081" datatype="html" xml:space="preserve">
         <source>Use this frame</source>
-        <target state="new">Use this frame</target>
+        <target state="translated">Uzu ĉi tiun videeron</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/thumbnail-manager.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4052135535335116638" datatype="html">
+      <trans-unit id="4052135535335116638" datatype="html" xml:space="preserve">
         <source>Current thumbnail</source>
-        <target state="new">Current thumbnail</target>
+        <target state="translated">Nuna bildeto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/thumbnail-manager.component.html</context>
           <context context-type="linenumber">14</context>
@@ -2043,129 +2043,129 @@
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7101546647848802994" datatype="html">
+      <trans-unit id="7101546647848802994" datatype="html" xml:space="preserve">
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Drag and drop your thumbnail here<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> or click on the button below to modify it: </source>
-        <target state="new"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Drag and drop your thumbnail here<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> or click on the button below to modify it: </target>
+        <target state="translated"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Tiru kaj faligu vian bildeton ĉi tien.<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> aŭ alklaku la suban butonon por modifi ĝin: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/thumbnail-manager.component.html</context>
           <context context-type="linenumber">29,32</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4170151929241782619" datatype="html">
+      <trans-unit id="4170151929241782619" datatype="html" xml:space="preserve">
         <source>In <x id="INTERPOLATION" equiv-text="{{ videoImageExtensions }}"/> formats, <x id="INTERPOLATION_1" equiv-text="{{ maxVideoImageSizeInBytes }}"/> maximum.</source>
-        <target state="new">In <x id="INTERPOLATION" equiv-text="{{ videoImageExtensions }}"/> formats, <x id="INTERPOLATION_1" equiv-text="{{ maxVideoImageSizeInBytes }}"/> maximum.</target>
+        <target state="translated">En <x id="INTERPOLATION" equiv-text="{{ videoImageExtensions }}"/> formatoj, <x id="INTERPOLATION_1" equiv-text="{{ maxVideoImageSizeInBytes }}"/> maksimume.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/thumbnail-manager.component.html</context>
           <context context-type="linenumber">33,34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2804650977749842371" datatype="html">
+      <trans-unit id="2804650977749842371" datatype="html" xml:space="preserve">
         <source>Recommended size: 1280x720px.</source>
-        <target state="new">Recommended size: 1280x720px.</target>
+        <target state="translated">Rekomendita grandeco: 1280x720px.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/thumbnail-manager.component.html</context>
           <context context-type="linenumber">34,35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4822431364265606" datatype="html">
+      <trans-unit id="4822431364265606" datatype="html" xml:space="preserve">
         <source>Select from video</source>
-        <target state="new"> Select from video </target>
+        <target state="translated">Elektu el video</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/thumbnail-manager.component.html</context>
           <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6415678299744947414" datatype="html">
+      <trans-unit id="6415678299744947414" datatype="html" xml:space="preserve">
         <source>File replacement is not enabled on <x id="PH" equiv-text="instanceName"/>.</source>
-        <target state="new">File replacement is not enabled on <x id="PH" equiv-text="instanceName"/>.</target>
+        <target state="translated">Dosiera anstataŭigo ne estas ŝaltita ĉe <x id="PH" equiv-text="instanceName"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/unavailable-features.ts</context>
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1439057370359538654" datatype="html">
+      <trans-unit id="1439057370359538654" datatype="html" xml:space="preserve">
         <source>File replacement is not available on a live.</source>
-        <target state="new">File replacement is not available on a live.</target>
+        <target state="translated">Dosiera anstataŭigo ne estas disponebla por tujelsendo.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/unavailable-features.ts</context>
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8221383535376180424" datatype="html">
+      <trans-unit id="8221383535376180424" datatype="html" xml:space="preserve">
         <source>File replacement is not available while the video is being transcoded.</source>
-        <target state="new">File replacement is not available while the video is being transcoded.</target>
+        <target state="translated">Dosiera anstataŭigo ne estas disponebla dum la video estas transkodata.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/unavailable-features.ts</context>
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="942718789410221156" datatype="html">
+      <trans-unit id="942718789410221156" datatype="html" xml:space="preserve">
         <source>File replacement is not available while the video is being edited.</source>
-        <target state="new">File replacement is not available while the video is being edited.</target>
+        <target state="translated">Dosiera anstataŭigo ne disponeblas dum la video estas redaktata.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/unavailable-features.ts</context>
           <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8573772649653209009" datatype="html">
+      <trans-unit id="8573772649653209009" datatype="html" xml:space="preserve">
         <source>File replacement is not available while the video is being imported.</source>
-        <target state="new">File replacement is not available while the video is being imported.</target>
+        <target state="translated">Dosiera anstataŭigo ne estas disponebla dum la video estas importata.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/unavailable-features.ts</context>
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1622943505826483882" datatype="html">
+      <trans-unit id="1622943505826483882" datatype="html" xml:space="preserve">
         <source>File replacement is not available.</source>
-        <target state="new">File replacement is not available.</target>
+        <target state="translated">Dosiera anstataŭigo ne estas disponebla.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/unavailable-features.ts</context>
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="915313658414662035" datatype="html">
+      <trans-unit id="915313658414662035" datatype="html" xml:space="preserve">
         <source>Studio is not enabled on <x id="PH" equiv-text="instanceName"/>.</source>
-        <target state="new">Studio is not enabled on <x id="PH" equiv-text="instanceName"/>.</target>
+        <target state="translated">Studio ne estas ŝaltita ĉe <x id="PH" equiv-text="instanceName"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/unavailable-features.ts</context>
           <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4289458489048046810" datatype="html">
+      <trans-unit id="4289458489048046810" datatype="html" xml:space="preserve">
         <source>Studio is not available on a live.</source>
-        <target state="new">Studio is not available on a live.</target>
+        <target state="translated">Studio ne estas disponebla por tujelsendo.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/unavailable-features.ts</context>
           <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6089478952934441772" datatype="html">
+      <trans-unit id="6089478952934441772" datatype="html" xml:space="preserve">
         <source>Studio is not available while the video is being transcoded.</source>
-        <target state="new">Studio is not available while the video is being transcoded.</target>
+        <target state="translated">Studio ne estas disponebla dum la video estas transkodigata.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/unavailable-features.ts</context>
           <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8834864291736520740" datatype="html">
+      <trans-unit id="8834864291736520740" datatype="html" xml:space="preserve">
         <source>Studio is not available while the video is being edited.</source>
-        <target state="new">Studio is not available while the video is being edited.</target>
+        <target state="translated">Studio ne estas disponebla dum la video estas redaktata.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/unavailable-features.ts</context>
           <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5363833911902491766" datatype="html">
+      <trans-unit id="5363833911902491766" datatype="html" xml:space="preserve">
         <source>Studio is not available while the video is being imported.</source>
-        <target state="new">Studio is not available while the video is being imported.</target>
+        <target state="translated">Studio ne estas disponebla dum la video estas importata.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/unavailable-features.ts</context>
           <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4049189676696742071" datatype="html">
+      <trans-unit id="4049189676696742071" datatype="html" xml:space="preserve">
         <source>Studio is not available.</source>
-        <target state="new">Studio is not available.</target>
+        <target state="translated">Studio ne estas disponebla.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/common/unavailable-features.ts</context>
           <context context-type="linenumber">48</context>
@@ -2227,57 +2227,57 @@
           <context context-type="linenumber">476</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6334544592573094529" datatype="html">
+      <trans-unit id="6334544592573094529" datatype="html" xml:space="preserve">
         <source>Transcoding job created for "<x id="PH" equiv-text="video.name"/>".</source>
-        <target state="new">Transcoding job created for "<x id="PH" equiv-text="video.name"/>".</target>
+        <target state="translated">Transkodigata tasko kreita por "<x id="PH" equiv-text="video.name"/>".</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">488</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6323039311444223540" datatype="html">
+      <trans-unit id="6323039311444223540" datatype="html" xml:space="preserve">
         <source>Transcription job created for "<x id="PH" equiv-text="video.name"/>".</source>
-        <target state="new">Transcription job created for "<x id="PH" equiv-text="video.name"/>".</target>
+        <target state="translated">Transskriba tasko kreita por "<x id="PH" equiv-text="video.name"/>".</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">500</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8890980168396748709" datatype="html">
+      <trans-unit id="8890980168396748709" datatype="html" xml:space="preserve">
         <source>This video is already being transcribed.</source>
-        <target state="new">This video is already being transcribed.</target>
+        <target state="translated">Ĉi tiu video jam estas transskribata.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">501</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6621122803162844810" datatype="html">
+      <trans-unit id="6621122803162844810" datatype="html" xml:space="preserve">
         <source>This video already has captions.</source>
-        <target state="new">This video already has captions.</target>
+        <target state="translated">Ĉi tiu video jam havas subtekstojn.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">502</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6626477897309620236" datatype="html">
+      <trans-unit id="6626477897309620236" datatype="html" xml:space="preserve">
         <source>Retry video import of "<x id="PH" equiv-text="video.name"/>" requested.</source>
-        <target state="new">Retry video import of "<x id="PH" equiv-text="video.name"/>" requested.</target>
+        <target state="translated">Reprovo de importado por "<x id="PH" equiv-text="video.name"/>" petita.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">515</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1898581791654225317" datatype="html">
+      <trans-unit id="1898581791654225317" datatype="html" xml:space="preserve">
         <source>Save to playlist...</source>
-        <target state="new">Save to playlist...</target>
+        <target state="translated">Konservi al ludlisto...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">539</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="298947678131483247" datatype="html">
+      <trans-unit id="298947678131483247" datatype="html" xml:space="preserve">
         <source>Download...</source>
-        <target state="new">Download...</target>
+        <target state="translated">Elŝuti...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">547</context>
@@ -2291,9 +2291,9 @@
           <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2414550489713494400" datatype="html">
+      <trans-unit id="2414550489713494400" datatype="html" xml:space="preserve">
         <source>Subscribe via Podcast Feed</source>
-        <target state="new">Subscribe via Podcast Feed</target>
+        <target state="translated">Abonu per podkastofluo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-user-subscription/subscribe-button.component.html</context>
           <context context-type="linenumber">81</context>
@@ -2323,25 +2323,25 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="227566219157426488" datatype="html">
+      <trans-unit id="227566219157426488" datatype="html" xml:space="preserve">
         <source>Default sensitive content policy</source>
-        <target state="new">Default sensitive content policy</target>
+        <target state="translated">Normala politiko pri sentema enhavo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-instance/instance-features-table.component.html</context>
           <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5211109801015470691" datatype="html">
+      <trans-unit id="5211109801015470691" datatype="html" xml:space="preserve">
         <source>can be redefined by the users</source>
-        <target state="new">can be redefined by the users</target>
+        <target state="translated">povas esti redifinita de la uzantoj</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-instance/instance-features-table.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5842305303142677924" datatype="html">
+      <trans-unit id="5842305303142677924" datatype="html" xml:space="preserve">
         <source>User registration</source>
-        <target state="new">User registration</target>
+        <target state="translated">Uzanta registriĝo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-instance/instance-features-table.component.html</context>
           <context context-type="linenumber">21</context>
@@ -2367,9 +2367,9 @@
           <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2152404288547034295" datatype="html">
+      <trans-unit id="2152404288547034295" datatype="html" xml:space="preserve">
         <source>Automatic transcription</source>
-        <target state="new">Automatic transcription</target>
+        <target state="translated">Aŭtomata transskribo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-instance/instance-features-table.component.html</context>
           <context context-type="linenumber">37</context>
@@ -2407,9 +2407,9 @@
           <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2591172858390995209" datatype="html">
+      <trans-unit id="2591172858390995209" datatype="html" xml:space="preserve">
         <source>Video Import</source>
-        <target state="new">Video Import</target>
+        <target state="translated">Video-importado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-instance/instance-features-table.component.html</context>
           <context context-type="linenumber">109</context>
@@ -2431,9 +2431,9 @@
           <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1684051774032618280" datatype="html">
+      <trans-unit id="1684051774032618280" datatype="html" xml:space="preserve">
         <source>(<x id="INTERPOLATION" equiv-text="{{ dailyUserVideoQuota | bytes: 0 }}"/> per day)</source>
-        <target state="new">(<x id="INTERPOLATION" equiv-text="{{ dailyUserVideoQuota | bytes: 0 }}"/> per day)</target>
+        <target state="translated">(<x id="INTERPOLATION" equiv-text="{{ dailyUserVideoQuota | bytes: 0 }}"/> po tago)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-instance/instance-features-table.component.html</context>
           <context context-type="linenumber">63,64</context>
@@ -2475,17 +2475,17 @@
           <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7341673457181006273" datatype="html">
+      <trans-unit id="7341673457181006273" datatype="html" xml:space="preserve">
         <source>Congratulations, the video will be imported with BitTorrent! You can already add information about this video.</source>
-        <target state="new"> Congratulations, the video will be imported with BitTorrent! You can already add information about this video. </target>
+        <target state="translated">Gratulon, la video estos importita per BitTorrent! Vi jam povas aldoni informojn pri ĉi tiu video.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/+video-publish/import/video-import-torrent.component.html</context>
           <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8221855044244620896" datatype="html">
+      <trans-unit id="8221855044244620896" datatype="html" xml:space="preserve">
         <source>Your video is being imported. But there are unsaved changes: are you sure you want to leave this page?</source>
-        <target state="new">Your video is being imported. But there are unsaved changes: are you sure you want to leave this page?</target>
+        <target state="translated">Via video estas importata. Sed estas nekonservitaj ŝanĝoj: Ĉu vi certas, ke vi volas forlasi ĉi tiun paĝon?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/+video-publish/import/video-import-torrent.component.ts</context>
           <context context-type="linenumber">88</context>
@@ -2495,9 +2495,9 @@
           <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5365292350251865320" datatype="html">
+      <trans-unit id="5365292350251865320" datatype="html" xml:space="preserve">
         <source>Changes saved.</source>
-        <target state="new">Changes saved.</target>
+        <target state="translated">Ŝanĝoj konservitaj.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/+video-publish/import/video-import-torrent.component.ts</context>
           <context context-type="linenumber">95</context>
@@ -2539,33 +2539,33 @@
           <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7417677567611860270" datatype="html">
+      <trans-unit id="7417677567611860270" datatype="html" xml:space="preserve">
         <source>Channel synchronization with other platforms (YouTube, Vimeo, ...)</source>
-        <target state="new">Channel synchronization with other platforms (YouTube, Vimeo, ...)</target>
+        <target state="translated">Kanala sinkronigo kun aliaj platformoj (YouTube, Vimeo, ...)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-instance/instance-features-table.component.html</context>
           <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4229153235358296216" datatype="html">
+      <trans-unit id="4229153235358296216" datatype="html" xml:space="preserve">
         <source>User Import/Export</source>
-        <target state="new">User Import/Export</target>
+        <target state="translated">Uzanta importado/eksportado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-instance/instance-features-table.component.html</context>
           <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3384006887221192665" datatype="html">
+      <trans-unit id="3384006887221192665" datatype="html" xml:space="preserve">
         <source>Users can export their data</source>
-        <target state="new">Users can export their data</target>
+        <target state="translated">Uzantoj povas eksporti siajn datumojn.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-instance/instance-features-table.component.html</context>
           <context context-type="linenumber">138</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5552722059425094536" datatype="html">
+      <trans-unit id="5552722059425094536" datatype="html" xml:space="preserve">
         <source>Users can import their data</source>
-        <target state="new">Users can import their data</target>
+        <target state="translated">Uzantoj povas importi siajn datumojn.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-instance/instance-features-table.component.html</context>
           <context context-type="linenumber">145</context>
@@ -2583,9 +2583,9 @@
           <context context-type="linenumber">242</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5559612210462560518" datatype="html">
+      <trans-unit id="5559612210462560518" datatype="html" xml:space="preserve">
         <source>Remote</source>
-        <target state="new">Remote</target>
+        <target state="translated">Defora</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.html</context>
           <context context-type="linenumber">37</context>
@@ -2611,185 +2611,185 @@
           <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1408045022812097780" datatype="html">
+      <trans-unit id="1408045022812097780" datatype="html" xml:space="preserve">
         <source>views</source>
-        <target state="new">views</target>
+        <target state="translated">spektoj</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2727852160479343870" datatype="html">
+      <trans-unit id="2727852160479343870" datatype="html" xml:space="preserve">
         <source>downloads</source>
-        <target state="new">downloads</target>
+        <target state="translated">elŝutoj</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">33,34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="117954017715534854" datatype="html">
+      <trans-unit id="117954017715534854" datatype="html" xml:space="preserve">
         <source>comments</source>
-        <target state="new">comments</target>
+        <target state="translated">komentoj</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4574617080493559336" datatype="html">
+      <trans-unit id="4574617080493559336" datatype="html" xml:space="preserve">
         <source>hosted videos</source>
-        <target state="new">hosted videos</target>
+        <target state="translated">gastigitaj videoj</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5396896586834940621" datatype="html">
+      <trans-unit id="5396896586834940621" datatype="html" xml:space="preserve">
         <source>Usage rules</source>
-        <target state="new">Usage rules</target>
+        <target state="translated">Reguloj de uzo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4776113937628941635" datatype="html">
+      <trans-unit id="4776113937628941635" datatype="html" xml:space="preserve">
         <source>This platform has been created in <x id="INTERPOLATION" equiv-text="{{ config.instance.serverCountry }}"/></source>
-        <target state="new">This platform has been created in <x id="INTERPOLATION" equiv-text="{{ config.instance.serverCountry }}"/></target>
+        <target state="translated">Ĉi tiu platformo estis kreita en <x id="INTERPOLATION" equiv-text="{{ config.instance.serverCountry }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6778930185647013602" datatype="html">
+      <trans-unit id="6778930185647013602" datatype="html" xml:space="preserve">
         <source>Your content (comments, videos...) must comply with the legislation in force in this country.</source>
-        <target state="new">Your content (comments, videos...) must comply with the legislation in force in this country.</target>
+        <target state="translated">Via enhavo (komentoj, videoj...) devas konformi al la leĝaro en forto en ĉi tiu lando.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5074204504213350982" datatype="html">
+      <trans-unit id="5074204504213350982" datatype="html" xml:space="preserve">
         <source>You must also follow our <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/about/instance/moderation&quot;&gt;"/>code of conduct<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
-        <target state="new"> You must also follow our <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/about/instance/moderation&quot;&gt;"/>code of conduct<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
+        <target state="translated">Vi ankaŭ devas sekvi nian <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/about/instance/moderation&quot;&gt;"/>kondutkodon<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">69</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8295656255868159329" datatype="html">
+      <trans-unit id="8295656255868159329" datatype="html" xml:space="preserve">
         <source>You can <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/signup&quot;&gt;"/>request an account<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> on our platform</source>
-        <target state="new">You can <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/signup&quot;&gt;"/>request an account<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> on our platform</target>
+        <target state="translated">Vi povas <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/signup&quot;&gt;"/>peti konton<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> sur nia platformo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4700057689494115926" datatype="html">
+      <trans-unit id="4700057689494115926" datatype="html" xml:space="preserve">
         <source>Our moderator will validate it within a <x id="INTERPOLATION" equiv-text="{{ stats.averageRegistrationRequestResponseTimeMs | myDaysDurationFormatter }}"/>.</source>
-        <target state="new">Our moderator will validate it within a <x id="INTERPOLATION" equiv-text="{{ stats.averageRegistrationRequestResponseTimeMs | myDaysDurationFormatter }}"/>.</target>
+        <target state="translated">Nia moderiganto validigos ĝin ene de <x id="INTERPOLATION" equiv-text="{{ stats.averageRegistrationRequestResponseTimeMs | myDaysDurationFormatter }}"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4819914947083527459" datatype="html">
+      <trans-unit id="4819914947083527459" datatype="html" xml:space="preserve">
         <source>Our moderator will validate it within a few days.</source>
-        <target state="new">Our moderator will validate it within a few days.</target>
+        <target state="translated">Nia moderiganto validigos ĝin ene de kelkaj tagoj.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7984721141162083495" datatype="html">
+      <trans-unit id="7984721141162083495" datatype="html" xml:space="preserve">
         <source>You can <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/signup&quot;&gt;"/>create an account<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> on our platform</source>
-        <target state="new">You can <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/signup&quot;&gt;"/>create an account<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> on our platform</target>
+        <target state="translated">Vi povas <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/signup&quot;&gt;"/>krei konton<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> sur nia platformo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8017622347308758772" datatype="html">
+      <trans-unit id="8017622347308758772" datatype="html" xml:space="preserve">
         <source>Public registration on our platform is not allowed</source>
-        <target state="new">Public registration on our platform is not allowed</target>
+        <target state="translated">Publika registrado sur nia platformo ne estas permesita.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">105</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="707876467820107191" datatype="html">
+      <trans-unit id="707876467820107191" datatype="html" xml:space="preserve">
         <source>This platform is compatible with Mastodon, Lemmy, Misskey and other services from the Fediverse</source>
-        <target state="new">This platform is compatible with Mastodon, Lemmy, Misskey and other services from the Fediverse</target>
+        <target state="translated">Ĉi tiu platformo kongruas kun Mastodon, Lemmy, Misskey kaj aliaj servoj de la Fediverse</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">119</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5640969812017556311" datatype="html">
+      <trans-unit id="5640969812017556311" datatype="html" xml:space="preserve">
         <source>You can use these services to interact with our videos</source>
-        <target state="new">You can use these services to interact with our videos</target>
+        <target state="translated">Vi povas uzi ĉi tiujn servojn por interagi kun niaj videoj</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="122439550833449127" datatype="html">
+      <trans-unit id="122439550833449127" datatype="html" xml:space="preserve">
         <source>You can publish videos</source>
-        <target state="new">You can publish videos</target>
+        <target state="translated">Vi povas publikigi videojn</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">136</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9193674330844209801" datatype="html">
+      <trans-unit id="9193674330844209801" datatype="html" xml:space="preserve">
         <source>By default, your account allows you to publish videos.</source>
-        <target state="new">By default, your account allows you to publish videos.</target>
+        <target state="translated">Defaŭlte via konto permesas al vi publikigi videojn.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">139</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7471320952405612533" datatype="html">
+      <trans-unit id="7471320952405612533" datatype="html" xml:space="preserve">
         <source>You can also stream lives.</source>
-        <target state="new"> You can also stream lives.</target>
+        <target state="translated">Vi ankaŭ povas tujelsendi.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">142</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5303097409974075102" datatype="html">
+      <trans-unit id="5303097409974075102" datatype="html" xml:space="preserve">
         <source>Contact us to publish videos</source>
-        <target state="new">Contact us to publish videos</target>
+        <target state="translated">Kontaktu nin por publikigi videojn</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">157</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6096043378628857552" datatype="html">
+      <trans-unit id="6096043378628857552" datatype="html" xml:space="preserve">
         <source>You can't publish videos</source>
-        <target state="new">You can't publish videos</target>
+        <target state="translated">Vi ne povas publikigi videojn</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">159</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7445632181028998943" datatype="html">
+      <trans-unit id="7445632181028998943" datatype="html" xml:space="preserve">
         <source>By default, your account does not allow to publish videos.</source>
-        <target state="new">By default, your account does not allow to publish videos.</target>
+        <target state="translated">Defaŭlte via konto ne permesas al vi publikigi videojn.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">163</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1763989965529610778" datatype="html">
+      <trans-unit id="1763989965529610778" datatype="html" xml:space="preserve">
         <source>If you want to publish videos, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/about/contact&quot;&gt;"/>contact us<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
-        <target state="new"> If you want to publish videos, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/about/contact&quot;&gt;"/>contact us<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
+        <target state="translated">Se vi volas publikigi videojn, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/about/contact&quot;&gt;"/>kontaktu nin<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/instance-stat-rules.component.html</context>
           <context context-type="linenumber">166</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4301908502265861759" datatype="html">
+      <trans-unit id="4301908502265861759" datatype="html" xml:space="preserve">
         <source>This platform is powered by PeerTube</source>
-        <target state="new"> This platform is powered by PeerTube </target>
+        <target state="translated">Ĉi tiu platformo funkcias per PeerTube</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-peertube/about-peertube.component.html</context>
           <context context-type="linenumber">3,4</context>
@@ -2827,17 +2827,17 @@
           <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6994936570572804302" datatype="html">
+      <trans-unit id="6994936570572804302" datatype="html" xml:space="preserve">
         <source>Request an account</source>
-        <target state="new">Request an account</target>
+        <target state="translated">Petu konton</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-main/users/signup-label.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3242255798983858463" datatype="html">
+      <trans-unit id="3242255798983858463" datatype="html" xml:space="preserve">
         <source><x id="PH" equiv-text="days"/> days</source>
-        <target state="new"><x id="PH" equiv-text="days"/> days</target>
+        <target state="translated"><x id="PH" equiv-text="days"/> tagoj</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-main/date/days-duration-formatter.pipe.ts</context>
           <context context-type="linenumber">14</context>
@@ -2851,57 +2851,57 @@
           <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5646229632737908639" datatype="html">
+      <trans-unit id="5646229632737908639" datatype="html" xml:space="preserve">
         <source>Your <x id="PH" equiv-text="name"/> file format is not supported by your platform.</source>
-        <target state="new">Your <x id="PH" equiv-text="name"/> file format is not supported by your platform.</target>
+        <target state="translated">Via <x id="PH" equiv-text="name"/> dosierformato ne estas subtenata de via platformo.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/helpers/utils/upload.ts</context>
           <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4591025453509397472" datatype="html">
+      <trans-unit id="4591025453509397472" datatype="html" xml:space="preserve">
         <source>The server encountered an error.</source>
-        <target state="new">The server encountered an error.</target>
+        <target state="translated">La servilo renkontis eraron.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/helpers/utils/upload.ts</context>
           <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3083362298006411773" datatype="html">
+      <trans-unit id="3083362298006411773" datatype="html" xml:space="preserve">
         <source>Your <x id="PH" equiv-text="name"/> file couldn't be transferred before the server proxy timeout.</source>
-        <target state="new">Your <x id="PH" equiv-text="name"/> file couldn't be transferred before the server proxy timeout.</target>
+        <target state="translated">Via <x id="PH" equiv-text="name"/> dosiero ne povis esti transdonita antaŭ la eksvalidiĝo de la servila prokura konekto.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/helpers/utils/upload.ts</context>
           <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5514835993053540551" datatype="html">
+      <trans-unit id="5514835993053540551" datatype="html" xml:space="preserve">
         <source>Your <x id="PH" equiv-text="name"/> file was too large.</source>
-        <target state="new">Your <x id="PH" equiv-text="name"/> file was too large.</target>
+        <target state="translated">Via <x id="PH" equiv-text="name"/> dosiero estis tro granda.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/helpers/utils/upload.ts</context>
           <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8456000313168556766" datatype="html">
+      <trans-unit id="8456000313168556766" datatype="html" xml:space="preserve">
         <source>Max size is <x id="PH" equiv-text="maxFileSize"/>.</source>
-        <target state="new"> Max size is <x id="PH" equiv-text="maxFileSize"/>.</target>
+        <target state="translated">La maksimuma grandeco estas <x id="PH" equiv-text="maxFileSize"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/helpers/utils/upload.ts</context>
           <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4892001398723483418" datatype="html">
+      <trans-unit id="4892001398723483418" datatype="html" xml:space="preserve">
         <source>Enable hotkeys in this web browser</source>
-        <target state="new">Enable hotkeys in this web browser</target>
+        <target state="translated">Aktivigu fulmoklavojn en ĉi tiu retumilo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/hotkeys/hotkeys-cheat-sheet.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4831075576673859232" datatype="html">
+      <trans-unit id="4831075576673859232" datatype="html" xml:space="preserve">
         <source>Keyboard Shortcuts</source>
-        <target state="new">Keyboard Shortcuts</target>
+        <target state="translated">Fulmoklavoj</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/hotkeys/hotkeys-cheat-sheet.component.ts</context>
           <context context-type="linenumber">19</context>
@@ -2941,9 +2941,9 @@
           <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9133713232258232158" datatype="html">
+      <trans-unit id="9133713232258232158" datatype="html" xml:space="preserve">
         <source>Unfederate</source>
-        <target state="needs-translation">Malfederigi</target>
+        <target state="translated">Malfederigi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-moderation/video-block.component.html</context>
           <context context-type="linenumber">39</context>
@@ -2965,17 +2965,17 @@
           <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1576922614762599626" datatype="html">
+      <trans-unit id="1576922614762599626" datatype="html" xml:space="preserve">
         <source>Blocking a live will automatically terminate the live stream.</source>
-        <target state="new">Blocking a live will automatically terminate the live stream.</target>
+        <target state="translated">Bloki tujelsendon aŭtomate ĉesigos la tujelsendon.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-moderation/video-block.component.html</context>
           <context context-type="linenumber">53,54</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="901879091817013957" datatype="html">
+      <trans-unit id="901879091817013957" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {Blocked <x id="videoName"/>.} other {Blocked <x id="count"/> videos.}}</source>
-        <target state="new">{count, plural, =1 {Blocked <x id="videoName"/>.} other {Blocked <x id="count"/> videos.}}</target>
+        <target state="translated">{count, plural, =1 {Blokis <x id="videoName"/>.} other {Blokis <x id="count"/> videojn.}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-moderation/video-block.component.ts</context>
           <context context-type="linenumber">87</context>
@@ -3029,9 +3029,9 @@
           <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="175344056589888866" datatype="html">
+      <trans-unit id="175344056589888866" datatype="html" xml:space="preserve">
         <source>Example: john@example.com</source>
-        <target state="new">Example: john@example.com</target>
+        <target state="translated">Ekzemplo: adamo@ekzemplo.eu</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-contact/about-contact.component.html</context>
           <context context-type="linenumber">25</context>
@@ -3045,73 +3045,73 @@
           <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4019610224237760025" datatype="html">
+      <trans-unit id="4019610224237760025" datatype="html" xml:space="preserve">
         <source>Login on <x id="INTERPOLATION" equiv-text="{{ instanceName }}"/></source>
-        <target state="new">Login on <x id="INTERPOLATION" equiv-text="{{ instanceName }}"/></target>
+        <target state="translated">Ensalutu en <x id="INTERPOLATION" equiv-text="{{ instanceName }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+login/login.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4835824509322081159" datatype="html">
+      <trans-unit id="4835824509322081159" datatype="html" xml:space="preserve">
         <source>Logging into an account lets you publish content</source>
-        <target state="new">Logging into an account lets you publish content</target>
+        <target state="translated">Ensaluti en konton permesas al vi publikigi enhavon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+login/login.component.html</context>
           <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2579089419201321197" datatype="html">
+      <trans-unit id="2579089419201321197" datatype="html" xml:space="preserve">
         <source>Logging into an account lets you subscribe to your favorite content</source>
-        <target state="new">Logging into an account lets you subscribe to your favorite content</target>
+        <target state="translated">Ensaluti en konton permesas al vi aboni vian plej ŝatatan enhavon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+login/login.component.html</context>
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="132000401491362683" datatype="html">
+      <trans-unit id="132000401491362683" datatype="html" xml:space="preserve">
         <source><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> allows registration. However, be careful to check the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary terms-anchor d-inline&quot; (click)=&quot;onTermsClick($event, instanceInformation)&quot; href=&quot;/about/instance#terms&quot;&gt;"/>Terms<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="START_LINK_1" equiv-text="&lt;a class=&quot;terms-link&quot; target=&quot;_blank&quot; routerLink=&quot;/about/instance&quot;&gt;"/>Terms<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> before creating an account. You may also search for another PeerTube platform to match your exact needs at: <x id="START_LINK_2" equiv-text="&lt;a class=&quot;link-primary&quot; href=&quot;https://joinpeertube.org/instances&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;"/>https://joinpeertube.org/instances<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </source>
-        <target state="new"><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> allows registration. However, be careful to check the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary terms-anchor d-inline&quot; (click)=&quot;onTermsClick($event, instanceInformation)&quot; href=&quot;/about/instance#terms&quot;&gt;"/>Terms<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="START_LINK_1" equiv-text="&lt;a class=&quot;terms-link&quot; target=&quot;_blank&quot; routerLink=&quot;/about/instance&quot;&gt;"/>Terms<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> before creating an account. You may also search for another PeerTube platform to match your exact needs at: <x id="START_LINK_2" equiv-text="&lt;a class=&quot;link-primary&quot; href=&quot;https://joinpeertube.org/instances&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;"/>https://joinpeertube.org/instances<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </target>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> permesas registriĝon. Tamen, kontrolu la <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary terms-anchor d-inline&quot; (click)=&quot;onTermsClick($event, instanceInformation)&quot; href=&quot;/about/instance#terms&quot;&gt;"/>kondiĉojn<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="START_LINK_1" equiv-text="&lt;a class=&quot;terms-link&quot; target=&quot;_blank&quot; routerLink=&quot;/about/instance&quot;&gt;"/>kondiĉojn<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> antaŭ krei konton. Vi ankaŭ povas serĉi alian PeerTube-platformon por konformi al viaj precizaj bezonoj ĉe: <x id="START_LINK_2" equiv-text="&lt;a class=&quot;link-primary&quot; href=&quot;https://joinpeertube.org/instances&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;"/>https://joinpeertube.org/instances<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+login/login.component.html</context>
           <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7036955472108988787" datatype="html">
+      <trans-unit id="7036955472108988787" datatype="html" xml:space="preserve">
         <source><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> doesn't allow for user registration. You may check the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary terms-anchor d-inline&quot; (click)=&quot;onTermsClick($event, instanceInformation)&quot; href=&quot;/about/instance#terms&quot;&gt;"/>Terms<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="START_LINK_1" equiv-text="&lt;a class=&quot;terms-link&quot; target=&quot;_blank&quot; routerLink=&quot;/about/instance&quot;&gt;"/>Terms<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> for more details or find a PeerTube platform that gives you the possibility to sign up for an account and upload your videos there. Find yours among multiple platforms at: <x id="START_LINK_2" equiv-text="&lt;a class=&quot;link-primary&quot; href=&quot;https://joinpeertube.org/instances&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;"/>https://joinpeertube.org/instances<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </source>
-        <target state="new"><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> doesn't allow for user registration. You may check the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary terms-anchor d-inline&quot; (click)=&quot;onTermsClick($event, instanceInformation)&quot; href=&quot;/about/instance#terms&quot;&gt;"/>Terms<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="START_LINK_1" equiv-text="&lt;a class=&quot;terms-link&quot; target=&quot;_blank&quot; routerLink=&quot;/about/instance&quot;&gt;"/>Terms<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> for more details or find a PeerTube platform that gives you the possibility to sign up for an account and upload your videos there. Find yours among multiple platforms at: <x id="START_LINK_2" equiv-text="&lt;a class=&quot;link-primary&quot; href=&quot;https://joinpeertube.org/instances&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;"/>https://joinpeertube.org/instances<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </target>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> ne permesas al uzantoj registriĝi. Vi povas kontroli la <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary terms-anchor d-inline&quot; (click)=&quot;onTermsClick($event, instanceInformation)&quot; href=&quot;/about/instance#terms&quot;&gt;"/>kondiĉojn<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="START_LINK_1" equiv-text="&lt;a class=&quot;terms-link&quot; target=&quot;_blank&quot; routerLink=&quot;/about/instance&quot;&gt;"/>kondiĉojn<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> por pliaj detaloj aŭ trovu PeerTube-platformon, kiu ebligas al vi registri konton kaj alŝuti viajn filmetojn tien. Trovu platformojn ĉe: <x id="START_LINK_2" equiv-text="&lt;a class=&quot;link-primary&quot; href=&quot;https://joinpeertube.org/instances&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;"/>https://joinpeertube.org/instances<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+login/login.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8994506181143828992" datatype="html">
+      <trans-unit id="8994506181143828992" datatype="html" xml:space="preserve">
         <source>Request new verification email</source>
-        <target state="new">Request new verification email</target>
+        <target state="translated">Peti novan konfirman retpoŝton</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+login/login.component.html</context>
           <context context-type="linenumber">38,39</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3257605143052145807" datatype="html">
+      <trans-unit id="3257605143052145807" datatype="html" xml:space="preserve">
         <source>Reset your password</source>
-        <target state="new"> Reset your password </target>
+        <target state="translated">Restarigu vian pasvorton</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+login/login.component.html</context>
           <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6512825581399429064" datatype="html">
+      <trans-unit id="6512825581399429064" datatype="html" xml:space="preserve">
         <source>Enter the two-factor code generated by your phone app:</source>
-        <target state="new">Enter the two-factor code generated by your phone app:</target>
+        <target state="translated">Enigu la dupaŝan aŭtentigan kodon de via telefona aplikaĵo:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+login/login.component.html</context>
           <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="42685862314953751" datatype="html">
+      <trans-unit id="42685862314953751" datatype="html" xml:space="preserve">
         <source>Two factor authentication token</source>
-        <target state="new">Two factor authentication token</target>
+        <target state="translated">Dupaŝa aŭtentiga ĵetono</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+login/login.component.html</context>
           <context context-type="linenumber">82</context>
@@ -3161,9 +3161,9 @@
           <context context-type="linenumber">96</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7736587919193927267" datatype="html">
+      <trans-unit id="7736587919193927267" datatype="html" xml:space="preserve">
         <source>I forgot my password</source>
-        <target state="new"> I forgot my password </target>
+        <target state="translated">Mi forgesis mian pasvorton</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+login/login.component.html</context>
           <context context-type="linenumber">97</context>
@@ -3348,9 +3348,9 @@
           <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4163272119298020373" datatype="html">
+      <trans-unit id="4163272119298020373" datatype="html" xml:space="preserve">
         <source>Filters</source>
-        <target state="new">Filters</target>
+        <target state="translated">Filtriloj</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+search/search.component.html</context>
           <context context-type="linenumber">28</context>
@@ -3401,81 +3401,81 @@
           <context context-type="linenumber">126</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="269413964682905563" datatype="html">
+      <trans-unit id="269413964682905563" datatype="html" xml:space="preserve">
         <source>Have access to your <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>watch history<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
-        <target state="new">Have access to your <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>watch history<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <target state="translated">Aliro al via <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>spekta historio<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/steps/register-step-about.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3772536059362630823" datatype="html">
+      <trans-unit id="3772536059362630823" datatype="html" xml:space="preserve">
         <source>Create a channel to <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>publish videos<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
-        <target state="new">Create a channel to <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>publish videos<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <target state="translated">Kreu kanalon por <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>publikigi videojn<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/steps/register-step-about.component.html</context>
           <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2750704831338623812" datatype="html">
+      <trans-unit id="2750704831338623812" datatype="html" xml:space="preserve">
         <source>Do you use Mastodon, ActivityPub or an RSS feed aggregator?</source>
-        <target state="new">Do you use Mastodon, ActivityPub or an RSS feed aggregator?</target>
+        <target state="translated">Ĉu vi uzas Mastodon, ActivityPub aŭ RSS-agregilon?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/steps/register-step-about.component.html</context>
           <context context-type="linenumber">36,38</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1257029815550886575" datatype="html">
+      <trans-unit id="1257029815550886575" datatype="html" xml:space="preserve">
         <source>You can already follow <x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> using your favorite tool.</source>
-        <target state="new">You can already follow <x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> using your favorite tool.</target>
+        <target state="translated">Vi jam povas sekvi <x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> uzante vian plej ŝatatan ilon.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/steps/register-step-about.component.html</context>
           <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4421489306990745770" datatype="html">
+      <trans-unit id="4421489306990745770" datatype="html" xml:space="preserve">
         <source>This website is a GAFAM alternative</source>
-        <target state="new">This website is a GAFAM alternative</target>
+        <target state="translated">Ĉi tiu retejo estas GAFAM-alternativo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/steps/register-step-about.component.html</context>
           <context context-type="linenumber">47,49</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6894693536499461258" datatype="html">
+      <trans-unit id="6894693536499461258" datatype="html" xml:space="preserve">
         <source><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> has been created using <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://joinpeertube.org&quot;&gt;"/>PeerTube<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, a video creation platform developed by Framasoft. <x id="START_LINK_1" equiv-text="&lt;a class=&quot;link-primary&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://framasoft.org&quot;&gt;"/>Framasoft<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> is a French non-profit organization that offers alternatives to Big Tech's digital tools </source>
-        <target state="new"><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> has been created using <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://joinpeertube.org&quot;&gt;"/>PeerTube<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, a video creation platform developed by Framasoft. <x id="START_LINK_1" equiv-text="&lt;a class=&quot;link-primary&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://framasoft.org&quot;&gt;"/>Framasoft<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> is a French non-profit organization that offers alternatives to Big Tech's digital tools </target>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> estis kreita uzante <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://joinpeertube.org&quot;&gt;"/>PeerTube<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, videa platformo kreita de Framasoft. <x id="START_LINK_1" equiv-text="&lt;a class=&quot;link-primary&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://framasoft.org&quot;&gt;"/>Framasoft<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> estas franca neprofitcela organizo, kiu ofertas alternativojn al la ciferecaj iloj de la grandaj teknologiaj firmaoj. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/steps/register-step-about.component.html</context>
           <context context-type="linenumber">50,53</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2864997292120720545" datatype="html">
+      <trans-unit id="2864997292120720545" datatype="html" xml:space="preserve">
         <source>If you want to <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>publish videos<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> on <x id="INTERPOLATION" equiv-text="{{ instanceName() }}"/>, you must create your first <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>channel<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>. </source>
-        <target state="new"> If you want to <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>publish videos<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> on <x id="INTERPOLATION" equiv-text="{{ instanceName() }}"/>, you must create your first <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>channel<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>. </target>
+        <target state="translated">Se vi volas <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>publikigi videojn<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> sur <x id="INTERPOLATION" equiv-text="{{ instanceName() }}"/>, vi devas krei vian unuan <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>kanalon<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/steps/register-step-channel.component.html</context>
           <context context-type="linenumber">3,7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1335686739562009265" datatype="html">
+      <trans-unit id="1335686739562009265" datatype="html" xml:space="preserve">
         <source>You might want to <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>create a channel by theme:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> for example, you can create a channel named "SweetMelodies" to publish your piano concerts and another one "Ecology" in which you publish your videos talking about ecology. </source>
-        <target state="new"> You might want to <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>create a channel by theme:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> for example, you can create a channel named "SweetMelodies" to publish your piano concerts and another one "Ecology" in which you publish your videos talking about ecology. </target>
+        <target state="translated">Vi eble volus <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>krei kanalon laŭ temo:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> Ekzemple, vi povas krei kanalon nomatan "DolcaMuziko" por publikigi viajn pianokoncertojn kaj alian nomatan "Naturo", en kiu vi publikigas viajn videojn pri ekologio. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/steps/register-step-channel.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5716290603546738313" datatype="html">
+      <trans-unit id="5716290603546738313" datatype="html" xml:space="preserve">
         <source><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> administrators allow you to publish up to <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ videoQuota | bytes: 0 }}"/> of videos<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> on their website. </source>
-        <target state="new"><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> administrators allow you to publish up to <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ videoQuota | bytes: 0 }}"/> of videos<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> on their website. </target>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> Administrantoj permesas al vi publikigi ĝis <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ videoQuota | bytes: 0 }}"/> da videoj<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> en ilia retejo. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/steps/register-step-channel.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8149121824813323170" datatype="html">
+      <trans-unit id="8149121824813323170" datatype="html" xml:space="preserve">
         <source>Search index is unavailable. Retrying with local platform results instead.</source>
-        <target state="new">Search index is unavailable. Retrying with local platform results instead.</target>
+        <target state="translated">Serĉindekso ne disponeblas. Anstataŭe reprovas denove per lokaj platformaj rezultoj.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+search/search.component.ts</context>
           <context context-type="linenumber">187</context>
@@ -3489,17 +3489,17 @@
           <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="304750832760838492" datatype="html">
+      <trans-unit id="304750832760838492" datatype="html" xml:space="preserve">
         <source>Fill platform information</source>
-        <target state="new">Fill platform information</target>
+        <target state="translated">Plenigu platformajn informojn</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-documentation.component.html</context>
           <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4779080266057522972" datatype="html">
+      <trans-unit id="4779080266057522972" datatype="html" xml:space="preserve">
         <source>STEP <x id="INTERPOLATION" equiv-text="{{ currentStep() }}"/>/<x id="INTERPOLATION_1" equiv-text="{{ totalSteps() }}"/></source>
-        <target state="new">STEP <x id="INTERPOLATION" equiv-text="{{ currentStep() }}"/>/<x id="INTERPOLATION_1" equiv-text="{{ totalSteps() }}"/></target>
+        <target state="translated">PAŜO <x id="INTERPOLATION" equiv-text="{{ currentStep() }}"/>/<x id="INTERPOLATION_1" equiv-text="{{ totalSteps() }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-edit-info.component.html</context>
           <context context-type="linenumber">9,10</context>
@@ -3513,49 +3513,49 @@
           <context context-type="linenumber">9,10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="123842545276072825" datatype="html">
+      <trans-unit id="123842545276072825" datatype="html" xml:space="preserve">
         <source>General information</source>
-        <target state="new">General information</target>
+        <target state="translated">Ĝeneralaj informoj</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-edit-info.component.html</context>
           <context context-type="linenumber">12,14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2810794032670562031" datatype="html">
+      <trans-unit id="2810794032670562031" datatype="html" xml:space="preserve">
         <source>You can edit this information later</source>
-        <target state="new">You can edit this information later</target>
+        <target state="translated">Vi povas redakti ĉi tiun informon poste</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-edit-info.component.html</context>
           <context context-type="linenumber">14,16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="149227559940853875" datatype="html">
+      <trans-unit id="149227559940853875" datatype="html" xml:space="preserve">
         <source>Platform name</source>
-        <target state="new">Platform name</target>
+        <target state="translated">Nomo de la platformo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-edit-info.component.html</context>
           <context context-type="linenumber">18,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8513759773687345464" datatype="html">
+      <trans-unit id="8513759773687345464" datatype="html" xml:space="preserve">
         <source>Platform icon</source>
-        <target state="new">Platform icon</target>
+        <target state="translated">Platforma ikono</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-edit-info.component.html</context>
           <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7511449611399836691" datatype="html">
+      <trans-unit id="7511449611399836691" datatype="html" xml:space="preserve">
         <source>Used in various places such as on the website, mobile application and social media</source>
-        <target state="new">Used in various places such as on the website, mobile application and social media</target>
+        <target state="translated">Uzata en diversaj lokoj, kiel ekzemple en la retejo, la poŝtelefona aplikaĵo kaj la sociaj retoj.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-edit-info.component.html</context>
           <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8890553633144307762" datatype="html">
+      <trans-unit id="8890553633144307762" datatype="html" xml:space="preserve">
         <source>Back</source>
-        <target state="new">Back</target>
+        <target state="translated">Reen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-edit-info.component.html</context>
           <context context-type="linenumber">55</context>
@@ -3573,17 +3573,17 @@
           <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="168761137939271501" datatype="html">
+      <trans-unit id="168761137939271501" datatype="html" xml:space="preserve">
         <source>Next step</source>
-        <target state="new">Next step</target>
+        <target state="translated">Sekva paŝo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-edit-info.component.html</context>
           <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="178210321115752683" datatype="html">
+      <trans-unit id="178210321115752683" datatype="html" xml:space="preserve">
         <source>Ignore for now</source>
-        <target state="new">Ignore for now</target>
+        <target state="translated">Ignoru por nun</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-edit-info.component.html</context>
           <context context-type="linenumber">59</context>
@@ -3597,113 +3597,113 @@
           <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1452446159629727078" datatype="html">
+      <trans-unit id="1452446159629727078" datatype="html" xml:space="preserve">
         <source>My platform is more like...</source>
-        <target state="new">My platform is more like...</target>
+        <target state="translated">Mia platformo estas pli kiel...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-form.component.html</context>
           <context context-type="linenumber">18,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5155290888522084933" datatype="html">
+      <trans-unit id="5155290888522084933" datatype="html" xml:space="preserve">
         <source>Community-based</source>
-        <target state="new">Community-based</target>
+        <target state="translated">Komunum-bazita</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-form.component.html</context>
           <context context-type="linenumber">32,34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7688216686590994502" datatype="html">
+      <trans-unit id="7688216686590994502" datatype="html" xml:space="preserve">
         <source>Enable a community to publish content and interact together.</source>
-        <target state="new">Enable a community to publish content and interact together.</target>
+        <target state="translated">Ebligu al komunumo publikigi enhavon kaj interagi kune.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-form.component.html</context>
           <context context-type="linenumber">34,35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9053431081731437649" datatype="html">
+      <trans-unit id="9053431081731437649" datatype="html" xml:space="preserve">
         <source>Institutional</source>
-        <target state="new">Institutional</target>
+        <target state="translated">Institucia</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-form.component.html</context>
           <context context-type="linenumber">48,50</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3627851297496094146" datatype="html">
+      <trans-unit id="3627851297496094146" datatype="html" xml:space="preserve">
         <source>To broadcast your videos. Recommended for public institutions, association and companies.</source>
-        <target state="new">To broadcast your videos. Recommended for public institutions, association and companies.</target>
+        <target state="translated">Por elsendi viajn videojn. Rekomendata por publikaj institucioj, asocioj kaj firmaoj.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-form.component.html</context>
           <context context-type="linenumber">50,51</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3867965101763494594" datatype="html">
+      <trans-unit id="3867965101763494594" datatype="html" xml:space="preserve">
         <source>Only certain people can access content. Recommended for families and closed communities.</source>
-        <target state="new">Only certain people can access content. Recommended for families and closed communities.</target>
+        <target state="translated">Nur certaj homoj povas aliri la enhavon. Rekomendata por familioj kaj fermitaj komunumoj.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-form.component.html</context>
           <context context-type="linenumber">66,67</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6894497431455747153" datatype="html">
+      <trans-unit id="6894497431455747153" datatype="html" xml:space="preserve">
         <source>Preview configuration</source>
-        <target state="new">Preview configuration</target>
+        <target state="translated">Antaŭvido de agordo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-form.component.html</context>
           <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1843196826036466911" datatype="html">
+      <trans-unit id="1843196826036466911" datatype="html" xml:space="preserve">
         <source>If you confirm, PeerTube will:</source>
-        <target state="new">If you confirm, PeerTube will:</target>
+        <target state="translated">Se vi konfirmas, PeerTube faros:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-preview.component.html</context>
           <context context-type="linenumber">15,17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4915702577741089907" datatype="html">
+      <trans-unit id="4915702577741089907" datatype="html" xml:space="preserve">
         <source>If you want finer settings control, your platform configuration can be easily changed after the pre-configuration wizard!</source>
-        <target state="new"> If you want finer settings control, your platform configuration can be easily changed after the pre-configuration wizard! </target>
+        <target state="translated">Se vi volas pli fajnan kontrolon de agordoj, via platforma agordo povas esti facile ŝanĝita post la antaŭkonfigura asistanto!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-preview.component.html</context>
           <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7106510114370231860" datatype="html">
+      <trans-unit id="7106510114370231860" datatype="html" xml:space="preserve">
         <source>Confirm this configuration</source>
-        <target state="new">Confirm this configuration</target>
+        <target state="translated">Konfirmi ĉi tiun agordon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-preview.component.html</context>
           <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5397011431963692760" datatype="html">
+      <trans-unit id="5397011431963692760" datatype="html" xml:space="preserve">
         <source>Welcome to PeerTube</source>
-        <target state="new">Welcome to PeerTube</target>
+        <target state="translated">Bonvenon al PeerTube</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-welcome.component.html</context>
           <context context-type="linenumber">7,9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6505095755481996135" datatype="html">
+      <trans-unit id="6505095755481996135" datatype="html" xml:space="preserve">
         <source>dear administrator!</source>
-        <target state="new">dear administrator!</target>
+        <target state="translated">kara administranto!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-welcome.component.html</context>
           <context context-type="linenumber">9,10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4023399618862728868" datatype="html">
+      <trans-unit id="4023399618862728868" datatype="html" xml:space="preserve">
         <source>Sepia, the cuttlefish, has a few questions to help you <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>quickly pre-configure your platform<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>.</source>
-        <target state="new">Sepia, the cuttlefish, has a few questions to help you <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>quickly pre-configure your platform<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>.</target>
+        <target state="translated">Sepio, la inkfiŝo, havas kelkajn demandojn por helpi vin <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>rapide antaŭkonfiguri vian platformon<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-welcome.component.html</context>
           <context context-type="linenumber">12,14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1443195823760151170" datatype="html">
+      <trans-unit id="1443195823760151170" datatype="html" xml:space="preserve">
         <source>Let's go!</source>
-        <target state="new">Let's go!</target>
+        <target state="translated">Ek!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-welcome.component.html</context>
           <context context-type="linenumber">15</context>
@@ -3717,9 +3717,9 @@
           <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1202582215608581565" datatype="html">
+      <trans-unit id="1202582215608581565" datatype="html" xml:space="preserve">
         <source>CLI:</source>
-        <target state="new">CLI:</target>
+        <target state="translated">CLI:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-documentation.component.html</context>
           <context context-type="linenumber">59,60</context>
@@ -3733,57 +3733,57 @@
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3736279079808209047" datatype="html">
+      <trans-unit id="3736279079808209047" datatype="html" xml:space="preserve">
         <source>Official PeerTube website:</source>
-        <target state="new">Official PeerTube website:</target>
+        <target state="translated">Oficiala PeerTube-retejo:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-documentation.component.html</context>
           <context context-type="linenumber">28,30</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8833059586949417355" datatype="html">
+      <trans-unit id="8833059586949417355" datatype="html" xml:space="preserve">
         <source>Blog post, get help or discover PeerTube</source>
-        <target state="new">Blog post, get help or discover PeerTube</target>
+        <target state="translated">Blogaĵo, ricevu helpon aŭ malkovru PeerTube</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-documentation.component.html</context>
           <context context-type="linenumber">30,31</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="931415109224027105" datatype="html">
+      <trans-unit id="931415109224027105" datatype="html" xml:space="preserve">
         <source>Public PeerTube index:</source>
-        <target state="new">Public PeerTube index:</target>
+        <target state="translated">Publika PeerTube-indekso:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-documentation.component.html</context>
           <context context-type="linenumber">34,36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1498251075459491982" datatype="html">
+      <trans-unit id="1498251075459491982" datatype="html" xml:space="preserve">
         <source>Put your platform on the official PeerTube public index</source>
-        <target state="new">Put your platform on the official PeerTube public index</target>
+        <target state="translated">Aldonu vian platformon al la oficiala publika indekso de PeerTube</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-documentation.component.html</context>
           <context context-type="linenumber">36,37</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4895326106573044490" datatype="html">
+      <trans-unit id="4895326106573044490" datatype="html" xml:space="preserve">
         <source>Documentation</source>
-        <target state="new">Documentation</target>
+        <target state="translated">Dokumentado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-documentation.component.html</context>
           <context context-type="linenumber">42,44</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1498236237234691799" datatype="html">
+      <trans-unit id="1498236237234691799" datatype="html" xml:space="preserve">
         <source>Admin:</source>
-        <target state="new">Admin:</target>
+        <target state="translated">Admin:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-documentation.component.html</context>
           <context context-type="linenumber">46,48</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1561366846864007609" datatype="html">
+      <trans-unit id="1561366846864007609" datatype="html" xml:space="preserve">
         <source>Managing users, following other platforms, dealing with spammers, configure object storage or remote transcoding...</source>
-        <target state="new">Managing users, following other platforms, dealing with spammers, configure object storage or remote transcoding...</target>
+        <target state="translated">Administri uzantojn, sekvi aliajn platformojn, trakti spamantojn, agordi objekto-stokadon aŭ deforan transkodadon...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-documentation.component.html</context>
           <context context-type="linenumber">48,49</context>
@@ -3797,33 +3797,33 @@
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="795989016417948119" datatype="html">
+      <trans-unit id="795989016417948119" datatype="html" xml:space="preserve">
         <source>Do not display again</source>
-        <target state="new">Do not display again</target>
+        <target state="translated">Ne montri denove</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-welcome.component.html</context>
           <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9079166010714549602" datatype="html">
+      <trans-unit id="9079166010714549602" datatype="html" xml:space="preserve">
         <source>Registration policy</source>
-        <target state="new">Registration policy</target>
+        <target state="translated">Registrada politiko</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/community-based-config.component.html</context>
           <context context-type="linenumber">3,5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4252012934127630804" datatype="html">
+      <trans-unit id="4252012934127630804" datatype="html" xml:space="preserve">
         <source>Video quota for new users</source>
-        <target state="new">Video quota for new users</target>
+        <target state="translated">Videa kvoto por novaj uzantoj</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/community-based-config.component.html</context>
           <context context-type="linenumber">9,11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6113440087593374795" datatype="html">
+      <trans-unit id="6113440087593374795" datatype="html" xml:space="preserve">
         <source>Video import and synchronization</source>
-        <target state="new">Video import and synchronization</target>
+        <target state="translated">Videa importado kaj sinkronigo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/community-based-config.component.html</context>
           <context context-type="linenumber">15,17</context>
@@ -3833,65 +3833,65 @@
           <context context-type="linenumber">3,5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5103781513612689881" datatype="html">
+      <trans-unit id="5103781513612689881" datatype="html" xml:space="preserve">
         <source>My community can stream lives</source>
-        <target state="new">My community can stream lives</target>
+        <target state="translated">Mia komunumo povas tujelsendi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/community-based-config.component.html</context>
           <context context-type="linenumber">21,23</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7593555694782789615" datatype="html">
+      <trans-unit id="7593555694782789615" datatype="html" xml:space="preserve">
         <source>Open</source>
-        <target state="new">Open</target>
+        <target state="translated">Malfermita</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/community-based-config.component.ts</context>
           <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1560828454806370515" datatype="html">
+      <trans-unit id="1560828454806370515" datatype="html" xml:space="preserve">
         <source>Anyone can register and use the platform</source>
-        <target state="new">Anyone can register and use the platform</target>
+        <target state="translated">Ĉiu povas registriĝi kaj uzi la platformon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/community-based-config.component.ts</context>
           <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8247087079730523783" datatype="html">
+      <trans-unit id="8247087079730523783" datatype="html" xml:space="preserve">
         <source>Requires approval</source>
-        <target state="new">Requires approval</target>
+        <target state="translated">Postulas aprobon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/community-based-config.component.ts</context>
           <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8305610685019836481" datatype="html">
+      <trans-unit id="8305610685019836481" datatype="html" xml:space="preserve">
         <source>Anyone can register, but a moderator must approve their account before they can use the platform</source>
-        <target state="new">Anyone can register, but a moderator must approve their account before they can use the platform</target>
+        <target state="translated">Ĉiu povas registriĝi, sed moderiganto devas aprobi ilian konton antaŭ ol ili povas uzi la platformon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/community-based-config.component.ts</context>
           <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7860418101283165917" datatype="html">
+      <trans-unit id="7860418101283165917" datatype="html" xml:space="preserve">
         <source>Closed</source>
-        <target state="new">Closed</target>
+        <target state="translated">Fermita</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/community-based-config.component.ts</context>
           <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2224797757421461675" datatype="html">
+      <trans-unit id="2224797757421461675" datatype="html" xml:space="preserve">
         <source>Only an administrator can create users on the platform</source>
-        <target state="new">Only an administrator can create users on the platform</target>
+        <target state="translated">Nur administranto povas krei uzantojn sur la platformo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/community-based-config.component.ts</context>
           <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8779076495329736288" datatype="html">
+      <trans-unit id="8779076495329736288" datatype="html" xml:space="preserve">
         <source>Save a copy of the uploaded video</source>
-        <target state="new">Save a copy of the uploaded video</target>
+        <target state="translated">Konservu kopion de la alŝutita video</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/institutional-config.component.html</context>
           <context context-type="linenumber">3,5</context>
@@ -3901,25 +3901,25 @@
           <context context-type="linenumber">15,17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5858148127589953031" datatype="html">
+      <trans-unit id="5858148127589953031" datatype="html" xml:space="preserve">
         <source>Welcome introduction</source>
-        <target state="new">Welcome introduction</target>
+        <target state="translated">Bonvena enkonduko</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/admin-config-wizard-modal.component.html</context>
           <context context-type="linenumber">5,6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="874940026211412710" datatype="html">
+      <trans-unit id="874940026211412710" datatype="html" xml:space="preserve">
         <source>Edit general information</source>
-        <target state="new">Edit general information</target>
+        <target state="translated">Redakti ĝeneralajn informojn</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/admin-config-wizard-modal.component.html</context>
           <context context-type="linenumber">10,11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5218253483948833494" datatype="html">
+      <trans-unit id="5218253483948833494" datatype="html" xml:space="preserve">
         <source>Usage type</source>
-        <target state="new">Usage type</target>
+        <target state="translated">Tipo de uzado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/admin-config-wizard-modal.component.html</context>
           <context context-type="linenumber">18,19</context>
@@ -3929,9 +3929,9 @@
           <context context-type="linenumber">12,14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5674681810331219328" datatype="html">
+      <trans-unit id="5674681810331219328" datatype="html" xml:space="preserve">
         <source>Configuration preview</source>
-        <target state="new">Configuration preview</target>
+        <target state="translated">Konfigura antaŭvido</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/admin-config-wizard-modal.component.html</context>
           <context context-type="linenumber">25,26</context>
