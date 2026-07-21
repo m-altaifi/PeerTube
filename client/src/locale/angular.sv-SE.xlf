@@ -5326,9 +5326,9 @@
           <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1989971680596153649" datatype="html">
+      <trans-unit id="1989971680596153649" datatype="html" xml:space="preserve">
         <source>Edit this caption</source>
-        <target state="translated">Redigera denna rubrik</target>
+        <target state="translated">Redigera denna textning</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/captions/video-caption-edit-modal.component.html</context>
           <context context-type="linenumber">148</context>
@@ -6799,9 +6799,9 @@
           <context context-type="linenumber">14,16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5908006683848456416" datatype="html">
+      <trans-unit id="5908006683848456416" datatype="html" xml:space="preserve">
         <source>However, the auto-tagging policies will not affect existing comments:</source>
-        <target state="new">However, the auto-tagging policies will not affect existing comments:</target>
+        <target state="translated">Riktlinjerna för automatisk etikettering kommer dock inte att påverka befintliga kommentarer:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">16,18</context>
@@ -6811,25 +6811,25 @@
           <context context-type="linenumber">84,86</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6879611118172119569" datatype="html">
+      <trans-unit id="6879611118172119569" datatype="html" xml:space="preserve">
         <source>Only new comments can be blocked by a new word</source>
-        <target state="new">Only new comments can be blocked by a new word</target>
+        <target state="translated">Endast nya kommentarer kan blockeras med ett nytt ord</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6123892565355794580" datatype="html">
+      <trans-unit id="6123892565355794580" datatype="html" xml:space="preserve">
         <source>If you remove a word from the list, any comments that are currently awaiting review will not be affected</source>
-        <target state="new">If you remove a word from the list, any comments that are currently awaiting review will not be affected</target>
+        <target state="translated">Om du tar bort ett ord från listan påverkas inte de kommentarer som för närvarande väntar på granskning</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4417518529461614977" datatype="html">
+      <trans-unit id="4417518529461614977" datatype="html" xml:space="preserve">
         <source>The auto tags on existing comments and videos will be updated based on the words in this list.</source>
-        <target state="new">The auto tags on existing comments and videos will be updated based on the words in this list.</target>
+        <target state="translated">De automatiska etiketterna i befintliga kommentarer kommer att uppdateras utifrån orden i den här listan.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">23,24</context>
@@ -6859,73 +6859,73 @@
           <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8198822568347366196" datatype="html">
+      <trans-unit id="8198822568347366196" datatype="html" xml:space="preserve">
         <source>Add a watched words subscription</source>
-        <target state="new">Add a watched words subscription</target>
+        <target state="translated">Lägg till en prenumeration på ord att hålla koll på</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">65,67</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6076623101349323411" datatype="html">
+      <trans-unit id="6076623101349323411" datatype="html" xml:space="preserve">
         <source>The remote list will be synchronized periodically, and auto tags on existing comments and videos will be updated based on the words in the list.</source>
-        <target state="new"> The remote list will be synchronized periodically, and auto tags on existing comments and videos will be updated based on the words in the list. </target>
+        <target state="translated">Fjärrlistan kommer att synkroniseras med jämna mellanrum, och automatiska etiketter på befintliga kommentarer och videor kommer att uppdateras utifrån orden i listan.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3536332983620084462" datatype="html">
+      <trans-unit id="3536332983620084462" datatype="html" xml:space="preserve">
         <source>The remote list will be synchronized periodically, and auto tags on existing comments will be updated based on the words in the list.</source>
-        <target state="new"> The remote list will be synchronized periodically, and auto tags on existing comments will be updated based on the words in the list. </target>
+        <target state="translated">Fjärrlistan kommer att synkroniseras med jämna mellanrum, och automatiska etiketter på befintliga kommentarer kommer att uppdateras utifrån orden i listan.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2322571852303891260" datatype="html">
+      <trans-unit id="2322571852303891260" datatype="html" xml:space="preserve">
         <source>Only new comments can be blocked by a new word added to the list</source>
-        <target state="new">Only new comments can be blocked by a new word added to the list</target>
+        <target state="translated">Endast nya kommentarer kan blockeras genom att ett nytt ord läggs till i listan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">87,88</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1627379234330905470" datatype="html">
+      <trans-unit id="1627379234330905470" datatype="html" xml:space="preserve">
         <source>If a word is removed from the list, any comments that are currently awaiting review will not be affected</source>
-        <target state="new">If a word is removed from the list, any comments that are currently awaiting review will not be affected</target>
+        <target state="translated">Om du tar bort ett ord från listan påverkas inte de kommentarer som för närvarande väntar på granskning</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">88,89</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8886093131637035111" datatype="html">
+      <trans-unit id="8886093131637035111" datatype="html" xml:space="preserve">
         <source>Watched words URL</source>
-        <target state="new">Watched words URL</target>
+        <target state="translated">Bevakade ord-URL</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">95,96</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2602880137044610698" datatype="html">
+      <trans-unit id="2602880137044610698" datatype="html" xml:space="preserve">
         <source>Watched words URL is required.</source>
-        <target state="new">Watched words URL is required.</target>
+        <target state="translated">URL:en för Bevakade ord måste anges.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.ts</context>
           <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4147764481886042165" datatype="html">
+      <trans-unit id="4147764481886042165" datatype="html" xml:space="preserve">
         <source>Deleting this subscription will remove &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; auto tags assigned to comments and videos.</source>
-        <target state="new">Deleting this subscription will remove &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; auto tags assigned to comments and videos.</target>
+        <target state="translated">Om du avslutar den här prenumerationen kommer de automatiska etiketterna för &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; som tilldelats kommentarer och videor att tas bort.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.ts</context>
           <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3433732042719776492" datatype="html">
+      <trans-unit id="3433732042719776492" datatype="html" xml:space="preserve">
         <source>Deleting this subscription will remove &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; auto tags assigned to comments.</source>
-        <target state="new">Deleting this subscription will remove &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; auto tags assigned to comments.</target>
+        <target state="translated">Om du avslutar den här prenumerationen kommer de automatiska etiketterna för &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; som tilldelats kommentarer att tas bort.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.ts</context>
           <context context-type="linenumber">135</context>
@@ -8977,9 +8977,9 @@
           <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3312785003874860520" datatype="html">
+      <trans-unit id="3312785003874860520" datatype="html" xml:space="preserve">
         <source>Searched channels</source>
-        <target state="new">Searched channels</target>
+        <target state="translated">Sökta kanaler</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-forms/select/channel/select-channel-admin.component.ts</context>
           <context context-type="linenumber">151</context>
@@ -9777,9 +9777,9 @@
           <context context-type="linenumber">119</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5349840085927711709" datatype="html">
+      <trans-unit id="5349840085927711709" datatype="html" xml:space="preserve">
         <source>Automatically block videos:</source>
-        <target state="new">Automatically block videos:</target>
+        <target state="translated">Automatiskt blockerade videor:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/automatic-tag-policies/automatic-tag-policies-admin.component.html</context>
           <context context-type="linenumber">1,3</context>
