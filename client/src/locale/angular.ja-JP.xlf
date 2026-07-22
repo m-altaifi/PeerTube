@@ -2269,17 +2269,17 @@
           <context context-type="linenumber">515</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1898581791654225317" datatype="html">
+      <trans-unit id="1898581791654225317" datatype="html" xml:space="preserve">
         <source>Save to playlist...</source>
-        <target state="new">Save to playlist...</target>
+        <target state="translated">フレイリストに保存...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">539</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="298947678131483247" datatype="html">
+      <trans-unit id="298947678131483247" datatype="html" xml:space="preserve">
         <source>Download...</source>
-        <target state="new">Download...</target>
+        <target state="translated">ダウンロード...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">547</context>
@@ -4339,9 +4339,9 @@
           <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2005818722469409502" datatype="html">
+      <trans-unit id="2005818722469409502" datatype="html" xml:space="preserve">
         <source>Open menu</source>
-        <target state="new">Open menu</target>
+        <target state="translated">メニューを開く</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/header/header.component.html</context>
           <context context-type="linenumber">108</context>
@@ -5534,9 +5534,9 @@
           <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4391289919356861627" datatype="html">
+      <trans-unit id="4391289919356861627" datatype="html" xml:space="preserve">
         <source>Apply</source>
-        <target state="new">Apply</target>
+        <target state="translated">適用</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-forms/advanced-input-filter.component.html</context>
           <context context-type="linenumber">120</context>
@@ -5662,9 +5662,9 @@
           <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4253402786518820650" datatype="html">
+      <trans-unit id="4253402786518820650" datatype="html" xml:space="preserve">
         <source>Registration state</source>
-        <target state="new">Registration state</target>
+        <target state="needs-translation">登録状態</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/registration-list/registration-list.component.ts</context>
           <context context-type="linenumber">76</context>
