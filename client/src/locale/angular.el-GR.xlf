@@ -1557,9 +1557,9 @@
           <context context-type="linenumber">594</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2126000025358835171" datatype="html">
+      <trans-unit id="2126000025358835171" datatype="html" xml:space="preserve">
         <source>Retry import requested for {count, plural, =1 {1 video} other {<x id="count"/> videos}}.</source>
-        <target state="new">Retry import requested for {count, plural, =1 {1 video} other {<x id="count"/> videos}}.</target>
+        <target state="translated">Ζητήθηκε επανάληψη εισαγωγής για {count, plural, =1 {1 βίντεο} άλλα {<x id="count"/> βίντεο}}.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.ts</context>
           <context context-type="linenumber">611</context>
@@ -2261,9 +2261,9 @@
           <context context-type="linenumber">502</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6626477897309620236" datatype="html">
+      <trans-unit id="6626477897309620236" datatype="html" xml:space="preserve">
         <source>Retry video import of "<x id="PH" equiv-text="video.name"/>" requested.</source>
-        <target state="new">Retry video import of "<x id="PH" equiv-text="video.name"/>" requested.</target>
+        <target state="translated">Ζητήθηκε επανάληψη της εισαγωγής βίντεο από «<x id="PH" equiv-text="video.name"/>».</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">515</context>
@@ -4122,9 +4122,9 @@ The link will expire within 1 hour.</source>
           <context context-type="linenumber">86,88</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8620830892282444876" datatype="html">
+      <trans-unit id="8620830892282444876" datatype="html" xml:space="preserve">
         <source>Blocklist URL</source>
-        <target state="new">Blocklist URL</target>
+        <target state="translated">URL λίστας αποκλεισμένων</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/instance-blocklist/instance-blocklist-subscriptions.component.html</context>
           <context context-type="linenumber">89,90</context>
@@ -5707,9 +5707,9 @@ The link will expire within 1 hour.</source>
           <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7578466065199888239" datatype="html">
+      <trans-unit id="7578466065199888239" datatype="html" xml:space="preserve">
         <source>Accept...</source>
-        <target state="new">Accept...</target>
+        <target state="translated">Αποδοχή...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/registration-list/registration-list.component.ts</context>
           <context context-type="linenumber">92</context>
@@ -5719,9 +5719,9 @@ The link will expire within 1 hour.</source>
           <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3557445363988301484" datatype="html">
+      <trans-unit id="3557445363988301484" datatype="html" xml:space="preserve">
         <source>Reject...</source>
-        <target state="new">Reject...</target>
+        <target state="translated">Απόρριψη...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/registration-list/registration-list.component.ts</context>
           <context context-type="linenumber">98</context>
