@@ -192,16 +192,16 @@ class Redis {
 
   /* ************ Email verification ************ */
 
-  async setUserVerifyEmailVerificationString (userId: number) {
+  async setUserVerifyEmailVerificationString (userId: number, isPendingEmail: boolean) {
     const generatedString = await generateRandomString(32)
 
-    await this.setValue(this.generateUserVerifyEmailKey(userId), generatedString, EMAIL_VERIFY_LIFETIME)
+    await this.setValue(this.generateUserVerifyEmailKey(userId, isPendingEmail), generatedString, EMAIL_VERIFY_LIFETIME)
 
     return generatedString
   }
 
-  async getUserVerifyEmailLink (userId: number) {
-    return this.getValue(this.generateUserVerifyEmailKey(userId))
+  async getUserVerifyEmailLink (userId: number, isPendingEmail: boolean) {
+    return this.getValue(this.generateUserVerifyEmailKey(userId, isPendingEmail))
   }
 
   async setRegistrationVerifyEmailVerificationString (registrationId: number) {
@@ -479,8 +479,8 @@ class Redis {
     return 'two-factor-request-' + userId + '-' + token
   }
 
-  private generateUserVerifyEmailKey (userId: number) {
-    return 'verify-email-user-' + userId
+  private generateUserVerifyEmailKey (userId: number, isPendingEmail: boolean) {
+    return 'verify-email-user-' + userId + (isPendingEmail ? '-pending' : '')
   }
 
   private generateRegistrationVerifyEmailKey (registrationId: number) {
