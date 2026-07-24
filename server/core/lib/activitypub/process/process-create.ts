@@ -111,7 +111,7 @@ async function processCreateWatchAction (watchAction: WatchActionObject) {
   if (watchAction.actionStatus !== 'CompletedActionStatus') return
 
   const video = await VideoModel.loadByUrl(watchAction.object)
-  if (video.remote) return
+  if (!video || video.remote) return
 
   await sequelizeTypescript.transaction(async t => {
     return createOrUpdateLocalVideoViewer(watchAction, video, t)

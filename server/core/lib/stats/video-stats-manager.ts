@@ -110,12 +110,14 @@ export class VideoStatsManager {
 
   async processRemoteDownload (options: {
     video: MVideoImmutable
+    downloadId: string
+    byActorUrl: string
   }) {
-    const { video } = options
+    const { video, downloadId, byActorUrl } = options
 
     logger.debug('Processing remote download for %s.', video.url, lTags())
 
-    await this.videoStats.addRemoteDownload({ video })
+    await this.videoStats.addRemoteDownload({ video, downloadId, byActorUrl })
   }
 
   // ---------------------------------------------------------------------------
