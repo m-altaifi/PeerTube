@@ -27,6 +27,7 @@ import { createOrUpdateLocalVideoViewer } from '../local-video-viewer.js'
 import { createOrUpdateVideoPlaylist } from '../playlists/index.js'
 import { sendReplyApproval } from '../send/send-reply-approval.js'
 import { forwardVideoRelatedActivity } from '../send/shared/send-utils.js'
+import { checkUrlsSameHost, getLocalApproveReplyActivityPubUrl } from '../url.js'
 import { resolveThread } from '../video-comments.js'
 import { canVideoBeFederated, getOrCreateAPVideo } from '../videos/index.js'
 
@@ -50,7 +51,10 @@ async function processCreateActivity (options: APProcessorOptions<ActivityCreate
   }
 
   if (activityType === 'WatchAction') {
-    return retryTransactionWrapper(processCreateWatchAction, activityObject)
+    // Watch actions are only sent to the inbox of the video origin, so we never have to process a fetched one
+    if (options.fromFetch) return
+
+    return retryTransactionWrapper(processCreateWatchAction, activityObject, byActor)
   }
 
   if (activityType === 'CacheFile') {
@@ -107,8 +111,13 @@ async function processCreateCacheFile (
   }
 }
 
-async function processCreateWatchAction (watchAction: WatchActionObject) {
+async function processCreateWatchAction (watchAction: WatchActionObject, byActor: MActorSignature) {
   if (watchAction.actionStatus !== 'CompletedActionStatus') return
+
+  if (checkUrlsSameHost(watchAction.id, byActor.url) !== true) {
+    logger.warn('Ignoring watch action %s that has not the same host than actor %s.', watchAction.id, byActor.url)
+    return
+  }
 
   const video = await VideoModel.loadByUrl(watchAction.object)
   if (!video || video.remote) return
@@ -170,7 +179,7 @@ async function processCreateVideoComment (
     }
 
     // New comment or re-sent after an approval -> forward comment
-    if (comment.heldForReview === false && (created || commentObject.replyApproval)) {
+    if (comment.heldForReview === false && (created || await consumeReplyApproval(video, comment, commentObject))) {
       // Don't resend the activity to the sender
       const exceptions = [ byActor ]
 
@@ -179,6 +188,31 @@ async function processCreateVideoComment (
   }
 
   if (created) Notifier.Instance.notifyOnNewComment(comment)
+}
+
+// The origin instance re-sends us the comment when we approved the reply
+// Ensure it's the approval we sent and that we didn't already process it
+async function consumeReplyApproval (
+  video: MVideoAccountLightBlacklistAllFiles,
+  comment: MCommentOwnerVideo,
+  commentObject: VideoCommentObject
+) {
+  if (!commentObject.replyApproval) return false
+
+  const expectedApproval = getLocalApproveReplyActivityPubUrl(video, comment)
+
+  if (commentObject.replyApproval !== expectedApproval) {
+    logger.warn('Do not forward comment %s that has an unknown reply approval %s.', comment.url, commentObject.replyApproval)
+    return false
+  }
+
+  // We already forwarded this comment after this approval
+  if (comment.replyApproval === expectedApproval) return false
+
+  comment.replyApproval = expectedApproval
+  await comment.save()
+
+  return true
 }
 
 async function processCreatePlaylist (

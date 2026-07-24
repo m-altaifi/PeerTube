@@ -578,6 +578,10 @@ export const REMOTE_DOWNLOADS = {
   MAX_PER_HOST_PER_VIDEO: 500
 }
 
+export const REMOTE_VIEWS = {
+  DEDUPLICATION_LIFETIME: 60000 * 60 * 24 // 24 hours
+}
+
 export const MAX_LOCAL_VIEWER_WATCH_SECTIONS = 100
 
 export let CONTACT_FORM_LIFETIME = 60000 * 60 // 1 hour

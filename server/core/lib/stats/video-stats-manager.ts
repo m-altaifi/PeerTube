@@ -71,6 +71,7 @@ export class VideoStatsManager {
     return { successView, successViewer }
   }
 
+  // Returns false if we already know this viewer/view, so the caller can avoid processing it again
   async processRemoteView (options: {
     video: MVideo
     viewerId: string | null
@@ -84,16 +85,14 @@ export class VideoStatsManager {
     // Viewer
     if (viewerExpires) {
       if (video.remote === false) {
-        this.videoViewerCounters.addRemoteViewerOnLocalVideo({ video, viewerId, viewerExpires })
-        return
+        return this.videoViewerCounters.addRemoteViewerOnLocalVideo({ video, viewerId, viewerExpires })
       }
 
-      this.videoViewerCounters.addRemoteViewerOnRemoteVideo({ video, viewerId, viewerExpires, viewerResultCounter })
-      return
+      return this.videoViewerCounters.addRemoteViewerOnRemoteVideo({ video, viewerId, viewerExpires, viewerResultCounter })
     }
 
     // Just a view
-    await this.videoStats.addRemoteView({ video })
+    return this.videoStats.addRemoteView({ video, viewerId })
   }
 
   // ---------------------------------------------------------------------------

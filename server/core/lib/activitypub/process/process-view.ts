@@ -1,4 +1,5 @@
 import { ActivityView } from '@peertube/peertube-models'
+import { logger, loggerTagsFactory } from '@server/helpers/logger.js'
 import { MAX_REMOTE_VIEWERS_COUNTER } from '@server/initializers/constants.js'
 import { VideoStatsManager } from '@server/lib/stats/video-stats-manager.js'
 import { APProcessorOptions } from '../../../types/activitypub-processor.model.js'
@@ -6,6 +7,8 @@ import { MActorSignature, MVideo } from '../../../types/models/index.js'
 import { forwardVideoRelatedActivity } from '../send/shared/send-utils.js'
 import { checkUrlsSameHost } from '../url.js'
 import { getOrCreateAPVideo } from '../videos/index.js'
+
+const lTags = loggerTagsFactory('ap', 'view')
 
 async function processViewActivity (options: APProcessorOptions<ActivityView>) {
   const { activity, byActor } = options
@@ -24,13 +27,19 @@ export {
 async function processCreateView (activity: ActivityView, byActor: MActorSignature) {
   const videoObject = activity.object
 
+  // The view URL is built from the actor URL, so don't accept a view of another host
+  if (checkUrlsSameHost(activity.id, byActor.url) !== true) {
+    logger.warn('Ignoring view %s that has not the same host than actor %s.', activity.id, byActor.url, lTags())
+    return
+  }
+
   const { video } = await getOrCreateAPVideo({
     videoObject,
     fetchType: 'with-blacklist',
     allowRefresh: false
   })
 
-  await VideoStatsManager.Instance.processRemoteView({
+  const isNew = await VideoStatsManager.Instance.processRemoteView({
     video,
     viewerId: activity.id,
 
@@ -40,7 +49,8 @@ async function processCreateView (activity: ActivityView, byActor: MActorSignatu
     viewerResultCounter: getViewerResultCounter(activity, video, byActor)
   })
 
-  if (video.isLocal()) {
+  // Only forward a view we didn't already know, so a replayed activity can't be amplified to all our followers
+  if (isNew && video.isLocal()) {
     // Forward the view but don't resend the activity to the sender
     const exceptions = [ byActor ]
     await forwardVideoRelatedActivity({ activity, transaction: undefined, followersException: exceptions, video, parallelizable: true })
