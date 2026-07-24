@@ -19,7 +19,7 @@ import { sequelizeTypescript } from '../../../initializers/database.js'
 import { ActorModel } from '../../../models/actor/actor.js'
 import { APProcessorOptions } from '../../../types/activitypub-processor.model.js'
 import { MActorFull, MActorSignature } from '../../../types/models/index.js'
-import { fetchAPObjectIfNeeded } from '../activity.js'
+import { fetchAPObjectIfNeeded, getAPId } from '../activity.js'
 import { getOrCreateAPActor } from '../actors/get.js'
 import { APActorUpdater } from '../actors/updater.js'
 import { createOrUpdateCacheFile } from '../cache-file.js'
@@ -27,7 +27,7 @@ import { upsertAPPlayerSettings } from '../player-settings.js'
 import { createOrUpdateVideoPlaylist } from '../playlists/index.js'
 import { forwardVideoRelatedActivity } from '../send/shared/send-utils.js'
 import { APVideoUpdater, canVideoBeFederated, getOrCreateAPVideo, maybeGetOrCreateAPVideo } from '../videos/index.js'
-import { checkUrlsSameHost } from '../url.js'
+import { checkUrlsSameHost, isLocalUrl } from '../url.js'
 
 async function processUpdateActivity (options: APProcessorOptions<ActivityUpdate<ActivityUpdateObject>>) {
   const { activity, byActor } = options
@@ -40,6 +40,13 @@ async function processUpdateActivity (options: APProcessorOptions<ActivityUpdate
   }
 
   if (isActorTypeValid(objectType as ActivityPubActorType)) {
+    // An actor can only update itself: the object id must be the actor that signed the activity
+    const actorObjectId = getAPId(object as ActivityPubActor)
+    if (actorObjectId !== byActor.url) {
+      logger.error(`Actor ${byActor.url} cannot update the actor ${actorObjectId}.`, { actorObjectId, byActor: byActor.url })
+      return undefined
+    }
+
     // We need more attributes
     const byActorFull = await ActorModel.loadByUrlAndPopulateAccountAndChannel(byActor.url)
     return retryTransactionWrapper(processUpdateActor, byActorFull, object)
@@ -72,6 +79,12 @@ export {
 
 async function processUpdateVideo (byActor: MActorSignature, activity: ActivityUpdate<VideoObject | string>) {
   const videoObject = activity.object as VideoObject
+
+  // Federation must never update a video we own
+  if (isLocalUrl(videoObject.id)) {
+    logger.warn('Video sent by update is a local video.', { videoObject, byActor })
+    return undefined
+  }
 
   if (!checkUrlsSameHost(byActor.url, videoObject.id)) {
     logger.warn('Video sent by update is not from the same host as the actor.', { videoObject, byActor })
