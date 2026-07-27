@@ -21538,9 +21538,9 @@
           <context context-type="linenumber">143</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2605658322936929408" datatype="html">
+      <trans-unit id="2605658322936929408" datatype="html" xml:space="preserve">
         <source>Podcast</source>
-        <target state="new">Podcast</target>
+        <target state="translated">Podcast</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/+my-video-channels/edit/pages/video-channel-edit-podcast.component.html</context>
           <context context-type="linenumber">4</context>
@@ -21558,17 +21558,17 @@
           <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4140988188396275590" datatype="html">
+      <trans-unit id="4140988188396275590" datatype="html" xml:space="preserve">
         <source>PODCAST APPLICATIONS</source>
-        <target state="new">PODCAST APPLICATIONS</target>
+        <target state="translated">PODCAST アプリケーション</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/+my-video-channels/edit/pages/video-channel-edit-podcast.component.html</context>
           <context context-type="linenumber">11,12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6242225133806126562" datatype="html">
+      <trans-unit id="6242225133806126562" datatype="html" xml:space="preserve">
         <source>Podcast feed - Audio &amp; Video</source>
-        <target state="new">Podcast feed - Audio &amp; Video</target>
+        <target state="translated">Podcast フィード - 音声 &amp; 動画</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/+my-video-channels/edit/pages/video-channel-edit-podcast.component.html</context>
           <context context-type="linenumber">16,18</context>
@@ -21662,9 +21662,9 @@
           <context context-type="linenumber">94,95</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="317671111678792150" datatype="html">
+      <trans-unit id="317671111678792150" datatype="html" xml:space="preserve">
         <source>Public email</source>
-        <target state="new">Public email</target>
+        <target state="translated">公開eメール</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/+my-video-channels/edit/pages/video-channel-edit-podcast.component.html</context>
           <context context-type="linenumber">99,101</context>
@@ -22438,9 +22438,9 @@
           <context context-type="linenumber">222</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3665821958852235002" datatype="html">
+      <trans-unit id="3665821958852235002" datatype="html" xml:space="preserve">
         <source>Add to playlist...</source>
-        <target state="new">Add to playlist...</target>
+        <target state="translated">プレイリストに追加...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/my-videos/my-videos.component.ts</context>
           <context context-type="linenumber">313</context>
@@ -22770,9 +22770,9 @@
           <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="302400330356481570" datatype="html">
+      <trans-unit id="302400330356481570" datatype="html" xml:space="preserve">
         <source>Start time must be before end time.</source>
-        <target state="new">Start time must be before end time.</target>
+        <target state="translated">開始時間は終了時間よりも前である必要があります。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/studio/video-studio.component.ts</context>
           <context context-type="linenumber">81</context>
@@ -24730,33 +24730,33 @@
           <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3649698008903201987" datatype="html">
+      <trans-unit id="3649698008903201987" datatype="html" xml:space="preserve">
         <source>Enable DVR</source>
-        <target state="new">Enable DVR</target>
+        <target state="translated">DVR を有効にする</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/live-settings/video-live-settings.component.html</context>
           <context context-type="linenumber">93</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9111762185226509379" datatype="html">
+      <trans-unit id="9111762185226509379" datatype="html" xml:space="preserve">
         <source>Allows viewers to pause, rewind, and jump back to live during the stream</source>
-        <target state="new">Allows viewers to pause, rewind, and jump back to live during the stream</target>
+        <target state="translated">生放送の視聴者が一時停止、巻き戻し、現在放送中の位置に再生位置を戻すことができます</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/live-settings/video-live-settings.component.html</context>
           <context context-type="linenumber">97,98</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5217869465602782408" datatype="html">
+      <trans-unit id="5217869465602782408" datatype="html" xml:space="preserve">
         <source>DVR window</source>
-        <target state="new">DVR window</target>
+        <target state="translated">DVR 期間長</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/live-settings/video-live-settings.component.html</context>
           <context context-type="linenumber">104,105</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4948126596693803585" datatype="html">
+      <trans-unit id="4948126596693803585" datatype="html" xml:space="preserve">
         <source>Maximum is <x id="INTERPOLATION" equiv-text="{{ getMaxDvrWindowMinutes() }}"/> minutes</source>
-        <target state="new">Maximum is <x id="INTERPOLATION" equiv-text="{{ getMaxDvrWindowMinutes() }}"/> minutes</target>
+        <target state="translated">最大は <x id="INTERPOLATION" equiv-text="{{ getMaxDvrWindowMinutes() }}"/> 分間です</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/live-settings/video-live-settings.component.html</context>
           <context context-type="linenumber">105,107</context>
@@ -26165,17 +26165,17 @@
           <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3505675485823209412" datatype="html">
+      <trans-unit id="3505675485823209412" datatype="html" xml:space="preserve">
         <source>This comment can only be seen by you or the other moderators.</source>
-        <target state="new">This comment can only be seen by you or the other moderators.</target>
+        <target state="translated">このコメントやあなたと他のモデレーターにのみ表示されます。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-abuse-list/moderation-comment-modal.component.html</context>
           <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1625695500739106522" datatype="html">
+      <trans-unit id="1625695500739106522" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {Update this comment} other {Update all comments}}</source>
-        <target state="new">{count, plural, =1 {Update this comment} other {Update all comments}}</target>
+        <target state="translated">{count, plural, =1 {このコメントを更新} other {全てのコメントを更新}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-abuse-list/moderation-comment-modal.component.ts</context>
           <context context-type="linenumber">63</context>
@@ -26861,9 +26861,9 @@
           <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4081209700623120257" datatype="html">
+      <trans-unit id="4081209700623120257" datatype="html" xml:space="preserve">
         <source>Update...</source>
-        <target state="new">Update...</target>
+        <target state="translated">更新...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.ts</context>
           <context context-type="linenumber">239</context>
@@ -26873,9 +26873,9 @@
           <context context-type="linenumber">320</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1966943649898653173" datatype="html">
+      <trans-unit id="1966943649898653173" datatype="html" xml:space="preserve">
         <source>Block...</source>
-        <target state="new">Block...</target>
+        <target state="translated">ブロック...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/videos/video-list.component.ts</context>
           <context context-type="linenumber">251</context>
@@ -27017,9 +27017,9 @@
           <context context-type="linenumber">631</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="108745724002877541" datatype="html">
+      <trans-unit id="108745724002877541" datatype="html" xml:space="preserve">
         <source>Do you really want to delete {count, plural, =1 {this comment?} other {<x id="count"/> comments?}}</source>
-        <target state="new">Do you really want to delete {count, plural, =1 {this comment?} other {<x id="count"/> comments?}}</target>
+        <target state="translated">本当に{count, plural, =1 {このコメント} other {<x id="count"/> 件のコメント}}を削除しますか？</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-abuse-list/abuse-list-table.component.ts</context>
           <context context-type="linenumber">693</context>
@@ -27421,9 +27421,9 @@
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5392341774767336507" datatype="html">
+      <trans-unit id="5392341774767336507" datatype="html" xml:space="preserve">
         <source>Copied!</source>
-        <target state="new">Copied!</target>
+        <target state="translated">コピーしました!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-forms/input-text.component.ts</context>
           <context context-type="linenumber">38</context>
@@ -27769,9 +27769,9 @@
           <context context-type="linenumber">617</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7044781507877070108" datatype="html">
+      <trans-unit id="7044781507877070108" datatype="html" xml:space="preserve">
         <source>Report...</source>
-        <target state="new">Report...</target>
+        <target state="translated">報告...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">629</context>
@@ -27785,17 +27785,17 @@
           <context context-type="linenumber">681</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8292657852687129852" datatype="html">
+      <trans-unit id="8292657852687129852" datatype="html" xml:space="preserve">
         <source>Mute platform</source>
-        <target state="new">Mute platform</target>
+        <target state="translated">プラットフォームをミュート</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">692</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3103598276832461257" datatype="html">
+      <trans-unit id="3103598276832461257" datatype="html" xml:space="preserve">
         <source>Unmute platform</source>
-        <target state="new">Unmute platform</target>
+        <target state="translated">プラットフォームをミュート解除</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">702</context>
@@ -28673,9 +28673,9 @@
           <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9122805855378198286" datatype="html">
+      <trans-unit id="9122805855378198286" datatype="html" xml:space="preserve">
         <source>Update videos in playlists</source>
-        <target state="new">Update videos in playlists</target>
+        <target state="translated">プレイリスト内の動画を更新</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-playlist/bulk-update-videos-in-playlist-modal.component.html</context>
           <context context-type="linenumber">3,5</context>
@@ -29539,9 +29539,9 @@
           <context context-type="linenumber">1058</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1887788831759691756" datatype="html">
+      <trans-unit id="1887788831759691756" datatype="html" xml:space="preserve">
         <source><x id="PH" equiv-text="this.serverConfig.instance.name"/> - Videos feed</source>
-        <target state="new"><x id="PH" equiv-text="this.serverConfig.instance.name"/> - Videos feed</target>
+        <target state="translated"><x id="PH" equiv-text="this.serverConfig.instance.name"/> - 動画フィード</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/video-watch.component.ts</context>
           <context context-type="linenumber">1088</context>
@@ -29559,25 +29559,25 @@
           <context context-type="linenumber">1089</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="744434188649519534" datatype="html">
+      <trans-unit id="744434188649519534" datatype="html" xml:space="preserve">
         <source><x id="PH" equiv-text="this.playlist.displayName"/> - Apple Podcast audio feed</source>
-        <target state="new"><x id="PH" equiv-text="this.playlist.displayName"/> - Apple Podcast audio feed</target>
+        <target state="translated"><x id="PH" equiv-text="this.playlist.displayName"/> - Apple Podcast 音声フィード</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/video-watch.component.ts</context>
           <context context-type="linenumber">1090</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6373039497266755686" datatype="html">
+      <trans-unit id="6373039497266755686" datatype="html" xml:space="preserve">
         <source><x id="PH" equiv-text="this.playlist.displayName"/> - Apple Podcast video feed</source>
-        <target state="new"><x id="PH" equiv-text="this.playlist.displayName"/> - Apple Podcast video feed</target>
+        <target state="translated"><x id="PH" equiv-text="this.playlist.displayName"/> - Apple Podcast 動画フィード</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/video-watch.component.ts</context>
           <context context-type="linenumber">1091</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5232693393816852420" datatype="html">
+      <trans-unit id="5232693393816852420" datatype="html" xml:space="preserve">
         <source><x id="PH" equiv-text="video.name"/> - Comments feed</source>
-        <target state="new"><x id="PH" equiv-text="video.name"/> - Comments feed</target>
+        <target state="translated"><x id="PH" equiv-text="video.name"/> - コメントフィード</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/video-watch.component.ts</context>
           <context context-type="linenumber">1105</context>
