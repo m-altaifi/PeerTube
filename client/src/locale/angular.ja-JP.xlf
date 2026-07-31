@@ -1269,9 +1269,9 @@
           <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7539427273132299890">
+      <trans-unit id="7539427273132299890" xml:space="preserve">
         <source>Unlisted</source>
-        <target state="translated">未収載</target>
+        <target state="translated">限定公開</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/shared/player-widgets/video-watch-playlist.component.html</context>
           <context context-type="linenumber">10</context>
@@ -1653,9 +1653,9 @@
           <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4591438961769458035" datatype="html">
+      <trans-unit id="4591438961769458035" datatype="html" xml:space="preserve">
         <source>{VAR_PLURAL, plural, =1 {1 video} other {<x id="INTERPOLATION"/> videos}}</source>
-        <target state="new">{VAR_PLURAL, plural, =1 {1 video} other {<x id="INTERPOLATION"/> videos}}</target>
+        <target state="translated">{VAR_PLURAL, plural, =1 {1本の動画} other {<x id="INTERPOLATION"/> 本の動画}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">112</context>
@@ -1685,9 +1685,9 @@
           <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2085611136494552870" datatype="html">
+      <trans-unit id="2085611136494552870" datatype="html" xml:space="preserve">
         <source>Not set</source>
-        <target state="new">Not set</target>
+        <target state="translated">未設定</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.ts</context>
           <context context-type="linenumber">193</context>
@@ -4111,17 +4111,17 @@
           <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4899825176400185840" datatype="html">
+      <trans-unit id="4899825176400185840" datatype="html" xml:space="preserve">
         <source>Enter the URL of the blocklist to subscribe to. The list will be fetched periodically and accounts/servers will be automatically muted.</source>
-        <target state="new">Enter the URL of the blocklist to subscribe to. The list will be fetched periodically and accounts/servers will be automatically muted.</target>
+        <target state="translated">購読したいブロックリストのURLを入力してください。リストは定期的にチェックされ、リスト内のアカウントやサーバーは自動的にミュートされます。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/instance-blocklist/instance-blocklist-subscriptions.component.html</context>
           <context context-type="linenumber">86,88</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8620830892282444876" datatype="html">
+      <trans-unit id="8620830892282444876" datatype="html" xml:space="preserve">
         <source>Blocklist URL</source>
-        <target state="new">Blocklist URL</target>
+        <target state="translated">ブロックリストのURL</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/instance-blocklist/instance-blocklist-subscriptions.component.html</context>
           <context context-type="linenumber">89,90</context>
@@ -7841,7 +7841,7 @@
       </trans-unit>
       <trans-unit id="4274451041982561878" datatype="html" xml:space="preserve">
         <source>Set the &lt;strong&gt;default video privacy&lt;/strong&gt; to &lt;strong&gt;Public&lt;/strong&gt;</source>
-        <target state="translated">&lt;strong&gt;デフォルトの動画プライバシー設定&lt;/strong&gt; は &lt;strong&gt;公開&lt;/strong&gt;に設定</target>
+        <target state="translated">&lt;strong&gt;デフォルトの動画プライバシー設定&lt;/strong&gt; を &lt;strong&gt;一般公開&lt;/strong&gt;に設定</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/usage-type.model.ts</context>
           <context context-type="linenumber">305</context>
@@ -8309,9 +8309,9 @@
           <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2935783216050341269" datatype="html">
+      <trans-unit id="2935783216050341269" datatype="html" xml:space="preserve">
         <source>the sharing system used for this video implies that some technical information about your system (such as a public IP address) can be sent to other peers.</source>
-        <target state="translated">この動画に使用される共有システムは、あなたのシステムの技術的情報（例えば、公開IPアドレスなど）を他のピアに送信する場合があります。</target>
+        <target state="translated">この動画に使用される共有システムは、あなたのシステムの技術的情報（例えば、パブリックIPアドレスなど）を他のピアに送信する場合があります。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/shared/information/privacy-concerns.component.html</context>
           <context context-type="linenumber">7</context>
@@ -14553,7 +14553,7 @@
       </trans-unit>
       <trans-unit id="5630677130087951545" datatype="html" xml:space="preserve">
         <source>Display all videos (private, unlisted, password protected, not yet published or sensitive videos)</source>
-        <target state="translated">すべての動画（非公開、未収載、パスワードで保護、まだ公開されていないまたはセンシティブな動画）を表示する</target>
+        <target state="translated">すべての動画（非公開、限定公開、パスワードで保護、まだ公開されていないまたはセンシティブな動画）を表示する</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-filters-header.component.html</context>
           <context context-type="linenumber">163</context>
@@ -19426,17 +19426,17 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7223931053738621590" datatype="html">
+      <trans-unit id="7223931053738621590" datatype="html" xml:space="preserve">
         <source>PeerTube thinks your web browser public IP is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ debug?.ip }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>.</source>
-        <target state="translated">PeerTubeはあなたのWebブラウザーの公開IPアドレスを<x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ debug?.ip }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>と認識しています。</target>
+        <target state="translated">PeerTubeはあなたのWebブラウザーのパブリックIPアドレスを<x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ debug?.ip }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>と認識しています。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/system/debug/debug.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="722088235348685072" datatype="html">
+      <trans-unit id="722088235348685072" datatype="html" xml:space="preserve">
         <source>If this is not your correct public IP, please consider fixing it because:</source>
-        <target state="translated">もしあなたの公開IPアドレスが正しくない場合、正しい公開IPアドレスが表示されるためのアクションを検討して下さい。理由は:</target>
+        <target state="translated">もしあなたのパブリックIPアドレスが正しくない場合、正しい公開IPアドレスが表示されるためのアクションを検討して下さい。理由は:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/system/debug/debug.component.html</context>
           <context context-type="linenumber">7</context>
@@ -28283,7 +28283,7 @@
       </trans-unit>
       <trans-unit id="2457309597882219063" datatype="html" xml:space="preserve">
         <source>Unlisted videos</source>
-        <target state="translated">未収載動画</target>
+        <target state="translated">限定公開動画</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/my-videos/my-videos.component.ts</context>
           <context context-type="linenumber">176</context>
