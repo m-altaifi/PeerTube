@@ -5847,9 +5847,9 @@ The link will expire within 1 hour.</source>
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6741450303391308175" datatype="html">
+      <trans-unit id="6741450303391308175" datatype="html" xml:space="preserve">
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Drag and drop your new video file here<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> or click on the button below to replace your video: </source>
-        <target state="new"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Drag and drop your new video file here<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> or click on the button below to replace your video: </target>
+        <target state="translated"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Σύρετε και αποθέστε το νέο αρχείο βίντεο εδώ<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> ή κάντε κλικ στο παρακάτω κουμπί για να αντικαταστήσετε το βίντεό σας: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/replace-file/video-replace-file.component.html</context>
           <context context-type="linenumber">20,23</context>
@@ -6229,9 +6229,9 @@ The link will expire within 1 hour.</source>
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6449526184705760626" datatype="html">
+      <trans-unit id="6449526184705760626" datatype="html" xml:space="preserve">
         <source>Name of the uploaded file.</source>
-        <target state="new">Name of the uploaded file.</target>
+        <target state="translated">Όνομα του αρχείου που ανεβάσατε.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/customization/video-customization.component.html</context>
           <context context-type="linenumber">13,15</context>
