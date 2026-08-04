@@ -175,6 +175,11 @@ function processUndoAnnounce (byActor: MActorSignature, announceActivity: Activi
 function processUndoFollow (follower: MActorSignature, followActivity: ActivityFollow) {
   return sequelizeTypescript.transaction(async t => {
     const following = await ActorModel.loadByUrlAndPopulateAccountAndChannel(followActivity.object, t)
+    if (!following) {
+      logger.warn('Unknown actor %s to undo the follow of %s.', followActivity.object, follower.url)
+      return
+    }
+
     const actorFollow = await ActorFollowModel.loadByActorAndTarget(follower.id, following.id, t)
 
     if (!actorFollow) {

@@ -40,7 +40,7 @@ export async function crawlCollectionPage<T> (
     if (typeof nextLink === 'string') {
       // Don't crawl ourselves
       const remoteHost = new URL(nextLink).host
-      if (remoteHost === WEBSERVER.HOST) continue
+      if (remoteHost === WEBSERVER.HOST) break
 
       url = nextLink
 
