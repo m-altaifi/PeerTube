@@ -329,6 +329,7 @@ export class VideoTableAttributes {
       'originallyPublishedAt',
       'inputFileUpdatedAt',
       'firstPublishedAt',
+      'sitemapContentUpdatedAt',
       'channelId',
       'createdAt',
       'updatedAt',

@@ -92,6 +92,11 @@ export class LocalVideoUpdater {
           if (options[key] !== undefined) video.set(key, options[key])
         }
 
+        // Update sitemapContentUpdatedAt if relevant content fields changed
+        if (this.hasSitemapContentChanged({ ...options, oldName, oldDescription })) {
+          video.sitemapContentUpdatedAt = new Date()
+        }
+
         if (video.nsfw !== true) {
           video.nsfwFlags = NSFWFlag.NONE
           video.nsfwSummary = null
@@ -392,5 +397,22 @@ export class LocalVideoUpdater {
         }
       }
     ]
+  }
+
+  private hasSitemapContentChanged (options: {
+    name?: string
+    description?: string
+    thumbnails?: MThumbnail[]
+
+    oldName: string
+    oldDescription: string
+  }) {
+    const { name, description, thumbnails, oldName, oldDescription } = options
+
+    const nameChanged = name !== undefined && name !== oldName
+    const descriptionChanged = description !== undefined && description !== oldDescription
+    const thumbnailChanged = thumbnails !== undefined && thumbnails.length !== 0
+
+    return nameChanged || descriptionChanged || thumbnailChanged
   }
 }
