@@ -28,6 +28,7 @@ async function installApplication () {
             createOAuthClientIfNotExist(),
             createOAuthAdminIfNotExist(),
             createRunnerRegistrationTokenIfNotExist(),
+            createVideoSearchTriggerIfNotExist(),
             initPNPM()
           ])
         }),
@@ -186,4 +187,29 @@ async function createRunnerRegistrationTokenIfNotExist () {
   })
 
   await token.save()
+}
+
+async function createVideoSearchTriggerIfNotExist () {
+  try {
+    // video_search_vector() is created in database.ts
+    await sequelizeTypescript.query(`
+    CREATE OR REPLACE FUNCTION "video_search_vector_update"() RETURNS trigger AS $$
+    BEGIN
+      INSERT INTO "videoSearch" ("videoId", "searchVector")
+      VALUES (NEW."id", video_search_vector(NEW.name, NEW.description))
+      ON CONFLICT ("videoId") DO UPDATE SET
+        "searchVector" = EXCLUDED."searchVector";
+      RETURN NEW;
+    END;
+    $$ LANGUAGE plpgsql
+  `)
+
+    await sequelizeTypescript.query(`
+    CREATE OR REPLACE TRIGGER "video_search_vector_trigger"
+    AFTER INSERT OR UPDATE OF name, description ON "video"
+    FOR EACH ROW EXECUTE FUNCTION "video_search_vector_update"()
+  `)
+  } catch (err) {
+    logger.error('Cannot create video search trigger.', { err })
+  }
 }

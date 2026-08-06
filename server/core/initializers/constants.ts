@@ -62,7 +62,7 @@ import { CONFIG, registerConfigChangedHandler } from './config.js'
 
 // ---------------------------------------------------------------------------
 
-export const LAST_MIGRATION_VERSION = 1110
+export const LAST_MIGRATION_VERSION = 1115
 
 // ---------------------------------------------------------------------------
 
@@ -593,6 +593,9 @@ export const REMOTE_VIEWS = {
 }
 
 export const MAX_LOCAL_VIEWER_WATCH_SECTIONS = 100
+
+// Changing this requires re-indexing existing videos
+export const VIDEO_SEARCH_INDEXED_DESCRIPTION_LENGTH = 1000
 
 export let CONTACT_FORM_LIFETIME = 60000 * 60 // 1 hour
 
