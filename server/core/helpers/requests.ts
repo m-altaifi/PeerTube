@@ -2,7 +2,15 @@ import { signAsDraftToRequest } from '@misskey-dev/node-http-message-signatures'
 import { CONFIG } from '@server/initializers/config.js'
 import { createWriteStream } from 'fs'
 import { remove } from 'fs-extra/esm'
-import got, { OptionsInit, OptionsOfTextResponseBody, OptionsOfUnknownResponseBodyWrapped, Request, RequestError, Response } from 'got'
+import got, {
+  OptionsInit,
+  OptionsOfBufferResponseBody,
+  OptionsOfTextResponseBody,
+  OptionsOfUnknownResponseBodyWrapped,
+  Request,
+  RequestError,
+  Response
+} from 'got'
 import { gotSsrf } from 'got-ssrf'
 import http from 'http'
 import https from 'https'
@@ -44,7 +52,7 @@ export type PeerTubeRequestOptions = {
   signal?: AbortSignal
 } & Pick<OptionsInit, 'headers' | 'json' | 'method' | 'searchParams'>
 
-export const unsafeSSRFGot = got.extend({
+const unsafeSSRFGot = got.extend({
   ...getProxyAgent(),
 
   headers: {
@@ -157,6 +165,19 @@ export function doJSONRequest<T> (url: string, options: PeerTubeRequestOptions &
     : peertubeGot
 
   return gotInstance<T>(url, { ...gotOptions, responseType: 'json' })
+    .catch(err => {
+      throw buildRequestError(err)
+    })
+}
+
+export function doBufferRequest (url: string, options: PeerTubeRequestOptions & { preventSSRF?: false } = {}) {
+  const gotOptions = buildGotOptions(options) as OptionsOfBufferResponseBody
+
+  const gotInstance = options.preventSSRF === false
+    ? unsafeSSRFGot
+    : peertubeGot
+
+  return gotInstance(url, { ...gotOptions, responseType: 'buffer' })
     .catch(err => {
       throw buildRequestError(err)
     })

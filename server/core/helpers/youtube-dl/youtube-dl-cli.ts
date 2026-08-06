@@ -4,11 +4,11 @@ import { CONFIG } from '@server/initializers/config.js'
 import { execa, Options as ExecaNodeOptions } from 'execa'
 import { ensureDir, pathExists } from 'fs-extra/esm'
 import { chmod, writeFile } from 'fs/promises'
-import { OptionsOfBufferResponseBody } from 'got'
 import { dirname, join } from 'path'
+import { REQUEST_TIMEOUTS } from '../../initializers/constants.js'
 import { logger, loggerTagsFactory } from '../logger.js'
 import { getProxy, isProxyEnabled } from '../proxy.js'
-import { isBinaryResponse, unsafeSSRFGot } from '../requests.js'
+import { doBufferRequest, isBinaryResponse, PeerTubeRequestOptions } from '../requests.js'
 
 type ProcessOptions = Pick<ExecaNodeOptions, 'cwd' | 'maxBuffer'>
 
@@ -32,19 +32,20 @@ export class YoutubeDLCLI {
 
     logger.info('Updating youtubeDL binary from %s.', url, lTags())
 
-    const gotOptions: OptionsOfBufferResponseBody = {
-      context: { bodyKBLimit: 100_000 },
-      responseType: 'buffer'
+    const requestOptions: PeerTubeRequestOptions & { preventSSRF?: false } = {
+      bodyKBLimit: 100_000,
+      timeout: REQUEST_TIMEOUTS.FILE,
+      preventSSRF: false
     }
 
     if (process.env.YOUTUBE_DL_DOWNLOAD_BEARER_TOKEN) {
-      gotOptions.headers = {
+      requestOptions.headers = {
         authorization: 'Bearer ' + process.env.YOUTUBE_DL_DOWNLOAD_BEARER_TOKEN
       }
     }
 
     try {
-      let gotResult = await unsafeSSRFGot(url, gotOptions)
+      let gotResult = await doBufferRequest(url, requestOptions)
 
       if (!isBinaryResponse(gotResult)) {
         const json = JSON.parse(Buffer.from(gotResult.rawBody).toString())
@@ -55,7 +56,7 @@ export class YoutubeDLCLI {
         const releaseAsset = latest.assets.find(a => a.name === releaseName)
         if (!releaseAsset) throw new Error(`Cannot find appropriate release with name ${releaseName} in release assets`)
 
-        gotResult = await unsafeSSRFGot(releaseAsset.browser_download_url, gotOptions)
+        gotResult = await doBufferRequest(releaseAsset.browser_download_url, requestOptions)
       }
 
       if (!isBinaryResponse(gotResult)) {
