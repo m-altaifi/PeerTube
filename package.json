@@ -126,7 +126,6 @@
     "@types/parse-torrent": "^5.8.8",
     "@uploadx/core": "^6.2.1",
     "archiver": "^8.0.0",
-    "async": "^3.2.6",
     "async-mutex": "^0.5.0",
     "bcrypt": "6.0.0",
     "bencode": "^4.0.1",
