@@ -8,7 +8,7 @@ import {
   VideoStreamingPlaylistType
 } from '@peertube/peertube-models'
 import { computeOutputFPS } from '@server/helpers/ffmpeg/index.js'
-import { logger, loggerTagsFactory, LoggerTagsFn } from '@server/helpers/logger.js'
+import { createLogger } from '@server/helpers/logger.js'
 import { CONFIG } from '@server/initializers/config.js'
 import { MEMOIZE_TTL, P2P_MEDIA_LOADER_PEER_VERSION, VIDEO_LIVE } from '@server/initializers/constants.js'
 import { removeHLSFileObjectStorageByPath, storeHLSFileFromContent, storeHLSFileFromPath } from '@server/lib/object-storage/index.js'
@@ -35,6 +35,8 @@ import { LiveQuotaStore } from '../live-quota-store.js'
 import { LiveSegmentShaStore } from '../live-segment-sha-store.js'
 import { buildConcatenatedName, getLiveSegmentListSize, getLiveSegmentTime } from '../live-utils.js'
 import { AbstractTranscodingWrapper, FFmpegTranscodingWrapper, RemoteTranscodingWrapper } from './transcoding-wrapper/index.js'
+
+const logger = createLogger('muxing')
 
 interface MuxingSessionEvents {
   'live-ready': (options: { videoUUID: string }) => void
@@ -92,8 +94,6 @@ class MuxingSession extends EventEmitter implements MuxingSession {
 
   private readonly outDirectory: string
   private readonly replayDirectory: string
-
-  private readonly lTags: LoggerTagsFn
 
   // Path -> Queue
   private readonly objectStorageSendQueues = new Map<string, PQueue>()
@@ -184,8 +184,6 @@ class MuxingSession extends EventEmitter implements MuxingSession {
 
     this.outDirectory = getLiveDirectory(this.videoLive.Video)
     this.replayDirectory = join(getLiveReplayBaseDirectory(this.videoLive.Video), new Date().toISOString())
-
-    this.lTags = loggerTagsFactory('live', this.sessionId, this.videoUUID)
   }
 
   async runMuxing () {
@@ -219,7 +217,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
     // abort() was called before the wrapper existed
     // Abort the wrapper anyway, so it emits 'end' and the cleanup of this session is scheduled
     if (this.aborted) {
-      logger.debug('Live muxing of %s was aborted before the transcoding process started.', this.videoUUID, this.lTags())
+      logger.debug('Live muxing of %s was aborted before the transcoding process started.', this.videoUUID)
 
       this.transcodingWrapper.abort()
       return
@@ -246,7 +244,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
     // Ensure the files watcher is always closed, even when the cleanup was never scheduled
     // (e.g. an ffmpeg error makes the transcoding wrapper abort() short-circuit without emitting 'end')
     this.closeWatcher()
-      .catch(err => logger.error('Cannot close files watcher of %s.', this.outDirectory, { err, ...this.lTags() }))
+      .catch(err => logger.error('Cannot close files watcher of %s.', this.outDirectory, { err }))
 
     // We removed its listeners below, so don't leave a pending timer that would emit an event nobody handles
     this.transcodingWrapper?.destroy()
@@ -273,7 +271,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
   private trackWatcherHandler (handler: Promise<void>) {
     const tracked: Promise<void> = handler
       .catch(err => {
-        logger.error('Error in live files watcher handler of %s.', this.outDirectory, { err, ...this.lTags() })
+        logger.error('Error in live files watcher handler of %s.', this.outDirectory, { err })
       })
       .finally(() => {
         this.pendingWatcherHandlers.delete(tracked)
@@ -291,7 +289,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
         if (this.streamingPlaylist.storage === FileStorage.OBJECT_STORAGE) {
           const masterContent = await this.readNonEmptyMasterPlaylist(path)
 
-          logger.debug('Uploading live master playlist on object storage for %s', this.videoUUID, { masterContent, ...this.lTags() })
+          logger.debug('Uploading live master playlist on object storage for %s', this.videoUUID, { masterContent })
 
           await storeHLSFileFromContent(
             {
@@ -314,7 +312,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
 
         await this.streamingPlaylist.save()
       } catch (err) {
-        logger.error('Cannot update streaming playlist.', { err, ...this.lTags() })
+        logger.error('Cannot update streaming playlist.', { err })
 
         // Don't set masterPlaylistCreated: without a stored master playlist the live would be published but unplayable
         // Stop the session instead, so we don't federate a broken live
@@ -324,7 +322,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
 
       this.masterPlaylistCreated = true
 
-      logger.info('Master playlist file for %s has been created', this.videoUUID, this.lTags())
+      logger.info('Master playlist file for %s has been created', this.videoUUID)
     }
 
     this.filesWatcher.on('add', path => this.trackWatcherHandler(addHandler(path)))
@@ -355,11 +353,11 @@ class MuxingSession extends EventEmitter implements MuxingSession {
     const addHandler = (segmentPath: string) => {
       if (segmentPath.endsWith('.ts') !== true) return
 
-      logger.debug('Live add handler of TS file %s.', segmentPath, this.lTags())
+      logger.debug('Live add handler of TS file %s.', segmentPath)
 
       const playlistId = this.getPlaylistIdFromTS(segmentPath)
       if (!playlistId) {
-        logger.warn('Cannot get the playlist id of live segment %s, ignoring it.', segmentPath, this.lTags())
+        logger.warn('Cannot get the playlist id of live segment %s, ignoring it.', segmentPath)
         return
       }
 
@@ -380,7 +378,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
     const deleteHandler = async (segmentPath: string) => {
       if (segmentPath.endsWith('.ts') !== true) return
 
-      logger.debug('Live delete handler of TS file %s.', segmentPath, this.lTags())
+      logger.debug('Live delete handler of TS file %s.', segmentPath)
 
       // The segment does not exist anymore so the cleanup won't list it: don't track it forever
       this.processedSegments.delete(segmentPath)
@@ -391,7 +389,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
         try {
           await removeHLSFileObjectStorageByPath(this.streamingPlaylist.Video, segmentPath)
         } catch (err) {
-          logger.error('Cannot remove segment %s from object storage', segmentPath, { err, ...this.lTags() })
+          logger.error('Cannot remove segment %s from object storage', segmentPath, { err })
         }
       }
     }
@@ -413,7 +411,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
 
       return canUpload !== true
     } catch (err) {
-      logger.error('Cannot stat %s or check quota of %d.', segmentPath, this.user.id, { err, ...this.lTags() })
+      logger.error('Cannot stat %s or check quota of %d.', segmentPath, this.user.id, { err })
     }
   }
 
@@ -433,7 +431,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
       })
 
       VideoFileModel.customUpsert(file, 'streaming-playlist', null)
-        .catch(err => logger.error('Cannot create file for live streaming.', { err, ...this.lTags() }))
+        .catch(err => logger.error('Cannot create file for live streaming.', { err }))
     }
   }
 
@@ -468,14 +466,14 @@ class MuxingSession extends EventEmitter implements MuxingSession {
             .catch(err => {
               if (this.aborted) return
 
-              logger.error('Cannot process segment %s.', segmentPath, { err, ...this.lTags() })
+              logger.error('Cannot process segment %s.', segmentPath, { err })
             })
         })
       )
       .catch(err => {
         if (this.aborted) return
 
-        logger.error('Cannot process segments', { err, ...this.lTags() })
+        logger.error('Cannot process segments', { err })
       })
   }
 
@@ -517,7 +515,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
 
           await this.processM3U8ToObjectStorage(segmentPath)
         } catch (err) {
-          logger.error('Cannot store TS segment %s in object storage', segmentPath, { err, ...this.lTags() })
+          logger.error('Cannot store TS segment %s in object storage', segmentPath, { err })
         }
       }
     } catch (err) {
@@ -538,7 +536,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
   private async processM3U8ToObjectStorage (segmentPath: string) {
     const m3u8Path = join(this.outDirectory, this.getPlaylistNameFromTS(segmentPath))
 
-    logger.debug('Process M3U8 file %s.', m3u8Path, this.lTags())
+    logger.debug('Process M3U8 file %s.', m3u8Path)
 
     const segmentName = basename(segmentPath)
 
@@ -560,7 +558,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
         })
       )
     } catch (err) {
-      logger.error('Cannot store in object storage m3u8 file %s', m3u8Path, { err, ...this.lTags() })
+      logger.error('Cannot store in object storage m3u8 file %s', m3u8Path, { err })
     }
   }
 
@@ -581,7 +579,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
 
   private onTranscodedEnded () {
     // Don't log the input URL, which contains the stream key (a long lived secret)
-    logger.info('RTMP transmuxing for video %s ended. Scheduling cleanup', this.videoUUID, this.lTags())
+    logger.info('RTMP transmuxing for video %s ended. Scheduling cleanup', this.videoUUID)
 
     // Schedule it before emitting so listeners can wait for the cleanup to complete
     this.scheduleCleanup()
@@ -595,7 +593,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
     this.cleanupScheduled = true
 
     this.runCleanup()
-      .catch(err => logger.error('Cannot run cleanup of %s.', this.outDirectory, { err, ...this.lTags() }))
+      .catch(err => logger.error('Cannot run cleanup of %s.', this.outDirectory, { err }))
   }
 
   private async runCleanup () {
@@ -616,7 +614,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
       logger.error(
         'Cannot close watchers of %s or process remaining hash segments.',
         this.outDirectory,
-        { err, ...this.lTags() }
+        { err }
       )
     }
 
@@ -651,7 +649,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
 
     if (remainingCount === 0) return
 
-    logger.debug('Processing %d remaining live segments of %s.', remainingCount, this.videoUUID, this.lTags())
+    logger.debug('Processing %d remaining live segments of %s.', remainingCount, this.videoUUID)
 
     await Promise.all(
       Array.from(perPlaylist, ([ playlistId, paths ]) => this.processSegments(playlistId, paths))
@@ -662,7 +660,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
     const rtmpSession = this.context.sessions.get(sessionId)
 
     if (!rtmpSession) {
-      logger.warn('Cannot get session %s to check players socket health.', sessionId, this.lTags())
+      logger.warn('Cannot get session %s to check players socket health.', sessionId)
       return
     }
 
@@ -670,7 +668,7 @@ class MuxingSession extends EventEmitter implements MuxingSession {
       const playerSession = this.context.sessions.get(playerSessionId)
 
       if (!playerSession) {
-        logger.error('Cannot get player session %s to check socket health.', playerSession, this.lTags())
+        logger.error('Cannot get player session %s to check socket health.', playerSession)
         continue
       }
 
@@ -686,14 +684,14 @@ class MuxingSession extends EventEmitter implements MuxingSession {
     const segmentName = basename(segmentPath)
     const dest = join(this.replayDirectory, buildConcatenatedName(segmentName))
 
-    logger.debug(`Add segment ${segmentPath} to replay ${dest}`, this.lTags())
+    logger.debug(`Add segment ${segmentPath} to replay ${dest}`)
 
     try {
       const data = await readFile(segmentPath)
 
       await appendFile(dest, data)
     } catch (err) {
-      logger.error('Cannot copy segment %s to replay directory.', segmentPath, { err, ...this.lTags() })
+      logger.error('Cannot copy segment %s to replay directory.', segmentPath, { err })
     }
   }
 
@@ -726,8 +724,6 @@ class MuxingSession extends EventEmitter implements MuxingSession {
     const options = {
       streamingPlaylist: this.streamingPlaylist,
       videoLive: this.videoLive,
-
-      lTags: this.lTags,
 
       sessionId: this.sessionId,
       inputLocalUrl: this.inputLocalUrl,

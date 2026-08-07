@@ -27,7 +27,7 @@ import {
   UpdatedAt
 } from 'sequelize-typescript'
 import { isActivityPubUrlValid } from '../../helpers/custom-validators/activitypub/misc.js'
-import { logger } from '../../helpers/logger.js'
+import { createLogger } from '../../helpers/logger.js'
 import { CONFIG } from '../../initializers/config.js'
 import { CONSTRAINTS_FIELDS } from '../../initializers/constants.js'
 import { ActorModel } from '../actor/actor.js'
@@ -38,6 +38,8 @@ import { VideoChannelModel } from '../video/video-channel.js'
 import { VideoStreamingPlaylistModel } from '../video/video-streaming-playlist.js'
 import { VideoModel } from '../video/video.js'
 import { getAllPrivacies } from '@peertube/peertube-core-utils'
+
+const logger = createLogger()
 
 export enum ScopeNames {
   WITH_VIDEO = 'WITH_VIDEO'

@@ -2,7 +2,9 @@ import { wait } from '@peertube/peertube-core-utils'
 import { sequelizeTypescript } from '@server/initializers/database.js'
 import { Transaction } from 'sequelize'
 import { Model } from 'sequelize-typescript'
-import { logger } from './logger.js'
+import { createLogger } from './logger.js'
+
+const logger = createLogger()
 
 export type RetryTransactionWrapperOptions = {
   // Also retry when the transaction failed because of a unique constraint violation

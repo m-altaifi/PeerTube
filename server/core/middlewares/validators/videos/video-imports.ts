@@ -10,11 +10,13 @@ import { isIdValid, toBooleanOrNull, toIntOrNull } from '../../../helpers/custom
 import { isVideoImportTargetUrlValid, isVideoImportTorrentFile } from '../../../helpers/custom-validators/video-imports.js'
 import { isValidPasswordProtectedPrivacy, isVideoMagnetUriValid, isVideoNameValid } from '../../../helpers/custom-validators/videos.js'
 import { cleanUpReqFiles } from '../../../helpers/express-utils.js'
-import { logger } from '../../../helpers/logger.js'
+import { createLogger } from '../../../helpers/logger.js'
 import { CONFIG } from '../../../initializers/config.js'
 import { CONSTRAINTS_FIELDS } from '../../../initializers/constants.js'
 import { areValidationErrors, checkCanManageVideo, doesChannelIdExist, doesVideoImportExist } from '../shared/index.js'
 import { areErrorsInNSFW, getCommonVideoEditAttributes } from './videos.js'
+
+const logger = createLogger()
 
 export const videoImportAddValidator = getCommonVideoEditAttributes().concat([
   body('channelId')

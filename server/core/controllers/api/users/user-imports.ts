@@ -7,12 +7,14 @@ import {
   userImportRequestResumableValidator
 } from '@server/middlewares/validators/users/user-import.js'
 import { HttpStatusCode, UserImportState } from '@peertube/peertube-models'
-import { logger } from '@server/helpers/logger.js'
+import { createLogger } from '@server/helpers/logger.js'
 import { UserImportModel } from '@server/models/user/user-import.js'
 import { getFSUserImportFilePath } from '@server/lib/paths.js'
 import { move } from 'fs-extra/esm'
 import { JobQueue } from '@server/lib/job-queue/job-queue.js'
 import { saveInTransactionWithRetries } from '@server/helpers/database-utils.js'
+
+const logger = createLogger()
 
 const userImportRouter = express.Router()
 

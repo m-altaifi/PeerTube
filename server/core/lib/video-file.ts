@@ -8,7 +8,7 @@ import {
 } from '@peertube/peertube-ffmpeg'
 import { FileStorage, VideoFileFormatFlag, VideoFileMetadata, VideoFileStream, VideoResolution } from '@peertube/peertube-models'
 import { getFileSize, getLowercaseExtension } from '@peertube/peertube-node-utils'
-import { logger, loggerTagsFactory } from '@server/helpers/logger.js'
+import { createLogger } from '@server/helpers/logger.js'
 import { CONFIG } from '@server/initializers/config.js'
 import { MIMETYPES } from '@server/initializers/constants.js'
 import { VideoFileModel } from '@server/models/video/video-file.js'
@@ -19,6 +19,8 @@ import { move, remove } from 'fs-extra/esm'
 import { storeOriginalVideoFile } from './object-storage/videos.js'
 import { generateHLSVideoFilename, generateWebVideoFilename } from './paths.js'
 import { VideoPathManager } from './video-path-manager.js'
+
+const logger = createLogger()
 
 export async function buildNewFile (options: {
   path: string
@@ -221,9 +223,7 @@ export async function saveNewOriginalFileIfNeeded (video: MVideo, videoFile: MVi
   if (!videoSource || videoSource.keptOriginalFilename) return
   videoSource.keptOriginalFilename = videoFile.filename
 
-  const lTags = loggerTagsFactory(video.uuid)
-
-  logger.info(`Storing original video file ${videoSource.keptOriginalFilename} of video ${video.name}`, lTags())
+  logger.info(`Storing original video file ${videoSource.keptOriginalFilename} of video ${video.name}`)
 
   const sourcePath = VideoPathManager.Instance.getFSVideoFileOutputPath(video, videoFile)
 
@@ -250,7 +250,7 @@ export async function saveNewOriginalFileIfNeeded (video: MVideo, videoFile: MVi
     try {
       await video.removeOriginalFile(oldSource)
     } catch (err) {
-      logger.error('Cannot delete old original file ' + oldSource.keptOriginalFilename, { err, ...lTags() })
+      logger.error('Cannot delete old original file ' + oldSource.keptOriginalFilename, { err })
     }
   }
 }

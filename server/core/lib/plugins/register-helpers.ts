@@ -9,7 +9,7 @@ import {
   VideoPlaylistPrivacyType,
   VideoPrivacyType
 } from '@peertube/peertube-models'
-import { logger } from '@server/helpers/logger.js'
+import { createLogger } from '@server/helpers/logger.js'
 import { onExternalUserAuthenticated } from '@server/lib/auth/external-auth.js'
 import { VideoConstantManagerFactory } from '@server/lib/plugins/video-constant-manager-factory.js'
 import { PluginModel } from '@server/models/server/plugin.js'
@@ -25,6 +25,8 @@ import express from 'express'
 import { Server } from 'http'
 import { VideoTranscodingProfilesManager } from '../transcoding/default-transcoding-profiles.js'
 import { buildPluginHelpers } from './plugin-helpers-builder.js'
+
+const logger = createLogger()
 
 export class RegisterHelpers {
   private readonly transcodingProfiles: {

@@ -1,5 +1,5 @@
 import { install } from '@logtape/adaptor-winston'
-import { buildLogger } from '@server/helpers/logger.js'
+import { buildWinstonLogger } from '@server/helpers/logger.js'
 import { getResumableUploadPath } from '@server/helpers/upload.js'
 import { authenticate } from '@server/middlewares/auth.js'
 import { resumableInitValidator } from '@server/middlewares/validators/resumable-upload.js'
@@ -7,7 +7,7 @@ import { FileQuery, Uploadx, Metadata as UploadXMetadata } from '@uploadx/core'
 import express, { NextFunction, Request, RequestHandler, Response } from 'express'
 import { extname } from 'path'
 
-const logger = buildLogger({ labelSuffix: 'uploadx' })
+const logger = buildWinstonLogger({ labelSuffix: 'uploadx' })
 install(logger)
 
 export const uploadx = new Uploadx({

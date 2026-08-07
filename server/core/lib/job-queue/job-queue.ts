@@ -43,7 +43,7 @@ import {
   Worker,
   WorkerOptions
 } from 'bullmq'
-import { logger } from '../../helpers/logger.js'
+import { createLogger } from '../../helpers/logger.js'
 import { JOB_ATTEMPTS, JOB_CONCURRENCY, JOB_REMOVAL_OPTIONS, JOB_TTL, REPEAT_JOBS, WEBSERVER } from '../../initializers/constants.js'
 import { Hooks } from '../plugins/hooks.js'
 import { Redis } from '../redis.js'
@@ -77,6 +77,8 @@ import { processVideosStats } from './handlers/video-stats.js'
 import { processVideoStudioEdition } from './handlers/video-studio-edition.js'
 import { processVideoTranscoding } from './handlers/video-transcoding.js'
 import { processVideoTranscription } from './handlers/video-transcription.js'
+
+const logger = createLogger('job-queue')
 
 export type CreateJobTypeAndPayload =
   | { type: 'build-automatic-tags', payload: BuildAutomaticTagsPayload }
@@ -262,10 +264,13 @@ class JobQueue {
         .finally(() => clearTimeout(timeoutId))
     }
 
-    const processor = async (jobArg: Job, _, signal: AbortSignal) => {
-      const job = await Hooks.wrapObject(jobArg, 'filter:job-queue.process.params', { type: handlerName })
+    const processor = (jobArg: Job, _, signal: AbortSignal) => {
+      // So every logger call performed by the handler is tagged with the job, without having to inject tags manually
+      return logger.withContext([ handlerName, jobArg.id ], async () => {
+        const job = await Hooks.wrapObject(jobArg, 'filter:job-queue.process.params', { type: handlerName })
 
-      return Hooks.wrapPromiseFun(handler, { job, signal }, 'filter:job-queue.process.result')
+        return Hooks.wrapPromiseFun(handler, { job, signal }, 'filter:job-queue.process.result')
+      })
     }
 
     const worker = new Worker(handlerName, processor, workerOptions)

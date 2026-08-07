@@ -4,11 +4,13 @@ import { join } from 'path'
 import { pick } from '@peertube/peertube-core-utils'
 import { ClientLogCreate, HttpStatusCode, ServerLogLevel, UserRight } from '@peertube/peertube-models'
 import { isArray } from '@server/helpers/custom-validators/misc.js'
-import { logger, mtimeSortFilesDesc } from '@server/helpers/logger.js'
+import { createLogger, mtimeSortFilesDesc } from '@server/helpers/logger.js'
 import { CONFIG } from '../../../initializers/config.js'
 import { AUDIT_LOG_FILENAME, LOG_FILENAME, MAX_LOGS_OUTPUT_CHARACTERS } from '../../../initializers/constants.js'
 import { asyncMiddleware, authenticate, buildRateLimiter, ensureUserHasRight, optionalAuthenticate } from '../../../middlewares/index.js'
 import { createClientLogValidator, getAuditLogsValidator, getLogsValidator } from '../../../middlewares/validators/logs.js'
+
+const logger = createLogger()
 
 const createClientLogRateLimiter = buildRateLimiter({
   windowMs: CONFIG.RATES_LIMIT.RECEIVE_CLIENT_LOG.WINDOW_MS,

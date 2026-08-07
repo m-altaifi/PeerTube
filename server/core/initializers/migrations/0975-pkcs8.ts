@@ -1,6 +1,8 @@
-import { logger } from '@server/helpers/logger.js'
+import { createLogger } from '@server/helpers/logger.js'
 import { createPrivateKey } from 'crypto'
 import * as Sequelize from 'sequelize'
+
+const logger = createLogger()
 
 async function up (utils: {
   transaction: Sequelize.Transaction

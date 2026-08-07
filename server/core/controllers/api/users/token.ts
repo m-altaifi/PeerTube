@@ -1,7 +1,7 @@
 import { InvalidGrantError } from '@node-oauth/oauth2-server'
 import { ResultList, TokenSession } from '@peertube/peertube-models'
 import { buildUUID } from '@peertube/peertube-node-utils'
-import { logger } from '@server/helpers/logger.js'
+import { createLogger } from '@server/helpers/logger.js'
 import { CONFIG } from '@server/initializers/config.js'
 import { OTP } from '@server/initializers/constants.js'
 import { BypassLogin } from '@server/lib/auth/bypass-login.model.js'
@@ -24,6 +24,8 @@ import { manageTokenSessionsValidator, revokeTokenSessionValidator } from '@serv
 import { OAuthTokenModel } from '@server/models/oauth/oauth-token.js'
 import cookieParser from 'cookie-parser'
 import express from 'express'
+
+const logger = createLogger()
 
 const tokensRouter = express.Router()
 

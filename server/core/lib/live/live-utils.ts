@@ -1,6 +1,6 @@
 import { wait } from '@peertube/peertube-core-utils'
 import { FileStorage, LiveVideoLatencyMode, LiveVideoLatencyModeType, VideoState } from '@peertube/peertube-models'
-import { logger } from '@server/helpers/logger.js'
+import { createLogger } from '@server/helpers/logger.js'
 import { CONFIG } from '@server/initializers/config.js'
 import { VIDEO_LIVE } from '@server/initializers/constants.js'
 import { MStreamingPlaylist, MStreamingPlaylistVideo, MVideo } from '@server/types/models/index.js'
@@ -10,6 +10,8 @@ import { readdir, rmdir } from 'fs/promises'
 import { basename, join } from 'path'
 import { listHLSFileKeysOf, removeHLSFileObjectStorageByFullKey, removeHLSObjectStorage } from '../object-storage/index.js'
 import { getLiveDirectory, getLiveReplayBaseDirectory } from '../paths.js'
+
+const logger = createLogger()
 
 export function buildConcatenatedName (segmentOrPlaylistPath: string) {
   const num = basename(segmentOrPlaylistPath).match(/^(\d+)(-|\.)/)

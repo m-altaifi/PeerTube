@@ -1,10 +1,12 @@
 import { ActivityAnnounce, ActivityAudience } from '@peertube/peertube-models'
 import { Transaction } from 'sequelize'
-import { logger } from '../../../helpers/logger.js'
+import { createLogger } from '../../../helpers/logger.js'
 import { MActorLight, MVideo } from '../../../types/models/index.js'
 import { MVideoShare } from '../../../types/models/video/index.js'
 import { audiencify, getPublicAudience } from '../audience.js'
 import { broadcastToFollowers, getActorsInvolvedInVideo } from './shared/send-utils.js'
+
+const logger = createLogger()
 
 export async function sendVideoAnnounce (options: {
   byActor: MActorLight

@@ -8,7 +8,7 @@ import { ensureDir, remove } from 'fs-extra/esm'
 import { readdir } from 'fs/promises'
 import { generatePassword } from 'password-generator'
 import { join } from 'path'
-import { logger } from '../helpers/logger.js'
+import { createLogger } from '../helpers/logger.js'
 import { buildUser, createApplicationActor, createUserAccountAndChannelAndPlaylist } from '../lib/user.js'
 import { ApplicationModel } from '../models/application/application.js'
 import { OAuthClientModel } from '../models/oauth/oauth-client.js'
@@ -16,6 +16,8 @@ import { applicationExist, clientsExist, usersExist } from './checker-after-init
 import { CONFIG } from './config.js'
 import { ADMIN_MEMORABLE_PASSWORD_GENERATION_LENGTH, DIRECTORIES, FILES_CACHE, LAST_MIGRATION_VERSION } from './constants.js'
 import { sequelizeTypescript } from './database.js'
+
+const logger = createLogger()
 
 async function installApplication () {
   try {

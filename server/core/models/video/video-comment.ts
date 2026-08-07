@@ -8,7 +8,7 @@ import {
   VideoCommentObject
 } from '@peertube/peertube-models'
 import { afterCommitIfTransaction, retryTransactionWrapper } from '@server/helpers/database-utils.js'
-import { logger } from '@server/helpers/logger.js'
+import { createLogger } from '@server/helpers/logger.js'
 import { extractLocalMentions } from '@server/helpers/mentions.js'
 import { sequelizeTypescript } from '@server/initializers/database.js'
 import { getLocalApproveReplyActivityPubUrl } from '@server/lib/activitypub/url.js'
@@ -55,6 +55,8 @@ import { buildLocalAccountIdsIn, buildSQLAttributes, SequelizeModel, throwIfNotV
 import { ListVideoCommentsOptions, VideoCommentListQueryBuilder } from './sql/comment/video-comment-list-query-builder.js'
 import { VideoChannelModel } from './video-channel.js'
 import { VideoModel } from './video.js'
+
+const logger = createLogger()
 
 export enum ScopeNames {
   WITH_ACCOUNT = 'WITH_ACCOUNT',

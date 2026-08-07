@@ -1,5 +1,5 @@
 import { AutomaticTagPolicy, ResultList, UserRight, VideoCommentPolicy, VideoCommentThreadTree } from '@peertube/peertube-models'
-import { logger } from '@server/helpers/logger.js'
+import { createLogger } from '@server/helpers/logger.js'
 import { sequelizeTypescript } from '@server/initializers/database.js'
 import { AccountModel } from '@server/models/account/account.js'
 import { getServerAccount } from '@server/models/application/application.js'
@@ -23,6 +23,8 @@ import { setAndSaveCommentAutomaticTags } from './automatic-tags/automatic-tags.
 import { Notifier } from './notifier/notifier.js'
 import { Hooks } from './plugins/hooks.js'
 import { afterCommitIfTransaction } from '@server/helpers/database-utils.js'
+
+const logger = createLogger()
 
 export async function removeComment (commentArg: MComment, req: express.Request, res: express.Response) {
   let videoCommentInstanceBefore: MCommentOwnerVideo

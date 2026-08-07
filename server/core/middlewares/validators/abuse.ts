@@ -15,9 +15,11 @@ import {
   isAbuseVideoIsValid
 } from '@server/helpers/custom-validators/abuses.js'
 import { exists, isIdOrUUIDValid, isIdValid, toCompleteUUID, toIntOrNull } from '@server/helpers/custom-validators/misc.js'
-import { logger } from '@server/helpers/logger.js'
+import { createLogger } from '@server/helpers/logger.js'
 import { AbuseMessageModel } from '@server/models/abuse/abuse-message.js'
 import { areValidationErrors, doesAbuseExist, doesAccountIdExist, doesCommentIdExist, doesVideoExist } from './shared/index.js'
+
+const logger = createLogger()
 
 const abuseReportValidator = [
   body('account.id')

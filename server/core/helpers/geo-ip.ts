@@ -5,10 +5,10 @@ import maxmind, { CityResponse, CountryResponse, Reader } from 'maxmind'
 import { join } from 'path'
 import { REQUEST_TIMEOUTS } from '../initializers/constants.js'
 import { isArray } from './custom-validators/misc.js'
-import { logger, loggerTagsFactory } from './logger.js'
+import { createLogger } from './logger.js'
 import { doBufferRequest, isBinaryResponse } from './requests.js'
 
-const lTags = loggerTagsFactory('geo-ip')
+const logger = createLogger('geo-ip')
 
 export class GeoIP {
   private static instance: GeoIP
@@ -100,7 +100,7 @@ export class GeoIP {
   }
 
   private async updateDatabaseFile (url: string, destination: string) {
-    logger.info('Updating GeoIP databases from %s.', url, lTags())
+    logger.info('Updating GeoIP databases from %s.', url)
 
     try {
       const gotResult = await doBufferRequest(url, {
@@ -115,9 +115,9 @@ export class GeoIP {
 
       await writeFile(destination, gotResult.body)
 
-      logger.info('GeoIP database updated %s.', destination, lTags())
+      logger.info('GeoIP database updated %s.', destination)
     } catch (err) {
-      logger.error('Cannot update GeoIP database from %s.', url, { err, ...lTags() })
+      logger.error('Cannot update GeoIP database from %s.', url, { err })
     }
   }
 

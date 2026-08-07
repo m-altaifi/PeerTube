@@ -18,10 +18,10 @@ import https from 'https'
 import { HttpProxyAgent, HttpsProxyAgent } from '../helpers/hpagent.js'
 import { ACTIVITY_PUB, BINARY_CONTENT_TYPES, PEERTUBE_VERSION, REQUEST_TIMEOUTS, WEBSERVER } from '../initializers/constants.js'
 import { pipelinePromise } from './core-utils.js'
-import { logger, loggerTagsFactory } from './logger.js'
+import { createLogger } from './logger.js'
 import { getProxy, isProxyEnabled } from './proxy.js'
 
-const lTags = loggerTagsFactory('request')
+const logger = createLogger('request')
 
 export interface PeerTubeRequestError extends Error {
   statusCode?: number
@@ -81,7 +81,7 @@ const unsafeSSRFGot = got.extend({
         if (progress.transferred > bodyLimit && progress.percent !== 1) {
           const message = `Exceeded the download limit of ${bodyLimit} B`
           const error = new Error(message)
-          logger.warn(message, lTags())
+          logger.warn(message)
 
           if (options.isStream) {
             ;(promiseOrStream as Request).destroy(error)
@@ -133,7 +133,7 @@ const unsafeSSRFGot = got.extend({
 
     beforeRetry: [
       (error: RequestError, retryCount: number) => {
-        logger.debug('Retrying request to %s.', error.request.requestUrl, { retryCount, error: buildRequestError(error), ...lTags() })
+        logger.debug('Retrying request to %s.', error.request.requestUrl, { retryCount, error: buildRequestError(error) })
       }
     ]
   }
@@ -196,7 +196,7 @@ export async function doRequestAndSaveToFile (url: string, destPath: string, opt
     )
   } catch (err) {
     remove(destPath)
-      .catch(err => logger.error('Cannot remove %s after request failure.', destPath, { err, ...lTags() }))
+      .catch(err => logger.error('Cannot remove %s after request failure.', destPath, { err }))
 
     throw buildRequestError(err)
   }
@@ -220,7 +220,7 @@ export function getProxyAgent () {
 
   const proxy = getProxy()
 
-  logger.info('Using proxy %s.', proxy, lTags())
+  logger.info('Using proxy %s.', proxy)
 
   const proxyAgentOptions = {
     keepAlive: true,

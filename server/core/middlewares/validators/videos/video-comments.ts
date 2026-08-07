@@ -16,7 +16,7 @@ import {
   toIntOrNull
 } from '../../../helpers/custom-validators/misc.js'
 import { isValidVideoCommentText } from '../../../helpers/custom-validators/video-comments.js'
-import { logger } from '../../../helpers/logger.js'
+import { createLogger } from '../../../helpers/logger.js'
 import { AcceptResult, isLocalVideoCommentReplyAccepted, isLocalVideoThreadAccepted } from '../../../lib/moderation.js'
 import { Hooks } from '../../../lib/plugins/hooks.js'
 import { MCommentOwnerVideoReply, MVideo, MVideoAccountLight } from '../../../types/models/video/index.js'
@@ -32,6 +32,8 @@ import {
   isValidVideoIdParam,
   isValidVideoPasswordHeader
 } from '../shared/index.js'
+
+const logger = createLogger()
 
 export const listAllVideoCommentsForAdminValidator = [
   ...getCommonVideoCommentsValidators(),

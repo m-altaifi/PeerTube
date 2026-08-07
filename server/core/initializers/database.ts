@@ -38,7 +38,7 @@ import { readFileSync } from 'fs'
 import pg from 'pg'
 import { QueryTypes, Transaction } from 'sequelize'
 import { Sequelize as SequelizeTypescript } from 'sequelize-typescript'
-import { logger } from '../helpers/logger.js'
+import { createLogger } from '../helpers/logger.js'
 import { AbuseMessageModel } from '../models/abuse/abuse-message.js'
 import { AbuseModel } from '../models/abuse/abuse.js'
 import { VideoAbuseModel } from '../models/abuse/video-abuse.js'
@@ -82,6 +82,8 @@ import { VideoTagModel } from '../models/video/video-tag.js'
 import { VideoModel } from '../models/video/video.js'
 import { CONFIG } from './config.js'
 import { VIDEO_SEARCH_INDEXED_DESCRIPTION_LENGTH } from './constants.js'
+
+const logger = createLogger()
 
 pg.defaults.parseInt8 = true // Avoid BIGINT to be converted to string
 

@@ -1,12 +1,14 @@
 import { FFmpegLive } from '@peertube/peertube-ffmpeg'
 import { getFFmpegCommandWrapperOptions } from '@server/helpers/ffmpeg/index.js'
-import { logger } from '@server/helpers/logger.js'
+import { createLogger } from '@server/helpers/logger.js'
 import { CONFIG } from '@server/initializers/config.js'
 import { VIDEO_LIVE } from '@server/initializers/constants.js'
 import { VideoTranscodingProfilesManager } from '@server/lib/transcoding/default-transcoding-profiles.js'
 import { FfmpegCommand } from 'fluent-ffmpeg'
 import { getLiveSegmentTime } from '../../live-utils.js'
 import { AbstractTranscodingWrapper } from './abstract-transcoding-wrapper.js'
+
+const logger = createLogger('live', 'transcoding', 'ffmpeg')
 
 export class FFmpegTranscodingWrapper extends AbstractTranscodingWrapper {
   private ffmpegCommand: FfmpegCommand
@@ -51,19 +53,19 @@ export class FFmpegTranscodingWrapper extends AbstractTranscodingWrapper {
 
     // abort() may have been called while we were building the command: don't spawn an ffmpeg process nobody watches
     if (this.aborted || this.ended || this.errored) {
-      logger.debug('Live transcoding of %s was aborted before ffmpeg started.', this.videoUUID, this.lTags())
+      logger.debug('Live transcoding of %s was aborted before ffmpeg started.', this.videoUUID)
       return
     }
 
     this.ffmpegCommand = ffmpegCommand
 
-    logger.info('Running local live muxing/transcoding for %s.', this.videoUUID, this.lTags())
+    logger.info('Running local live muxing/transcoding for %s.', this.videoUUID)
 
     let ffmpegShellCommand: string
     this.ffmpegCommand.on('start', cmdline => {
       ffmpegShellCommand = cmdline
 
-      logger.debug('Running ffmpeg command for live', { ffmpegShellCommand, ...this.lTags() })
+      logger.debug('Running ffmpeg command for live', { ffmpegShellCommand })
     })
 
     this.ffmpegCommand.on('error', (err, stdout, stderr) => {
@@ -88,14 +90,14 @@ export class FFmpegTranscodingWrapper extends AbstractTranscodingWrapper {
       return
     }
 
-    logger.debug('Killing ffmpeg after live abort of ' + this.videoUUID, this.lTags())
+    logger.debug('Killing ffmpeg after live abort of ' + this.videoUUID)
 
     this.ffmpegCommand.kill('SIGINT')
 
     // Don't emit 'end' yet: on SIGINT ffmpeg still has to write its last segments and update the playlists
     // We wait for the process to actually exit so listeners know the live directory is not written anymore
     this.exitTimeout = setTimeout(() => {
-      logger.warn('FFmpeg did not exit %d ms after SIGINT of %s, killing it.', VIDEO_LIVE.FFMPEG_EXIT_TIMEOUT, this.videoUUID, this.lTags())
+      logger.warn('FFmpeg did not exit %d ms after SIGINT of %s, killing it.', VIDEO_LIVE.FFMPEG_EXIT_TIMEOUT, this.videoUUID)
 
       this.ffmpegCommand.kill('SIGKILL')
       this.emitEnded()
@@ -119,7 +121,7 @@ export class FFmpegTranscodingWrapper extends AbstractTranscodingWrapper {
       logger.debug(
         'Ignoring ffmpeg error of %s because we aborted the live.',
         this.videoUUID,
-        { err, stdout, stderr, ffmpegShellCommand, ...this.lTags() }
+        { err, stdout, stderr, ffmpegShellCommand }
       )
 
       return this.emitEnded()
@@ -129,7 +131,7 @@ export class FFmpegTranscodingWrapper extends AbstractTranscodingWrapper {
     if (err?.message?.includes('Exiting normally')) return
     if (this.ended || this.errored) return
 
-    logger.error('FFmpeg transcoding error.', { err, stdout, stderr, ffmpegShellCommand, ...this.lTags() })
+    logger.error('FFmpeg transcoding error.', { err, stdout, stderr, ffmpegShellCommand })
 
     this.errored = true
     this.emit('error', { err })
@@ -138,7 +140,7 @@ export class FFmpegTranscodingWrapper extends AbstractTranscodingWrapper {
   private onFFmpegEnded () {
     if (this.errored) return
 
-    logger.debug('Live ffmpeg transcoding ended for ' + this.videoUUID, this.lTags())
+    logger.debug('Live ffmpeg transcoding ended for ' + this.videoUUID)
 
     this.emitEnded()
   }

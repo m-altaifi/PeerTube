@@ -8,9 +8,11 @@ import { checkFFmpeg, checkMissedConfig, checkNodeVersion } from './core/initial
 
 // Do not use barrels because we don't want to load all modules here (we need to initialize database first)
 import { initI18n, useI18n } from '@server/helpers/i18n.js'
-import { logger } from './core/helpers/logger.js'
+import { createLogger } from './core/helpers/logger.js'
 import { CONFIG } from './core/initializers/config.js'
 import { API_VERSION, WEBSERVER, loadLanguages } from './core/initializers/constants.js'
+
+const logger = createLogger()
 
 const missed = checkMissedConfig()
 if (missed.length !== 0) {
@@ -74,6 +76,10 @@ const app = express().disable('x-powered-by')
 
 // Trust our proxy (IP forwarding...)
 app.set('trust proxy', CONFIG.TRUST_PROXY)
+
+// Tag every logger call made while handling a request with a request id, first so every other middleware benefits from it
+import { requestLoggerContext } from './core/middlewares/logger-context.js'
+app.use(requestLoggerContext)
 
 app.use((_req, res, next) => {
   // OpenTelemetry
@@ -173,7 +179,7 @@ cli
 if (isTestOrDevInstance()) {
   app.use(cors({
     origin: '*',
-    exposedHeaders: 'Retry-After'
+    exposedHeaders: [ 'Retry-After', 'X-Request-Id' ]
   }))
 }
 
