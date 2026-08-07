@@ -6800,17 +6800,17 @@ The link will expire within 1 hour.</source>
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5240842733297472555" datatype="html">
+      <trans-unit id="5240842733297472555" datatype="html" xml:space="preserve">
         <source>The auto tags on existing comments will be updated based on the words in this list.</source>
-        <target state="new">The auto tags on existing comments will be updated based on the words in this list.</target>
+        <target state="translated">Οι αυτόματες ετικέτες στα υπάρχοντα σχόλια θα ενημερωθούν με βάση τις λέξεις αυτής της λίστας.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">14,16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5908006683848456416" datatype="html">
+      <trans-unit id="5908006683848456416" datatype="html" xml:space="preserve">
         <source>However, the auto-tagging policies will not affect existing comments:</source>
-        <target state="new">However, the auto-tagging policies will not affect existing comments:</target>
+        <target state="translated">Ωστόσο, οι πολιτικές αυτόματης ετικέτας δεν θα επηρεάσουν τα υπάρχοντα σχόλια:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">16,18</context>
@@ -6820,25 +6820,25 @@ The link will expire within 1 hour.</source>
           <context context-type="linenumber">84,86</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6879611118172119569" datatype="html">
+      <trans-unit id="6879611118172119569" datatype="html" xml:space="preserve">
         <source>Only new comments can be blocked by a new word</source>
-        <target state="new">Only new comments can be blocked by a new word</target>
+        <target state="translated">Μόνο τα νέα σχόλια μπορούν να αποκλειστούν με μια νέα λέξη</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6123892565355794580" datatype="html">
+      <trans-unit id="6123892565355794580" datatype="html" xml:space="preserve">
         <source>If you remove a word from the list, any comments that are currently awaiting review will not be affected</source>
-        <target state="new">If you remove a word from the list, any comments that are currently awaiting review will not be affected</target>
+        <target state="translated">Εάν διαγράψετε μια λέξη από τη λίστα, τα σχόλια που βρίσκονται προς το παρόν σε αναμονή για έλεγχο δεν θα επηρεαστούν</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4417518529461614977" datatype="html">
+      <trans-unit id="4417518529461614977" datatype="html" xml:space="preserve">
         <source>The auto tags on existing comments and videos will be updated based on the words in this list.</source>
-        <target state="new">The auto tags on existing comments and videos will be updated based on the words in this list.</target>
+        <target state="translated">Οι αυτόματες ετικέτες στα υπάρχοντα σχόλια και βίντεο θα ενημερωθούν με βάση τις λέξεις αυτής της λίστας.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">23,24</context>
