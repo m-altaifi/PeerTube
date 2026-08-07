@@ -1,4 +1,4 @@
-import { pick, wait } from '@peertube/peertube-core-utils'
+import { pick, timeoutPromise, wait } from '@peertube/peertube-core-utils'
 import {
   ffprobePromise,
   getVideoStreamBitrate,
@@ -62,6 +62,10 @@ class LiveManager {
   private readonly muxingSessions = new Map<string, MuxingSession>()
   private readonly videoSessions = new Map<string, string>()
 
+  // Video UUID -> cleanup of its current/last muxing session
+  // A permanent live can be streamed again before the previous session finished to write its files on disk
+  private readonly sessionCleanups = new Map<string, { sessionId: string, cleanup: Promise<void> }>()
+
   private rtmpServer: Server
   private rtmpsServer: ServerTLS
 
@@ -94,7 +98,7 @@ class LiveManager {
       logger.info('Live session ended.', { sessionId, ...lTags(sessionId) })
 
       // Force session aborting, so we kill ffmpeg even if it still has data to process (slow CPU)
-      setTimeout(() => this.abortSession(sessionId), 2000)
+      setTimeout(() => this.abortSession(sessionId), VIDEO_LIVE.ABORT_DELAY_ON_RTMP_DISCONNECT)
     })
 
     registerConfigChangedHandler(() => {
@@ -231,6 +235,13 @@ class LiveManager {
     return context
   }
 
+  // Don't remove the cleanup of a more recent session of the same video
+  private deleteSessionCleanup (videoUUID: string, sessionId: string) {
+    if (this.sessionCleanups.get(videoUUID)?.sessionId !== sessionId) return
+
+    this.sessionCleanups.delete(videoUUID)
+  }
+
   private abortSession (sessionId: string) {
     const session = this.getContext().sessions.get(sessionId)
     if (session) {
@@ -298,6 +309,30 @@ class LiveManager {
 
         this.videoSessions.delete(video.uuid)
         return this.abortSession(sessionId)
+      }
+
+      // A previous session of this permanent live may still be writing its last segments on disk
+      // Wait for it, so we don't cleanup/write the same files from two sessions at the same time
+      const previous = this.sessionCleanups.get(video.uuid)
+      if (previous) {
+        logger.info(
+          'Waiting for the previous live session %s of video %s to be cleaned up.',
+          previous.sessionId,
+          video.uuid,
+          lTags(sessionId, video.uuid)
+        )
+
+        // Never block this live forever if the previous cleanup is stuck (a hanging object storage upload for example)
+        try {
+          await timeoutPromise(previous.cleanup, VIDEO_LIVE.PREVIOUS_SESSION_CLEANUP_TIMEOUT)
+        } catch (err) {
+          logger.warn(
+            'Previous live session %s of video %s is still not cleaned up, starting the new session anyway.',
+            previous.sessionId,
+            video.uuid,
+            { err, ...lTags(sessionId, video.uuid) }
+          )
+        }
       }
 
       // Cleanup old potential live (could happen with a permanent live)
@@ -463,6 +498,9 @@ class LiveManager {
       ])
     })
 
+    // Track the cleanup from the session creation: a new session must not write in the live directory before this one flushed its files
+    this.sessionCleanups.set(videoUUID, { sessionId, cleanup: muxingSession.waitForCleanup() })
+
     muxingSession.on('live-ready', () => this.publishAndFederateLive({ live: videoLive, ratio, audioOnlyOutput, localLTags }))
 
     const safeStopSession = (error: LiveVideoErrorType) => {
@@ -493,7 +531,7 @@ class LiveManager {
       safeStopSession(LiveVideoError.QUOTA_EXCEEDED)
     })
 
-    muxingSession.on('transcoding-error', ({ videoUUID }) => {
+    muxingSession.on('transcoding-error', () => {
       safeStopSession(LiveVideoError.FFMPEG_ERROR)
     })
 
@@ -503,6 +541,7 @@ class LiveManager {
 
     muxingSession.on('after-cleanup', ({ videoUUID }) => {
       this.muxingSessions.delete(sessionId)
+      this.deleteSessionCleanup(videoUUID, sessionId)
 
       LiveQuotaStore.Instance.removeLive(user.id, sessionId)
 
@@ -519,9 +558,11 @@ class LiveManager {
         logger.error('Cannot run muxing.', { err, ...localLTags })
 
         this.muxingSessions.delete(sessionId)
+        this.deleteSessionCleanup(videoUUID, sessionId)
 
         LiveQuotaStore.Instance.removeLive(user.id, sessionId)
 
+        // Resolves the cleanup promise, so a new session of this permanent live is not blocked
         muxingSession.destroy()
 
         this.stopSessionOfVideo({
@@ -574,8 +615,9 @@ class LiveManager {
   }
 
   private onMuxingFFmpegEnd (videoUUID: string, sessionId: string) {
-    // Session already cleaned up
-    if (!this.videoSessions.has(videoUUID)) return
+    // Session already cleaned up, or a more recent session of this permanent live already registered itself:
+    // the transcoding process of an ending session can exit long after the next one started
+    if (this.videoSessions.get(videoUUID) !== sessionId) return
 
     this.videoSessions.delete(videoUUID)
 

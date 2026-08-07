@@ -111,9 +111,11 @@ abstract class AbstractTranscodingWrapper extends EventEmitter {
   abstract run (): Promise<void>
 
   abstract abort (abortError?: LiveVideoErrorType): void
+
+  abstract destroy (): void
 }
 
 export {
-  type AbstractTranscodingWrapperOptions,
-  AbstractTranscodingWrapper
+  AbstractTranscodingWrapper,
+  type AbstractTranscodingWrapperOptions
 }

@@ -2,6 +2,7 @@ import { FFmpegLive } from '@peertube/peertube-ffmpeg'
 import { getFFmpegCommandWrapperOptions } from '@server/helpers/ffmpeg/index.js'
 import { logger } from '@server/helpers/logger.js'
 import { CONFIG } from '@server/initializers/config.js'
+import { VIDEO_LIVE } from '@server/initializers/constants.js'
 import { VideoTranscodingProfilesManager } from '@server/lib/transcoding/default-transcoding-profiles.js'
 import { FfmpegCommand } from 'fluent-ffmpeg'
 import { getLiveSegmentTime } from '../../live-utils.js'
@@ -14,8 +15,10 @@ export class FFmpegTranscodingWrapper extends AbstractTranscodingWrapper {
   private errored = false
   private ended = false
 
+  private exitTimeout: NodeJS.Timeout
+
   async run () {
-    this.ffmpegCommand = CONFIG.LIVE.TRANSCODING.ENABLED
+    const ffmpegCommand = CONFIG.LIVE.TRANSCODING.ENABLED
       ? await this.buildFFmpegLive().getLiveTranscodingCommand({
         inputUrl: this.inputLocalUrl,
 
@@ -46,6 +49,14 @@ export class FFmpegTranscodingWrapper extends AbstractTranscodingWrapper {
         segmentDuration: getLiveSegmentTime(this.videoLive.latencyMode)
       })
 
+    // abort() may have been called while we were building the command: don't spawn an ffmpeg process nobody watches
+    if (this.aborted || this.ended || this.errored) {
+      logger.debug('Live transcoding of %s was aborted before ffmpeg started.', this.videoUUID, this.lTags())
+      return
+    }
+
+    this.ffmpegCommand = ffmpegCommand
+
     logger.info('Running local live muxing/transcoding for %s.', this.videoUUID, this.lTags())
 
     let ffmpegShellCommand: string
@@ -69,14 +80,30 @@ export class FFmpegTranscodingWrapper extends AbstractTranscodingWrapper {
   abort () {
     if (this.ended || this.errored || this.aborted) return
 
-    logger.debug('Killing ffmpeg after live abort of ' + this.videoUUID, this.lTags())
+    this.aborted = true
 
-    if (this.ffmpegCommand) {
-      this.ffmpegCommand.kill('SIGINT')
+    // ffmpeg was never started: there is nothing to wait for
+    if (!this.ffmpegCommand) {
+      this.emitEnded()
+      return
     }
 
-    this.aborted = true
-    this.emit('end')
+    logger.debug('Killing ffmpeg after live abort of ' + this.videoUUID, this.lTags())
+
+    this.ffmpegCommand.kill('SIGINT')
+
+    // Don't emit 'end' yet: on SIGINT ffmpeg still has to write its last segments and update the playlists
+    // We wait for the process to actually exit so listeners know the live directory is not written anymore
+    this.exitTimeout = setTimeout(() => {
+      logger.warn('FFmpeg did not exit %d ms after SIGINT of %s, killing it.', VIDEO_LIVE.FFMPEG_EXIT_TIMEOUT, this.videoUUID, this.lTags())
+
+      this.ffmpegCommand.kill('SIGKILL')
+      this.emitEnded()
+    }, VIDEO_LIVE.FFMPEG_EXIT_TIMEOUT)
+  }
+
+  destroy () {
+    clearTimeout(this.exitTimeout)
   }
 
   private onFFmpegError (options: {
@@ -87,9 +114,20 @@ export class FFmpegTranscodingWrapper extends AbstractTranscodingWrapper {
   }) {
     const { err, stdout, stderr, ffmpegShellCommand } = options
 
+    // We killed ffmpeg ourselves: it exits in error but has flushed its last segments, so this is a normal end for us
+    if (this.aborted) {
+      logger.debug(
+        'Ignoring ffmpeg error of %s because we aborted the live.',
+        this.videoUUID,
+        { err, stdout, stderr, ffmpegShellCommand, ...this.lTags() }
+      )
+
+      return this.emitEnded()
+    }
+
     // Don't care that we killed the ffmpeg process
     if (err?.message?.includes('Exiting normally')) return
-    if (this.ended || this.errored || this.aborted) return
+    if (this.ended || this.errored) return
 
     logger.error('FFmpeg transcoding error.', { err, stdout, stderr, ffmpegShellCommand, ...this.lTags() })
 
@@ -98,11 +136,19 @@ export class FFmpegTranscodingWrapper extends AbstractTranscodingWrapper {
   }
 
   private onFFmpegEnded () {
-    if (this.ended || this.errored || this.aborted) return
+    if (this.errored) return
 
     logger.debug('Live ffmpeg transcoding ended for ' + this.videoUUID, this.lTags())
 
+    this.emitEnded()
+  }
+
+  private emitEnded () {
+    if (this.ended) return
     this.ended = true
+
+    clearTimeout(this.exitTimeout)
+
     this.emit('end')
   }
 

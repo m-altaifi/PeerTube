@@ -1176,6 +1176,17 @@ export const RESUMABLE_UPLOAD_SESSION_LIFETIME = SCHEDULER_INTERVALS_MS.REMOVE_D
 export const VIDEO_LIVE = {
   EXTENSION: '.ts',
   CLEANUP_DELAY: 1000 * 60 * 5, // 5 minutes
+  // Delay before aborting a session on RTMP disconnection, so we kill ffmpeg even if it still has data to process
+  ABORT_DELAY_ON_RTMP_DISCONNECT: 2000, // 2 seconds
+  // Max time we wait for ffmpeg to exit after we sent it a SIGINT, before killing it
+  FFMPEG_EXIT_TIMEOUT: 10000, // 10 seconds
+  // Time we give a remote runner to flush its last chunks after we aborted the session
+  // If this delay is too short, the last chunks of this session can land in the directory *after* we told everyone we released it
+  REMOTE_RUNNER_FLUSH_DELAY: 5000, // 5 seconds
+  // Max time a new session waits for the previous session of a permanent live to release the live directory
+  PREVIOUS_SESSION_CLEANUP_TIMEOUT: 30000, // 30 seconds
+  // Max time we wait for ffmpeg to fill the live master playlist it just created before giving up on it
+  MASTER_PLAYLIST_READ_TIMEOUT: 5000, // 5 seconds
   SEGMENT_TIME_SECONDS: {
     DEFAULT_LATENCY: 4, // 4 seconds
     SMALL_LATENCY: 2 // 2 seconds
