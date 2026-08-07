@@ -22,6 +22,7 @@ import {
 } from '@server/middlewares/index.js'
 import { manageTokenSessionsValidator, revokeTokenSessionValidator } from '@server/middlewares/validators/token.js'
 import { OAuthTokenModel } from '@server/models/oauth/oauth-token.js'
+import cookieParser from 'cookie-parser'
 import express from 'express'
 
 const tokensRouter = express.Router()
@@ -42,6 +43,8 @@ tokensRouter.post(
   '/revoke-token',
   openapiOperationDoc({ operationId: 'revokeOAuthToken' }),
   authenticate,
+  // Ensure cookies are available for auth plugins `onLogout`
+  cookieParser(),
   asyncMiddleware(handleTokenRevocation)
 )
 
@@ -63,6 +66,8 @@ tokensRouter.post(
   authenticate,
   asyncMiddleware(manageTokenSessionsValidator),
   asyncMiddleware(revokeTokenSessionValidator),
+  // The API router is mounted before the global cookie parser, so parse them here for auth plugins `onLogout`
+  cookieParser(),
   asyncMiddleware(revokeTokenSession)
 )
 

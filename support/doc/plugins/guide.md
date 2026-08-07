@@ -336,7 +336,8 @@ function register (...) {
     getWeight: () => 60,
 
     // Optional function called by PeerTube when the user clicked on the logout button
-    onLogout: user => {
+    // The logout request is also provided, so you can read its headers or its cookies (PeerTube >= 8.3)
+    onLogout: (user, req) => {
       console.log('User %s logged out.', user.username')
     },
 
