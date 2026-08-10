@@ -12,7 +12,7 @@ import { PluginManager } from '../plugins/plugin-manager.js'
 
 const lTags = loggerTagsFactory('automatic-tags')
 
-const linkifyIt = new LinkifyIt()
+const linkifyIt = new LinkifyIt({ fuzzyLink: true })
 
 export class AutomaticTagger {
   private static readonly SPECIAL_TAGS = {
