@@ -196,7 +196,7 @@ export function buildCreateActivity<T extends ActivityCreateObject> (
 
   return audiencify(
     {
-      type: 'Create' as 'Create',
+      type: 'Create',
       id: url + '/activity',
       actor: byActor.url,
       object: typeof object === 'string'

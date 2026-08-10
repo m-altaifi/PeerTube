@@ -133,7 +133,7 @@ export class ApiCache {
 
       // Seconds since epoch, used to properly decrement max-age headers in cached responses.
       timestamp: new Date().getTime() / 1000
-    } as CacheObject
+    }
   }
 
   private async cacheResponse (key: string, value: object, duration: number) {

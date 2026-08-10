@@ -15,7 +15,6 @@ import { VideoConstantManagerFactory } from '@server/lib/plugins/video-constant-
 import { PluginModel } from '@server/models/server/plugin.js'
 import {
   RegisterServerAuthExternalOptions,
-  RegisterServerAuthExternalResult,
   RegisterServerAuthPassOptions,
   RegisterServerExternalAuthenticatedResult,
   RegisterServerOptions,
@@ -270,7 +269,7 @@ export class RegisterHelpers {
             logger.error('Cannot execute onExternalUserAuthenticated.', { npmName: self.npmName, authName: options.authName, err })
           })
         }
-      } as RegisterServerAuthExternalResult
+      }
     }
   }
 

@@ -23,7 +23,7 @@ async function run () {
     console.log('## Updating "formatFlags" column for web videos in "videoFile" table in database ##\n')
 
     const totalQuery = 'SELECT COUNT(*) AS "total" FROM "videoFile" WHERE "videoId" IS NOT NULL AND "formatFlags" != 1'
-    const res = await sequelizeTypescript.query<{ total: string }>(totalQuery, { type: QueryTypes.SELECT as QueryTypes.SELECT })
+    const res = await sequelizeTypescript.query<{ total: string }>(totalQuery, { type: QueryTypes.SELECT })
     const total = parseInt(res[0].total)
 
     console.log(`Will update ${total.toLocaleString()} rows`)
@@ -40,7 +40,7 @@ async function run () {
         await sequelizeTypescript.query(
           'UPDATE "videoFile" SET "formatFlags" = 1 WHERE id IN (' +
             'SELECT id FROM "videoFile" WHERE "videoId" IS NOT NULL AND "formatFlags" != 1 LIMIT ' + chunkSize +
-          ')'
+            ')'
         )
 
         remaining -= chunkSize

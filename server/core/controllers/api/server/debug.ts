@@ -1,5 +1,4 @@
 import {
-  Debug,
   HttpStatusCode,
   SendDebugCommand,
   SendDebugTestEmails,
@@ -53,7 +52,7 @@ function getDebug (req: express.Request, res: express.Response) {
   return res.json({
     ip: req.ip,
     activityPubMessagesWaiting: InboxManager.Instance.getActivityPubMessagesWaiting()
-  } as Debug)
+  })
 }
 
 async function runCommand (req: express.Request, res: express.Response) {

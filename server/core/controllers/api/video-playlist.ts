@@ -3,9 +3,7 @@ import {
   HttpStatusCode,
   VideoChannelActivityAction,
   VideoPlaylistCreate,
-  VideoPlaylistCreateResult,
   VideoPlaylistElementCreate,
-  VideoPlaylistElementCreateResult,
   VideoPlaylistElementUpdate,
   VideoPlaylistPrivacy,
   VideoPlaylistPrivacyType,
@@ -245,7 +243,7 @@ async function createVideoPlaylist (req: express.Request, res: express.Response)
       id: videoPlaylistCreated.id,
       shortUUID: uuidToShort(videoPlaylistCreated.uuid),
       uuid: videoPlaylistCreated.uuid
-    } as VideoPlaylistCreateResult
+    }
   })
 }
 
@@ -467,7 +465,7 @@ async function addVideoInPlaylist (req: express.Request, res: express.Response) 
   return res.json({
     videoPlaylistElement: {
       id: playlistElement.id
-    } as VideoPlaylistElementCreateResult
+    }
   })
 }
 

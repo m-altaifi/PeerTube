@@ -71,8 +71,8 @@ describe('Test video comments', function () {
       expect(comment.account.url).to.equal(server.url + '/accounts/root')
       expect(comment.totalReplies).to.equal(0)
       expect(comment.totalRepliesFromVideoAuthor).to.equal(0)
-      expect(dateIsValid(comment.createdAt as string)).to.be.true
-      expect(dateIsValid(comment.updatedAt as string)).to.be.true
+      expect(dateIsValid(comment.createdAt)).to.be.true
+      expect(dateIsValid(comment.updatedAt)).to.be.true
     })
 
     it('Should list threads of this video', async function () {
@@ -97,8 +97,8 @@ describe('Test video comments', function () {
 
       expect(comment.totalReplies).to.equal(0)
       expect(comment.totalRepliesFromVideoAuthor).to.equal(0)
-      expect(dateIsValid(comment.createdAt as string)).to.be.true
-      expect(dateIsValid(comment.updatedAt as string)).to.be.true
+      expect(dateIsValid(comment.createdAt)).to.be.true
+      expect(dateIsValid(comment.updatedAt)).to.be.true
 
       threadId = comment.threadId
     })
@@ -110,8 +110,8 @@ describe('Test video comments', function () {
       expect(rootComment.inReplyToCommentId).to.be.null
       expect(rootComment.text).equal('my super first comment')
       expect(rootComment.videoId).to.equal(videoId)
-      expect(dateIsValid(rootComment.createdAt as string)).to.be.true
-      expect(dateIsValid(rootComment.updatedAt as string)).to.be.true
+      expect(dateIsValid(rootComment.createdAt)).to.be.true
+      expect(dateIsValid(rootComment.updatedAt)).to.be.true
     })
 
     it('Should create multiple replies in this thread', async function () {

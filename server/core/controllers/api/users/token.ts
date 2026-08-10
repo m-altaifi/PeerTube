@@ -1,5 +1,5 @@
 import { InvalidGrantError } from '@node-oauth/oauth2-server'
-import { ResultList, ScopedToken, TokenSession } from '@peertube/peertube-models'
+import { ResultList, TokenSession } from '@peertube/peertube-models'
 import { buildUUID } from '@peertube/peertube-node-utils'
 import { logger } from '@server/helpers/logger.js'
 import { CONFIG } from '@server/initializers/config.js'
@@ -186,7 +186,7 @@ function getScopedTokens (req: express.Request, res: express.Response) {
 
   return res.json({
     feedToken: user.feedToken
-  } as ScopedToken)
+  })
 }
 
 async function renewScopedTokens (req: express.Request, res: express.Response) {
@@ -197,7 +197,7 @@ async function renewScopedTokens (req: express.Request, res: express.Response) {
 
   return res.json({
     feedToken: user.feedToken
-  } as ScopedToken)
+  })
 }
 
 async function buildByPassLogin (req: express.Request, grantType: string): Promise<BypassLogin> {

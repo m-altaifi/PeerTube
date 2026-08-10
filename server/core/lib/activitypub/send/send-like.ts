@@ -24,7 +24,7 @@ function buildLikeActivity (url: string, byActor: MActorAudience, video: MVideoU
   return audiencify(
     {
       id: url,
-      type: 'Like' as 'Like',
+      type: 'Like',
       actor: byActor.url,
       object: video.url
     },

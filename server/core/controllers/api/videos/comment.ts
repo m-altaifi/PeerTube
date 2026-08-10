@@ -1,13 +1,5 @@
 import { pick } from '@peertube/peertube-core-utils'
-import {
-  HttpStatusCode,
-  ResultList,
-  ThreadsResultList,
-  UserRight,
-  VideoCommentCreate,
-  VideoCommentPolicy,
-  VideoCommentThreads
-} from '@peertube/peertube-models'
+import { HttpStatusCode, ResultList, ThreadsResultList, UserRight, VideoCommentCreate, VideoCommentPolicy } from '@peertube/peertube-models'
 import { getServerActor } from '@server/models/application/application.js'
 import { MCommentFormattable } from '@server/types/models/index.js'
 import express from 'express'
@@ -183,7 +175,7 @@ async function listVideoThreads (req: express.Request, res: express.Response) {
   return res.json({
     ...getFormattedObjects(resultList.data, resultList.total),
     totalNotDeletedComments: resultList.totalNotDeletedComments
-  } as VideoCommentThreads)
+  })
 }
 
 async function listVideoThreadComments (req: express.Request, res: express.Response) {

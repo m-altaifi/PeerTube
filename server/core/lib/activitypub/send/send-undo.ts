@@ -135,7 +135,7 @@ function undoActivityData<T extends ActivityUndoObject> (
 
   return audiencify(
     {
-      type: 'Undo' as 'Undo',
+      type: 'Undo',
       id: url,
       actor: byActor.url,
       object

@@ -349,7 +349,7 @@ export class VideosExporter extends AbstractUserExporter<VideoExportJSON> {
       attachment: this.options.withVideoFiles && exportedVideoFileOrSource
         ? [
           {
-            type: 'Video' as 'Video',
+            type: 'Video',
             url: join(this.options.relativeStaticDirPath, this.getArchiveVideoFilePath(video, exportedVideoFileOrSource)),
 
             // FIXME: typings

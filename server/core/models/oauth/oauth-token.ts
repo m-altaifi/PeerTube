@@ -188,7 +188,7 @@ export class OAuthTokenModel extends SequelizeModel<OAuthTokenModel> {
           },
           user: token.User,
           token
-        } as OAuthTokenInfo
+        }
       })
       .catch(err => {
         logger.error('getRefreshToken error.', { err })

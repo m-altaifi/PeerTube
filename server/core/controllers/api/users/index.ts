@@ -1,5 +1,5 @@
 import { pick } from '@peertube/peertube-core-utils'
-import { HttpStatusCode, UserCreate, UserCreateResult, UserRight, UserUpdate } from '@peertube/peertube-models'
+import { HttpStatusCode, UserCreate, UserRight, UserUpdate } from '@peertube/peertube-models'
 import { tokensRouter } from '@server/controllers/api/users/token.js'
 import { retryTransactionWrapper } from '@server/helpers/database-utils.js'
 import { CONFIG } from '@server/initializers/config.js'
@@ -207,7 +207,7 @@ async function createUser (req: express.Request, res: express.Response) {
       account: {
         id: account.id
       }
-    } as UserCreateResult
+    }
   })
 }
 

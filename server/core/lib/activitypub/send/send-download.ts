@@ -61,7 +61,7 @@ function buildDownloadActivity (options: {
 
   return audiencify({
     id: url,
-    type: 'Download' as 'Download',
+    type: 'Download',
     actor: byActor.url,
     object: video.url
   }, audience)

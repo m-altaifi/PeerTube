@@ -15,7 +15,7 @@ async function up (utils: {
 }): Promise<void> {
   const rows = await utils.sequelize.query<{ id: number, otpSecret: string }>(
     'SELECT "id", "otpSecret" FROM "user" WHERE "otpSecret" IS NOT NULL',
-    { type: Sequelize.QueryTypes.SELECT as Sequelize.QueryTypes.SELECT, transaction: utils.transaction }
+    { type: Sequelize.QueryTypes.SELECT, transaction: utils.transaction }
   )
 
   let removed = 0

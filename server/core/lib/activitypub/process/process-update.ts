@@ -1,7 +1,6 @@
 import { arrayify } from '@peertube/peertube-core-utils'
 import {
   ActivityPubActor,
-  ActivityPubActorType,
   ActivityUpdate,
   ActivityUpdateObject,
   CacheFileObject,
@@ -39,7 +38,7 @@ async function processUpdateActivity (options: APProcessorOptions<ActivityUpdate
     return retryTransactionWrapper(() => processUpdateVideo(byActor, activity as ActivityUpdate<VideoObject | string>))
   }
 
-  if (isActorTypeValid(objectType as ActivityPubActorType)) {
+  if (isActorTypeValid(objectType)) {
     // An actor can only update itself: the object id must be the actor that signed the activity
     const actorObjectId = getAPId(object as ActivityPubActor)
     if (actorObjectId !== byActor.url) {

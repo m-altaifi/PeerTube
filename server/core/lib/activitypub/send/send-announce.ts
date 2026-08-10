@@ -46,7 +46,7 @@ export function buildAnnounceActivity (url: string, byActor: MActorLight, object
   if (!audience) audience = getPublicAudience(byActor)
 
   return audiencify({
-    type: 'Announce' as 'Announce',
+    type: 'Announce',
     id: url,
     actor: byActor.url,
     object

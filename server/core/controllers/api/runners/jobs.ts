@@ -323,7 +323,7 @@ async function updateRunnerJobController (req: express.Request, res: express.Res
 
   const payloadBuilder = jobUpdateBuilders[runnerJob.type]
   const updatePayload = payloadBuilder
-    ? payloadBuilder(body.payload, req.files as UploadFiles)
+    ? payloadBuilder(body.payload, req.files)
     : undefined
 
   logger.debug(
@@ -408,7 +408,7 @@ async function postRunnerJobSuccess (req: express.Request, res: express.Response
   const runner = runnerJob.Runner
   const body: RunnerJobSuccessBody = req.body
 
-  const resultPayload = jobSuccessPayloadBuilders[runnerJob.type](body.payload, req.files as UploadFiles)
+  const resultPayload = jobSuccessPayloadBuilders[runnerJob.type](body.payload, req.files)
 
   logger.info(
     'Remote runner %s is sending success result for job %s (%s)',

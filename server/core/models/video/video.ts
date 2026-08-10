@@ -158,7 +158,7 @@ import { TagModel } from './tag.js'
 import { ThumbnailModel, thumbnailAPIAttributes } from './thumbnail.js'
 import { VideoBlacklistModel } from './video-blacklist.js'
 import { VideoCaptionModel } from './video-caption.js'
-import { SummaryOptions, VideoChannelModel, ScopeNames as VideoChannelScopeNames } from './video-channel.js'
+import { VideoChannelModel, ScopeNames as VideoChannelScopeNames } from './video-channel.js'
 import { VideoCommentModel } from './video-comment.js'
 import { VideoFileModel } from './video-file.js'
 import { VideoImportModel } from './video-import.js'
@@ -219,7 +219,7 @@ export type ForAPIOptions = {
             {
               withAccount: true,
               withAccountBlockerIds: options.withAccountBlockerIds
-            } as SummaryOptions
+            }
           ]
         }),
         required: true

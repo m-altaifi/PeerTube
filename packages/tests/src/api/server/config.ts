@@ -188,7 +188,7 @@ function buildNewCustomConfig (server: PeerTubeServer): CustomConfig {
       categories: [ 1, 2 ],
 
       isNSFW: true,
-      defaultNSFWPolicy: 'warn' as 'warn',
+      defaultNSFWPolicy: 'warn',
 
       serverCountry: 'France',
       support: {

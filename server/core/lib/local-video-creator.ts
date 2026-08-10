@@ -136,7 +136,7 @@ export class LocalVideoCreator {
   async create () {
     this.video = new VideoModel(
       await Hooks.wrapObject(this.buildVideo(this.videoAttributes, this.channel), this.videoAttributeResultHook)
-    ) as MVideoFull
+    )
 
     this.video.VideoChannel = this.channel
     this.video.url = getLocalVideoActivityPubUrl(this.video)

@@ -181,7 +181,7 @@ function buildUpdateActivity (
 
   return audiencify(
     {
-      type: 'Update' as 'Update',
+      type: 'Update',
       id: url,
       actor: byActor.url,
       object: audiencify(object, audience)

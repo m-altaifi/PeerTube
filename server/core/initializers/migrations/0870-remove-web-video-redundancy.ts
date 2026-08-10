@@ -18,7 +18,7 @@ async function up (utils: {
 
     const rows = await utils.sequelize.query<{ videoFileId: number }>(query, {
       transaction,
-      type: QueryTypes.SELECT as QueryTypes.SELECT
+      type: QueryTypes.SELECT
     })
 
     for (const { videoFileId } of rows) {
@@ -63,5 +63,6 @@ function down (options) {
 }
 
 export {
-  down, up
+  down,
+  up
 }

@@ -24,7 +24,7 @@ function buildDislikeActivity (url: string, byActor: MActorAudience, video: MVid
   return audiencify(
     {
       id: url,
-      type: 'Dislike' as 'Dislike',
+      type: 'Dislike',
       actor: byActor.url,
       object: video.url
     },

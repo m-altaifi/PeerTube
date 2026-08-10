@@ -552,7 +552,7 @@ export class VideoRedundancyModel extends SequelizeModel<VideoRedundancyModel> {
   toActivityPubObject (this: MVideoRedundancyAP): CacheFileObject {
     return {
       id: this.url,
-      type: 'CacheFile' as 'CacheFile',
+      type: 'CacheFile',
       object: this.VideoStreamingPlaylist.Video.url,
       expires: this.expiresOn ? this.expiresOn.toISOString() : null,
       url: {

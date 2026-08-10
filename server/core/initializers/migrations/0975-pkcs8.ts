@@ -9,7 +9,7 @@ async function up (utils: {
 }): Promise<void> {
   const rows = await utils.sequelize.query<{ id: number, privateKey: string }>(
     'SELECT "id", "privateKey" FROM "actor" WHERE "serverId" IS NULL',
-    { type: Sequelize.QueryTypes.SELECT as Sequelize.QueryTypes.SELECT, transaction: utils.transaction }
+    { type: Sequelize.QueryTypes.SELECT, transaction: utils.transaction }
   )
 
   for (const { id, privateKey } of rows) {
