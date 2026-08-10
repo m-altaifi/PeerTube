@@ -366,6 +366,9 @@ importers:
         specifier: ^3.4.0
         version: 3.4.0
     devDependencies:
+      '@logtape/adaptor-winston':
+        specifier: ^2.3.0
+        version: 2.3.0(@logtape/logtape@2.3.0)(winston@3.19.0)
       '@stylistic/eslint-plugin':
         specifier: ^5.10.0
         version: 5.10.0(eslint@10.8.0(jiti@2.7.0))
@@ -2582,6 +2585,12 @@ packages:
     resolution: {integrity: sha512-1g7G0knRX2iV/voDu54yxrGqw5Dk0w2oIYb7dgJq8IkOi+m7wbD8Q3QpPFjh0C01G58S88dqGn03len6UPCXsg==}
     cpu: [x64]
     os: [win32]
+
+  '@logtape/adaptor-winston@2.3.0':
+    resolution: {integrity: sha512-RgF6QDi9tvPOQ72mJ6w4u8KM+3buEy/EQAaETD5GiqHd/XDINVF/Bro/VS53Fw/3sfEz4kCOOaRJy36JorYwEg==}
+    peerDependencies:
+      '@logtape/logtape': ^2.3.0
+      winston: ^3.17.0
 
   '@logtape/logtape@2.3.0':
     resolution: {integrity: sha512-s/pxCgf9Gg75ypTV/bRUq355Dy/JP/zUJWfgJQPO5pTkXC23X2AXBcmBBgFiWH+bSi4yiX/G06qGV8CdAWD3SA==}
@@ -13972,6 +13981,11 @@ snapshots:
 
   '@lmdb/lmdb-win32-x64@3.5.6':
     optional: true
+
+  '@logtape/adaptor-winston@2.3.0(@logtape/logtape@2.3.0)(winston@3.19.0)':
+    dependencies:
+      '@logtape/logtape': 2.3.0
+      winston: 3.19.0
 
   '@logtape/logtape@2.3.0': {}
 

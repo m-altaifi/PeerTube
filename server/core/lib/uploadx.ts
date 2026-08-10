@@ -1,13 +1,14 @@
+import { install } from '@logtape/adaptor-winston'
 import { buildLogger } from '@server/helpers/logger.js'
 import { getResumableUploadPath } from '@server/helpers/upload.js'
-import { CONFIG } from '@server/initializers/config.js'
 import { authenticate } from '@server/middlewares/auth.js'
 import { resumableInitValidator } from '@server/middlewares/validators/resumable-upload.js'
-import { FileQuery, LogLevel, Uploadx, Metadata as UploadXMetadata } from '@uploadx/core'
+import { FileQuery, Uploadx, Metadata as UploadXMetadata } from '@uploadx/core'
 import express, { NextFunction, Request, RequestHandler, Response } from 'express'
 import { extname } from 'path'
 
 const logger = buildLogger({ labelSuffix: 'uploadx' })
+install(logger)
 
 export const uploadx = new Uploadx({
   directory: getResumableUploadPath(),
@@ -16,9 +17,6 @@ export const uploadx = new Uploadx({
 
   // Could be big with a big thumbnail
   maxMetadataSize: '10MB',
-
-  // TODO: bind it to our logger
-  logLevel: CONFIG.LOG.LEVEL as LogLevel,
 
   userIdentifier: (_, res: express.Response) => {
     if (!res.locals.oauth) return undefined

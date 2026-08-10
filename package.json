@@ -206,6 +206,7 @@
     "yauzl": "^3.4.0"
   },
   "devDependencies": {
+    "@logtape/adaptor-winston": "^2.3.0",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/archiver": "^8.0.0",
     "@types/bcrypt": "^6.0.0",
