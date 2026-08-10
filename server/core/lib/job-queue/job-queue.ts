@@ -28,7 +28,7 @@ import {
   VideoTranscodingPayload,
   VideoTranscriptionPayload
 } from '@peertube/peertube-models'
-import { jobStates } from '@server/helpers/custom-validators/jobs.js'
+import { allJobStates } from '@server/helpers/custom-validators/jobs.js'
 import { CONFIG, registerConfigChangedHandler } from '@server/initializers/config.js'
 import { processVideoRedundancy } from '@server/lib/job-queue/handlers/video-redundancy.js'
 import {
@@ -515,7 +515,7 @@ class JobQueue {
       const counts = await queue.getJobCounts()
 
       for (const s of states) {
-        total += counts[s]
+        total += counts[s] ?? 0
       }
     }
 
@@ -547,7 +547,7 @@ class JobQueue {
   }
 
   private buildStateFilter (state?: JobState) {
-    if (!state) return Array.from(jobStates)
+    if (!state) return Array.from(allJobStates)
 
     const states = [ state ]
 
