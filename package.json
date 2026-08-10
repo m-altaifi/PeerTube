@@ -70,15 +70,15 @@
     "release-embed-api": "bash ./scripts/release-embed-api.sh",
     "release": "bash ./scripts/release.sh",
     "reset-password": "node ./dist/scripts/reset-password.js",
-    "resolve-tspaths:server-lib": "npm run resolve-tspaths -- --project server/tsconfig.lib.json --src server --out server/dist",
-    "resolve-tspaths:server": "npm run resolve-tspaths -- --project server/tsconfig.json --src server --out dist",
-    "resolve-tspaths:tests": "npm run resolve-tspaths -- --project packages/tests/tsconfig.json --src packages/tests/src --out packages/tests/dist",
-    "resolve-tspaths": "resolve-tspaths",
     "simulate-many-viewers": "tsx --conditions=peertube:tsx ./scripts/simulate-many-viewers.ts",
     "start:server": "node dist/server --no-client",
     "start": "node dist/server",
     "swagger-cli": "swagger-cli",
     "test": "bash ./scripts/test.sh",
+    "tsc-alias:server-lib": "npm run tsc-alias -- --project server/tsconfig.lib.json",
+    "tsc-alias:server": "npm run tsc-alias -- --project server/tsconfig.json",
+    "tsc-alias:tests": "npm run tsc-alias -- --project packages/tests/tsconfig.json",
+    "tsc-alias": "tsc-alias",
     "tsc": "tsc",
     "tsx": "tsx",
     "update-host": "node ./dist/scripts/update-host.js"
@@ -206,7 +206,6 @@
     "yauzl": "^3.4.0"
   },
   "devDependencies": {
-    "@peertube/resolve-tspaths": "^0.8.14",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/archiver": "^8.0.0",
     "@types/bcrypt": "^6.0.0",
@@ -241,6 +240,7 @@
     "@types/webtorrent": "^0.110.2",
     "@types/ws": "^8.18.1",
     "@types/yauzl": "^3.4.0",
+    "@typescript/typescript6": "^6.0.2",
     "ajv": "^8.20.0",
     "autocannon": "^8.0.0",
     "chai": "^6.2.2",
@@ -263,10 +263,11 @@
     "rollup-plugin-dts": "^6.5.1",
     "socket.io-client": "^4.8.3",
     "swagger-cli": "^4.0.4",
+    "tsc-alias": "^1.9.1",
     "tsc-watch": "^7.2.1",
     "tsx": "^4.23.11",
     "type-fest": "^5.8.0",
-    "typescript": "~6.0.3"
+    "typescript": "~7.0.2"
   },
   "packageManager": "pnpm@10.15.1+sha512.34e538c329b5553014ca8e8f4535997f96180a1d0f614339357449935350d924e22f8614682191264ec33d1462ac21561aff97f6bb18065351c162c7e8f6de67"
 }

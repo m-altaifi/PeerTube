@@ -3,6 +3,7 @@ import { CONFIG } from '@server/initializers/config.js'
 import { createWriteStream } from 'fs'
 import { remove } from 'fs-extra/esm'
 import got, {
+  Got,
   OptionsInit,
   OptionsOfBufferResponseBody,
   OptionsOfTextResponseBody,
@@ -138,7 +139,7 @@ const unsafeSSRFGot = got.extend({
   }
 })
 
-export const peertubeGot = CONFIG.FEDERATION.PREVENT_SSRF
+export const peertubeGot: Got = CONFIG.FEDERATION.PREVENT_SSRF
   ? got.extend(gotSsrf, unsafeSSRFGot)
   : unsafeSSRFGot
 
