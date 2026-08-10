@@ -1,11 +1,11 @@
-import express, { Request, Response, NextFunction, RequestHandler } from 'express'
 import { buildLogger } from '@server/helpers/logger.js'
 import { getResumableUploadPath } from '@server/helpers/upload.js'
 import { CONFIG } from '@server/initializers/config.js'
-import { FileQuery, LogLevel, Uploadx, Metadata as UploadXMetadata } from '@uploadx/core'
-import { extname } from 'path'
 import { authenticate } from '@server/middlewares/auth.js'
 import { resumableInitValidator } from '@server/middlewares/validators/resumable-upload.js'
+import { FileQuery, LogLevel, Uploadx, Metadata as UploadXMetadata } from '@uploadx/core'
+import express, { NextFunction, Request, RequestHandler, Response } from 'express'
+import { extname } from 'path'
 
 const logger = buildLogger({ labelSuffix: 'uploadx' })
 
@@ -17,13 +17,8 @@ export const uploadx = new Uploadx({
   // Could be big with a big thumbnail
   maxMetadataSize: '10MB',
 
-  logger: {
-    logLevel: CONFIG.LOG.LEVEL as LogLevel,
-    debug: logger.debug.bind(logger),
-    info: logger.info.bind(logger),
-    warn: logger.warn.bind(logger),
-    error: logger.error.bind(logger)
-  },
+  // TODO: bind it to our logger
+  logLevel: CONFIG.LOG.LEVEL as LogLevel,
 
   userIdentifier: (_, res: express.Response) => {
     if (!res.locals.oauth) return undefined

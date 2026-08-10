@@ -6,13 +6,13 @@ import { getServerAccount } from '@server/models/application/application.js'
 import { AccountAutomaticTagPolicyModel } from '@server/models/automatic-tag/account-automatic-tag-policy.js'
 import { WatchedWordsListModel } from '@server/models/watched-words/watched-words-list.js'
 import { MAccount, MAccountId, MComment, MVideo } from '@server/types/models/index.js'
-import Linkifyit from 'linkify-it'
+import { LinkifyIt } from 'linkify-it'
 import { Transaction } from 'sequelize'
 import { PluginManager } from '../plugins/plugin-manager.js'
 
 const lTags = loggerTagsFactory('automatic-tags')
 
-const linkifyit = new Linkifyit()
+const linkifyIt = new LinkifyIt()
 
 export class AutomaticTagger {
   private static readonly SPECIAL_TAGS = {
@@ -165,7 +165,7 @@ export class AutomaticTagger {
   private hasExternalLinks (text: string) {
     if (!text) return false
 
-    const matches = linkifyit.match(text)
+    const matches = linkifyIt.match(text)
     if (!matches) return false
 
     logger.debug('Found external links in text', { matches, text, ...lTags() })

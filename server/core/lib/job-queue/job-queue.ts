@@ -364,11 +364,11 @@ class JobQueue {
     }
   }
 
-  resume () {
+  async resume () {
     for (const handlerName of Object.keys(this.workers)) {
       const worker: Worker = this.workers[handlerName]
 
-      worker.resume()
+      await worker.resume()
     }
   }
 
@@ -389,7 +389,7 @@ class JobQueue {
     }
 
     const jobOptions = this.buildJobOptions(
-      options.type as JobType,
+      options.type,
       pick(options, [ 'priority', 'delay', 'deduplicationId', 'deduplicationKeepLastIfActive' ])
     )
 
@@ -433,7 +433,7 @@ class JobQueue {
         failParentOnFailure: true,
 
         ...this.buildJobOptions(
-          job.type as JobType,
+          job.type,
           pick(job, [ 'priority', 'delay', 'failParentOnFailure', 'deduplicationId', 'deduplicationKeepLastIfActive' ])
         )
       }

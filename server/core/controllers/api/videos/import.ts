@@ -17,7 +17,7 @@ import express from 'express'
 import { move } from 'fs-extra/esm'
 import { readFile } from 'fs/promises'
 import { decode } from 'magnet-uri'
-import parseTorrent, { Instance } from 'parse-torrent'
+import parseTorrent from 'parse-torrent'
 import { join } from 'path'
 import { auditLoggerFactory, getAuditIdFromRes, VideoImportAuditView } from '../../../helpers/audit-logger.js'
 import { isArray } from '../../../helpers/custom-validators/misc.js'
@@ -279,5 +279,5 @@ function extractNameFromArray (name: string | string[]) {
 async function parseTorrentPromise (torrentFilePath: string) {
   const buf = await readFile(torrentFilePath)
 
-  return parseTorrent(buf) as Instance
+  return parseTorrent(buf)
 }

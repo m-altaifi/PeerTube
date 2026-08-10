@@ -146,8 +146,7 @@ export async function createTorrentForFileFromPath (
     await remove(join(CONFIG.STORAGE.TORRENTS_DIR, videoFile.torrentFilename))
   }
 
-  // FIXME: typings: parseTorrent now returns an async result
-  const parsedTorrent = await (parseTorrent(torrentContent) as unknown as Promise<parseTorrent.Instance>)
+  const parsedTorrent = await parseTorrent(torrentContent)
 
   return {
     infoHash: parsedTorrent.infoHash,
