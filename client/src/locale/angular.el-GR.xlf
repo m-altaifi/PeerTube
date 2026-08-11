@@ -148,9 +148,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.progressbar.value" datatype="html">
-        <source>
-          <x id="INTERPOLATION" equiv-text="nd so on.    *"/>
-        </source>
+        <source><x id="INTERPOLATION" equiv-text="nd so on.    *"/> </source>
         <target state="translated">
           <x id="INTERPOLATION" equiv-text="κλπ.    *"/>
         </target>
@@ -256,9 +254,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="ngb.timepicker.PM" datatype="html">
-        <source>
-          <x id="INTERPOLATION"/>
-        </source>
+        <source><x id="INTERPOLATION"/> </source>
         <target state="translated">
           <x id="INTERPOLATION"/>
         </target>
@@ -803,17 +799,17 @@
           <context context-type="linenumber">344</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8918396787869186888" datatype="html">
+      <trans-unit id="8918396787869186888" datatype="html" xml:space="preserve">
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU" equiv-text="{n.payload.data?.blockedAccountsCount || 0, plural, =1 {1 account} other {{{ n.payload.data?.blockedAccountsCount || 0 }} accounts}}" xid="483708525447484105"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> and <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" equiv-text="{n.payload.data?.blockedHostsCount || 0, plural, =1 {1 server} other {{{ n.payload.data?.blockedHostsCount || 0 }} servers}}" xid="2576853818291369650"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> were blocked.  </source>
-        <target state="new"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU" equiv-text="{n.payload.data?.blockedAccountsCount || 0, plural, =1 {1 account} other {{{ n.payload.data?.blockedAccountsCount || 0 }} accounts}}" xid="483708525447484105"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> and <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" equiv-text="{n.payload.data?.blockedHostsCount || 0, plural, =1 {1 server} other {{{ n.payload.data?.blockedHostsCount || 0 }} servers}}" xid="2576853818291369650"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> were blocked.  </target>
+        <target state="translated"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU" xid="483708525447484105" equiv-text="{n.payload.data?.blockedAccountsCount || 0, plural, =1 {1 account} other {{{ n.payload.data?.blockedAccountsCount || 0 }} accounts}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> και <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" xid="2576853818291369650" equiv-text="{n.payload.data?.blockedHostsCount || 0, plural, =1 {1 server} other {{{ n.payload.data?.blockedHostsCount || 0 }} servers}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> αποκλείστηκαν.  </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-notifications/user-notification-content.component.html</context>
           <context context-type="linenumber">347,348</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4310216892495659501" datatype="html">
+      <trans-unit id="4310216892495659501" datatype="html" xml:space="preserve">
         <source>{VAR_PLURAL, plural, =1 {1 account} other {<x id="INTERPOLATION"/> accounts}}</source>
-        <target state="new">{VAR_PLURAL, plural, =1 {1 account} other {<x id="INTERPOLATION"/> accounts}}</target>
+        <target state="translated">{VAR_PLURAL, plural, =1 {1 λογαριασμός} other {<x id="INTERPOLATION"/> λογαριασμοί}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-notifications/user-notification-content.component.html</context>
           <context context-type="linenumber">347</context>
@@ -823,9 +819,9 @@
           <context context-type="linenumber">353</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="235399294437017099" datatype="html">
+      <trans-unit id="235399294437017099" datatype="html" xml:space="preserve">
         <source>{VAR_PLURAL, plural, =1 {1 server} other {<x id="INTERPOLATION"/> servers}}</source>
-        <target state="new">{VAR_PLURAL, plural, =1 {1 server} other {<x id="INTERPOLATION"/> servers}}</target>
+        <target state="translated">{VAR_PLURAL, plural, =1 {1 διακομιστής} other {<x id="INTERPOLATION"/> διακομιστές}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-notifications/user-notification-content.component.html</context>
           <context context-type="linenumber">347</context>
@@ -835,9 +831,9 @@
           <context context-type="linenumber">353</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6421095361288215524" datatype="html">
+      <trans-unit id="6421095361288215524" datatype="html" xml:space="preserve">
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU" equiv-text="{n.payload.data?.unblockedAccountsCount || 0, plural, =1 {1 account} other {{{ n.payload.data?.unblockedAccountsCount || 0 }} accounts}}" xid="483708525447484105"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> and <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" equiv-text="{n.payload.data?.unblockedHostsCount || 0, plural, =1 {1 server} other {{{ n.payload.data?.unblockedHostsCount || 0 }} servers}}" xid="2576853818291369650"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> were unblocked. </source>
-        <target state="new"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU" equiv-text="{n.payload.data?.unblockedAccountsCount || 0, plural, =1 {1 account} other {{{ n.payload.data?.unblockedAccountsCount || 0 }} accounts}}" xid="483708525447484105"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> and <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" equiv-text="{n.payload.data?.unblockedHostsCount || 0, plural, =1 {1 server} other {{{ n.payload.data?.unblockedHostsCount || 0 }} servers}}" xid="2576853818291369650"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> were unblocked. </target>
+        <target state="translated"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU" xid="483708525447484105" equiv-text="{n.payload.data?.unblockedAccountsCount || 0, plural, =1 {1 account} other {{{ n.payload.data?.unblockedAccountsCount || 0 }} accounts}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> και <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" xid="2576853818291369650" equiv-text="{n.payload.data?.unblockedHostsCount || 0, plural, =1 {1 server} other {{{ n.payload.data?.unblockedHostsCount || 0 }} servers}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> έγινε άρση αποκλεισμού. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-notifications/user-notification-content.component.html</context>
           <context context-type="linenumber">353,355</context>
@@ -6300,8 +6296,11 @@ The link will expire within 1 hour.</source>
       <trans-unit id="4520053292376276280" datatype="html" xml:space="preserve">
         <source>Allowed domains</source>
         <target state="translated">Επιτρεπόμενοι τομείς</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/moderation/video-moderation.component.html</context><context context-type="linenumber">60</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/moderation/video-moderation.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8043791498070371772" datatype="html" xml:space="preserve">
         <source>Your video contains sensitive content</source>
         <target state="translated">Το βίντεό σας περιέχει ευαίσθητο περιεχόμενο</target>
@@ -6725,9 +6724,9 @@ The link will expire within 1 hour.</source>
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1268292519317944726" datatype="html">
+      <trans-unit id="1268292519317944726" datatype="html" xml:space="preserve">
         <source>Imported from a watched words subscription</source>
-        <target state="new">Imported from a watched words subscription</target>
+        <target state="translated">Εισήχθη από μια συνδρομή «Παρακολουθούμενες λέξεις»</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-admin-owner.component.html</context>
           <context context-type="linenumber">29</context>
@@ -6885,9 +6884,9 @@ The link will expire within 1 hour.</source>
           <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8198822568347366196" datatype="html">
+      <trans-unit id="8198822568347366196" datatype="html" xml:space="preserve">
         <source>Add a watched words subscription</source>
-        <target state="new">Add a watched words subscription</target>
+        <target state="translated">Προσθήκη συνδρομής σε λέξεις που παρακολουθείτε</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">65,67</context>
@@ -6901,41 +6900,41 @@ The link will expire within 1 hour.</source>
           <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3536332983620084462" datatype="html">
+      <trans-unit id="3536332983620084462" datatype="html" xml:space="preserve">
         <source>The remote list will be synchronized periodically, and auto tags on existing comments will be updated based on the words in the list.</source>
-        <target state="new"> The remote list will be synchronized periodically, and auto tags on existing comments will be updated based on the words in the list. </target>
+        <target state="translated">Η απομακρυσμένη λίστα θα συγχρονίζεται περιοδικά, ενώ οι αυτόματες ετικέτες στα υπάρχοντα σχόλια θα ενημερώνονται με βάση τις λέξεις της λίστας.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2322571852303891260" datatype="html">
+      <trans-unit id="2322571852303891260" datatype="html" xml:space="preserve">
         <source>Only new comments can be blocked by a new word added to the list</source>
-        <target state="new">Only new comments can be blocked by a new word added to the list</target>
+        <target state="translated">Μόνο τα νέα σχόλια μπορούν να αποκλειστούν με μια νέα λέξη που προστίθεται στη λίστα</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">87,88</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1627379234330905470" datatype="html">
+      <trans-unit id="1627379234330905470" datatype="html" xml:space="preserve">
         <source>If a word is removed from the list, any comments that are currently awaiting review will not be affected</source>
-        <target state="new">If a word is removed from the list, any comments that are currently awaiting review will not be affected</target>
+        <target state="translated">Εάν μια λέξη διαγραφεί από τη λίστα, τα σχόλια που βρίσκονται προς το παρόν σε αναμονή για έλεγχο δεν θα επηρεαστούν</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">88,89</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8886093131637035111" datatype="html">
+      <trans-unit id="8886093131637035111" datatype="html" xml:space="preserve">
         <source>Watched words URL</source>
-        <target state="new">Watched words URL</target>
+        <target state="translated">URL παρακολουθούμενων λέξεων</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">95,96</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2602880137044610698" datatype="html">
+      <trans-unit id="2602880137044610698" datatype="html" xml:space="preserve">
         <source>Watched words URL is required.</source>
-        <target state="new">Watched words URL is required.</target>
+        <target state="translated">Απαιτείται URL των λέξεων που παρακολουθούνται.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.ts</context>
           <context context-type="linenumber">51</context>
@@ -7352,15 +7351,27 @@ The link will expire within 1 hour.</source>
       <trans-unit id="8920371331444717794" datatype="html" xml:space="preserve">
         <source>Only display embed URL</source>
         <target state="translated">Εμφάνιση μόνο της URL ενσωμάτωσης</target>
-        
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-playlist.component.html</context><context context-type="linenumber">100</context></context-group><context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context><context context-type="linenumber">137</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-playlist.component.html</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8058748565866023802" datatype="html" xml:space="preserve">
         <source>Responsive embed</source>
         <target state="translated">Προσαρμόσιμη ενσωμάτωση</target>
-        
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-playlist.component.html</context><context context-type="linenumber">109</context></context-group><context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context><context context-type="linenumber">146</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-playlist.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
+          <context context-type="linenumber">146</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1253396341165671470" datatype="html">
         <source>Share the video</source>
         <target state="translated">Μοιραστείτε το βίντεο</target>
@@ -7404,18 +7415,27 @@ The link will expire within 1 hour.</source>
       <trans-unit id="2945071574836956798" datatype="html" xml:space="preserve">
         <source>This video has embed restrictions and may not be shareable on external websites depending on the chosen restrictions.</source>
         <target state="translated">Αυτό το βίντεο υπόκειται σε περιορισμούς ενσωμάτωσης και ενδέχεται να μην είναι δυνατή η κοινοποίησή του σε εξωτερικούς ιστότοπους, ανάλογα με τους επιλεγμένους περιορισμούς.</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context><context context-type="linenumber">29</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="4631262903114543634" datatype="html" xml:space="preserve">
         <source>Video URL</source>
         <target state="translated">URL βίντεο</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context><context context-type="linenumber">43</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7906169354857781172" datatype="html" xml:space="preserve">
         <source>Video embed URL</source>
         <target state="translated">URL ενσωμάτωσης βίντεο</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context><context context-type="linenumber">73</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1845599966367432388">
         <source>QR-Code</source>
         <target>QR-Code</target>
@@ -7431,9 +7451,15 @@ The link will expire within 1 hour.</source>
       <trans-unit id="1122876732223594710" datatype="html" xml:space="preserve">
         <source>The url is not secured (no HTTPS), so the embed video won't work on HTTPS websites (web browsers block non secured HTTP requests on HTTPS websites).</source>
         <target state="translated">Το url δεν είναι ασφαλές (δεν χρησιμοποιεί HTTPS), οπότε το ενσωματωμένο βίντεο δεν θα λειτουργεί σε ιστότοπους HTTPS (τα προγράμματα περιήγησης αποκλείουν τα μη ασφαλή αιτήματα HTTP σε ιστότοπους HTTPS).</target>
-        
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-playlist.component.html</context><context context-type="linenumber">69</context></context-group><context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context><context context-type="linenumber">84</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-playlist.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8151017381798767627">
         <source>Embed</source>
         <target>Ενσωμάτωση</target>
@@ -7553,8 +7579,11 @@ The link will expire within 1 hour.</source>
       <trans-unit id="5908032061347078472" datatype="html" xml:space="preserve">
         <source>Use origin instance URL</source>
         <target state="translated">Χρήση του URL της οντότητας προέλευσης</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context><context context-type="linenumber">187</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
+          <context context-type="linenumber">187</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6212841954039032241">
         <source>Display video title</source>
         <target>Προβολή τίτλου βίντεο</target>
@@ -7566,9 +7595,15 @@ The link will expire within 1 hour.</source>
       <trans-unit id="7482217084177855485" datatype="html" xml:space="preserve">
         <source>P2P</source>
         <target state="translated">P2P</target>
-        
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/institutional-config.component.html</context><context context-type="linenumber">9</context></context-group><context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context><context context-type="linenumber">198</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/usage-type/institutional-config.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
+          <context context-type="linenumber">198</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7681087549288778264" datatype="html" xml:space="preserve">
         <source>Helps your platform to distribute video content, but <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://docs.joinpeertube.org/admin/privacy-guide#player-p2p&quot; target=&quot;_blank&quot;&gt;"/>decreases privacy <x id="START_TAG_MY_GLOBAL_ICON" ctype="x-my_global_icon" equiv-text="&lt;my-global-icon iconName=&quot;external-link&quot;&gt;"/><x id="CLOSE_TAG_MY_GLOBAL_ICON" ctype="x-my_global_icon" equiv-text="&lt;/my-global-icon&gt;"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> of your users </source>
         <target state="translated">Βοηθά την πλατφόρμα σας να διανέμει περιεχόμενο βίντεο, αλλά <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://docs.joinpeertube.org/admin/privacy-guide#player-p2p&quot; target=&quot;_blank&quot;&gt;"/>μειώνει την ιδιωτικότητα <x id="START_TAG_MY_GLOBAL_ICON" ctype="x-my_global_icon" equiv-text="&lt;my-global-icon iconName=&quot;external-link&quot;&gt;"/><x id="CLOSE_TAG_MY_GLOBAL_ICON" ctype="x-my_global_icon" equiv-text="&lt;/my-global-icon&gt;"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> των χρηστών σας </target>
@@ -7974,23 +8009,35 @@ The link will expire within 1 hour.</source>
       <trans-unit id="4583515246777381165" datatype="html" xml:space="preserve">
         <source>Display player control bar</source>
         <target state="translated">Εμφάνιση της γραμμής ελέγχου του αναπαραγωγέα</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context><context context-type="linenumber">216</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
+          <context context-type="linenumber">216</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="805456636864344681" datatype="html" xml:space="preserve">
         <source>Display PeerTube button link</source>
         <target state="translated">Εμφάνιση συνδέσμου κουμπιού PeerTube</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context><context context-type="linenumber">225</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
+          <context context-type="linenumber">225</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5898371297224932546" datatype="html" xml:space="preserve">
         <source>More customization</source>
         <target state="translated">Περισσότερη παραμετροποίηση</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context><context context-type="linenumber">239</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
+          <context context-type="linenumber">239</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5395293285957838632" datatype="html" xml:space="preserve">
         <source>Less customization</source>
         <target state="translated">Λιγότερη παραμετροποίηση</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context><context context-type="linenumber">242</context></context-group></trans-unit>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
+          <context context-type="linenumber">242</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8928816882866356838">
         <source>Public</source>
         <target>Δημόσιο</target>
@@ -14000,13 +14047,7 @@ The link will expire within 1 hour.</source>
         </context-group>
       </trans-unit>
       <trans-unit id="7396819983420487866" datatype="html">
-        <source><x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p class=&quot;mb-2&quot;&gt;"/>Write CSS code directly. Example:<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/><x id="START_TAG_PRE" ctype="x-pre" equiv-text="&lt;pre&gt;"/>  #custom-css <x id="INTERPOLATION" equiv-text="{{ '{' }}"/>
-  color: red;
-  <x id="INTERPOLATION_1" equiv-text="{{ '}' }}"/>
-  <x id="CLOSE_TAG_PRE" ctype="x-pre" equiv-text="&lt;/pre&gt;"/><x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p class=&quot;mb-2&quot;&gt;"/>Prepend with <x id="START_EMPHASISED_TEXT" ctype="x-em" equiv-text="&lt;em&gt;"/>#custom-css<x id="CLOSE_EMPHASISED_TEXT" ctype="x-em" equiv-text="&lt;/em&gt;"/> to override styles. Example:<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/><x id="START_TAG_PRE" ctype="x-pre" equiv-text="&lt;pre&gt;"/>  #custom-css .logged-in-email <x id="INTERPOLATION" equiv-text="{{ '{' }}"/>
-  color: red;
-  <x id="INTERPOLATION_1" equiv-text="{{ '}' }}"/>
-  <x id="CLOSE_TAG_PRE" ctype="x-pre" equiv-text="&lt;/pre&gt;"/></source>
+        <source><x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p class=&quot;mb-2&quot;&gt;"/>Write CSS code directly. Example:<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/><x id="START_TAG_PRE" ctype="x-pre" equiv-text="&lt;pre&gt;"/> #custom-css <x id="INTERPOLATION" equiv-text="{{ '{' }}"/> color: red; <x id="INTERPOLATION_1" equiv-text="{{ '}' }}"/> <x id="CLOSE_TAG_PRE" ctype="x-pre" equiv-text="&lt;/pre&gt;"/><x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p class=&quot;mb-2&quot;&gt;"/>Prepend with <x id="START_EMPHASISED_TEXT" ctype="x-em" equiv-text="&lt;em&gt;"/>#custom-css<x id="CLOSE_EMPHASISED_TEXT" ctype="x-em" equiv-text="&lt;/em&gt;"/> to override styles. Example:<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/><x id="START_TAG_PRE" ctype="x-pre" equiv-text="&lt;pre&gt;"/> #custom-css .logged-in-email <x id="INTERPOLATION" equiv-text="{{ '{' }}"/> color: red; <x id="INTERPOLATION_1" equiv-text="{{ '}' }}"/> <x id="CLOSE_TAG_PRE" ctype="x-pre" equiv-text="&lt;/pre&gt;"/></source>
         <target state="new"><x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p class=&quot;mb-2&quot;&gt;"/>Write CSS code directly. Example:<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/><x id="START_TAG_PRE" ctype="x-pre" equiv-text="&lt;pre&gt;"/>  #custom-css <x id="INTERPOLATION" equiv-text="{{ '{' }}"/>
   color: red;
   <x id="INTERPOLATION_1" equiv-text="{{ '}' }}"/>
@@ -16369,9 +16410,7 @@ The link will expire within 1 hour.</source>
         </context-group>
       </trans-unit>
       <trans-unit id="8856905278208146821" datatype="html">
-        <source>
-          <x id="ICU" equiv-text="{getTotalVideosOf(videoChannel), plural, =0 {No videos} =1 {1 video} other {{{ getTotalVideosOf(videoChannel) }} videos}}" xid="1730926218636655979"/>
-        </source>
+        <source><x id="ICU" equiv-text="{getTotalVideosOf(videoChannel), plural, =0 {No videos} =1 {1 video} other {{{ getTotalVideosOf(videoChannel) }} videos}}" xid="1730926218636655979"/> </source>
         <target state="new">
           <x id="ICU" equiv-text="{getTotalVideosOf(videoChannel), plural, =1 {1 videos} other {{{ getTotalVideosOf(videoChannel) }} videos}}"/>
         </target>
@@ -23005,8 +23044,7 @@ The link will expire within 1 hour.</source>
         </context-group>
       </trans-unit>
       <trans-unit id="2013324644839511073" datatype="html">
-        <source>Cannot retrieve OAuth Client credentials: <x id="PH" equiv-text="err.message"/>.
-Ensure you have correctly configured PeerTube (config/ directory), in particular the "webserver" section.</source>
+        <source>Cannot retrieve OAuth Client credentials: <x id="PH" equiv-text="err.message"/>. Ensure you have correctly configured PeerTube (config/ directory), in particular the "webserver" section.</source>
         <target state="new">Cannot retrieve OAuth Client credentials: <x id="PH"/>.
 Ensure you have correctly configured PeerTube (config/ directory), in particular the "webserver" section.</target>
         <context-group purpose="location">
@@ -23387,10 +23425,7 @@ Ensure you have correctly configured PeerTube (config/ directory), in particular
         </context-group>
       </trans-unit>
       <trans-unit id="7804724824750282316" datatype="html">
-        <source>
-          <x id="INTERPOLATION" equiv-text="{{ subscriptionsPagination.totalItems }}"/>
-          <x id="ICU" equiv-text="{subscriptionsPagination.totalItems, plural, =1 {subscription} other {subscriptions}}" xid="2781455366919684095"/>
-        </source>
+        <source><x id="INTERPOLATION" equiv-text="{{ subscriptionsPagination.totalItems }}"/> <x id="ICU" equiv-text="{subscriptionsPagination.totalItems, plural, =1 {subscription} other {subscriptions}}" xid="2781455366919684095"/> </source>
         <target state="new">
           <x id="INTERPOLATION" equiv-text="{{ pagination.totalItems | myNumberFormatter }}"/>
           <x id="ICU" equiv-text="{pagination.totalItems, plural, =1 {result} other {results}}"/>
@@ -28867,9 +28902,7 @@ Ensure you have correctly configured PeerTube (config/ directory), in particular
         </context-group>
       </trans-unit>
       <trans-unit id="187187500641108332" datatype="html">
-        <source>
-          <x id="INTERPOLATION" equiv-text="{{ noResultMessage }}"/>
-        </source>
+        <source><x id="INTERPOLATION" equiv-text="{{ noResultMessage }}"/> </source>
         <target state="new">
           <x id="INTERPOLATION" equiv-text="{{ noResultMessage }}"/>
         </target>
