@@ -38,13 +38,14 @@
       </div>
 
       <input
+        #searchInput
         type="text" class="mb-3" name="search-transcript" i18n-placeholder placeholder="Search transcript"
         (input)="onSearchChange($event)"
         >
     </div>
   </div>
 
-  <div class="widget-content">
+  <div #segmentsContainer class="widget-content" [class.has-resync-button]="!autoScrollEnabled">
     @if (search && segments.length === 0) {
       <div class="widget-content-padded" i18n>No results for your search</div>
     }
@@ -62,4 +63,7 @@
     }
   </div>
 
+  @if (!autoScrollEnabled) {
+    <my-button class="resync-button" theme="primary" label="Synchronize with video" i18n-label (click)="resyncWithVideo()"></my-button>
+  }
 </div>
