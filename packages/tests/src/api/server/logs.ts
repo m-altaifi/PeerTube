@@ -94,7 +94,7 @@ describe('Test logs', function () {
     it('Should filter by tag', async function () {
       const now = new Date()
 
-      const { uuid } = await server.videos.upload({ attributes: { name: 'video 6' } })
+      const { uuid, shortUUID } = await server.videos.upload({ attributes: { name: 'video 6' } })
       await waitJobs([ server ])
 
       {
@@ -102,8 +102,8 @@ describe('Test logs', function () {
         expect(body).to.have.lengthOf(0)
       }
 
-      {
-        const body = await logsCommand.getLogs({ startDate: now, level: 'debug', tagsOneOf: [ uuid ] })
+      for (const tag of [ uuid, shortUUID ]) {
+        const body = await logsCommand.getLogs({ startDate: now, level: 'debug', tagsOneOf: [ tag ] })
         expect(body).to.not.have.lengthOf(0)
 
         for (const line of body) {

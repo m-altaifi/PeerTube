@@ -1,5 +1,6 @@
 import { context, trace } from '@opentelemetry/api'
-import { isTestOrDevInstance } from '@peertube/peertube-node-utils'
+import { arrayify } from '@peertube/peertube-core-utils'
+import { isShortUUID, isTestOrDevInstance } from '@peertube/peertube-node-utils'
 import { AsyncLocalStorage } from 'async_hooks'
 import { stat } from 'fs/promises'
 import { join } from 'path'
@@ -10,6 +11,7 @@ import { FileTransportOptions } from 'winston/lib/winston/transports/index.js'
 import { isMainThread } from 'worker_threads'
 import { CONFIG } from '../initializers/config.js'
 import { LOG_FILENAME } from '../initializers/constants.js'
+import { toCompleteUUID } from './custom-validators/misc.js'
 
 const label = CONFIG.WEBSERVER.HOSTNAME + ':' + CONFIG.WEBSERVER.PORT
 
@@ -529,4 +531,23 @@ function exitOnCrash () {
   })
 
   rootWinstonLogger.end()
+}
+
+// ---------------------------------------------------------------------------
+
+export function buildSearchTags (searchTagsArg: string[]): Set<string> | null {
+  const searchTags = arrayify(searchTagsArg)
+  if (!searchTags || searchTags.length === 0) return null
+
+  const tagsOneOf = new Set(searchTags)
+
+  for (const tag of searchTags) {
+    if (isShortUUID(tag)) { // So we can also search for short UUIDs
+      tagsOneOf.add(toCompleteUUID(tag))
+    }
+  }
+
+  if (tagsOneOf.size === 0) return null
+
+  return tagsOneOf
 }
