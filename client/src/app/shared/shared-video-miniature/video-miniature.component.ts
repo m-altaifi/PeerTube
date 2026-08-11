@@ -237,16 +237,21 @@ export class VideoMiniatureComponent implements OnInit {
     return this.video().privacy.id === VideoPrivacy.PASSWORD_PROTECTED
   }
 
-  getOwnerAriaLabel () {
-    if (this.displayOwnerAccount()) {
-      return $localize`Go to account ${this.authorAccount}`
-    }
+  // The owner link always targets the channel page, even when we display the account name (see buildOwnerLink)
+  getOwnerLinkTitle () {
+    const owner = this.displayOwnerAccount()
+      ? this.authorAccount
+      : this.authorChannel
 
-    return $localize`Go to channel ${this.authorChannel}`
+    return $localize`Go to the channel page of ${owner}`
   }
 
   getVideoAriaLabel () {
     return $localize`Watch video ${this.video().name}`
+  }
+
+  getVideoActionsLabel () {
+    return $localize`Open actions of video ${this.video().name}`
   }
 
   loadActions () {

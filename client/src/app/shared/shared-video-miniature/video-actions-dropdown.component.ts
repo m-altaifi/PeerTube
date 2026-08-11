@@ -107,6 +107,7 @@ export class VideoActionsDropdownComponent implements OnChanges {
   readonly actionAvailabilityHint = input(false, { transform: booleanAttribute })
 
   readonly label = input<string>(undefined)
+  readonly ariaLabel = input<string>(undefined)
 
   readonly buttonStyled = input(false, { transform: booleanAttribute })
   readonly buttonSize = input<DropdownButtonSize>('normal')
@@ -338,7 +339,7 @@ export class VideoActionsDropdownComponent implements OnChanges {
         },
 
         error: err => {
-          this.modalOpened.emit('remove')
+          this.modalClosed.emit('remove')
 
           this.notifier.handleError(err)
         }

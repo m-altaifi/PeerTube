@@ -74,7 +74,7 @@
           [displayAsRow]="displayAsRow()"
           [displayVideoActions]="displayVideoActions()"
           [displayOptions]="displayOptions"
-          [headingLevel]="3"
+          [headingLevel]="getVideosHeadingLevel()"
           (videoBlocked)="removeVideoFromArray(video)"
           (videoRemoved)="removeVideoFromArray(video)"
         >

@@ -1,7 +1,7 @@
 @if (videoHref()) {
   <a
     [ariaHidden]="ariaHidden()"
-    [ariaLabel]="ariaLabel()"
+    [ariaLabel]="ariaLabelText"
     [href]="videoHref()"
     [target]="videoTarget()"
     class="video-thumbnail"
@@ -13,7 +13,7 @@
 } @else {
   <a
     [ariaHidden]="ariaHidden()"
-    [ariaLabel]="ariaLabel()"
+    [ariaLabel]="ariaLabelText"
     [routerLink]="getVideoRouterLink()"
     [queryParams]="queryParams()"
     class="video-thumbnail"
@@ -24,29 +24,39 @@
   </a>
 }
 
+<!--
+  The overlays below live outside of the thumbnail link on purpose: that link can be aria-hidden (see the "ariaHidden" input),
+  and neither an interactive control nor screen reader only text may live inside an aria-hidden subtree
+-->
+
+@if (displayWatchLaterPlaylist()) {
+  <div class="actions-overlay">
+    <button
+      type="button"
+      class="watch-icon-overlay button-unstyle"
+      placement="left"
+      [ngbTooltip]="getWatchIconText()"
+      container="body"
+      #watchLaterTooltip="ngbTooltip"
+      (click)="onWatchLaterClick($event)"
+      [ariaLabel]="getWatchIconText()"
+    >
+      @if (inWatchLaterPlaylist()) {
+        <my-global-icon iconName="tick"></my-global-icon>
+      } @else {
+        <my-global-icon iconName="clock"></my-global-icon>
+      }
+    </button>
+  </div>
+}
+
+<!-- Duration, live state and watch progress are only rendered inside the (hidden) link, so expose them to screen readers here -->
+@if (ariaHidden()) {
+  <span class="visually-hidden">{{ a11yOverlaysSummary }}</span>
+}
+
 <ng-template #aContent>
   <img alt="" [attr.src]="src" [srcset]="srcset" [sizes]="sizes()" [ngClass]="{ 'blur-filter': blur() }" />
-
-  @if (displayWatchLaterPlaylist()) {
-    <div class="actions-overlay">
-      <button
-        class="watch-icon-overlay button-unstyle"
-        placement="left"
-        [ngbTooltip]="getWatchIconText()"
-        container="body"
-        #watchLaterTooltip="ngbTooltip"
-        (click)="onWatchLaterClick($event)"
-        [ariaLabel]="inWatchLaterPlaylist() ? removeFromWatchLaterText : addToWatchLaterText"
-        [tabindex]="ariaHidden() ? -1 : 0"
-      >
-        @if (inWatchLaterPlaylist()) {
-          <my-global-icon iconName="tick"></my-global-icon>
-        } @else {
-          <my-global-icon iconName="clock"></my-global-icon>
-        }
-      </button>
-    </div>
-  }
 
   <div class="label-overlay pt-badge badge-warning"><ng-content select="label-warning"></ng-content></div>
   <div class="label-overlay pt-badge badge-danger"><ng-content select="label-danger"></ng-content></div>
@@ -65,7 +75,7 @@
       }
     </div>
   } @else if (getDurationLabel()) {
-    <div class="duration-overlay" [ariaLabel]="getDurationOverlayLabel()">{{ getDurationLabel() }}</div>
+    <div class="duration-overlay">{{ getDurationLabel() }}</div>
   }
 
   @if (playOverlay()) {
@@ -77,7 +87,9 @@
   @if (!video().isLive && video().userHistory?.currentTime) {
     <div class="progress-bar">
       <div [ngStyle]="{ 'width.%': getProgressPercent() }">
-        <span class="visually-hidden" i18n>You watched {{ getProgressPercent() }}% of this video</span>
+        @if (!ariaHidden()) {
+          <span class="visually-hidden" i18n>You watched {{ getProgressPercent() }}% of this video</span>
+        }
       </div>
     </div>
   }
