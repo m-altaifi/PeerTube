@@ -62,7 +62,7 @@ import { CONFIG, registerConfigChangedHandler } from './config.js'
 
 // ---------------------------------------------------------------------------
 
-export const LAST_MIGRATION_VERSION = 1115
+export const LAST_MIGRATION_VERSION = 1120
 
 // ---------------------------------------------------------------------------
 
@@ -382,8 +382,20 @@ export const SCHEDULER_INTERVALS_MS = {
   CHANNEL_SYNC_CHECK_INTERVAL: CONFIG.IMPORT.VIDEO_CHANNEL_SYNCHRONIZATION.CHECK_INTERVAL,
   BLOCKLIST_SUBSCRIPTIONS_SYNC: 60000 * 60, // 1 hour
   WATCHED_WORDS_SUBSCRIPTIONS_SYNC: 60000 * 60, // 1 hour
-  REMOVE_OLD_USER_LOGIN_DEVICES: 60000 * 60 * 24 // 1 day
+  REMOVE_OLD_USER_LOGIN_DEVICES: 60000 * 60 * 24, // 1 day
+  CHECK_MANUAL_MIGRATION_SCRIPTS: 60000 * 60 * 12 // 12 hours
 }
+
+export const MANUAL_MIGRATION_SCRIPTS = [
+  'peertube-4.0',
+  'peertube-4.2',
+  'peertube-5.0',
+  'peertube-6.3',
+  'peertube-7.2',
+  'peertube-8.0',
+  'peertube-8.1',
+  'peertube-8.3'
+]
 
 // Devices not seen again after this delay are forgotten, so a login from that IP/user-agent pair will be treated as new again
 export const USER_LOGIN_DEVICE_MAX_AGE = 60000 * 60 * 24 * 365 // 1 year

@@ -1,4 +1,7 @@
-import { sequelizeTypescript } from '@server/initializers/database.js'
+import { initDatabaseModels, sequelizeTypescript } from '@server/initializers/database.js'
+import { ApplicationModel } from '@server/models/application/application.js'
+
+const MIGRATION_NAME = 'peertube-8.3'
 
 run()
   .then(() => process.exit(0))
@@ -8,8 +11,12 @@ run()
   })
 
 async function run () {
+  await initDatabaseModels(true)
+
   await fillVideoSearchTable()
   await migrateVideoInfohashes()
+
+  await ApplicationModel.setManualMigrationScriptRun(MIGRATION_NAME)
 }
 
 async function fillVideoSearchTable () {

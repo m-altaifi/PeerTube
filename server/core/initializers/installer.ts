@@ -174,7 +174,17 @@ async function createApplicationIfNotExist () {
   const application = await ApplicationModel.create({
     migrationVersion: LAST_MIGRATION_VERSION,
     nodeVersion: process.version,
-    nodeABIVersion: getNodeABIVersion()
+    nodeABIVersion: getNodeABIVersion(),
+    // Scripts that existed before the manual migration tracking system was introduced: assume already run
+    manualMigrationScriptsRun: [
+      'peertube-4.0',
+      'peertube-4.2',
+      'peertube-5.0',
+      'peertube-6.3',
+      'peertube-7.2',
+      'peertube-8.0',
+      'peertube-8.1'
+    ]
   })
 
   return createApplicationActor(application.id)

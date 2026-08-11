@@ -150,6 +150,7 @@ import { ActorFollowScheduler } from './core/lib/schedulers/actor-follow-schedul
 import { AutoFollowIndexInstances } from './core/lib/schedulers/auto-follow-index-instances.js'
 import { BlocklistSubscriptionsScheduler } from './core/lib/schedulers/blocklist-subscriptions-scheduler.js'
 import { GeoIPUpdateScheduler } from './core/lib/schedulers/geo-ip-update-scheduler.js'
+import { ManualMigrationScriptsScheduler } from './core/lib/schedulers/manual-migration-scripts-scheduler.js'
 import { PeerTubeVersionCheckScheduler } from './core/lib/schedulers/peertube-version-check-scheduler.js'
 import { PluginsCheckScheduler } from './core/lib/schedulers/plugins-check-scheduler.js'
 import { RemoveDanglingResumableUploadsScheduler } from './core/lib/schedulers/remove-dangling-resumable-uploads-scheduler.js'
@@ -345,6 +346,7 @@ async function startApplication () {
   RemoveExpiredUserExportsScheduler.Instance.enable()
   UpdateTokenSessionScheduler.Instance.enable()
   RemoveOldUserLoginDevicesScheduler.Instance.enable()
+  ManualMigrationScriptsScheduler.Instance.enable()
 
   OpenTelemetryMetrics.Instance.registerMetrics({ trackerServer })
 

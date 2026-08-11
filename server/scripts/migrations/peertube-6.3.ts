@@ -3,11 +3,14 @@ import { VideoFileStream } from '@peertube/peertube-models'
 import { initDatabaseModels, sequelizeTypescript } from '@server/initializers/database.js'
 import { buildFileMetadata } from '@server/lib/video-file.js'
 import { VideoPathManager } from '@server/lib/video-path-manager.js'
+import { ApplicationModel } from '@server/models/application/application.js'
 import { VideoFileModel } from '@server/models/video/video-file.js'
 import { VideoModel } from '@server/models/video/video.js'
 import Bluebird from 'bluebird'
 import { pathExists } from 'fs-extra/esm'
 import { QueryTypes } from 'sequelize'
+
+const MIGRATION_NAME = 'peertube-6.3'
 
 run()
   .then(() => process.exit(0))
@@ -67,6 +70,8 @@ async function run () {
       console.error('Cannot process video ' + id, err)
     }
   }, { concurrency: 5 })
+
+  await ApplicationModel.setManualMigrationScriptRun(MIGRATION_NAME)
 
   console.log('\n## Migration finished! ##')
 }
