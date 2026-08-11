@@ -23,6 +23,8 @@ import { VideoBlockService } from '../shared-moderation/video-block.service'
 import { VideoAddToPlaylistComponent } from '../shared-video-playlist/video-add-to-playlist.component'
 import { VideoDownloadComponent } from './download/video-download.component'
 
+export type VideoActionsModalName = 'download' | 'report' | 'block' | 'remove'
+
 export type VideoActionsDisplayType = {
   playlist?: boolean
   download?: boolean
@@ -120,8 +122,10 @@ export class VideoActionsDropdownComponent implements OnChanges {
   readonly unmuted = output()
   readonly transcodingCreated = output()
   readonly videoImportRetried = output()
-  readonly modalOpened = output()
   readonly videoExistsInPlaylistChange = output()
+
+  readonly modalOpened = output<VideoActionsModalName>()
+  readonly modalClosed = output<VideoActionsModalName>()
 
   readonly showTranscriptionWidget = output()
   readonly hideTranscriptionWidget = output()
@@ -150,7 +154,7 @@ export class VideoActionsDropdownComponent implements OnChanges {
   // ---------------------------------------------------------------------------
 
   showDownloadModal () {
-    this.modalOpened.emit()
+    this.modalOpened.emit('download')
 
     const video = this.video()
     const obs = video instanceof VideoDetails
@@ -163,13 +167,13 @@ export class VideoActionsDropdownComponent implements OnChanges {
   }
 
   showReportModal () {
-    this.modalOpened.emit()
+    this.modalOpened.emit('report')
 
     this.videoReportModal().show()
   }
 
   showBlockModal () {
-    this.modalOpened.emit()
+    this.modalOpened.emit('block')
 
     this.videoBlockModal().show([ this.video() ])
   }
@@ -314,7 +318,7 @@ export class VideoActionsDropdownComponent implements OnChanges {
   }
 
   async removeVideo () {
-    this.modalOpened.emit()
+    this.modalOpened.emit('remove')
 
     let message = $localize`Do you really want to delete ${this.video().name}?`
     const video = this.video()
@@ -330,9 +334,14 @@ export class VideoActionsDropdownComponent implements OnChanges {
         next: () => {
           this.notifier.success($localize`Video ${this.video().name} deleted.`)
           this.videoRemoved.emit()
+          this.modalClosed.emit('remove')
         },
 
-        error: err => this.notifier.handleError(err)
+        error: err => {
+          this.modalOpened.emit('remove')
+
+          this.notifier.handleError(err)
+        }
       })
   }
 

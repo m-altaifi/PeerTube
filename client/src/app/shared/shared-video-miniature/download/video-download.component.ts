@@ -1,5 +1,5 @@
 import { NgClass, NgTemplateOutlet } from '@angular/common'
-import { Component, ElementRef, inject, input, viewChild, ChangeDetectionStrategy } from '@angular/core'
+import { Component, ElementRef, inject, input, output, viewChild, ChangeDetectionStrategy } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { AuthService, HooksService } from '@app/core'
 import { GlobalIconComponent } from '@app/shared/shared-icons/global-icon.component'
@@ -43,6 +43,8 @@ export class VideoDownloadComponent {
   readonly modal = viewChild<ElementRef>('modal')
 
   readonly videoPassword = input<string>(undefined)
+
+  readonly modalClosed = output()
 
   video: VideoDetails
   type: DownloadType = 'video-generate'
@@ -93,6 +95,8 @@ export class VideoDownloadComponent {
     this.activeModal.shown.subscribe(() => {
       this.hooks.runAction('action:modal.video-download.shown', 'common')
     })
+
+    this.activeModal.hidden.subscribe(() => this.modalClosed.emit())
   }
 
   private getOriginalVideoFileObs () {
