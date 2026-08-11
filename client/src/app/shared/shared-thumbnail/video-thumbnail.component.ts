@@ -45,7 +45,8 @@ export class VideoThumbnailComponent implements OnChanges {
   readonly inWatchLaterPlaylist = input<boolean, boolean | string>(false, { transform: booleanAttribute })
   readonly playOverlay = input<boolean, boolean | string>(true, { transform: booleanAttribute })
 
-  readonly ariaLabel = input.required<string>()
+  readonly ariaHidden = input(false, { transform: booleanAttribute })
+  readonly ariaLabel = input<string>()
   readonly blur = input.required({ transform: booleanAttribute })
 
   readonly watchLaterTooltip = viewChild<NgbTooltip>('watchLaterTooltip')

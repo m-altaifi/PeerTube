@@ -82,7 +82,7 @@
       <div class="entry video">
         <my-video-miniature
           [video]="result" [user]="userMiniature" [displayAsRow]="true" [displayVideoActions]="!hideActions()"
-          [displayOptions]="videoDisplayOptions" [videoLinkType]="getLinkType()"
+          [displayOptions]="videoDisplayOptions" [videoLinkType]="getLinkType()" [headingLevel]="2"
           (videoBlocked)="removeVideoFromArray(result)" (videoRemoved)="removeVideoFromArray(result)"
         ></my-video-miniature>
       </div>

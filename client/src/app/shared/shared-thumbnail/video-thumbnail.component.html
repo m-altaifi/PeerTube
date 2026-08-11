@@ -1,9 +1,18 @@
 @if (videoHref()) {
-  <a [ariaLabel]="ariaLabel()" [href]="videoHref()" [target]="videoTarget()" class="video-thumbnail" [class]="{ 'is-rtl': isRTL() }" tabindex="-1">
+  <a
+    [ariaHidden]="ariaHidden()"
+    [ariaLabel]="ariaLabel()"
+    [href]="videoHref()"
+    [target]="videoTarget()"
+    class="video-thumbnail"
+    [class]="{ 'is-rtl': isRTL() }"
+    tabindex="-1"
+  >
     <ng-container *ngTemplateOutlet="aContent"></ng-container>
   </a>
 } @else {
   <a
+    [ariaHidden]="ariaHidden()"
     [ariaLabel]="ariaLabel()"
     [routerLink]="getVideoRouterLink()"
     [queryParams]="queryParams()"
@@ -27,7 +36,8 @@
         container="body"
         #watchLaterTooltip="ngbTooltip"
         (click)="onWatchLaterClick($event)"
-        [attr.aria-label]="inWatchLaterPlaylist() ? removeFromWatchLaterText : addToWatchLaterText"
+        [ariaLabel]="inWatchLaterPlaylist() ? removeFromWatchLaterText : addToWatchLaterText"
+        [tabindex]="ariaHidden() ? -1 : 0"
       >
         @if (inWatchLaterPlaylist()) {
           <my-global-icon iconName="tick"></my-global-icon>
