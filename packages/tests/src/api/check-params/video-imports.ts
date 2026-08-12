@@ -1,7 +1,7 @@
 /* oxlint-disable @typescript-eslint/no-unused-expressions,@typescript-eslint/require-await */
 
 import { omit } from '@peertube/peertube-core-utils'
-import { HttpStatusCode, NSFWFlag, VideoCommentPolicy, VideoImportCreate, VideoPrivacy } from '@peertube/peertube-models'
+import { HttpStatusCode, NSFWFlag, VideoCommentPolicy, VideoImportCreate, VideoImportState, VideoPrivacy } from '@peertube/peertube-models'
 import { buildAbsoluteFixturePath } from '@peertube/peertube-node-utils'
 import {
   PeerTubeServer,
@@ -80,8 +80,36 @@ describe('Test video imports API validator', function () {
       })
     })
 
+    it('Should fail with an invalid stateOneOf', async function () {
+      await makeGetRequest({
+        url: server.url,
+        path: myPath,
+        query: { stateOneOf: 'invalid' },
+        token: server.accessToken
+      })
+    })
+
+    it('Should fail with an invalid stateOneOf array', async function () {
+      await makeGetRequest({
+        url: server.url,
+        path: myPath,
+        query: { stateOneOf: [ 42 ] },
+        token: server.accessToken
+      })
+    })
+
     it('Should succeed with the correct parameters', async function () {
       await makeGetRequest({ url: server.url, path: myPath, expectedStatus: HttpStatusCode.OK_200, token: server.accessToken })
+    })
+
+    it('Should succeed with a valid stateOneOf param', async function () {
+      await makeGetRequest({
+        url: server.url,
+        path: myPath,
+        query: { stateOneOf: [ VideoImportState.PENDING, VideoImportState.SUCCESS ] },
+        expectedStatus: HttpStatusCode.OK_200,
+        token: server.accessToken
+      })
     })
   })
 

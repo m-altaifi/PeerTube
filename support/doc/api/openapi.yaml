@@ -2383,6 +2383,15 @@ paths:
           description: Search in video names
           schema:
             type: string
+        -
+          name: stateOneOf
+          in: query
+          required: false
+          description: Filter on import state
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/VideoImportStateConstant/properties/id'
       responses:
         '200':
           description: successful operation
@@ -10905,7 +10914,12 @@ components:
             - 1
             - 2
             - 3
-          description: 'The video import state (Pending = `1`, Success = `2`, Failed = `3`)'
+            - 4
+            - 5
+            - 6
+          description: >
+            The video import state (Pending = `1`, Success = `2`, Failed = `3`, Rejected = `4`, Cancelled = `5`,
+            Processing = `6`)
         label:
           type: string
           example: Pending

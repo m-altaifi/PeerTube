@@ -6,8 +6,12 @@ import { Hooks } from '@server/lib/plugins/hooks.js'
 import { MUserAccountId, MVideoImportDefault } from '@server/types/models/index.js'
 import express from 'express'
 import { body, param, query } from 'express-validator'
-import { isIdValid, toBooleanOrNull, toIntOrNull } from '../../../helpers/custom-validators/misc.js'
-import { isVideoImportTargetUrlValid, isVideoImportTorrentFile } from '../../../helpers/custom-validators/video-imports.js'
+import { isIdValid, toArray, toBooleanOrNull, toIntOrNull } from '../../../helpers/custom-validators/misc.js'
+import {
+  isVideoImportStateArrayValid,
+  isVideoImportTargetUrlValid,
+  isVideoImportTorrentFile
+} from '../../../helpers/custom-validators/video-imports.js'
 import { isValidPasswordProtectedPrivacy, isVideoMagnetUriValid, isVideoNameValid } from '../../../helpers/custom-validators/videos.js'
 import { cleanUpReqFiles } from '../../../helpers/express-utils.js'
 import { createLogger } from '../../../helpers/logger.js'
@@ -112,6 +116,11 @@ export const listMyVideoImportsValidator = [
   query('videoChannelSyncId')
     .optional()
     .custom(isIdValid),
+
+  query('stateOneOf')
+    .optional()
+    .customSanitizer(toArray)
+    .custom(isVideoImportStateArrayValid).withMessage('Should have a valid stateOneOf array'),
 
   query('includeCollaborations')
     .optional()
