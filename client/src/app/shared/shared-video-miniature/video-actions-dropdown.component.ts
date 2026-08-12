@@ -183,50 +183,50 @@ export class VideoActionsDropdownComponent implements OnChanges {
   // Actions checker
   // ---------------------------------------------------------------------------
 
-  isVideoUpdatable () {
+  canUpdate () {
     if (!this.user) return false
 
-    return this.video().isUpdatableBy(this.user)
+    return this.video().canBeUpdatedBy(this.user)
   }
 
-  isVideoEditable () {
+  canStudioEdit () {
     if (!this.user) return false
 
-    return this.video().isStudioEditableBy({
+    return this.video().canBeStudioEditedBy({
       user: this.user,
       studioEnabled: this.serverService.getHTMLConfig().videoStudio.enabled
     })
   }
 
-  isVideoStatsAvailable () {
+  canDisplayStats () {
     if (!this.user) return false
 
     // Users that can update the video can also see its stats
-    return this.video().isUpdatableBy(this.user)
+    return this.video().canBeUpdatedBy(this.user)
   }
 
-  isVideoRemovable () {
+  canRemove () {
     if (!this.user) return false
 
-    return this.video().isRemovableBy(this.user)
+    return this.video().canBeRemovedBy(this.user)
   }
 
-  isVideoBlockable () {
+  canBlock () {
     if (!this.user) return false
 
-    return this.video().isBlockableBy(this.user)
+    return this.video().canBeBlockedBy(this.user)
   }
 
-  isVideoUnblockable () {
+  canUnblock () {
     if (!this.user) return false
 
-    return this.video().isUnblockableBy(this.user)
+    return this.video().canBeUnblockedBy(this.user)
   }
 
-  isVideoLiveInfoAvailable () {
+  canDisplayLiveInfo () {
     if (!this.user) return false
 
-    return this.video().isLiveInfoAvailableBy(this.user)
+    return this.video().canDisplayLiveInfoBy(this.user)
   }
 
   canGenerateTranscription () {
@@ -246,9 +246,15 @@ export class VideoActionsDropdownComponent implements OnChanges {
     return false
   }
 
+  canReport () {
+    if (!this.user) return false
+
+    return this.video().canBeReportedBy(this.user)
+  }
+
   // ---------------------------------------------------------------------------
 
-  isVideoDownloadableByAnonymous () {
+  canBeDownloadedByAnonymous () {
     const video = this.video()
 
     return (
@@ -259,7 +265,7 @@ export class VideoActionsDropdownComponent implements OnChanges {
     )
   }
 
-  isVideoDownloadableByUser () {
+  canBeDownloadedByUser () {
     if (!this.user) return false
 
     const video = this.video()
@@ -267,20 +273,20 @@ export class VideoActionsDropdownComponent implements OnChanges {
     return (
       video &&
       video.isLive !== true &&
-      video.isUpdatableBy(this.user)
+      video.canBeUpdatedBy(this.user)
     )
   }
 
   // ---------------------------------------------------------------------------
 
-  canVideoBeDuplicated () {
+  canDuplicate () {
     if (!this.user) return false
 
     const video = this.video()
     return !video.isLive && video.canBeDuplicatedBy(this.user)
   }
 
-  canRemoveVideoFiles () {
+  canRemoveFiles () {
     if (!this.user) return false
 
     return this.video().canRemoveAllHLSOrWebFiles(this.user)
@@ -559,12 +565,12 @@ export class VideoActionsDropdownComponent implements OnChanges {
           isDisplayed: () => {
             if (!this.displayOptions().download) return false
 
-            return this.isVideoDownloadableByAnonymous() || this.isVideoDownloadableByUser()
+            return this.canBeDownloadedByAnonymous() || this.canBeDownloadedByUser()
           },
           iconName: 'download',
           ownerOrModeratorPrivilege: () => {
             if (!this.actionAvailabilityHint()) return undefined
-            if (this.isVideoDownloadableByAnonymous()) return undefined
+            if (this.canBeDownloadedByAnonymous()) return undefined
 
             return $localize`This option is visible only to you`
           }
@@ -596,14 +602,14 @@ export class VideoActionsDropdownComponent implements OnChanges {
         {
           label: $localize`Live information`,
           linkBuilder: ({ video }) => [ '/videos/manage', video.shortUUID, 'live-settings' ],
-          isDisplayed: () => this.displayOptions().liveInfo && this.isVideoLiveInfoAvailable(),
+          isDisplayed: () => this.displayOptions().liveInfo && this.canDisplayLiveInfo(),
           iconName: 'live'
         },
         {
           label: $localize`Manage`,
           linkBuilder: ({ video }) => [ '/videos/manage', video.shortUUID ],
           iconName: 'film',
-          isDisplayed: () => this.authService.isLoggedIn() && this.displayOptions().update && this.isVideoUpdatable()
+          isDisplayed: () => this.authService.isLoggedIn() && this.displayOptions().update && this.canUpdate()
         },
         {
           label: $localize`Retry import`,
@@ -615,30 +621,30 @@ export class VideoActionsDropdownComponent implements OnChanges {
           label: $localize`Block...`,
           handler: () => this.showBlockModal(),
           iconName: 'no',
-          isDisplayed: () => this.authService.isLoggedIn() && this.displayOptions().blacklist && this.isVideoBlockable()
+          isDisplayed: () => this.authService.isLoggedIn() && this.displayOptions().blacklist && this.canBlock()
         },
         {
           label: $localize`Unblock`,
           handler: () => this.unblockVideo(),
           iconName: 'undo',
-          isDisplayed: () => this.authService.isLoggedIn() && this.displayOptions().blacklist && this.isVideoUnblockable()
+          isDisplayed: () => this.authService.isLoggedIn() && this.displayOptions().blacklist && this.canUnblock()
         },
         {
           label: $localize`Mirror`,
           handler: () => this.duplicateVideo(),
-          isDisplayed: () => this.authService.isLoggedIn() && this.displayOptions().duplicate && this.canVideoBeDuplicated(),
+          isDisplayed: () => this.authService.isLoggedIn() && this.displayOptions().duplicate && this.canDuplicate(),
           iconName: 'cloud-download'
         },
         {
           label: $localize`Delete`,
           handler: () => this.removeVideo(),
-          isDisplayed: () => this.authService.isLoggedIn() && this.displayOptions().delete && this.isVideoRemovable(),
+          isDisplayed: () => this.authService.isLoggedIn() && this.displayOptions().delete && this.canRemove(),
           iconName: 'delete'
         },
         {
           label: $localize`Report...`,
           handler: () => this.showReportModal(),
-          isDisplayed: () => this.authService.isLoggedIn() && this.displayOptions().report,
+          isDisplayed: () => this.authService.isLoggedIn() && this.displayOptions().report && this.canReport(),
           iconName: 'flag'
         }
       ],
@@ -658,13 +664,13 @@ export class VideoActionsDropdownComponent implements OnChanges {
         {
           label: $localize`Delete HLS files`,
           handler: ({ video }) => this.removeVideoFiles(video, 'hls'),
-          isDisplayed: () => this.displayOptions().removeFiles && this.canRemoveVideoFiles(),
+          isDisplayed: () => this.displayOptions().removeFiles && this.canRemoveFiles(),
           iconName: 'delete'
         },
         {
           label: $localize`Delete Web Video files`,
           handler: ({ video }) => this.removeVideoFiles(video, 'web-videos'),
-          isDisplayed: () => this.displayOptions().removeFiles && this.canRemoveVideoFiles(),
+          isDisplayed: () => this.displayOptions().removeFiles && this.canRemoveFiles(),
           iconName: 'delete'
         }
       ],
