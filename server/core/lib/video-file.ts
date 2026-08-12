@@ -124,7 +124,11 @@ export async function removeAllWebVideoFiles (video: MVideoWithAllFiles, options
   const videoFileMutexReleaser = await VideoPathManager.Instance.lockFiles(video.uuid)
 
   try {
-    for (const file of video.VideoFiles) {
+    // Reload the files: another job may have updated them (their torrent filename for example) while we were waiting for the mutex
+    const files = await video.$get('VideoFiles')
+    video.VideoFiles = files
+
+    for (const file of files) {
       if (resolutionExceptions.includes(file.resolution)) continue
 
       await video.removeWebVideoFile(file)
@@ -148,11 +152,15 @@ export async function removeWebVideoFile (video: MVideoWithAllFiles, fileToDelet
 
   const videoFileMutexReleaser = await VideoPathManager.Instance.lockFiles(video.uuid)
   try {
-    const toDelete = files.find(f => f.id === fileToDeleteId)
-    await video.removeWebVideoFile(toDelete)
-    await toDelete.destroy()
+    // Reload the file: another job may have updated it (its torrent filename for example) while we were waiting for the mutex
+    const toDelete = await VideoFileModel.load(fileToDeleteId)
 
-    video.VideoFiles = files.filter(f => f.id !== toDelete.id)
+    if (toDelete) {
+      await video.removeWebVideoFile(toDelete)
+      await toDelete.destroy()
+    }
+
+    video.VideoFiles = files.filter(f => f.id !== fileToDeleteId)
   } finally {
     videoFileMutexReleaser()
   }

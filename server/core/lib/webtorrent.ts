@@ -3,6 +3,7 @@ import { WEBSERVER } from '@server/initializers/constants.js'
 import { generateTorrentFileName } from '@server/lib/paths.js'
 import { VideoPathManager } from '@server/lib/video-path-manager.js'
 import { createTorrentFromWorker } from '@server/lib/worker/parent-process.js'
+import { VideoFileModel } from '@server/models/video/video-file.js'
 import { VideoInfohashModel } from '@server/models/video/video-infohash.js'
 import { MVideoFile, MVideoFileInfoHash } from '@server/types/models/video/video-file.js'
 import { MStreamingPlaylistVideo } from '@server/types/models/video/video-streaming-playlist.js'
@@ -189,6 +190,14 @@ export async function updateTorrentForFileAndSave (videoOrPlaylist: MVideo | MSt
 
   await writeFile(newTorrentPath, bencode.encode(decoded))
   await remove(oldTorrentPath)
+
+  // The video file may have been deleted in the meantime, so don't leave the new torrent on disk
+  if (!await VideoFileModel.load(videoFile.id)) {
+    logger.info('Do not save torrent metadata update %s because the video file does not exist anymore.', newTorrentPath)
+
+    await remove(newTorrentPath)
+    return
+  }
 
   videoFile.torrentFilename = newTorrentFilename
 

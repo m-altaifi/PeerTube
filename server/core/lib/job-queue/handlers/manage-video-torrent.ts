@@ -85,7 +85,14 @@ async function doUpdateMetadataAction (payload: ManageVideoTorrentPayload & { ac
     const fileMutexReleaser = await VideoPathManager.Instance.lockFiles(extractedVideo.uuid)
 
     try {
-      await updateTorrentForFileAndSave(video || streamingPlaylist, file)
+      // Reload the file: another job may have updated it (its torrent filename for example) while we were waiting for the mutex
+      const refreshedFile = await VideoFileModel.load(file.id)
+      if (!refreshedFile) {
+        logger.debug('Do not update torrent metadata for file %d: does not exist anymore.', file.id)
+        return
+      }
+
+      await updateTorrentForFileAndSave(video || streamingPlaylist, refreshedFile)
     } finally {
       fileMutexReleaser()
     }
