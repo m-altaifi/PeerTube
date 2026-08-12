@@ -687,6 +687,34 @@ describe('Test video imports', function () {
       expect(video.state.id).to.equal(VideoState.PUBLISHED)
     })
 
+    it('Should retry a cancelled import job', async function () {
+      this.timeout(60_000)
+
+      await server.jobs.pauseJobQueue()
+
+      const cancelledImportId = await importVideo('to retry from cancel')
+      await server.videoImports.cancel({ importId: cancelledImportId })
+
+      await server.jobs.resumeJobQueue()
+      await waitJobs([ server ])
+
+      {
+        const { data } = await server.videoImports.listMyVideoImports({ id: cancelledImportId })
+        expect(data[0].state.id).to.equal(VideoImportState.CANCELLED)
+      }
+
+      await server.videoImports.retry({ importId: cancelledImportId })
+      await waitJobs([ server ])
+
+      {
+        const { data } = await server.videoImports.listMyVideoImports({ id: cancelledImportId })
+        expect(data[0].state.id).to.equal(VideoImportState.SUCCESS)
+
+        const video = await server.videos.getWithToken({ id: data[0].video.id })
+        expect(video.state.id).to.equal(VideoState.PUBLISHED)
+      }
+    })
+
     after(async function () {
       await sqlCommand?.cleanup()
 

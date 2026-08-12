@@ -7,7 +7,7 @@ import { PTDatePipe } from '@app/shared/shared-main/common/date.pipe'
 import { VideoImportService } from '@app/shared/shared-main/video/video-import.service'
 import { Video } from '@app/shared/shared-main/video/video.model'
 import { ActorCellComponent } from '@app/shared/shared-tables/actor-cell.component'
-import { VideoImport, VideoImportState, VideoImportStateType } from '@peertube/peertube-models'
+import { RETRYABLE_VIDEO_IMPORT_STATES, VideoImport, VideoImportState, VideoImportStateType } from '@peertube/peertube-models'
 import { NumberFormatterPipe } from '../../shared/shared-main/common/number-formatter.pipe'
 import { DataLoaderOptionsBase, TableColumnInfo, TableComponent } from '../../shared/shared-tables/table.component'
 
@@ -129,7 +129,7 @@ export class MyVideoImportsComponent implements OnInit {
         label: $localize`Retry import`,
         iconName: 'refresh',
         handler: videoImport => this.retryImport(videoImport),
-        isDisplayed: videoImport => this.isVideoImportFailed(videoImport)
+        isDisplayed: videoImport => RETRYABLE_VIDEO_IMPORT_STATES.includes(videoImport.state.id)
       },
       {
         label: $localize`Delete import task`,

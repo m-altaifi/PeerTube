@@ -532,6 +532,7 @@ describe('Test video imports API validator', function () {
     let sqlCommand: SQLCommand
     let importId: number
     let successId: number
+    let cancelledId: number
 
     before(async function () {
       this.timeout(60000)
@@ -552,6 +553,16 @@ describe('Test video imports API validator', function () {
         const res = await server.videoImports.quickImport({ name: 'Success', targetUrl: FIXTURE_URLS.goodVideo })
         successId = res.id
       }
+
+      await server.jobs.pauseJobQueue()
+
+      {
+        const res = await server.videoImports.quickImport({ name: 'To retry from cancel', targetUrl: FIXTURE_URLS.goodVideo })
+        cancelledId = res.id
+      }
+
+      await server.videoImports.cancel({ importId: cancelledId })
+      await server.jobs.resumeJobQueue()
 
       await waitJobs([ server ])
     })
@@ -576,6 +587,12 @@ describe('Test video imports API validator', function () {
       this.timeout(60000)
 
       await server.videoImports.retry({ importId: successId, expectedStatus: HttpStatusCode.BAD_REQUEST_400 })
+    })
+
+    it('Should succeed to retry a cancelled import', async function () {
+      this.timeout(60000)
+
+      await server.videoImports.retry({ importId: cancelledId, token: editorToken })
     })
 
     it('Should succeed to retry', async function () {

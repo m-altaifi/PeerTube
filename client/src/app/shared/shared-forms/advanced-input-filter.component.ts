@@ -241,7 +241,7 @@ export class AdvancedInputFilterComponent<ServiceParameters extends Record<strin
   }
 
   setSelectValue (key: string, value: string | undefined) {
-    this.filterState.update(s => ({ ...s, [key]: String(value) || undefined }))
+    this.filterState.update(s => ({ ...s, [key]: value ? String(value) : undefined }))
   }
 
   // ---------------------------------------------------------------------------

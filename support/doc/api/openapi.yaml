@@ -4076,7 +4076,7 @@ paths:
   /api/v1/videos/imports/{id}/retry:
     post:
       summary: Retry video import
-      description: "**PeerTube >= 8.0** Retry a pending video import"
+      description: "**PeerTube >= 8.0** Retry a failed or cancelled (**PeerTube >= 8.3**) video import"
       security:
         - OAuth2: []
       tags:
