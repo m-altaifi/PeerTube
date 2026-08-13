@@ -44,12 +44,15 @@
             myTimestampRouteTransformer
           ></div>
 
-          <div class="comment-actions">
+          <div class="comment-actions" #userCommentActionsEl>
             <button (click)="onWantToReply()" class="comment-action-reply border-0 p-0" i18n>Reply</button>
-            <my-user-moderation-dropdown
-              [prependActions]="prependModerationActions" [buttonStyled]="false"
-              buttonSize="small" [account]="commentAccount" [user]="commentUser" i18n-label label="Options" placement="bottom-left auto"
-            ></my-user-moderation-dropdown>
+
+            @defer (on viewport(userCommentActionsEl); prefetch on idle) {
+              <my-user-moderation-dropdown
+                [prependActions]="prependModerationActions" [buttonStyled]="false"
+                buttonSize="small" [account]="commentAccount" [user]="commentUser" i18n-label label="Options" placement="bottom-left auto"
+              ></my-user-moderation-dropdown>
+            }
           </div>
         }
 
@@ -106,7 +109,7 @@
   </div>
 }
 
-@if (prependModerationActions) {
+@defer (when showCommentReportModal) {
   <my-comment-report #commentReportModal [comment]="comment()"></my-comment-report>
 }
 

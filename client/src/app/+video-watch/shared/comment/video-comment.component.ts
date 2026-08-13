@@ -1,5 +1,17 @@
 import { NgClass } from '@angular/common'
-import { Component, OnChanges, OnInit, TemplateRef, inject, input, model, output, viewChild, ChangeDetectionStrategy } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnChanges,
+  TemplateRef,
+  effect,
+  inject,
+  input,
+  model,
+  output,
+  viewChild
+} from '@angular/core'
 import { RouterLink } from '@angular/router'
 import { MarkdownService, Notifier, ScreenService, UserService } from '@app/core'
 import { AuthService } from '@app/core/auth'
@@ -22,7 +34,7 @@ import { VideoCommentAddComponent } from './video-comment-add.component'
   selector: 'my-video-comment',
   templateUrl: './video-comment.component.html',
   styleUrls: [ './video-comment.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgClass,
     ActorAvatarComponent,
@@ -35,7 +47,8 @@ import { VideoCommentAddComponent } from './video-comment-add.component'
     FromNowPipe
   ]
 })
-export class VideoCommentComponent implements OnInit, OnChanges {
+export class VideoCommentComponent implements OnChanges {
+  private cd = inject(ChangeDetectorRef)
   private markdownService = inject(MarkdownService)
   private authService = inject(AuthService)
   private userService = inject(UserService)
@@ -73,16 +86,22 @@ export class VideoCommentComponent implements OnInit, OnChanges {
   commentUser: User
   private replyModalRef: NgbModalRef
 
+  showCommentReportModal = false
+
   get user () {
     return this.authService.getUser()
   }
 
-  ngOnInit () {
-    this.init()
+  constructor () {
+    // Open the report modal as soon as it has been loaded (it may be deferred)
+    effect(() => {
+      const modal = this.commentReportModal()
+      if (modal) modal.show()
+    })
   }
 
   ngOnChanges () {
-    this.init()
+    this.reinit()
     this.toggleMobileReplyModalIfNeeded()
   }
 
@@ -201,14 +220,17 @@ export class VideoCommentComponent implements OnInit, OnChanges {
     if (user.hasRight(UserRight.MANAGE_USERS)) {
       this.userService.getUserWithCache(account.userId)
         .subscribe({
-          next: user => this.commentUser = user,
+          next: user => {
+            this.commentUser = user
+            this.cd.markForCheck()
+          },
 
           error: err => this.notifier.handleError(err)
         })
     }
   }
 
-  private async init () {
+  private async reinit () {
     // Before HTML rendering restore line feed for markdown list compatibility
     const commentText = this.comment().text.replace(/<br.?\/?>/g, '\r\n')
     const html = await this.markdownService.textMarkdownToHTML({ markdown: commentText, withHtml: true, withEmoji: true })
@@ -263,10 +285,12 @@ export class VideoCommentComponent implements OnInit, OnChanges {
         isHeader: true
       })
     }
+
+    this.cd.markForCheck()
   }
 
   private showReportModal () {
-    this.commentReportModal().show()
+    this.showCommentReportModal = true
   }
 
   private closeReplyModal () {
