@@ -4582,6 +4582,8 @@ paths:
                       $ref: '#/components/schemas/Abuse'
     post:
       summary: Report an abuse
+      description: >
+        You cannot report a video that you own or on which you are a collaborator (video channel editor).
       security:
         - OAuth2: []
       tags:
@@ -4647,6 +4649,8 @@ paths:
                         $ref: '#/components/schemas/id'
         '400':
           description: incorrect request parameters
+        '403':
+          description: cannot report a video you own or that you collaborate on
 
   '/api/v1/abuses/{abuseId}':
     put:
