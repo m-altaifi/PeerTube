@@ -6892,9 +6892,9 @@ The link will expire within 1 hour.</source>
           <context context-type="linenumber">65,67</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6076623101349323411" datatype="html">
+      <trans-unit id="6076623101349323411" datatype="html" xml:space="preserve">
         <source>The remote list will be synchronized periodically, and auto tags on existing comments and videos will be updated based on the words in the list.</source>
-        <target state="new"> The remote list will be synchronized periodically, and auto tags on existing comments and videos will be updated based on the words in the list. </target>
+        <target state="translated">Η λίστα απομακρυσμένων στοιχείων θα συγχρονίζεται περιοδικά, ενώ οι αυτόματες ετικέτες στα υπάρχοντα σχόλια και βίντεο θα ενημερώνονται με βάση τις λέξεις της λίστας.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">76</context>
@@ -6940,9 +6940,9 @@ The link will expire within 1 hour.</source>
           <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4147764481886042165" datatype="html">
+      <trans-unit id="4147764481886042165" datatype="html" xml:space="preserve">
         <source>Deleting this subscription will remove &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; auto tags assigned to comments and videos.</source>
-        <target state="new">Deleting this subscription will remove &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; auto tags assigned to comments and videos.</target>
+        <target state="translated">Η διαγραφή αυτής της συνδρομής θα καταργήσει τις αυτόματες ετικέτες &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; που έχουν αποδοθεί σε σχόλια και βίντεο.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.ts</context>
           <context context-type="linenumber">134</context>
