@@ -32,7 +32,7 @@ import {
   UpdatedAt
 } from 'sequelize-typescript'
 import { isActivityPubUrlValid } from '../../helpers/custom-validators/activitypub/misc.js'
-import { CONSTRAINTS_FIELDS, USER_EXPORT_MAX_ITEMS } from '../../initializers/constants.js'
+import { CONSTRAINTS_FIELDS, USER_EXPORT_MAX_ITEMS, VIDEO_COMMENTS_TREE } from '../../initializers/constants.js'
 import {
   MComment,
   MCommentAdminOrUserFormattable,
@@ -137,7 +137,8 @@ export enum ScopeNames {
       ]
     },
     {
-      fields: [ 'inReplyToCommentId' ]
+      // createdAt/id are the sort of the comment tree queries, so they can be served by an index only scan
+      fields: [ 'inReplyToCommentId', 'createdAt', 'id' ]
     }
   ]
 })
@@ -447,37 +448,115 @@ export class VideoCommentModel extends SequelizeModel<VideoCommentModel> {
     })
   }
 
+  // Return the thread root comment and a truncated view of its replies
+  // Replies the client does not get must be fetched with `listRepliesForApi`
   static async listThreadCommentsForApi (parameters: {
     video: MVideo
     threadId: number
+    maxDepth: number
+    repliesPerLevel: number
     user?: MUserAccountId
   }) {
-    const { user, video, threadId } = parameters
+    const { user, video, threadId, maxDepth, repliesPerLevel } = parameters
+
+    const commonOptions = await VideoCommentModel.buildCommentTreeCommonOptions({ user, video })
+
+    const [ comment, { total, data } ] = await Promise.all([
+      new VideoCommentListQueryBuilder(VideoCommentModel.sequelize, {
+        ...commonOptions,
+
+        commentIds: [ threadId ],
+        sort: 'createdAt'
+      }).get<MCommentAdminOrUserFormattable>(),
+
+      VideoCommentModel.listRepliesForApi({
+        video,
+        user,
+        maxDepth,
+        repliesPerLevel,
+
+        parentCommentId: threadId,
+        start: 0,
+        count: repliesPerLevel,
+        sort: 'createdAt',
+
+        commonOptions
+      })
+    ])
+
+    if (!comment) return { comment: null, total: 0, data: [] }
+
+    return { comment, total, data }
+  }
+
+  // Return the direct replies of `parentCommentId` (paginated) and, for each of them, a truncated view of their own replies
+  static async listRepliesForApi (parameters: {
+    video: MVideo
+    parentCommentId: number
+    start: number
+    count: number
+    sort: string
+    maxDepth: number
+    repliesPerLevel: number
+    user?: MUserAccountId
+
+    // Avoid rebuilding it (extra blocklist query + channel load) when the caller already has one
+    commonOptions?: ListVideoCommentsOptions
+  }) {
+    const { user, video, parentCommentId, start, count, sort, maxDepth, repliesPerLevel } = parameters
+
+    const commonOptions = parameters.commonOptions ?? await VideoCommentModel.buildCommentTreeCommonOptions({ user, video })
+
+    const listOptions: ListVideoCommentsOptions = {
+      ...commonOptions,
+
+      sort,
+      replyTree: {
+        parentCommentId,
+        start,
+        count,
+        maxDepth,
+        repliesPerLevel,
+        maxComments: VIDEO_COMMENTS_TREE.MAX_COMMENTS_PER_REQUEST
+      }
+    }
+
+    const countOptions: ListVideoCommentsOptions = {
+      ...commonOptions,
+
+      inReplyToCommentIds: [ parentCommentId ],
+      includeReplyCounters: false
+    }
+
+    return Promise.all([
+      new VideoCommentListQueryBuilder(VideoCommentModel.sequelize, listOptions).list<MCommentAdminOrUserFormattable>(),
+      new VideoCommentListQueryBuilder(VideoCommentModel.sequelize, countOptions).count()
+    ]).then(([ data, total ]) => {
+      return { total, data }
+    })
+  }
+
+  private static async buildCommentTreeCommonOptions (options: {
+    video: MVideo
+    user?: MUserAccountId
+  }): Promise<ListVideoCommentsOptions> {
+    const { video, user } = options
 
     const { blockerAccountIds, canSeeHeldForReview } = await VideoCommentModel.buildBlockerAccountIdsAndCanSeeHeldForReview({ user, video })
 
-    const queryOptions: ListVideoCommentsOptions = {
-      threadId,
-
+    return {
       videoId: video.id,
       selectType: 'api-video',
-      sort: 'createdAt',
 
       blockerAccountIds,
       includeReplyCounters: true,
+      totalRepliesIncludeDeleted: true,
 
       heldForReview: canSeeHeldForReview
         ? undefined // Display all comments for video owner or moderator
         : false,
       heldForReviewAccountIdException: user?.Account?.id
     }
-
-    return Promise.all([
-      new VideoCommentListQueryBuilder(VideoCommentModel.sequelize, queryOptions).list<MCommentAdminOrUserFormattable>(),
-      new VideoCommentListQueryBuilder(VideoCommentModel.sequelize, queryOptions).count()
-    ]).then(([ rows, count ]) => {
-      return { total: count, data: rows }
-    })
   }
 
   static listThreadParentComments (options: {

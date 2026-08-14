@@ -91,10 +91,12 @@
                   [inReplyToCommentId]="inReplyToCommentId()"
                   [commentTree]="commentChild"
                   [parentComments]="newParentComments"
+                  [depth]="depth() + 1"
                   (wantedToReply)="onWantToReply($event)"
                   (wantedToDelete)="onWantToDelete($event)"
                   (wantedToRedraft)="onWantToRedraft($event)"
                   (wantedToApprove)="onWantToApprove($event)"
+                  (wantedToViewRepliesInModal)="wantedToViewRepliesInModal.emit($event)"
                   (resetReply)="onResetReply()"
                   (timestampClicked)="handleTimestampClicked($event)"
                   [redraftValue]="redraftValue()"
@@ -102,6 +104,28 @@
               </div>
             }
           </div>
+
+          @if (getNotFetchedRepliesCount() > 0) {
+            <button (click)="viewMoreReplies()" class="view-replies mb-2 button-unstyle">
+              @if (mustViewRepliesInModal()) {
+                <span class="chevron-right"></span>
+              } @else {
+                <span class="chevron-down"></span>
+              }
+
+              @if (commentTree().children.length === 0) {
+                <ng-container i18n>
+                  View {getNotFetchedRepliesCount(), plural, =1 {1 reply} other {{{ getNotFetchedRepliesCount() }} replies}}
+                </ng-container>
+              } @else {
+                <ng-container i18n>
+                  View {getNotFetchedRepliesCount(), plural, =1 {1 more reply} other {{{ getNotFetchedRepliesCount() }} more replies}}
+                </ng-container>
+              }
+
+              <my-loader size="sm" class="ms-1" [loading]="loadingReplies"></my-loader>
+            </button>
+          }
         }
         <ng-content></ng-content>
       </div>

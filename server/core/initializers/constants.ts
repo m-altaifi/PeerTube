@@ -62,7 +62,7 @@ import { CONFIG, registerConfigChangedHandler } from './config.js'
 
 // ---------------------------------------------------------------------------
 
-export const LAST_MIGRATION_VERSION = 1120
+export const LAST_MIGRATION_VERSION = 1125
 
 // ---------------------------------------------------------------------------
 
@@ -81,6 +81,22 @@ export const PAGINATION = {
       MAX: 50
     }
   }
+}
+
+// Comment trees are truncated so we don't have to build/send/render a whole thread at once
+export const VIDEO_COMMENTS_TREE = {
+  DEPTH: {
+    DEFAULT: 5,
+    MAX: 10
+  },
+  REPLIES_PER_LEVEL: {
+    DEFAULT: 10,
+    MAX: 30
+  },
+  MAX_COMMENTS_PER_REQUEST: 300,
+  // A tree can make the database walk through `count * (repliesPerLevel ^ maxDepth - 1) / (repliesPerLevel - 1)`
+  // comments before we truncate it to MAX_COMMENTS_PER_REQUEST
+  MAX_SEARCHED_COMMENTS: 2_000_000
 }
 
 export const WEBSERVER = {
