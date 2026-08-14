@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges, OnInit, inject, input, output, viewChild } from '@angular/core'
-import { AuthService, ConfirmService, HooksService, Notifier, ServerService, UserService } from '@app/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges, inject, input, output, viewChild } from '@angular/core'
+import { AuthService, ConfirmService, HooksService, Notifier, UserService } from '@app/core'
 import { BulkRemoveCommentsOfBody, User, UserRight } from '@peertube/peertube-models'
 import { Account } from '../shared-main/account/account.model'
 import { ActionDropdownComponent, DropdownAction } from '../shared-main/buttons/action-dropdown.component'
@@ -25,12 +25,11 @@ export type UserModerationDisplayType = {
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ UserBanModalComponent, ActionDropdownComponent ]
 })
-export class UserModerationDropdownComponent implements OnInit, OnChanges {
+export class UserModerationDropdownComponent implements OnChanges {
   private cd = inject(ChangeDetectorRef)
   private authService = inject(AuthService)
   private notifier = inject(Notifier)
   private confirmService = inject(ConfirmService)
-  private serverService = inject(ServerService)
   private userAdminService = inject(UserAdminService)
   private blocklistService = inject(BlocklistService)
   private bulkService = inject(BulkService)
@@ -62,13 +61,6 @@ export class UserModerationDropdownComponent implements OnInit, OnChanges {
   readonly userDeleted = output()
 
   userActions: DropdownAction<{ user: User, account: AccountMutedStatus }>[][] = []
-
-  requiresEmailVerification = false
-
-  ngOnInit () {
-    this.serverService.getConfig()
-      .subscribe(config => this.requiresEmailVerification = config.signup.requiresEmailVerification)
-  }
 
   ngOnChanges () {
     this.buildActions()
@@ -281,7 +273,7 @@ export class UserModerationDropdownComponent implements OnInit, OnChanges {
     return [ '/admin', 'overview', 'users', 'update', user.id ]
   }
 
-  // The parent may use the OnPush strategy, so we need to notify it that we emitted an event asynchronously
+  // We mutate the account object above, and our OnPush parent may not bind our outputs, so nothing else marks this view dirty
   private emitUserChanged () {
     this.userChanged.emit()
     this.cd.markForCheck()
