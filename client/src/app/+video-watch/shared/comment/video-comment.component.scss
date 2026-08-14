@@ -133,6 +133,12 @@
       color: pvar(--fg);
     }
   }
+
+  .comment-action-options-placeholder {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+  }
 }
 
 my-video-comment-add {

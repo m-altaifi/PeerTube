@@ -52,6 +52,8 @@
                 [prependActions]="prependModerationActions" [buttonStyled]="false"
                 buttonSize="small" [account]="commentAccount" [user]="commentUser" i18n-label label="Options" placement="bottom-left auto"
               ></my-user-moderation-dropdown>
+            } @placeholder {
+              <span class="comment-action-options-placeholder"></span>
             }
           </div>
         }
