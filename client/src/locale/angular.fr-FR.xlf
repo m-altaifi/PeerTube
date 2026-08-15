@@ -999,25 +999,25 @@
           <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5747059683731578771" datatype="html">
+      <trans-unit id="5747059683731578771" datatype="html" xml:space="preserve">
         <source>No change to save</source>
-        <target state="new">No change to save</target>
+        <target state="translated">Aucun changement à enregistrer</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-playlist/bulk-update-videos-in-playlist-modal.component.ts</context>
           <context context-type="linenumber">192</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2541208579604639843" datatype="html">
+      <trans-unit id="2541208579604639843" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {Video added to <x id="playlistName"/>} other {<x id="count"/> videos added to <x id="playlistName"/>}}</source>
-        <target state="new">{count, plural, =1 {Video added to <x id="playlistName"/>} other {<x id="count"/> videos added to <x id="playlistName"/>}}</target>
+        <target state="translated">{count, plural, =1 {Video added to <x id="playlistName"/>} other {<x id="count"/> vidéo(s) ajoutée(s) à <x id="playlistName"/>}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-playlist/bulk-update-videos-in-playlist-modal.component.ts</context>
           <context context-type="linenumber">229</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2674770304057463868" datatype="html">
+      <trans-unit id="2674770304057463868" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {Video removed from <x id="playlistName"/>} other {<x id="count"/> videos removed from <x id="playlistName"/>}}</source>
-        <target state="new">{count, plural, =1 {Video removed from <x id="playlistName"/>} other {<x id="count"/> videos removed from <x id="playlistName"/>}}</target>
+        <target state="translated">{count, plural, =1 {Video removed from <x id="playlistName"/>} other {<x id="count"/> vidéo(s) supprimée(s) de <x id="playlistName"/>}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-playlist/bulk-update-videos-in-playlist-modal.component.ts</context>
           <context context-type="linenumber">250</context>
@@ -1605,49 +1605,49 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5479133824073842793" datatype="html">
+      <trans-unit id="5479133824073842793" datatype="html" xml:space="preserve">
         <source>Configure</source>
-        <target state="new">Configure</target>
+        <target state="translated">Configurer</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">11,12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9072500254918792872" datatype="html">
+      <trans-unit id="9072500254918792872" datatype="html" xml:space="preserve">
         <source>Add a field to update...</source>
-        <target state="new">Add a field to update...</target>
+        <target state="translated">Ajouter un champ à mettre à jour...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">16,18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8801202056963655948" datatype="html">
+      <trans-unit id="8801202056963655948" datatype="html" xml:space="preserve">
         <source>Remove this field</source>
-        <target state="new">Remove this field</target>
+        <target state="translated">Supprimer ce champ</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8246543299161932823" datatype="html">
+      <trans-unit id="8246543299161932823" datatype="html" xml:space="preserve">
         <source>Remove the language</source>
-        <target state="new">Remove the language</target>
+        <target state="translated">Supprimer la langue</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">61,62</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4629449147054812250" datatype="html">
+      <trans-unit id="4629449147054812250" datatype="html" xml:space="preserve">
         <source>Remove the category</source>
-        <target state="new">Remove the category</target>
+        <target state="translated">Supprimer la catégorie</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">71,72</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2654857983483034266" datatype="html">
+      <trans-unit id="2654857983483034266" datatype="html" xml:space="preserve">
         <source>Remove the licence</source>
-        <target state="new">Remove the licence</target>
+        <target state="translated">Supprimer la licence</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">81,82</context>
@@ -1661,9 +1661,9 @@
           <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9038514142182022734" datatype="html">
+      <trans-unit id="9038514142182022734" datatype="html" xml:space="preserve">
         <source>You are about to update the following <x id="ICU" equiv-text="{activeFields().size, plural, =1 {field} other {fields}}" xid="2337568529008297902"/> for <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" equiv-text="{videos.length, plural, =1 {1 video} other {{{ videos.length }} videos}}" xid="8837942330449784285"/>:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
-        <target state="new"> You are about to update the following <x id="ICU" equiv-text="{activeFields().size, plural, =1 {field} other {fields}}" xid="2337568529008297902"/> for <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" equiv-text="{videos.length, plural, =1 {1 video} other {{{ videos.length }} videos}}" xid="8837942330449784285"/>:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <target state="translated">Vous êtes sur le point de mettre à jour <x id="ICU" xid="2337568529008297902" equiv-text="{activeFields().size, plural, =1 {field} other {fields}}"/> for <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" xid="8837942330449784285" equiv-text="{videos.length, plural, =1 {1 video} other {{{ videos.length }} videos}}"/>:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">111,115</context>
@@ -1677,17 +1677,17 @@
           <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4591438961769458035" datatype="html">
+      <trans-unit id="4591438961769458035" datatype="html" xml:space="preserve">
         <source>{VAR_PLURAL, plural, =1 {1 video} other {<x id="INTERPOLATION"/> videos}}</source>
-        <target state="new">{VAR_PLURAL, plural, =1 {1 video} other {<x id="INTERPOLATION"/> videos}}</target>
+        <target state="translated">{VAR_PLURAL, plural, =1 {1 video} other {<x id="INTERPOLATION"/> vidéos}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">112</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6354228211812618739" datatype="html">
+      <trans-unit id="6354228211812618739" datatype="html" xml:space="preserve">
         <source>Channel is required.</source>
-        <target state="new">Channel is required.</target>
+        <target state="translated">Chaîne est requise.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.ts</context>
           <context context-type="linenumber">89</context>
