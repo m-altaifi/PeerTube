@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common'
-import { Component, OnInit, inject, input, output, viewChild, ChangeDetectionStrategy } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit, inject, input, output, viewChild } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { AuthService, HtmlRendererService, Notifier } from '@app/core'
 import { FormReactive } from '@app/shared/shared-forms/form-reactive'
 import { FormReactiveService } from '@app/shared/shared-forms/form-reactive.service'
@@ -22,6 +23,7 @@ export class AbuseMessageModalComponent extends FormReactive implements OnInit {
   protected formReactiveService = inject(FormReactiveService)
   private modalService = inject(NgbModal)
   private htmlRenderer = inject(HtmlRendererService)
+  private domSanitizer = inject(DomSanitizer)
   private auth = inject(AuthService)
   private notifier = inject(Notifier)
   private abuseService = inject(AbuseService)
@@ -35,7 +37,7 @@ export class AbuseMessageModalComponent extends FormReactive implements OnInit {
     countMessages: number
   }>()
 
-  abuseMessages: (AbuseMessage & { messageHtml: string })[] = []
+  abuseMessages: (AbuseMessage & { messageHtml: SafeHtml })[] = []
   textareaMessage: string
   sendingMessage = false
   noResults = false
@@ -115,7 +117,8 @@ export class AbuseMessageModalComponent extends FormReactive implements OnInit {
 
           for (const m of res.data) {
             this.abuseMessages.push(Object.assign(m, {
-              messageHtml: this.htmlRenderer.convertToBr(m.message)
+              // Already sanitized by MarkdownService
+              messageHtml: this.domSanitizer.bypassSecurityTrustHtml(this.htmlRenderer.convertToBr(m.message))
             }))
           }
 

@@ -1,3 +1,4 @@
+import { SafeHtml } from '@angular/platform-browser'
 import { getBackendHost } from '@app/helpers'
 import {
   Account as AccountInterface,
@@ -55,7 +56,7 @@ export class VideoCommentForAdminOrUser implements VideoCommentForAdminOrUserSer
   id: number
   url: string
   text: string
-  textHtml: string
+  textHtml: SafeHtml
 
   threadId: number
   inReplyToCommentId: number
@@ -88,7 +89,7 @@ export class VideoCommentForAdminOrUser implements VideoCommentForAdminOrUserSer
 
   by: string
 
-  constructor (hash: VideoCommentForAdminOrUserServerModel, textHtml: string) {
+  constructor (hash: VideoCommentForAdminOrUserServerModel, textHtml: SafeHtml) {
     this.id = hash.id
     this.url = hash.url
     this.text = hash.text

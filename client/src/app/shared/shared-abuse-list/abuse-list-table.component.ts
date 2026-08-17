@@ -1,4 +1,5 @@
-import { Component, inject, input, OnDestroy, OnInit, viewChild, ChangeDetectionStrategy } from '@angular/core'
+import { ChangeDetectionStrategy, Component, inject, input, OnDestroy, OnInit, viewChild } from '@angular/core'
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { ConfirmService, HooksService, MarkdownService, Notifier, PluginService } from '@app/core'
 import { formatICU } from '@app/helpers'
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap'
@@ -62,6 +63,7 @@ export class AbuseListTableComponent implements OnInit, OnDestroy {
   private videoBlocklistService = inject(VideoBlockService)
   private confirmService = inject(ConfirmService)
   private markdownRenderer = inject(MarkdownService)
+  private domSanitizer = inject(DomSanitizer)
   private hooks = inject(HooksService)
   private pluginService = inject(PluginService)
 
@@ -272,16 +274,19 @@ export class AbuseListTableComponent implements OnInit, OnDestroy {
             video.channel.ownerAccount = new Account(abuse.video.channel.ownerAccount)
           }
 
-          let commentHTML: string
+          let commentHTML: SafeHtml
 
           if (abuse.comment) {
             if (abuse.comment.deleted) {
-              commentHTML = $localize`Deleted comment`
+              commentHTML = this.domSanitizer.bypassSecurityTrustHtml($localize`Deleted comment`)
             } else {
-              commentHTML = await this.markdownRenderer.textMarkdownToHTML({
-                markdown: abuse.comment.text,
-                withHtml: true
-              })
+              // Already sanitized by MarkdownService
+              commentHTML = this.domSanitizer.bypassSecurityTrustHtml(
+                await this.markdownRenderer.textMarkdownToHTML({
+                  markdown: abuse.comment.text,
+                  withHtml: true
+                })
+              )
             }
           }
 
@@ -719,7 +724,8 @@ export class AbuseListTableComponent implements OnInit, OnDestroy {
       })
   }
 
-  private toHtml (text: string) {
-    return this.markdownRenderer.textMarkdownToHTML({ markdown: text })
+  private async toHtml (text: string) {
+    // Already sanitized by MarkdownService
+    return this.domSanitizer.bypassSecurityTrustHtml(await this.markdownRenderer.textMarkdownToHTML({ markdown: text }))
   }
 }

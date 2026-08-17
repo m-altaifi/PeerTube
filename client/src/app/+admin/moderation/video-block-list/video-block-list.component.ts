@@ -1,4 +1,5 @@
-import { Component, OnInit, inject, viewChild, ChangeDetectionStrategy } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit, inject, viewChild } from '@angular/core'
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { ConfirmService, MarkdownService, Notifier, ServerService } from '@app/core'
 import { formatICU } from '@app/helpers'
 import { buildDropdownSimpleAndBulkActions } from '@app/shared/shared-main/buttons/action-dropdown-helpers'
@@ -25,7 +26,7 @@ import { VideoCellComponent } from '../../../shared/shared-tables/video-cell.com
 import { VideoNSFWBadgeComponent } from '../../../shared/shared-video/video-nsfw-badge.component'
 
 type DataLoaderParameter = Parameters<VideoBlockListComponent['_dataLoader']>[0]
-type VideoBlacklist = VideoBlacklistServer & { reasonHtml?: string }
+type VideoBlacklist = VideoBlacklistServer & { reasonHtml?: SafeHtml }
 
 @Component({
   selector: 'my-video-block-list',
@@ -53,6 +54,7 @@ export class VideoBlockListComponent implements OnInit {
   private videoBlocklistService = inject(VideoBlockService)
   private blocklistService = inject(BlocklistService)
   private markdownRenderer = inject(MarkdownService)
+  private domSanitizer = inject(DomSanitizer)
   private videoService = inject(VideoService)
 
   readonly table = viewChild<TableComponent<VideoBlacklist, DataLoaderParameter>>('table')
@@ -147,8 +149,9 @@ export class VideoBlockListComponent implements OnInit {
     }
   }
 
-  toHtml (text: string) {
-    return this.markdownRenderer.textMarkdownToHTML({ markdown: text })
+  async toHtml (text: string) {
+    // Already sanitized by MarkdownService
+    return this.domSanitizer.bypassSecurityTrustHtml(await this.markdownRenderer.textMarkdownToHTML({ markdown: text }))
   }
 
   async unblockVideo (entry: VideoBlacklist) {

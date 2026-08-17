@@ -1,4 +1,5 @@
-import { Component, OnInit, inject, viewChild, ChangeDetectionStrategy } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit, inject, viewChild } from '@angular/core'
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { RouterLink } from '@angular/router'
 import { ConfirmService, MarkdownService, Notifier, ServerService } from '@app/core'
 import { formatICU } from '@app/helpers'
@@ -21,7 +22,7 @@ import { UserEmailInfoComponent } from '../../shared/user-email-info.component'
 import { AdminRegistrationService } from './admin-registration.service'
 import { ProcessRegistrationModalComponent } from './process-registration-modal.component'
 
-type UserRegistration = UserRegistrationServer & { registrationReasonHTML?: string, moderationResponseHTML?: string }
+type UserRegistration = UserRegistrationServer & { registrationReasonHTML?: SafeHtml, moderationResponseHTML?: SafeHtml }
 type ColumnName = 'account' | 'email' | 'channel' | 'registrationReason' | 'state' | 'moderationResponse' | 'createdAt'
 type DataLoaderParameter = Parameters<RegistrationListComponent['_dataLoader']>[0]
 
@@ -45,6 +46,7 @@ type DataLoaderParameter = Parameters<RegistrationListComponent['_dataLoader']>[
 export class RegistrationListComponent implements OnInit {
   private server = inject(ServerService)
   private notifier = inject(Notifier)
+  private domSanitizer = inject(DomSanitizer)
   private markdownRenderer = inject(MarkdownService)
   private confirmService = inject(ConfirmService)
   private adminRegistrationService = inject(AdminRegistrationService)
@@ -189,7 +191,8 @@ export class RegistrationListComponent implements OnInit {
       })
   }
 
-  private toHtml (text: string) {
-    return this.markdownRenderer.textMarkdownToHTML({ markdown: text })
+  private async toHtml (text: string) {
+    // Already sanitized by MarkdownService
+    return this.domSanitizer.bypassSecurityTrustHtml(await this.markdownRenderer.textMarkdownToHTML({ markdown: text }))
   }
 }

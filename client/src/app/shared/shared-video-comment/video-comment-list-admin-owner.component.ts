@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject, input, viewChild } from '@angular/core'
+import { DomSanitizer } from '@angular/platform-browser'
 import { RouterLink } from '@angular/router'
 import { AuthService, ConfirmService, HooksService, MarkdownService, Notifier, PluginService } from '@app/core'
 import { formatICU } from '@app/helpers'
@@ -51,6 +52,7 @@ export class VideoCommentListAdminOwnerComponent implements OnInit, OnDestroy {
   private confirmService = inject(ConfirmService)
   private videoCommentService = inject(VideoCommentService)
   private markdownRenderer = inject(MarkdownService)
+  private domSanitizer = inject(DomSanitizer)
   private bulkService = inject(BulkService)
   private hooks = inject(HooksService)
   private pluginService = inject(PluginService)
@@ -302,8 +304,10 @@ export class VideoCommentListAdminOwnerComponent implements OnInit, OnDestroy {
     ]
   }
 
-  toHtml (text: string) {
-    return this.markdownRenderer.textMarkdownToHTML({ markdown: text, withHtml: true, withEmoji: true })
+  async toHtml (text: string) {
+    // Already sanitized by MarkdownService
+    const html = await this.markdownRenderer.textMarkdownToHTML({ markdown: text, withHtml: true, withEmoji: true })
+    return this.domSanitizer.bypassSecurityTrustHtml(html)
   }
 
   private _dataLoader (
