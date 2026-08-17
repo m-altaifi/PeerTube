@@ -9,10 +9,14 @@ export class HtmlRendererService {
 
   private simpleDomPurify: DOMPurifyI
   private enhancedDomPurify: DOMPurifyI
+  private classDomPurify: DOMPurifyI
 
   constructor () {
     this.simpleDomPurify = DOMPurify()
     this.enhancedDomPurify = DOMPurify()
+
+    // No hooks: only used to strip class attributes before content reaches the hook-enabled instances above
+    this.classDomPurify = DOMPurify()
 
     this.addHrefHook(this.simpleDomPurify)
     this.addHrefHook(this.enhancedDomPurify)
@@ -42,16 +46,16 @@ export class HtmlRendererService {
 
   private addCheckSchemesHook (dompurifyInstance: DOMPurifyI, schemes: string[]) {
     const regex = new RegExp(`^(${schemes.join('|')}):`, 'im')
+    // Reused across every node/call: cheaper than allocating a new anchor for each one, and only ever read synchronously
+    const anchor = document.createElement('a')
 
     dompurifyInstance.addHook('afterSanitizeAttributes', (node: Element) => {
-      const anchor = document.createElement('a')
+      if (!node.hasAttribute('href')) return
 
-      if (node.hasAttribute('href')) {
-        anchor.href = node.getAttribute('href')
+      anchor.href = node.getAttribute('href')
 
-        if (anchor.protocol && !anchor.protocol.match(regex)) {
-          node.removeAttribute('href')
-        }
+      if (anchor.protocol && !anchor.protocol.match(regex)) {
+        node.removeAttribute('href')
       }
     })
   }
@@ -74,7 +78,7 @@ export class HtmlRendererService {
   } = {}) {
     const { additionalTags = [], additionalAttributes = [] } = options
 
-    return DOMPurify().sanitize(html, {
+    return this.classDomPurify.sanitize(html, {
       ALLOWED_TAGS: [ ...getDefaultSanitizedTags(), ...additionalTags ],
       ALLOWED_ATTR: [ ...getDefaultSanitizedHrefAttributes(), ...additionalAttributes ].filter(a => a !== 'class'),
       ALLOW_DATA_ATTR: true
@@ -82,7 +86,7 @@ export class HtmlRendererService {
   }
 
   toSimpleSafeHtml (text: string) {
-    return this.sanitize(this.simpleDomPurify, this.removeClassAttributes(text))
+    return this.sanitize(this.simpleDomPurify, text, { excludeAttributes: [ 'class' ] })
   }
 
   async toSimpleSafeHtmlWithLinks (text: string, options: {
@@ -121,12 +125,13 @@ export class HtmlRendererService {
   private sanitize (domPurify: DOMPurifyI, html: string, options: {
     additionalTags?: string[]
     additionalAttributes?: string[]
+    excludeAttributes?: string[]
   } = {}) {
-    const { additionalTags = [], additionalAttributes = [] } = options
+    const { additionalTags = [], additionalAttributes = [], excludeAttributes = [] } = options
 
     return domPurify.sanitize(html, {
       ALLOWED_TAGS: [ ...getDefaultSanitizedTags(), ...additionalTags ],
-      ALLOWED_ATTR: [ ...getDefaultSanitizedHrefAttributes(), ...additionalAttributes ],
+      ALLOWED_ATTR: [ ...getDefaultSanitizedHrefAttributes(), ...additionalAttributes ].filter(a => !excludeAttributes.includes(a)),
       ALLOW_DATA_ATTR: true
     })
   }

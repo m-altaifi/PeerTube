@@ -15,6 +15,7 @@ import {
   signal,
   viewChild
 } from '@angular/core'
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { RouterLink } from '@angular/router'
 import { MarkdownService, Notifier, ScreenService, UserService } from '@app/core'
 import { AuthService } from '@app/core/auth'
@@ -57,6 +58,7 @@ import { VideoCommentAddComponent } from './video-comment-add.component'
 })
 export class VideoCommentComponent implements OnChanges, OnDestroy {
   private cd = inject(ChangeDetectorRef)
+  private domSanitizer = inject(DomSanitizer)
   private markdownService = inject(MarkdownService)
   private authService = inject(AuthService)
   private userService = inject(UserService)
@@ -96,7 +98,8 @@ export class VideoCommentComponent implements OnChanges, OnDestroy {
 
   prependModerationActions: DropdownAction<any>[]
 
-  sanitizedCommentHTML = ''
+  // Already sanitized by MarkdownService/HtmlRendererService
+  sanitizedCommentHTML: SafeHtml = this.domSanitizer.bypassSecurityTrustHtml('')
   newParentComments: VideoComment[] = []
 
   commentAccount: Account
@@ -127,6 +130,10 @@ export class VideoCommentComponent implements OnChanges, OnDestroy {
     // a pending request targets the previous comment tree, so discard it
     if (changes['comment'] && !changes['comment'].firstChange) {
       this.cancelRepliesRequest()
+    }
+
+    if (changes['comment'] || changes['video']) {
+      this.updateSanitizedCommentHTML()
     }
 
     this.reinit()
@@ -371,11 +378,17 @@ export class VideoCommentComponent implements OnChanges, OnDestroy {
     }
   }
 
-  private async reinit () {
+  private async updateSanitizedCommentHTML () {
     // Before HTML rendering restore line feed for markdown list compatibility
     const commentText = this.comment().text.replace(/<br.?\/?>/g, '\r\n')
     const html = await this.markdownService.textMarkdownToHTML({ markdown: commentText, withHtml: true, withEmoji: true })
-    this.sanitizedCommentHTML = this.markdownService.processVideoTimestamps(this.video().shortUUID, html)
+    const withTimestamps = this.markdownService.processVideoTimestamps(this.video().shortUUID, html)
+    this.sanitizedCommentHTML = this.domSanitizer.bypassSecurityTrustHtml(withTimestamps)
+
+    this.cd.markForCheck()
+  }
+
+  private reinit () {
     this.newParentComments = this.parentComments().concat([ this.comment() ])
 
     const comment = this.comment()
