@@ -1,4 +1,10 @@
-import { ActorImageType, VideoChannelCollaboratorState } from '@peertube/peertube-models'
+import {
+  ActorImageType,
+  VIDEO_CHANNEL_STATS_DAYS_ALL_TIME,
+  VIDEO_CHANNEL_STATS_MONTH_GROUP_THRESHOLD_DAYS,
+  VIDEO_CHANNEL_STATS_WEEK_GROUP_THRESHOLD_DAYS,
+  VideoChannelCollaboratorState
+} from '@peertube/peertube-models'
 import { WEBSERVER } from '@server/initializers/constants.js'
 import { AbstractListQuery, AbstractListQueryOptions } from '@server/models/shared/abstract-list-query.js'
 import { buildServerIdsFollowedBy } from '@server/models/shared/index.js'
@@ -30,6 +36,7 @@ export class VideoChannelListQueryBuilder extends AbstractListQuery {
   private builtAccountAvatarJoin = false
   private builtChannelAvatarJoin = false
   private builtChannelBannerJoin = false
+  private builtChannelStatsJoin = false
 
   constructor (
     protected readonly sequelize: Sequelize,
@@ -200,12 +207,89 @@ export class VideoChannelListQueryBuilder extends AbstractListQuery {
     this.builtChannelBannerJoin = true
   }
 
+  private buildChannelStatsJoin () {
+    if (this.builtChannelStatsJoin) return
+
+    // On a bounded range, every channel of the page shares the same x axis and the same bucket size and can be compared to the others
+    // "All time" has no boundary: it starts at the first recorded stat of the channel (a young channel keeps a fine bucket size)
+    const seriesCTE = this.options.statsDaysPrior === VIDEO_CHANNEL_STATS_DAYS_ALL_TIME
+      // dprint-ignore
+      ? 'series AS ( ' +
+          'SELECT COALESCE(date_trunc(\'day\', MIN("videoStat"."startDate")), date_trunc(\'day\', now())) AS start_date ' +
+          'FROM "videoStat" INNER JOIN "video" ON "videoStat"."videoId" = "video"."id" ' +
+          'WHERE "video"."channelId" = "VideoChannelModel"."id"' +
+        ')'
+      : 'series AS ( ' +
+        `SELECT date_trunc('day', now()) - make_interval(days => :statsDaysPrior) AS start_date` +
+        ')'
+
+    if (this.options.statsDaysPrior !== VIDEO_CHANNEL_STATS_DAYS_ALL_TIME) {
+      this.replacements.statsDaysPrior = this.options.statsDaysPrior
+    }
+
+    this.replacements.statsMonthGroupThresholdDays = VIDEO_CHANNEL_STATS_MONTH_GROUP_THRESHOLD_DAYS
+    this.replacements.statsWeekGroupThresholdDays = VIDEO_CHANNEL_STATS_WEEK_GROUP_THRESHOLD_DAYS
+
+    // Computed once per channel row (instead of once per selected attribute) and shared by
+    // viewsPerDay/viewsGroupInterval below via the CTEs
+    this.join +=
+      // dprint-ignore
+      'LEFT JOIN LATERAL ( ' +
+        `WITH ${seriesCTE}, ` +
+        'series_group AS ( ' +
+          // Keep in sync with getVideoChannelStatsGroupInterval, which mirrors this for the client fallback
+          'SELECT start_date, ' +
+            'CASE ' +
+              'WHEN EXTRACT(EPOCH FROM (date_trunc(\'day\', now()) - start_date)) / 86400.0 > :statsMonthGroupThresholdDays THEN \'month\' ' +
+              'WHEN EXTRACT(EPOCH FROM (date_trunc(\'day\', now()) - start_date)) / 86400.0 >= :statsWeekGroupThresholdDays THEN \'week\' ' +
+              'ELSE \'day\' ' +
+            'END AS grp ' +
+          'FROM series' +
+        '), periods AS ( ' +
+          'SELECT gs.day AS day, series_group.grp AS grp, series_group.start_date AS start_date ' +
+          'FROM series_group, ' +
+          'LATERAL generate_series( ' +
+            'date_trunc(series_group.grp, series_group.start_date), ' +
+            'date_trunc(series_group.grp, now()), ' +
+            'CASE series_group.grp ' +
+              'WHEN \'day\' THEN interval \'1 day\' ' +
+              'WHEN \'week\' THEN interval \'1 week\' ' +
+              'ELSE interval \'1 month\' ' +
+            'END' +
+          ') AS gs(day) ' +
+        ') ' +
+        'SELECT ' +
+          '(' +
+            `SELECT string_agg(concat_ws('|', t.day, t.views), ',') ` +
+            'FROM ( ' +
+              'SELECT periods.day AS day, COALESCE(SUM("videoStat".views), 0) AS views ' +
+              'FROM periods ' +
+              'LEFT JOIN (' +
+                '"videoStat" INNER JOIN "video" ON "videoStat"."videoId" = "video"."id" ' +
+                'AND "video"."channelId" = "VideoChannelModel"."id"' +
+              ') ON date_trunc(periods.grp, "videoStat"."startDate") = periods.day ' +
+                // The first (week/month) bucket floor can precede the range start, so without this
+                // the first bar would also count views that happened before the requested range
+                'AND "videoStat"."startDate" >= periods.start_date ' +
+              'GROUP BY day ORDER BY day ' +
+            ') t' +
+          ') AS "viewsPerDay", ' +
+          '(SELECT grp FROM series_group) AS "viewsGroupInterval"' +
+      ') AS "ChannelStats" ON TRUE '
+
+    this.builtChannelStatsJoin = true
+  }
+
   // ---------------------------------------------------------------------------
 
   protected buildQueryJoin () {
     this.buildChannelAvatarsJoin()
     this.buildAccountAvatarsJoin()
     this.buildChannelBannersJoin()
+
+    if (this.options.statsDaysPrior !== undefined) {
+      this.buildChannelStatsJoin()
+    }
   }
 
   protected buildQueryAttributes () {
@@ -217,34 +301,15 @@ export class VideoChannelListQueryBuilder extends AbstractListQuery {
       this.tableAttributes.getChannelBannerAttributes()
     ]
 
-    if (this.options.statsDaysPrior) {
+    if (this.options.statsDaysPrior !== undefined) {
       this.attributes.push(
-        `(SELECT COUNT(*) FROM "video" WHERE "channelId" = "VideoChannelModel"."id") AS "videosCount"`
-      )
-
-      this.attributes.push(
-        // dprint-ignore
+        `(SELECT COUNT(*) FROM "video" WHERE "channelId" = "VideoChannelModel"."id") AS "videosCount"`,
+        '"ChannelStats"."viewsPerDay" AS "viewsPerDay"',
+        '"ChannelStats"."viewsGroupInterval" AS "viewsGroupInterval"',
+        // Lifetime views: unlike viewsPerDay it is not bound to statsDaysPrior, and it uses the video
+        // view counter so it also includes federated views and views older than the "videoStat" retention
         '(' +
-          `SELECT string_agg(concat_ws('|', t.day, t.views), ',') ` +
-          'FROM ( ' +
-            'WITH days AS ( ' +
-              `SELECT generate_series(date_trunc('day', now()) - '${this.options.statsDaysPrior} day'::interval, ` +
-                     `date_trunc('day', now()), '1 day'::interval) AS day ` +
-            ') ' +
-            'SELECT days.day AS day, COALESCE(SUM("videoStat".views), 0) AS views ' +
-            'FROM days ' +
-            'LEFT JOIN (' +
-              '"videoStat" INNER JOIN "video" ON "videoStat"."videoId" = "video"."id" ' +
-              'AND "video"."channelId" = "VideoChannelModel"."id"' +
-            `) ON date_trunc('day', "videoStat"."startDate") = date_trunc('day', days.day) ` +
-            'GROUP BY day ORDER BY day ' +
-          ') t' +
-        ') AS "viewsPerDay"'
-      )
-
-      this.attributes.push(
-        '(' +
-          'SELECT COALESCE(SUM("video".views), 0) AS totalViews ' +
+          'SELECT COALESCE(SUM("video".views), 0) ' +
           'FROM "video" ' +
           'WHERE "video"."channelId" = "VideoChannelModel"."id"' +
           ') AS "totalViews"'

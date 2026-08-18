@@ -460,12 +460,57 @@ describe('Test video channels', function () {
     }
   })
 
+  // Must run before any view is simulated
+  it('Should aggregate channel views by statsDays range', async function () {
+    {
+      const { data } = await servers[0].channels.listByAccount({
+        accountName,
+        token: servers[0].accessToken,
+        withStats: true,
+        statsDays: 90
+      })
+
+      const lengths = new Set<number>()
+
+      for (const channel of data) {
+        expect(channel.totalViews).to.equal(0)
+
+        // No videoStat history, so the group interval comes from the full 90 day range
+        expect(channel.viewsGroupInterval).to.equal('week')
+
+        expect(channel.viewsPerDay.length).to.be.at.least(12)
+        expect(channel.viewsPerDay.length).to.be.below(16)
+
+        lengths.add(channel.viewsPerDay.length)
+      }
+
+      // The series spans the requested range, not the channel history, so every channel has the same points
+      expect(lengths.size).to.equal(1)
+    }
+
+    {
+      const { data } = await servers[0].channels.listByAccount({
+        accountName,
+        token: servers[0].accessToken,
+        withStats: true,
+        statsDays: 0
+      })
+
+      for (const channel of data) {
+        expect(channel.viewsGroupInterval).to.equal('day')
+        expect(channel.viewsPerDay).to.have.length(1)
+      }
+    }
+  })
+
   it('Should report correct channel views per days', async function () {
     {
       const { data } = await servers[0].channels.listByAccount({ accountName, token: servers[0].accessToken, withStats: true })
 
       for (const channel of data) {
         expect(channel).to.haveOwnProperty('viewsPerDay')
+        expect(channel).to.haveOwnProperty('viewsGroupInterval')
+        expect(channel.viewsGroupInterval).to.equal('day')
         expect(channel.viewsPerDay).to.have.length(30 + 1) // daysPrior + today
 
         for (const v of channel.viewsPerDay) {
@@ -505,6 +550,21 @@ describe('Test video channels', function () {
       const { data } = await servers[0].channels.listByAccount({ accountName, token: servers[0].accessToken, withStats: true })
       const channelWithView = data.find(channel => channel.id === servers[0].store.channel.id)
       expect(channelWithView.totalViews).to.equal(2)
+    }
+
+    // totalViews is lifetime
+    {
+      for (const statsDays of [ 90, 365, 0 ]) {
+        const { data } = await servers[0].channels.listByAccount({
+          accountName,
+          token: servers[0].accessToken,
+          withStats: true,
+          statsDays
+        })
+
+        const channelWithView = data.find(channel => channel.id === servers[0].store.channel.id)
+        expect(channelWithView.totalViews).to.equal(2)
+      }
     }
   })
 

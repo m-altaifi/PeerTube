@@ -1,4 +1,11 @@
-import { ActivityPubActor, ActivityUrlObject, VideoChannel, VideoChannelSummary, VideoPrivacy } from '@peertube/peertube-models'
+import {
+  ActivityPubActor,
+  ActivityUrlObject,
+  VIDEO_CHANNEL_STATS_DAYS_DEFAULT,
+  VideoChannel,
+  VideoChannelSummary,
+  VideoPrivacy
+} from '@peertube/peertube-models'
 import { AttributesOnly } from '@peertube/peertube-typescript-utils'
 import { CONFIG } from '@server/initializers/config.js'
 import { getLocalActorPlayerSettingsActivityPubUrl } from '@server/lib/activitypub/url.js'
@@ -401,10 +408,11 @@ export class VideoChannelModel extends SequelizeModel<VideoChannelModel> {
   static listByAccountForAPI (
     options: Pick<ListVideoChannelsOptions, 'accountId' | 'includeCollaborations' | 'search' | 'start' | 'count' | 'sort'> & {
       withStats?: boolean
+      statsDays?: number
     }
   ) {
     const listOptions = options.withStats
-      ? { ...options, statsDaysPrior: 30 }
+      ? { ...options, statsDaysPrior: options.statsDays ?? VIDEO_CHANNEL_STATS_DAYS_DEFAULT }
       : options
 
     return this.listForApi(listOptions)
@@ -549,6 +557,7 @@ export class VideoChannelModel extends SequelizeModel<VideoChannelModel> {
   toFormattedJSON (this: MChannelFormattable): VideoChannel {
     const viewsPerDayString = this.get('viewsPerDay') as string
     const videosCount = this.get('videosCount') as number
+    const viewsGroupInterval = this.get('viewsGroupInterval') as VideoChannel['viewsGroupInterval']
 
     let viewsPerDay: { date: Date, views: number }[]
 
@@ -580,6 +589,7 @@ export class VideoChannelModel extends SequelizeModel<VideoChannelModel> {
 
       videosCount,
       viewsPerDay,
+      viewsGroupInterval,
       totalViews,
 
       avatars: actor.avatars
