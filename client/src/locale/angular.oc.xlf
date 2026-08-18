@@ -29116,7 +29116,7 @@ Ensure you have correctly configured PeerTube (config/ directory), in particular
         <target state="new">Today's videos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/videos-list.component.ts</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">110</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2119901811749731155" datatype="html">
@@ -29124,7 +29124,7 @@ Ensure you have correctly configured PeerTube (config/ directory), in particular
         <target state="new">Yesterday's videos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/videos-list.component.ts</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6176155005688410697" datatype="html">
@@ -29132,7 +29132,7 @@ Ensure you have correctly configured PeerTube (config/ directory), in particular
         <target state="new">This week's videos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/videos-list.component.ts</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">112</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1461056025742190110" datatype="html">
@@ -29140,7 +29140,7 @@ Ensure you have correctly configured PeerTube (config/ directory), in particular
         <target state="new">This month's videos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/videos-list.component.ts</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
       <trans-unit id="929646918212830182" datatype="html">
@@ -29148,7 +29148,7 @@ Ensure you have correctly configured PeerTube (config/ directory), in particular
         <target state="new">Last month's videos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/videos-list.component.ts</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8691195592124291757" datatype="html">
@@ -29156,7 +29156,7 @@ Ensure you have correctly configured PeerTube (config/ directory), in particular
         <target state="new">Older videos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/videos-list.component.ts</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4103450444995968891" datatype="html">
@@ -29164,7 +29164,7 @@ Ensure you have correctly configured PeerTube (config/ directory), in particular
         <target state="new">Cannot load more videos. Please try again later.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/videos-list.component.ts</context>
-          <context context-type="linenumber">368</context>
+          <context context-type="linenumber">369</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/videos-selection.component.ts</context>
