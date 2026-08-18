@@ -329,7 +329,8 @@ class JobQueue {
 
   // ---------------------------------------------------------------------------
 
-  async terminate () {
+  // Use force: true to not wait for active jobs to complete (they will be retried when detected as stalled)
+  async terminate (options: { force: boolean }) {
     const promises = Object.keys(this.workers)
       .map(handlerName => {
         const worker: Worker = this.workers[handlerName]
@@ -337,7 +338,7 @@ class JobQueue {
         const queueEvent: QueueEvents = this.queueEvents[handlerName]
 
         return Promise.all([
-          worker.close(false),
+          worker.close(options.force),
           queue.close(),
           queueEvent.close()
         ])

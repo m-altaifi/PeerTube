@@ -378,6 +378,14 @@ export const REQUEST_TIMEOUTS = {
   REDUNDANCY: JOB_TTL['video-redundancy']
 }
 
+// Container runtimes send a SIGKILL if we take too long to exit (docker waits 10 seconds, kubernetes 30 seconds)
+export const SHUTDOWN_TIMEOUTS = {
+  // Time we let in flight HTTP requests complete before destroying their sockets
+  HTTP_CONNECTIONS: 2000, // 2 seconds
+  // Time we let the whole graceful shutdown complete before exiting anyway
+  GLOBAL: 8000 // 8 seconds
+}
+
 export const SCHEDULER_INTERVALS_MS = {
   RUNNER_JOB_WATCH_DOG: Math.min(CONFIG.REMOTE_RUNNERS.STALLED_JOBS.VOD, CONFIG.REMOTE_RUNNERS.STALLED_JOBS.LIVE),
   ACTOR_FOLLOW_SCORES: 60000 * 60 * 20, // 20 hours

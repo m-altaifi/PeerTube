@@ -338,14 +338,33 @@ export class PeerTubeServer {
     })
   }
 
+  // PeerTube gracefully shuts down on SIGTERM, so wait for the process to actually exit to be sure it released its ports
   kill () {
     if (!this.app) return Promise.resolve()
 
-    process.kill(this.app.pid)
-
+    const app = this.app
     this.app = null
 
-    return Promise.resolve()
+    return new Promise<void>(res => {
+      if (app.exitCode !== null || app.signalCode !== null) return res()
+
+      const timeout = setTimeout(() => {
+        app.kill('SIGKILL')
+        res()
+      }, 10000)
+
+      app.once('exit', () => {
+        clearTimeout(timeout)
+        res()
+      })
+
+      try {
+        process.kill(app.pid)
+      } catch {
+        clearTimeout(timeout)
+        res()
+      }
+    })
   }
 
   private randomServer () {

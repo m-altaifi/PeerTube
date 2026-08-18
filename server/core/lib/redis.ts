@@ -26,6 +26,7 @@ class Redis {
   private static instance: Redis
   private initialized = false
   private connected = false
+  private quitting = false
   private client: IoRedis
   private prefix: string
 
@@ -51,15 +52,31 @@ class Redis {
       logger.error(`Reconnecting to redis in ${ms}.`)
     })
     this.client.on('close', () => {
-      logger.error('Connection to redis has closed.')
+      // Expected when we shut down PeerTube
+      if (this.quitting !== true) logger.error('Connection to redis has closed.')
+
       this.connected = false
     })
 
     this.client.on('end', () => {
+      if (this.quitting === true) {
+        logger.info('Connection to redis has closed.')
+        return
+      }
+
       logger.error('Connection to redis has closed and no more reconnects will be done.')
     })
 
     this.prefix = 'redis-' + WEBSERVER.HOST + '-'
+  }
+
+  async quit () {
+    if (this.initialized !== true) return
+
+    this.initialized = false
+    this.quitting = true
+
+    await this.client.quit()
   }
 
   static getRedisClientOptions (name?: string, options: RedisOptions = {}, logOptions = false): RedisOptions {

@@ -45,7 +45,7 @@ try {
 // ----------- Database -----------
 
 // Initialize database and models
-import { checkDatabaseConnectionOrDie, initDatabaseModels, sequelizeTypescript } from './core/initializers/database.js'
+import { checkDatabaseConnectionOrDie, initDatabaseModels } from './core/initializers/database.js'
 checkDatabaseConnectionOrDie()
 
 import { migrate } from './core/initializers/migrator.js'
@@ -163,6 +163,7 @@ import { VideoStatsBufferScheduler } from './core/lib/schedulers/video-stats-buf
 import { VideosRedundancyScheduler } from './core/lib/schedulers/videos-redundancy-scheduler.js'
 import { WatchedWordsSubscriptionsScheduler } from './core/lib/schedulers/watched-words-subscriptions-scheduler.js'
 import { YoutubeDlUpdateScheduler } from './core/lib/schedulers/youtube-dl-update-scheduler.js'
+import { registerGracefulShutdown } from './core/lib/shutdown.js'
 import { advertiseDoNotTrack } from './core/middlewares/dnt.js'
 import { apiFailMiddleware } from './core/middlewares/error.js'
 
@@ -299,6 +300,9 @@ const { server, trackerServer } = createWebsocketTrackerServer(app)
 
 server.requestTimeout = CONFIG.HTTP_TIMEOUTS.REQUEST
 
+// Register it before the application is started so the process can always be stopped, even during a long migration
+registerGracefulShutdown(server)
+
 // ----------- Run -----------
 
 async function startApplication () {
@@ -393,14 +397,4 @@ async function startApplication () {
 
     if (cliOptions['benchmarkStartup']) process.exit(0)
   })
-
-  process.on('exit', () => {
-    sequelizeTypescript.close()
-      .catch(err => logger.error('Cannot close database connection.', { err }))
-
-    JobQueue.Instance.terminate()
-      .catch(err => logger.error('Cannot terminate job queue.', { err }))
-  })
-
-  process.on('SIGINT', () => process.exit(0))
 }

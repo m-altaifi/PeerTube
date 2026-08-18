@@ -5,6 +5,8 @@ import { createLogger } from '../../helpers/logger.js'
 const logger = createLogger('schedulers')
 
 export abstract class AbstractScheduler {
+  private static readonly enabledSchedulers = new Set<AbstractScheduler>()
+
   protected abstract schedulerIntervalMs: number
 
   private interval: NodeJS.Timeout
@@ -21,8 +23,16 @@ export abstract class AbstractScheduler {
     }
   }
 
+  static disableAll () {
+    for (const scheduler of this.enabledSchedulers) {
+      scheduler.disable()
+    }
+  }
+
   enable () {
     if (!this.schedulerIntervalMs) throw new Error('Interval is not correctly set.')
+
+    AbstractScheduler.enabledSchedulers.add(this)
 
     if (this.randomRunOnEnable === true) {
       const randomDelay = randomInt(0, Math.floor(this.schedulerIntervalMs / 2))
@@ -43,6 +53,8 @@ export abstract class AbstractScheduler {
   }
 
   disable () {
+    AbstractScheduler.enabledSchedulers.delete(this)
+
     if (this.firstRunTimeout) {
       clearTimeout(this.firstRunTimeout)
       this.firstRunTimeout = undefined
