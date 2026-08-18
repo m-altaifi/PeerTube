@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, booleanAttribute, inject, input, output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, booleanAttribute, inject, input, output } from '@angular/core'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { ActivatedRoute } from '@angular/router'
 import {
   ComponentPagination,
@@ -16,7 +17,7 @@ import { GlobalIconComponent, GlobalIconName } from '@app/shared/shared-icons/gl
 import { ResultList, VideoSortField } from '@peertube/peertube-models'
 import { logger } from '@root-helpers/logger'
 import debug from 'debug'
-import { Observable, Subject, Subscription, forkJoin, fromEvent, of } from 'rxjs'
+import { Observable, Subject, forkJoin, fromEvent, of } from 'rxjs'
 import { concatMap, debounceTime, map, switchMap } from 'rxjs/operators'
 import { ButtonComponent } from '../shared-main/buttons/button.component'
 import { InfiniteScrollerDirective } from '../shared-main/common/infinite-scroller.directive'
@@ -51,7 +52,8 @@ export type HeaderAction = {
     DateGroupLabelComponent
   ]
 })
-export class VideosListComponent implements OnInit, OnDestroy {
+export class VideosListComponent implements OnInit {
+  private destroyRef = inject(DestroyRef)
   private notifier = inject(Notifier)
   private userService = inject(UserService)
   private route = inject(ActivatedRoute)
@@ -113,10 +115,6 @@ export class VideosListComponent implements OnInit, OnDestroy {
     [GroupDate.OLDER]: $localize`Older videos`
   }
 
-  private routeSub: Subscription
-  private userSub: Subscription
-  private resizeSub: Subscription
-
   private pagination: ComponentPagination = {
     currentPage: 1,
     itemsPerPage: 25,
@@ -143,13 +141,17 @@ export class VideosListComponent implements OnInit, OnDestroy {
 
     this.filters = new VideoFilters(this.defaultSort(), this.defaultScope(), hiddenFilters)
 
-    this.resizeSub = fromEvent(window, 'resize')
-      .pipe(debounceTime(500))
+    fromEvent(window, 'resize')
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        debounceTime(500)
+      )
       .subscribe(() => this.calcPageSizes())
 
     this.calcPageSizes()
 
     this.userService.getAnonymousOrLoggedUser()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(user => {
         this.user = user
 
@@ -182,12 +184,6 @@ export class VideosListComponent implements OnInit, OnDestroy {
 
         this.loadMoreVideos({ reset: true })
       })
-  }
-
-  ngOnDestroy () {
-    if (this.resizeSub) this.resizeSub.unsubscribe()
-    if (this.routeSub) this.routeSub.unsubscribe()
-    if (this.userSub) this.userSub.unsubscribe()
   }
 
   videoById (_index: number, video: Video) {
@@ -311,8 +307,11 @@ export class VideosListComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToAnonymousUpdate () {
-    this.userSub = this.userService.listenAnonymousUpdate()
-      .pipe(switchMap(() => this.userService.getAnonymousOrLoggedUser()))
+    this.userService.listenAnonymousUpdate()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        switchMap(() => this.userService.getAnonymousOrLoggedUser())
+      )
       .subscribe(user => {
         debugLogger('User changed', { user })
 
@@ -329,13 +328,15 @@ export class VideosListComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToQueryParamsChange () {
-    this.routeSub = this.route.queryParams.subscribe(params => {
-      if (Object.keys(params).length === 0 && !this.filters.hasBeenCustomizedByUser()) return
+    this.route.queryParams
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(params => {
+        if (Object.keys(params).length === 0 && !this.filters.hasBeenCustomizedByUser()) return
 
-      debugLogger('Query params changed', params)
+        debugLogger('Query params changed', params)
 
-      this.filters.load(params)
-    })
+        this.filters.load(params)
+      })
   }
 
   private subscribeToVideoRequests () {
@@ -381,14 +382,16 @@ export class VideosListComponent implements OnInit, OnDestroy {
       ? +initPage
       : 1
 
-    this.route.queryParams.subscribe(queryParams => {
-      const page = queryParams['page']
-      if (!page || +page === this.pagination.currentPage) return
+    this.route.queryParams
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(queryParams => {
+        const page = queryParams['page']
+        if (!page || +page === this.pagination.currentPage) return
 
-      resetCurrentPage(this.pagination)
-      this.pagination.currentPage = +page
+        resetCurrentPage(this.pagination)
+        this.pagination.currentPage = +page
 
-      this.loadMoreVideos({ reset: true })
-    })
+        this.loadMoreVideos({ reset: true })
+      })
   }
 }

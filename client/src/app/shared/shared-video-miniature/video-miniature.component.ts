@@ -358,9 +358,9 @@ export class VideoMiniatureComponent implements OnInit {
 
     this.authService.userInformationLoaded
       .pipe(
+        takeUntilDestroyed(this.destroyRef),
         first(),
-        switchMap(() => this.videoPlaylistService.listenToVideoPlaylistChange(this.video().id)),
-        takeUntilDestroyed(this.destroyRef)
+        switchMap(() => this.videoPlaylistService.listenToVideoPlaylistChange(this.video().id))
       ).subscribe(existResult => {
         const watchLaterPlaylist = this.authService.getUser().specialPlaylists.find(p => p.type === VideoPlaylistType.WATCH_LATER)
         const existsInWatchLater = existResult.find(r => r.playlistId === watchLaterPlaylist.id)

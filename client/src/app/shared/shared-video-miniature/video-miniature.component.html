@@ -101,20 +101,18 @@
         {{ video().name }}
       </my-link>
 
-      <div class="video-actions" #videoActionsEl>
-        @defer (on viewport(videoActionsEl); prefetch on idle) {
-          @if (showActions) {
-            <my-video-actions-dropdown
-              [video]="video()"
-              [displayOptions]="videoActionsDisplayOptions()"
-              [ariaLabel]="getVideoActionsLabel()"
-              placement="bottom-left bottom-right left auto"
-              (videoRemoved)="onVideoRemoved()"
-              (videoBlocked)="onVideoBlocked()"
-              (videoUnblocked)="onVideoUnblocked()"
-              (muted)="onMuted()"
-            ></my-video-actions-dropdown>
-          }
+      <div class="video-actions">
+        @if (showActions) {
+          <my-video-actions-dropdown
+            [video]="video()"
+            [displayOptions]="videoActionsDisplayOptions()"
+            [ariaLabel]="getVideoActionsLabel()"
+            placement="bottom-left bottom-right left auto"
+            (videoRemoved)="onVideoRemoved()"
+            (videoBlocked)="onVideoBlocked()"
+            (videoUnblocked)="onVideoUnblocked()"
+            (muted)="onMuted()"
+          ></my-video-actions-dropdown>
         }
       </div>
 
