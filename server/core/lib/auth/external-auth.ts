@@ -1,5 +1,6 @@
 import { UserAdminFlag, UserRole } from '@peertube/peertube-models'
 import { isDevInstance } from '@peertube/peertube-node-utils'
+import { exists } from '@server/helpers/custom-validators/misc.js'
 import {
   isUserAdminFlagsValid,
   isUserDisplayNameValid,
@@ -230,21 +231,22 @@ function isAuthResultValid (npmName: string, authName: string, result: RegisterS
   if (!result.email) return returnError('email')
 
   // Following fields are optional
-  if (result.role !== undefined && !isUserRoleValid(result.role)) return returnError('role')
-  if (result.displayName !== undefined && !isUserDisplayNameValid(result.displayName)) return returnError('displayName')
-  if (result.adminFlags !== undefined && !isUserAdminFlagsValid(result.adminFlags)) return returnError('adminFlags')
-  if (result.videoQuota !== undefined && !isUserVideoQuotaValid(result.videoQuota + '')) return returnError('videoQuota')
-  if (result.videoQuotaDaily !== undefined && !isUserVideoQuotaDailyValid(result.videoQuotaDaily + '')) {
+  // Empty string values are considered as not provided by the plugin: buildUserResult() falls back to a default
+  if (exists(result.role) && !isUserRoleValid(result.role)) return returnError('role')
+  if (result.displayName && !isUserDisplayNameValid(result.displayName)) return returnError('displayName')
+  if (exists(result.adminFlags) && !isUserAdminFlagsValid(result.adminFlags)) return returnError('adminFlags')
+  if (exists(result.videoQuota) && !isUserVideoQuotaValid(result.videoQuota + '')) return returnError('videoQuota')
+  if (exists(result.videoQuotaDaily) && !isUserVideoQuotaDailyValid(result.videoQuotaDaily + '')) {
     return returnError('videoQuotaDaily')
   }
-  if (result.language !== undefined && !isUserLanguage(result.language)) return returnError('language')
+  if (result.language && !isUserLanguage(result.language)) return returnError('language')
 
-  if (result.userUpdater !== undefined && typeof result.userUpdater !== 'function') {
+  if (exists(result.userUpdater) && typeof result.userUpdater !== 'function') {
     logger.error('Auth method %s of plugin %s did not provide a valid user updater function.', authName, npmName)
     return false
   }
 
-  if (result.externalId !== undefined && (typeof result.externalId !== 'string' || result.externalId.length > 255)) {
+  if (result.externalId && (typeof result.externalId !== 'string' || result.externalId.length > 255)) {
     return returnError('externalId')
   }
 
