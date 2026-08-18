@@ -284,6 +284,10 @@ log:
 
   anonymize_ip: false
 
+  # Tag every log line produced while handling a request with a request id, and with the authenticated user's username
+  # Enable this if you want these values to appear in your logs
+  tag_requests: false
+
   log_ping_requests: true
   log_tracker_unknown_infohash: true
 

@@ -290,6 +290,9 @@ log:
   anonymize_ip:
     __name: PEERTUBE_LOG_ANONYMIZE_IP
     __format: json
+  tag_requests:
+    __name: PEERTUBE_LOG_TAG_REQUESTS
+    __format: json
   log_tracker_unknown_infohash:
     __name: PEERTUBE_LOG_LOG_TRACKER_UNKNOWN_INFOHASH
     __format: json

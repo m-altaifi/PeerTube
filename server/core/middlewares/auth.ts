@@ -5,6 +5,7 @@ import { RunnerModel } from '@server/models/runner/runner.js'
 import express from 'express'
 import { Socket } from 'socket.io'
 import { addLoggerContextTags, createLogger } from '../helpers/logger.js'
+import { CONFIG } from '../initializers/config.js'
 import { handleOAuthAuthenticate } from '../lib/auth/oauth-handlers.js'
 
 const logger = createLogger()
@@ -22,7 +23,7 @@ export function authenticate (req: express.Request, res: express.Response, next:
       })
 
       // A global middleware create the context
-      addLoggerContextTags(token.User.username)
+      if (CONFIG.LOG.TAG_REQUESTS) addLoggerContextTags(token.User.username)
 
       return next()
     })

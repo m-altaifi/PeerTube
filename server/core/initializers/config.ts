@@ -519,6 +519,7 @@ const CONFIG = {
       MAX_FILES: config.get<number>('log.rotation.max_files')
     },
     ANONYMIZE_IP: config.get<boolean>('log.anonymize_ip'),
+    TAG_REQUESTS: config.get<boolean>('log.tag_requests'),
     LOG_PING_REQUESTS: config.get<boolean>('log.log_ping_requests'),
     LOG_TRACKER_UNKNOWN_INFOHASH: config.get<boolean>('log.log_tracker_unknown_infohash'),
     LOG_HTTP_REQUESTS: config.get<boolean>('log.log_http_requests'),

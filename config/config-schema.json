@@ -932,6 +932,11 @@
           "type": "boolean",
           "default": false
         },
+        "tag_requests": {
+          "description": "Tag every log line produced while handling a request with a request id, and with the authenticated user's username Enable this if you want these values to appear in your logs",
+          "type": "boolean",
+          "default": false
+        },
         "log_ping_requests": {
           "type": "boolean",
           "default": true
