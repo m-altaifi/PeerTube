@@ -1,24 +1,24 @@
 <div>
-  <div class="title-block">
-    <h2>
-      {totalNotDeletedComments, plural, =0 {Comments} =1 {1 Comment} other {{{ totalNotDeletedComments | myNumberFormatter }} Comments}}
-    </h2>
+  @if (commentsEnabled) {
+    <div class="title-block">
+      <h2 i18n>
+        {totalNotDeletedComments, plural, =0 {Comments} =1 {1 Comment} other {{{ totalNotDeletedComments | myNumberFormatter }} Comments}}
+      </h2>
 
-    <my-feed class="me-1" [syndicationItems]="syndicationItems"></my-feed>
+      <my-feed class="me-1" [syndicationItems]="syndicationItems"></my-feed>
 
-    <div ngbDropdown class="d-inline-block ms-auto dropdown-root">
-      <button class="peertube-button tertiary-button" id="dropdown-sort-comments" ngbDropdownToggle i18n>
-        SORT BY
-      </button>
+      <div ngbDropdown class="d-inline-block ms-auto dropdown-root">
+        <button class="peertube-button tertiary-button" id="dropdown-sort-comments" ngbDropdownToggle i18n>
+          SORT BY
+        </button>
 
-      <div ngbDropdownMenu aria-labelledby="dropdown-sort-comments">
-        <button (click)="handleSortChange('-createdAt')" ngbDropdownItem i18n>Most recent first (default)</button>
-        <button (click)="handleSortChange('-totalReplies')" ngbDropdownItem i18n>Most replies first</button>
+        <div ngbDropdownMenu aria-labelledby="dropdown-sort-comments">
+          <button (click)="handleSortChange('-createdAt')" ngbDropdownItem i18n>Most recent first (default)</button>
+          <button (click)="handleSortChange('-totalReplies')" ngbDropdownItem i18n>Most replies first</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  @if (commentsEnabled) {
     <my-video-comment-add
       [video]="video()"
       [videoPassword]="videoPassword()"
@@ -106,6 +106,10 @@
       }
     </div>
   } @else {
+    <div class="title-block">
+      <h2>Comments</h2>
+    </div>
+
     <div i18n>Comments are disabled.</div>
   }
 </div>
