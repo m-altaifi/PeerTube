@@ -230,19 +230,21 @@ function isAuthResultValid (npmName: string, authName: string, result: RegisterS
   if (!result.email) return returnError('email')
 
   // Following fields are optional
-  if (result.role && !isUserRoleValid(result.role)) return returnError('role')
-  if (result.displayName && !isUserDisplayNameValid(result.displayName)) return returnError('displayName')
-  if (result.adminFlags && !isUserAdminFlagsValid(result.adminFlags)) return returnError('adminFlags')
-  if (result.videoQuota && !isUserVideoQuotaValid(result.videoQuota + '')) return returnError('videoQuota')
-  if (result.videoQuotaDaily && !isUserVideoQuotaDailyValid(result.videoQuotaDaily + '')) return returnError('videoQuotaDaily')
-  if (result.language && !isUserLanguage(result.language)) return returnError('language')
+  if (result.role !== undefined && !isUserRoleValid(result.role)) return returnError('role')
+  if (result.displayName !== undefined && !isUserDisplayNameValid(result.displayName)) return returnError('displayName')
+  if (result.adminFlags !== undefined && !isUserAdminFlagsValid(result.adminFlags)) return returnError('adminFlags')
+  if (result.videoQuota !== undefined && !isUserVideoQuotaValid(result.videoQuota + '')) return returnError('videoQuota')
+  if (result.videoQuotaDaily !== undefined && !isUserVideoQuotaDailyValid(result.videoQuotaDaily + '')) {
+    return returnError('videoQuotaDaily')
+  }
+  if (result.language !== undefined && !isUserLanguage(result.language)) return returnError('language')
 
-  if (result.userUpdater && typeof result.userUpdater !== 'function') {
+  if (result.userUpdater !== undefined && typeof result.userUpdater !== 'function') {
     logger.error('Auth method %s of plugin %s did not provide a valid user updater function.', authName, npmName)
     return false
   }
 
-  if (result.externalId && (typeof result.externalId !== 'string' || result.externalId.length > 255)) {
+  if (result.externalId !== undefined && (typeof result.externalId !== 'string' || result.externalId.length > 255)) {
     return returnError('externalId')
   }
 

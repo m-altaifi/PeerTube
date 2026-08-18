@@ -1,7 +1,5 @@
 /* oxlint-disable @typescript-eslint/no-unused-expressions,@typescript-eslint/require-await */
 
-import { checkBadCountPagination, checkBadSort, checkBadStartPagination } from '@tests/shared/checks.js'
-import { MockSmtpServer } from '@tests/shared/mock-servers/mock-email.js'
 import { omit } from '@peertube/peertube-core-utils'
 import { HttpStatusCode, UserAdminFlag, UserRole } from '@peertube/peertube-models'
 import {
@@ -15,6 +13,8 @@ import {
   PeerTubeServer,
   setAccessTokensToServers
 } from '@peertube/peertube-server-commands'
+import { checkBadCountPagination, checkBadSort, checkBadStartPagination } from '@tests/shared/checks.js'
+import { MockSmtpServer } from '@tests/shared/mock-servers/mock-email.js'
 
 describe('Test users admin API validators', function () {
   const path = '/api/v1/users/'
@@ -466,15 +466,17 @@ describe('Test users admin API validators', function () {
     })
 
     it('Should fail to update user role for a moderator', async function () {
-      const fields = { role: UserRole.MODERATOR }
-
-      await makePutBodyRequest({
-        url: server.url,
-        path: path + userId,
-        token: moderatorToken,
-        fields,
-        expectedStatus: HttpStatusCode.FORBIDDEN_403
-      })
+      for (const token of [ userToken, moderatorToken ]) {
+        for (const role of [ UserRole.MODERATOR, UserRole.ADMINISTRATOR ]) {
+          await makePutBodyRequest({
+            url: server.url,
+            path: path + userId,
+            token,
+            fields: { role },
+            expectedStatus: HttpStatusCode.FORBIDDEN_403
+          })
+        }
+      }
     })
 
     it('Should succeed to update a user with a moderator', async function () {

@@ -209,7 +209,7 @@ export const usersUpdateValidator = [
     }
 
     if (!checkCanModerate(user, res)) return
-    if (req.body.role && !checkCanSetRole(req.body.role, res)) return
+    if (req.body.role !== undefined && !checkCanSetRole(req.body.role, res)) return
 
     if (
       req.body.email &&
