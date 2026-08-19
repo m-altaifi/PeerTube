@@ -33,8 +33,6 @@ onlyBuiltDependencies:
 overrides:
   '@types/express': 4.17.9
   '@types/express-serve-static-core': 4.19.5
-  p2p-media-loader-core: github:Chocobozzz/p2p-media-loader#v4-external-test&path:packages/p2p-media-loader-core
-  p2p-media-loader-hlsjs: github:Chocobozzz/p2p-media-loader#v4-external-test&path:packages/p2p-media-loader-hlsjs
 
 patchedDependencies:
   sharp: pnpm-patches/sharp.patch

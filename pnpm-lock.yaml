@@ -513,12 +513,6 @@ importers:
       oxlint-tsgolint:
         specifier: ^7.0.2001
         version: 7.0.2001
-      p2p-media-loader-core:
-        specifier: github:Chocobozzz/p2p-media-loader#v4-external-test&path:packages/p2p-media-loader-core
-        version: https://codeload.github.com/Chocobozzz/p2p-media-loader/tar.gz/d13562227f5e3d685af915a8f28c461b95b3598a#path:packages/p2p-media-loader-core
-      p2p-media-loader-hlsjs:
-        specifier: github:Chocobozzz/p2p-media-loader#v4-external-test&path:packages/p2p-media-loader-hlsjs
-        version: https://codeload.github.com/Chocobozzz/p2p-media-loader/tar.gz/d13562227f5e3d685af915a8f28c461b95b3598a#path:packages/p2p-media-loader-hlsjs(p2p-media-loader-core@https://codeload.github.com/Chocobozzz/p2p-media-loader/tar.gz/d13562227f5e3d685af915a8f28c461b95b3598a#path:packages/p2p-media-loader-core)
       pixelmatch:
         specifier: ^7.2.0
         version: 7.2.0
@@ -787,6 +781,12 @@ importers:
       ngx-uploadx:
         specifier: ^7.1.0
         version: 7.1.0(@angular/core@22.1.1(@angular/compiler@22.1.1)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
+      p2p-media-loader-core:
+        specifier: ^4.0.0
+        version: 4.0.0
+      p2p-media-loader-hlsjs:
+        specifier: ^4.0.0
+        version: 4.0.0
       primeng:
         specifier: ^21.1.9
         version: 21.1.9(465245d7fd132d21fc35283a0fcdd464)
@@ -9189,15 +9189,11 @@ packages:
     resolution: {integrity: sha512-wpgERjNkLrBiFmkMEjuZJEWKKDrNfHCKA1OhyN1wg1FrLkULbviEy6py1AyJUgZ72YWFbZ38FIpnqvVqAlDUwA==}
     engines: {node: '>=8'}
 
-  p2p-media-loader-core@https://codeload.github.com/Chocobozzz/p2p-media-loader/tar.gz/d13562227f5e3d685af915a8f28c461b95b3598a#path:packages/p2p-media-loader-core:
-    resolution: {path: packages/p2p-media-loader-core, tarball: https://codeload.github.com/Chocobozzz/p2p-media-loader/tar.gz/d13562227f5e3d685af915a8f28c461b95b3598a}
-    version: 4.0.0
+  p2p-media-loader-core@4.0.0:
+    resolution: {integrity: sha512-aG+FcS3INFrqA/R2r+9mk1jdr1WOydstY1YYITirrsZbiLOA2AOrhjtI+kBB+nQufKY7SFOWraWTGJiKT9/9zQ==}
 
-  p2p-media-loader-hlsjs@https://codeload.github.com/Chocobozzz/p2p-media-loader/tar.gz/d13562227f5e3d685af915a8f28c461b95b3598a#path:packages/p2p-media-loader-hlsjs:
-    resolution: {path: packages/p2p-media-loader-hlsjs, tarball: https://codeload.github.com/Chocobozzz/p2p-media-loader/tar.gz/d13562227f5e3d685af915a8f28c461b95b3598a}
-    version: 4.0.0
-    peerDependencies:
-      p2p-media-loader-core: '*'
+  p2p-media-loader-hlsjs@4.0.0:
+    resolution: {integrity: sha512-MpHwxMyZm2ZzGH4tUt4cUDb2Kt8oOrAgqEBTHP4vYNnRAwyR/x07ijkCeyRqs3e0RpNKrEVBJdYpNoDRFZu76g==}
 
   pac-proxy-agent@7.2.0:
     resolution: {integrity: sha512-TEB8ESquiLMc0lV8vcd5Ql/JAKAoyzHFXaStwjkzpOpC5Yv+pIzLfHvjTSdf3vpa2bMiUQrg9i6276yn8666aA==}
@@ -12696,7 +12692,7 @@ snapshots:
       devframe: 0.8.2(cac@7.0.0)(srvx@0.12.5)
       nostics: 1.2.0
     optionalDependencies:
-      vite: 8.2.1(@types/node@26.2.0)(@vitejs/devtools@0.4.12)(esbuild@0.28.2)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(tsx@4.23.12)(yaml@2.9.0)
+      vite: 8.2.1(@types/node@20.19.43)(@vitejs/devtools@0.4.12)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(tsx@4.23.12)(yaml@2.9.0)
 
   '@devframes/plugin-terminals@0.8.2(devframe@0.8.2(cac@7.0.0)(srvx@0.12.5))(vite@8.2.1)':
     dependencies:
@@ -12705,7 +12701,7 @@ snapshots:
       nostics: 1.2.0
       zigpty: 0.2.1
     optionalDependencies:
-      vite: 8.2.1(@types/node@26.2.0)(@vitejs/devtools@0.4.12)(esbuild@0.28.2)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(tsx@4.23.12)(yaml@2.9.0)
+      vite: 8.2.1(@types/node@20.19.43)(@vitejs/devtools@0.4.12)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(tsx@4.23.12)(yaml@2.9.0)
 
   '@digitalbazaar/http-client@4.4.0':
     dependencies:
@@ -15396,7 +15392,7 @@ snapshots:
       mlly: 1.8.2
       nostics: 1.2.0
       nypm: 0.6.9
-      vite: 8.2.1(@types/node@26.2.0)(@vitejs/devtools@0.4.12)(esbuild@0.28.2)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(tsx@4.23.12)(yaml@2.9.0)
+      vite: 8.2.1(@types/node@20.19.43)(@vitejs/devtools@0.4.12)(esbuild@0.28.1)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.101.0)(tsx@4.23.12)(yaml@2.9.0)
     transitivePeerDependencies:
       - '@modelcontextprotocol/client'
       - '@modelcontextprotocol/server'
@@ -20912,16 +20908,18 @@ snapshots:
       p-timeout: 3.2.0
     optional: true
 
-  p2p-media-loader-core@https://codeload.github.com/Chocobozzz/p2p-media-loader/tar.gz/d13562227f5e3d685af915a8f28c461b95b3598a#path:packages/p2p-media-loader-core:
+  p2p-media-loader-core@4.0.0:
     dependencies:
       '@types/debug': 4.1.13
       debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
 
-  p2p-media-loader-hlsjs@https://codeload.github.com/Chocobozzz/p2p-media-loader/tar.gz/d13562227f5e3d685af915a8f28c461b95b3598a#path:packages/p2p-media-loader-hlsjs(p2p-media-loader-core@https://codeload.github.com/Chocobozzz/p2p-media-loader/tar.gz/d13562227f5e3d685af915a8f28c461b95b3598a#path:packages/p2p-media-loader-core):
+  p2p-media-loader-hlsjs@4.0.0:
     dependencies:
-      p2p-media-loader-core: https://codeload.github.com/Chocobozzz/p2p-media-loader/tar.gz/d13562227f5e3d685af915a8f28c461b95b3598a#path:packages/p2p-media-loader-core
+      p2p-media-loader-core: 4.0.0
+    transitivePeerDependencies:
+      - supports-color
 
   pac-proxy-agent@7.2.0:
     dependencies:
@@ -23594,6 +23592,7 @@ snapshots:
       sass-embedded: 1.100.0
       tsx: 4.23.12
       yaml: 2.9.0
+    optional: true
 
   vm-browserify@1.1.2: {}
 

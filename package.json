@@ -256,8 +256,6 @@
     "mocha": "^11.8.0",
     "oxlint": "^1.78.0",
     "oxlint-tsgolint": "^7.0.2001",
-    "p2p-media-loader-core": "github:Chocobozzz/p2p-media-loader#v4-external-test&path:packages/p2p-media-loader-core",
-    "p2p-media-loader-hlsjs": "github:Chocobozzz/p2p-media-loader#v4-external-test&path:packages/p2p-media-loader-hlsjs",
     "pixelmatch": "^7.2.0",
     "proxy": "^4.1.0",
     "rollup": "^4.62.4",
