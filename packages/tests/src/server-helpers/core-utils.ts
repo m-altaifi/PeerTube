@@ -24,6 +24,7 @@ describe('Parse Bytes', function () {
 
     // sizes
     expect(parseBytes('1B')).to.equal(1024)
+    expect(parseBytes('1KB')).to.equal(1024)
     expect(parseBytes('1MB')).to.equal(1048576)
     expect(parseBytes('1GB')).to.equal(1073741824)
     expect(parseBytes('1TB')).to.equal(1099511627776)
@@ -32,6 +33,7 @@ describe('Parse Bytes', function () {
     expect(parseBytes('5TB')).to.equal(5497558138880)
 
     expect(parseBytes('1024B')).to.equal(1048576)
+    expect(parseBytes('1024KB')).to.equal(1048576)
     expect(parseBytes('1024MB')).to.equal(1073741824)
     expect(parseBytes('1024GB')).to.equal(1099511627776)
     expect(parseBytes('1024TB')).to.equal(1125899906842624)

@@ -90,7 +90,7 @@ export function parseBytes (value: string | number): number {
   const t = /^(\d+)\s*TB$/
   const g = /^(\d+)\s*GB$/
   const m = /^(\d+)\s*MB$/
-  const b = /^(\d+)\s*B$/
+  const b = /^(\d+)\s*(?:KB|B)$/
 
   let match: RegExpMatchArray
 
