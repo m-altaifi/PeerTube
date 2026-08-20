@@ -8747,9 +8747,9 @@
           <context context-type="linenumber">124,125</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="338501496330700774" datatype="html">
+      <trans-unit id="338501496330700774" datatype="html" xml:space="preserve">
         <source>Reply to <x id="INTERPOLATION" equiv-text="{{ comment().account?.displayName || 'Unknown' }}"/></source>
-        <target state="new">Reply to <x id="INTERPOLATION" equiv-text="{{ comment().account?.displayName || 'Unknown' }}"/></target>
+        <target state="translated">Responder a <x id="INTERPOLATION" equiv-text="{{ comment().account?.displayName || 'Unknown' }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/shared/comment/video-comment.component.html</context>
           <context context-type="linenumber">144</context>
@@ -8955,9 +8955,9 @@
           <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6525091553306665705" datatype="html">
+      <trans-unit id="6525091553306665705" datatype="html" xml:space="preserve">
         <source>Videos and playlists from collaborated channels, as well as your channel collaborators, <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>will not<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> be included in the archive.</source>
-        <target state="new">Videos and playlists from collaborated channels, as well as your channel collaborators, <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>will not<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> be included in the archive.</target>
+        <target state="translated">Los vídeos y las listas de reproducción de los canales con los que colaboras, así como de los colaboradores de tu canal, <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>will not<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> están incluidos en el archivo.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-account/my-account-import-export/my-account-export.component.html</context>
           <context context-type="linenumber">33,34</context>
@@ -9059,9 +9059,9 @@
           <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8857733928646598624" datatype="html">
+      <trans-unit id="8857733928646598624" datatype="html" xml:space="preserve">
         <source>Owner channels</source>
-        <target state="new">Owner channels</target>
+        <target state="translated">Canales del dueño</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-forms/select/channel/select-channel-admin.component.ts</context>
           <context context-type="linenumber">76</context>
@@ -9463,9 +9463,9 @@
           <context context-type="linenumber">230</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2164928797226326261" datatype="html">
+      <trans-unit id="2164928797226326261" datatype="html" xml:space="preserve">
         <source>TOKEN SESSIONS</source>
-        <target state="new">TOKEN SESSIONS</target>
+        <target state="translated">SESIONES CON TOKEN</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/users/user-edit/user-edit.component.html</context>
           <context context-type="linenumber">249</context>
@@ -9703,17 +9703,17 @@
           <context context-type="linenumber">130</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7879576310526838355" datatype="html">
+      <trans-unit id="7879576310526838355" datatype="html" xml:space="preserve">
         <source>Ban status</source>
-        <target state="new">Ban status</target>
+        <target state="translated">Estatus de exclusión</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/users/user-list/user-list.component.ts</context>
           <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="925001787165440116" datatype="html">
+      <trans-unit id="925001787165440116" datatype="html" xml:space="preserve">
         <source>Not banned</source>
-        <target state="new">Not banned</target>
+        <target state="translated">No está excluido</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/users/user-list/user-list.component.ts</context>
           <context context-type="linenumber">91</context>
@@ -9737,7 +9737,7 @@
       </trans-unit>
       <trans-unit id="2392488717875840729" datatype="html" xml:space="preserve">
         <source>User</source>
-        <target state="translated">Usuarie</target>
+        <target state="translated">Usuario</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/users/user-list/user-list.component.ts</context>
           <context context-type="linenumber">102</context>
@@ -9879,9 +9879,9 @@
           <context context-type="linenumber">119</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5349840085927711709" datatype="html">
+      <trans-unit id="5349840085927711709" datatype="html" xml:space="preserve">
         <source>Automatically block videos:</source>
-        <target state="new">Automatically block videos:</target>
+        <target state="translated">Bloquear vídeos automáticamente:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/automatic-tag-policies/automatic-tag-policies-admin.component.html</context>
           <context context-type="linenumber">1,3</context>
@@ -9899,9 +9899,9 @@
           <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5983470241359706941" datatype="html">
+      <trans-unit id="5983470241359706941" datatype="html" xml:space="preserve">
         <source>That contain any word from your &lt;strong&gt;<x id="PH" equiv-text="tag.name"/>&lt;/strong&gt; watched word list</source>
-        <target state="new">That contain any word from your &lt;strong&gt;<x id="PH" equiv-text="tag.name"/>&lt;/strong&gt; watched word list</target>
+        <target state="translated">Esto contiene cada palabra de tu &lt;strong&gt;<x id="PH" equiv-text="tag.name"/>&lt;/strong&gt; lista de palabras seguidas</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/automatic-tag-policies/automatic-tag-policies-admin.component.ts</context>
           <context context-type="linenumber">34</context>
@@ -9931,17 +9931,17 @@
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3749773804330190688" datatype="html">
+      <trans-unit id="3749773804330190688" datatype="html" xml:space="preserve">
         <source>Open muted servers filtered by this subscription</source>
-        <target state="new">Open muted servers filtered by this subscription</target>
+        <target state="translated">Abrir servidores silenciados filtrados por esta suscripción</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/instance-blocklist/instance-blocklist-subscriptions.component.html</context>
           <context context-type="linenumber">46,47</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8187072229527761312" datatype="html">
+      <trans-unit id="8187072229527761312" datatype="html" xml:space="preserve">
         <source>Open muted accounts filtered by this subscription</source>
-        <target state="new">Open muted accounts filtered by this subscription</target>
+        <target state="translated">Abrir cuentas silenciadas filtradas por esta suscripción</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/instance-blocklist/instance-blocklist-subscriptions.component.html</context>
           <context context-type="linenumber">55,56</context>
@@ -9971,9 +9971,9 @@
           <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8601280736273162004" datatype="html">
+      <trans-unit id="8601280736273162004" datatype="html" xml:space="preserve">
         <source>Add a blocklist subscription</source>
-        <target state="new">Add a blocklist subscription</target>
+        <target state="translated">Añadir una suscripción a la lista de bloqueo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/instance-blocklist/instance-blocklist-subscriptions.component.html</context>
           <context context-type="linenumber">78,80</context>
@@ -9987,9 +9987,9 @@
           <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1944582937285351613" datatype="html">
+      <trans-unit id="1944582937285351613" datatype="html" xml:space="preserve">
         <source>Your instance has no mirrored videos.</source>
-        <target state="translated">Su instancia no tiene videos reflejados.</target>
+        <target state="translated">Tu instancia no tiene videos reflejados.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/follows/video-redundancies-list/video-redundancies-list.component.html</context>
           <context context-type="linenumber">64</context>
