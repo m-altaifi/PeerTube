@@ -15,6 +15,12 @@
     <!-- server config -->
 
     <!-- /!\ Do not remove it /!\ -->
+
+    <script type="text/javascript">
+      // Must run before video.js is evaluated: PeerTube sizes the player with its own CSS
+      // Default video.js might impact SEO
+      window.VIDEOJS_NO_DYNAMIC_STYLE = true
+    </script>
   </head>
 
   <body id="custom-css" class="standalone-video-embed">
