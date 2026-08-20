@@ -1709,9 +1709,9 @@
           <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2085611136494552870" datatype="html">
+      <trans-unit id="2085611136494552870" datatype="html" xml:space="preserve">
         <source>Not set</source>
-        <target state="new">Not set</target>
+        <target state="translated">No establecido</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.ts</context>
           <context context-type="linenumber">193</context>
@@ -1721,9 +1721,9 @@
           <context context-type="linenumber">218</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7920422780199126266" datatype="html">
+      <trans-unit id="7920422780199126266" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {1 video updated} other {<x id="count"/> videos updated}}</source>
-        <target state="new">{count, plural, =1 {1 video updated} other {<x id="count"/> videos updated}}</target>
+        <target state="translated">{count, plural, =1 {1 video updated} otros {<x id="count"/> vídeos actualizados}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.ts</context>
           <context context-type="linenumber">273</context>
@@ -1773,17 +1773,17 @@
           <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7055872209250481677" datatype="html">
+      <trans-unit id="7055872209250481677" datatype="html" xml:space="preserve">
         <source>Scheduled live <x id="PH" equiv-text="this.scheduledLiveDate().toLocaleString()"/></source>
-        <target state="new">Scheduled live <x id="PH" equiv-text="this.scheduledLiveDate().toLocaleString()"/></target>
+        <target state="translated">Directo programado <x id="PH" equiv-text="this.scheduledLiveDate().toLocaleString()"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-thumbnail/video-thumbnail.component.ts</context>
           <context context-type="linenumber">161</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5543980198518546562" datatype="html">
+      <trans-unit id="5543980198518546562" datatype="html" xml:space="preserve">
         <source>Waiting for live</source>
-        <target state="new">Waiting for live</target>
+        <target state="translated">Esperando el directo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-thumbnail/video-thumbnail.component.ts</context>
           <context context-type="linenumber">163</context>
@@ -2313,17 +2313,17 @@
           <context context-type="linenumber">531</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1898581791654225317" datatype="html">
+      <trans-unit id="1898581791654225317" datatype="html" xml:space="preserve">
         <source>Save to playlist...</source>
-        <target state="new">Save to playlist...</target>
+        <target state="translated">Guardar en la lista de reproducción...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">555</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="298947678131483247" datatype="html">
+      <trans-unit id="298947678131483247" datatype="html" xml:space="preserve">
         <source>Download...</source>
-        <target state="new">Download...</target>
+        <target state="translated">Descargar...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">563</context>
@@ -3483,17 +3483,17 @@
           <context context-type="linenumber">47,49</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6894693536499461258" datatype="html">
+      <trans-unit id="6894693536499461258" datatype="html" xml:space="preserve">
         <source><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> has been created using <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://joinpeertube.org&quot;&gt;"/>PeerTube<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, a video creation platform developed by Framasoft. <x id="START_LINK_1" equiv-text="&lt;a class=&quot;link-primary&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://framasoft.org&quot;&gt;"/>Framasoft<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> is a French non-profit organization that offers alternatives to Big Tech's digital tools </source>
-        <target state="new"><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> has been created using <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://joinpeertube.org&quot;&gt;"/>PeerTube<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, a video creation platform developed by Framasoft. <x id="START_LINK_1" equiv-text="&lt;a class=&quot;link-primary&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://framasoft.org&quot;&gt;"/>Framasoft<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> is a French non-profit organization that offers alternatives to Big Tech's digital tools </target>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> ha sido creado usando <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://joinpeertube.org&quot;&gt;"/>PeerTube<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, una plataforma de creación de vídeo desarrollada por Framasoft. <x id="START_LINK_1" equiv-text="&lt;a class=&quot;link-primary&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://framasoft.org&quot;&gt;"/>Framasoft<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> es una organización francesa sin ánimo de lucro que ofrece alternativas a las herramientas de las Grandes compañías digitales </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/steps/register-step-about.component.html</context>
           <context context-type="linenumber">50,53</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2864997292120720545" datatype="html">
+      <trans-unit id="2864997292120720545" datatype="html" xml:space="preserve">
         <source>If you want to <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>publish videos<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> on <x id="INTERPOLATION" equiv-text="{{ instanceName() }}"/>, you must create your first <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>channel<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>. </source>
-        <target state="new"> If you want to <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>publish videos<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> on <x id="INTERPOLATION" equiv-text="{{ instanceName() }}"/>, you must create your first <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>channel<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>. </target>
+        <target state="translated">Si quiere <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>publicar vídeos<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> en <x id="INTERPOLATION" equiv-text="{{ instanceName() }}"/>, primero debe crear su primer <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>canal<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/steps/register-step-channel.component.html</context>
           <context context-type="linenumber">3,7</context>
@@ -3743,9 +3743,9 @@
           <context context-type="linenumber">12,14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1443195823760151170" datatype="html">
+      <trans-unit id="1443195823760151170" datatype="html" xml:space="preserve">
         <source>Let's go!</source>
-        <target state="new">Let's go!</target>
+        <target state="translated">¡Vamos!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/admin-config-wizard/steps/admin-config-wizard-welcome.component.html</context>
           <context context-type="linenumber">15</context>
@@ -4155,17 +4155,17 @@
           <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4899825176400185840" datatype="html">
+      <trans-unit id="4899825176400185840" datatype="html" xml:space="preserve">
         <source>Enter the URL of the blocklist to subscribe to. The list will be fetched periodically and accounts/servers will be automatically muted.</source>
-        <target state="new">Enter the URL of the blocklist to subscribe to. The list will be fetched periodically and accounts/servers will be automatically muted.</target>
+        <target state="translated">Introduzca el URL de la lista de bloqueo a la que quiere suscribirse. La lista se comprobará periódicamente y las cuentas/servidores serán silenciados automáticamente.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/instance-blocklist/instance-blocklist-subscriptions.component.html</context>
           <context context-type="linenumber">86,88</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8620830892282444876" datatype="html">
+      <trans-unit id="8620830892282444876" datatype="html" xml:space="preserve">
         <source>Blocklist URL</source>
-        <target state="new">Blocklist URL</target>
+        <target state="translated">URL de la lista de bloqueo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/instance-blocklist/instance-blocklist-subscriptions.component.html</context>
           <context context-type="linenumber">89,90</context>
@@ -4187,9 +4187,9 @@
           <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2282206332894760489" datatype="html">
+      <trans-unit id="2282206332894760489" datatype="html" xml:space="preserve">
         <source>Live blocked by the platform</source>
-        <target state="new">Live blocked by the platform</target>
+        <target state="translated">Directo bloqueado por la plataforma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/live-settings/live-stream-information.component.ts</context>
           <context context-type="linenumber">39</context>
@@ -4283,9 +4283,9 @@
           <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7512666561651719221" datatype="html">
+      <trans-unit id="7512666561651719221" datatype="html" xml:space="preserve">
         <source>You can now &lt;strong&gt;invite other users&lt;/strong&gt; to collaborate on your channel</source>
-        <target state="new">You can now &lt;strong&gt;invite other users&lt;/strong&gt; to collaborate on your channel</target>
+        <target state="translated">Ahora puede &lt;strong&gt;invitar a otres usuaries&lt;/strong&gt; a colaborar en su canal</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modal/new-feature-info.service.ts</context>
           <context context-type="linenumber">36</context>
@@ -4451,9 +4451,9 @@
           <context context-type="linenumber">329</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2452704893861050818" datatype="html">
+      <trans-unit id="2452704893861050818" datatype="html" xml:space="preserve">
         <source>allows to import multiple videos in parallel</source>
-        <target state="new">allows to import multiple videos in parallel</target>
+        <target state="translated">permite importar varios vídeos en paralelo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">330</context>
@@ -4595,9 +4595,9 @@
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8693104843871932457" datatype="html">
+      <trans-unit id="8693104843871932457" datatype="html" xml:space="preserve">
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>I already have an account<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>, log in </source>
-        <target state="new"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>I already have an account<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>, log in </target>
+        <target state="translated"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Ya tengo una cuenta<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>, acceder </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/register.component.html</context>
           <context context-type="linenumber">22,24</context>
@@ -4611,9 +4611,9 @@
           <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5393752421173524034" datatype="html">
+      <trans-unit id="5393752421173524034" datatype="html" xml:space="preserve">
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Set up<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/><x id="START_TAG_DIV" ctype="x-div" equiv-text="&lt;div&gt;"/>your account<x id="CLOSE_TAG_DIV" ctype="x-div" equiv-text="&lt;/div&gt;"/></source>
-        <target state="new"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Set up<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/><x id="START_TAG_DIV" ctype="x-div" equiv-text="&lt;div&gt;"/>your account<x id="CLOSE_TAG_DIV" ctype="x-div" equiv-text="&lt;/div&gt;"/></target>
+        <target state="translated"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Configurar<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/><x id="START_TAG_DIV" ctype="x-div" equiv-text="&lt;div&gt;"/>su cuenta<x id="CLOSE_TAG_DIV" ctype="x-div" equiv-text="&lt;/div&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+signup/+register/register.component.html</context>
           <context context-type="linenumber">57,59</context>
@@ -5266,9 +5266,9 @@
           <context context-type="linenumber">278</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4088311569349098646" datatype="html">
+      <trans-unit id="4088311569349098646" datatype="html" xml:space="preserve">
         <source>Stats</source>
-        <target state="new">Stats</target>
+        <target state="translated">Estadísticas</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/+my-video-channels/my-video-channels.component.html</context>
           <context context-type="linenumber">19,21</context>
@@ -5578,17 +5578,17 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5098514115800581725" datatype="html">
+      <trans-unit id="5098514115800581725" datatype="html" xml:space="preserve">
         <source>Close filters</source>
-        <target state="new">Close filters</target>
+        <target state="translated">Cerrar filtros</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-forms/advanced-input-filter.component.html</context>
           <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4391289919356861627" datatype="html">
+      <trans-unit id="4391289919356861627" datatype="html" xml:space="preserve">
         <source>Apply</source>
-        <target state="new">Apply</target>
+        <target state="translated">Aplicar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-forms/advanced-input-filter.component.html</context>
           <context context-type="linenumber">120</context>
@@ -5714,49 +5714,49 @@
           <context context-type="linenumber">69</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4253402786518820650" datatype="html">
+      <trans-unit id="4253402786518820650" datatype="html" xml:space="preserve">
         <source>Registration state</source>
-        <target state="new">Registration state</target>
+        <target state="translated">Estado del registro</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/registration-list/registration-list.component.ts</context>
           <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1162417745553050010" datatype="html">
+      <trans-unit id="1162417745553050010" datatype="html" xml:space="preserve">
         <source>All registrations</source>
-        <target state="new">All registrations</target>
+        <target state="translated">Todos los registros</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/registration-list/registration-list.component.ts</context>
           <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7813761224520792935" datatype="html">
+      <trans-unit id="7813761224520792935" datatype="html" xml:space="preserve">
         <source>Accepted registrations</source>
-        <target state="new">Accepted registrations</target>
+        <target state="translated">Registros aceptados</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/registration-list/registration-list.component.ts</context>
           <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9164244516568257595" datatype="html">
+      <trans-unit id="9164244516568257595" datatype="html" xml:space="preserve">
         <source>Rejected registrations</source>
-        <target state="new">Rejected registrations</target>
+        <target state="translated">Registros rechazados</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/registration-list/registration-list.component.ts</context>
           <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="843338523216932248" datatype="html">
+      <trans-unit id="843338523216932248" datatype="html" xml:space="preserve">
         <source>Pending registrations</source>
-        <target state="new">Pending registrations</target>
+        <target state="translated">Registros pendientes</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/registration-list/registration-list.component.ts</context>
           <context context-type="linenumber">83</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7578466065199888239" datatype="html">
+      <trans-unit id="7578466065199888239" datatype="html" xml:space="preserve">
         <source>Accept...</source>
-        <target state="new">Accept...</target>
+        <target state="translated">Aceptar...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/registration-list/registration-list.component.ts</context>
           <context context-type="linenumber">94</context>
@@ -5766,9 +5766,9 @@
           <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3557445363988301484" datatype="html">
+      <trans-unit id="3557445363988301484" datatype="html" xml:space="preserve">
         <source>Reject...</source>
-        <target state="new">Reject...</target>
+        <target state="translated">Rechazar...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/registration-list/registration-list.component.ts</context>
           <context context-type="linenumber">100</context>
@@ -5950,9 +5950,9 @@
           <context context-type="linenumber">213</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7413914705059866493" datatype="html">
+      <trans-unit id="7413914705059866493" datatype="html" xml:space="preserve">
         <source>Delete your channel</source>
-        <target state="new">Delete your channel</target>
+        <target state="translated">Eliminar su canal</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/+my-video-channels/edit/pages/video-channel-edit-general.component.html</context>
           <context context-type="linenumber">167,168</context>
@@ -6228,9 +6228,9 @@
           <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2966588560631955992" datatype="html">
+      <trans-unit id="2966588560631955992" datatype="html" xml:space="preserve">
         <source>View owner account</source>
-        <target state="new">View owner account</target>
+        <target state="translated">Ver la cuenta del propietario</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-channels/video-channels.component.html</context>
           <context context-type="linenumber">54,55</context>
@@ -6276,9 +6276,9 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6449526184705760626" datatype="html">
+      <trans-unit id="6449526184705760626" datatype="html" xml:space="preserve">
         <source>Name of the uploaded file.</source>
-        <target state="new">Name of the uploaded file.</target>
+        <target state="translated">Nombre del fichero subido.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/customization/video-customization.component.html</context>
           <context context-type="linenumber">13,15</context>
@@ -6316,9 +6316,9 @@
           <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4520053292376276280" datatype="html">
+      <trans-unit id="4520053292376276280" datatype="html" xml:space="preserve">
         <source>Allowed domains</source>
-        <target state="new">Allowed domains</target>
+        <target state="translated">Dominios permitidos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/moderation/video-moderation.component.html</context>
           <context context-type="linenumber">60</context>
@@ -6388,9 +6388,9 @@
           <context context-type="linenumber">108</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6267228851810421946" datatype="html">
+      <trans-unit id="6267228851810421946" datatype="html" xml:space="preserve">
         <source>DVR window is required.</source>
-        <target state="new">DVR window is required.</target>
+        <target state="translated">Se necesita una ventana DVR.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/live-settings/video-live-settings.component.ts</context>
           <context context-type="linenumber">151</context>
@@ -6404,9 +6404,9 @@
           <context context-type="linenumber">152</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6927279544841158879" datatype="html">
+      <trans-unit id="6927279544841158879" datatype="html" xml:space="preserve">
         <source>DVR window exceeds the maximum.</source>
-        <target state="new">DVR window exceeds the maximum.</target>
+        <target state="translated">La ventana DVR excede del másximo.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/live-settings/video-live-settings.component.ts</context>
           <context context-type="linenumber">153</context>
@@ -6833,17 +6833,17 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5240842733297472555" datatype="html">
+      <trans-unit id="5240842733297472555" datatype="html" xml:space="preserve">
         <source>The auto tags on existing comments will be updated based on the words in this list.</source>
-        <target state="new">The auto tags on existing comments will be updated based on the words in this list.</target>
+        <target state="translated">Las etiquetas automáticas de los comentarios existentes se actualizarán en base a las palabras de esta lista.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">14,16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5908006683848456416" datatype="html">
+      <trans-unit id="5908006683848456416" datatype="html" xml:space="preserve">
         <source>However, the auto-tagging policies will not affect existing comments:</source>
-        <target state="new">However, the auto-tagging policies will not affect existing comments:</target>
+        <target state="translated">En todo caso, las políticas de etiquetado automático no afectarán a los comentarios existentes:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">16,18</context>
@@ -6853,25 +6853,25 @@
           <context context-type="linenumber">84,86</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6879611118172119569" datatype="html">
+      <trans-unit id="6879611118172119569" datatype="html" xml:space="preserve">
         <source>Only new comments can be blocked by a new word</source>
-        <target state="new">Only new comments can be blocked by a new word</target>
+        <target state="translated">Solo los nuevos comentarios pueden ser bloqueados con una palabra nueva</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6123892565355794580" datatype="html">
+      <trans-unit id="6123892565355794580" datatype="html" xml:space="preserve">
         <source>If you remove a word from the list, any comments that are currently awaiting review will not be affected</source>
-        <target state="new">If you remove a word from the list, any comments that are currently awaiting review will not be affected</target>
+        <target state="translated">Si eliminad una palabra de la lista, cualquier comentario que esté esperando revisión no se verá afectado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4417518529461614977" datatype="html">
+      <trans-unit id="4417518529461614977" datatype="html" xml:space="preserve">
         <source>The auto tags on existing comments and videos will be updated based on the words in this list.</source>
-        <target state="new">The auto tags on existing comments and videos will be updated based on the words in this list.</target>
+        <target state="translated">Las etiquetas automáticas en los comentarios existentes y vídeos se actualizarán en base a las palabras de esta lista.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-save-modal.component.html</context>
           <context context-type="linenumber">23,24</context>
@@ -6925,57 +6925,57 @@
           <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2322571852303891260" datatype="html">
+      <trans-unit id="2322571852303891260" datatype="html" xml:space="preserve">
         <source>Only new comments can be blocked by a new word added to the list</source>
-        <target state="new">Only new comments can be blocked by a new word added to the list</target>
+        <target state="translated">Solo se bloquearán los nuevos comentarios por una nueva palabra añadida a la lista</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">87,88</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1627379234330905470" datatype="html">
+      <trans-unit id="1627379234330905470" datatype="html" xml:space="preserve">
         <source>If a word is removed from the list, any comments that are currently awaiting review will not be affected</source>
-        <target state="new">If a word is removed from the list, any comments that are currently awaiting review will not be affected</target>
+        <target state="translated">Si se elimina una palabra de la lista, cualquier comentario que esté en la actualidad esperando revisión no se verá afectado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">88,89</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8886093131637035111" datatype="html">
+      <trans-unit id="8886093131637035111" datatype="html" xml:space="preserve">
         <source>Watched words URL</source>
-        <target state="new">Watched words URL</target>
+        <target state="translated">URL de las palabras buscadas</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">95,96</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2602880137044610698" datatype="html">
+      <trans-unit id="2602880137044610698" datatype="html" xml:space="preserve">
         <source>Watched words URL is required.</source>
-        <target state="new">Watched words URL is required.</target>
+        <target state="translated">Se necesita URL de las palabras buscadas.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.ts</context>
           <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4147764481886042165" datatype="html">
+      <trans-unit id="4147764481886042165" datatype="html" xml:space="preserve">
         <source>Deleting this subscription will remove &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; auto tags assigned to comments and videos.</source>
-        <target state="new">Deleting this subscription will remove &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; auto tags assigned to comments and videos.</target>
+        <target state="translated">Borrar esta suscripción eliminará &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; las etiquetas asignadas automáticamente de los comentarios y vídeos.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.ts</context>
           <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3433732042719776492" datatype="html">
+      <trans-unit id="3433732042719776492" datatype="html" xml:space="preserve">
         <source>Deleting this subscription will remove &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; auto tags assigned to comments.</source>
-        <target state="new">Deleting this subscription will remove &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; auto tags assigned to comments.</target>
+        <target state="translated">Borrar esta suscripción eliminará &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; las etiquetas automáticas añadidas a los comentarios.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.ts</context>
           <context context-type="linenumber">135</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1212937397936989983" datatype="html">
+      <trans-unit id="1212937397936989983" datatype="html" xml:space="preserve">
         <source>Subscription to &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; deleted.</source>
-        <target state="new">Subscription to &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; deleted.</target>
+        <target state="translated">Suscripción a &lt;strong&gt;<x id="PH" equiv-text="subscription.name"/>&lt;/strong&gt; borrada.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.ts</context>
           <context context-type="linenumber">145</context>
@@ -7341,9 +7341,9 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7454328576686585849" datatype="html">
+      <trans-unit id="7454328576686585849" datatype="html" xml:space="preserve">
         <source>Update playlist privacy</source>
-        <target state="new">Update playlist privacy</target>
+        <target state="translated">Actualizar la privacidad de la lista de reproducción</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-share-modal/share-playlist.component.html</context>
           <context context-type="linenumber">16</context>
@@ -7405,9 +7405,9 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6953723357444764949" datatype="html">
+      <trans-unit id="6953723357444764949" datatype="html" xml:space="preserve">
         <source>Update video privacy</source>
-        <target state="new">Update video privacy</target>
+        <target state="translated">Actualizar la privacidad del vídeo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
           <context context-type="linenumber">16</context>
@@ -7421,17 +7421,17 @@
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6669227017523476557" datatype="html">
+      <trans-unit id="6669227017523476557" datatype="html" xml:space="preserve">
         <source>Embedding of this video is disabled, so it can only be shared via the direct link or QR code.</source>
-        <target state="new">Embedding of this video is disabled, so it can only be shared via the direct link or QR code.</target>
+        <target state="translated">No se puede embeber este vídeo, así que solo se puede compartir vía enlace directo o con un código QR.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
           <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2945071574836956798" datatype="html">
+      <trans-unit id="2945071574836956798" datatype="html" xml:space="preserve">
         <source>This video has embed restrictions and may not be shareable on external websites depending on the chosen restrictions.</source>
-        <target state="new"> This video has embed restrictions and may not be shareable on external websites depending on the chosen restrictions. </target>
+        <target state="translated">Este vídeo tiene restricciones para embeber y puede no poderse compartir en sitios web externos dependiendo de las restricciones elegidas.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-share-modal/share-video.component.html</context>
           <context context-type="linenumber">29</context>
