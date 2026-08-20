@@ -4383,9 +4383,9 @@
           <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2005818722469409502" datatype="html">
+      <trans-unit id="2005818722469409502" datatype="html" xml:space="preserve">
         <source>Open menu</source>
-        <target state="new">Open menu</target>
+        <target state="translated">Abrir menu</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/header/header.component.html</context>
           <context context-type="linenumber">108</context>
@@ -4922,9 +4922,9 @@
           <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1266693787067473546" datatype="html">
+      <trans-unit id="1266693787067473546" datatype="html" xml:space="preserve">
         <source>Your query will be matched against video names or channel names.</source>
-        <target state="new">Your query will be matched against video names or channel names.</target>
+        <target state="translated">Tu búsqueda se comparará con los nombres de los vídeos o de los canales.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/header/search-typeahead.component.html</context>
           <context context-type="linenumber">46,47</context>
@@ -5570,9 +5570,9 @@
           <context context-type="linenumber">83</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6420937489222972725" datatype="html">
+      <trans-unit id="6420937489222972725" datatype="html" xml:space="preserve">
         <source>Open filters</source>
-        <target state="new">Open filters</target>
+        <target state="translated">Filtros abiertos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-forms/advanced-input-filter.component.html</context>
           <context context-type="linenumber">4</context>
@@ -5894,9 +5894,9 @@
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6741450303391308175" datatype="html">
+      <trans-unit id="6741450303391308175" datatype="html" xml:space="preserve">
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Drag and drop your new video file here<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> or click on the button below to replace your video: </source>
-        <target state="new"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Drag and drop your new video file here<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> or click on the button below to replace your video: </target>
+        <target state="translated"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Arrastra y suelta aquí tu nuevo archivo de vídeo<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> o pincha en el botón de abajo para sustituir tu vídeo: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/replace-file/video-replace-file.component.html</context>
           <context context-type="linenumber">20,23</context>
@@ -6901,25 +6901,25 @@
           <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8198822568347366196" datatype="html">
+      <trans-unit id="8198822568347366196" datatype="html" xml:space="preserve">
         <source>Add a watched words subscription</source>
-        <target state="new">Add a watched words subscription</target>
+        <target state="translated">Añadir una suscripción a palabras de interés</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">65,67</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6076623101349323411" datatype="html">
+      <trans-unit id="6076623101349323411" datatype="html" xml:space="preserve">
         <source>The remote list will be synchronized periodically, and auto tags on existing comments and videos will be updated based on the words in the list.</source>
-        <target state="new"> The remote list will be synchronized periodically, and auto tags on existing comments and videos will be updated based on the words in the list. </target>
+        <target state="translated">La lista remota se sincronizará periódicamente y las etiquetas automáticas de los comentarios y vídeos existentes se actualizarán en función de las palabras que figuren en la lista.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3536332983620084462" datatype="html">
+      <trans-unit id="3536332983620084462" datatype="html" xml:space="preserve">
         <source>The remote list will be synchronized periodically, and auto tags on existing comments will be updated based on the words in the list.</source>
-        <target state="new"> The remote list will be synchronized periodically, and auto tags on existing comments will be updated based on the words in the list. </target>
+        <target state="translated">La lista remota se sincronizará periódicamente y las etiquetas automáticas de los comentarios existentes se actualizarán en función de las palabras que figuren en la lista.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-subscriptions-admin-owner.component.html</context>
           <context context-type="linenumber">80</context>
@@ -7561,9 +7561,9 @@
           <context context-type="linenumber">172</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="898637641369730933" datatype="html">
+      <trans-unit id="898637641369730933" datatype="html" xml:space="preserve">
         <source>Filter by banned users</source>
-        <target state="new">Filter by banned users</target>
+        <target state="translated">Filtrar por usuarios bloqueados</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/overview/users/user-list/user-list.component.html</context>
           <context context-type="linenumber">43</context>
