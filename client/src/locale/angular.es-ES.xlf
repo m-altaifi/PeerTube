@@ -399,9 +399,9 @@
           <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5910794384138018825" datatype="html">
+      <trans-unit id="5910794384138018825" datatype="html" xml:space="preserve">
         <source>A new <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>account abuse<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> has been created on account <x id="INTERPOLATION" equiv-text="{{ n.payload.abuse.account.displayName }}"/></source>
-        <target state="new">A new <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>account abuse<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> has been created on account <x id="INTERPOLATION" equiv-text="{{ n.payload.abuse.account.displayName }}"/></target>
+        <target state="translated">Un nuevo <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>abuso de cuenta<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> ha sido creado en su cuenta<x id="INTERPOLATION" equiv-text="{{ n.payload.abuse.account.displayName }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-notifications/user-notification-content.component.html</context>
           <context context-type="linenumber">37</context>
@@ -833,7 +833,7 @@
       </trans-unit>
       <trans-unit id="6421095361288215524" datatype="html" xml:space="preserve">
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU" equiv-text="{n.payload.data?.unblockedAccountsCount || 0, plural, =1 {1 account} other {{{ n.payload.data?.unblockedAccountsCount || 0 }} accounts}}" xid="483708525447484105"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> and <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" equiv-text="{n.payload.data?.unblockedHostsCount || 0, plural, =1 {1 server} other {{{ n.payload.data?.unblockedHostsCount || 0 }} servers}}" xid="2576853818291369650"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> were unblocked. </source>
-        <target state="translated"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU" xid="483708525447484105" equiv-text="{n.payload.data?.unblockedAccountsCount || 0, plural, =1 {1 account} other {{{ n.payload.data?.unblockedAccountsCount || 0 }} accounts}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> y <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" xid="2576853818291369650" equiv-text="{n.payload.data?.unblockedHostsCount || 0, plural, =1 {1 server} other {{{ n.payload.data?.unblockedHostsCount || 0 }} servers}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> se han desbloqueado. </target>
+        <target state="translated"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU" xid="483708525447484105" equiv-text="{n.payload.data?.unblockedAccountsCount || 0, plural, =1 {1 account} other {{{ n.payload.data?.unblockedAccountsCount || 0 }} accounts}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> y <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="ICU_1" xid="2576853818291369650" equiv-text="{n.payload.data?.unblockedHostsCount || 0, plural, =1 {1 server} other {{{ n.payload.data?.unblockedHostsCount || 0 }} servers}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> se desbloquearon. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-notifications/user-notification-content.component.html</context>
           <context context-type="linenumber">353,355</context>
