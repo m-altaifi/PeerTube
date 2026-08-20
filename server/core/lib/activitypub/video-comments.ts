@@ -1,6 +1,5 @@
 import { HttpStatusCode, VideoCommentPolicy } from '@peertube/peertube-models'
 import { CONFIG } from '@server/initializers/config.js'
-import { getServerAccount } from '@server/models/application/application.js'
 import Bluebird from 'bluebird'
 import { sanitizeAndCheckVideoCommentObject } from '../../helpers/custom-validators/activitypub/video-comments.js'
 import { createLogger } from '../../helpers/logger.js'
@@ -13,11 +12,10 @@ import {
   MVideoAccountLight,
   MVideoAccountLightBlacklistAllFiles
 } from '../../types/models/video/index.js'
-import { AutomaticTagger } from '../automatic-tags/automatic-tagger.js'
-import { setAndSaveCommentAutomaticTags } from '../automatic-tags/automatic-tags.js'
+import { createCommentAutomaticTagsJob } from '../automatic-tags/automatic-tags.js'
 import { isRemoteVideoCommentAccepted } from '../moderation.js'
 import { Hooks } from '../plugins/hooks.js'
-import { shouldCommentBeHeldForReview } from '../video-comment.js'
+import { CommentReviewDecision, getCommentReviewDecision } from '../video-comment.js'
 import { fetchAP } from './activity.js'
 import { getOrCreateAPActor } from './actors/index.js'
 import { checkUrlsSameHost } from './url.js'
@@ -31,7 +29,12 @@ type ResolveThreadParams = {
   isVideo?: boolean
   commentCreated?: boolean
 }
-type ResolveThreadResult = Promise<{ video: MVideoAccountLightBlacklistAllFiles, comment: MCommentOwnerVideo, commentCreated: boolean }>
+type ResolveThreadResult = Promise<{
+  video: MVideoAccountLightBlacklistAllFiles
+  comment: MCommentOwnerVideo
+  commentCreated: boolean
+  heldPendingAutomaticTags: boolean
+}>
 
 export async function addVideoComments (commentUrls: string[]) {
   if (CONFIG.VIDEO_COMMENTS.ACCEPT_REMOTE_COMMENTS !== true) return
@@ -123,6 +126,10 @@ async function tryToResolveThreadFromVideo (params: ResolveThreadParams) {
   }
 
   let resultComment: MCommentOwnerVideo
+  // comments[0] is the comment the thread was resolved for: only its held status is reported back to the caller,
+  // the other comments in the array are ancestors synthesized to complete the thread
+  let resultCommentHeldPendingAutomaticTags = false
+
   if (comments.length !== 0) {
     const firstReply = comments[comments.length - 1] as MCommentOwnerVideo
     firstReply.inReplyToCommentId = null
@@ -135,10 +142,22 @@ async function tryToResolveThreadFromVideo (params: ResolveThreadParams) {
       return undefined
     }
 
-    const firstReplyAutomaticTagsByAccount = await getAutomaticTagsAndAssignReview(firstReply, video)
+    const firstReplyDecision = await assignReviewIfNew(firstReply, video)
     comments[comments.length - 1] = await firstReply.save()
 
-    await setAndSaveCommentAutomaticTags({ comment: firstReply, automaticTagsByAccount: firstReplyAutomaticTagsByAccount })
+    if (firstReplyDecision) {
+      if (comments.length === 1) resultCommentHeldPendingAutomaticTags = firstReplyDecision.pendingAutomaticTags
+
+      createCommentAutomaticTagsJob({
+        comment: firstReply,
+        moderation: firstReplyDecision.pendingAutomaticTags
+          ? 'release-hold'
+          : 'none',
+        // Only the comment the thread was resolved for (comments[0]) must notify the video owner: the other ones
+        // are ancestors synthesized to complete the thread, not what the Create activity was actually about
+        notify: comments.length === 1
+      })
+    }
 
     for (let i = comments.length - 2; i >= 0; i--) {
       const comment = comments[i] as MCommentOwnerVideo
@@ -152,44 +171,45 @@ async function tryToResolveThreadFromVideo (params: ResolveThreadParams) {
         return undefined
       }
 
-      const automaticTagsByAccount = await getAutomaticTagsAndAssignReview(comment, video)
+      const decision = await assignReviewIfNew(comment, video)
 
       comments[i] = await comment.save()
 
-      await setAndSaveCommentAutomaticTags({ comment, automaticTagsByAccount })
+      if (decision) {
+        if (i === 0) resultCommentHeldPendingAutomaticTags = decision.pendingAutomaticTags
+
+        createCommentAutomaticTagsJob({
+          comment,
+          moderation: decision.pendingAutomaticTags
+            ? 'release-hold'
+            : 'none',
+          // comments[0] is the comment the thread was resolved for: only it must notify the video owner
+          notify: i === 0
+        })
+      }
     }
 
     resultComment = comments[0] as MCommentOwnerVideo
   }
 
-  return { video, comment: resultComment, commentCreated }
+  return { video, comment: resultComment, commentCreated, heldPendingAutomaticTags: resultCommentHeldPendingAutomaticTags }
 }
 
-// Return the automatic tags by account id (owner and server accounts) and assign the held for review status to the comment if needed
-async function getAutomaticTagsAndAssignReview (comment: MComment, video: MVideoAccountLight) {
+// Assign the held for review status of the comment if it's a new one, and return the decision (undefined if not new)
+// Automatic tags are built by a job, so a comment is held as soon as the account has a review policy
+// The job then releases it if the tags it ends up with don't match any of them
+async function assignReviewIfNew (comment: MComment, video: MVideoAccountLight): Promise<CommentReviewDecision> {
   // Remote comment already exists in database -> we don't need to rebuild automatic tags
-  if (comment.id) return {}
-
-  const ownerAccount = video.VideoChannel.Account
-
-  const automaticTagsByAccount = await new AutomaticTagger().buildCommentsAutomaticTags({
-    serverAccount: await getServerAccount(),
-    ownerAccount,
-    text: comment.text
-  })
+  if (comment.id) return undefined
 
   // Third parties rely on origin, so if origin has the comment it's not held for review
-  if (video.isLocal() || comment.isLocal()) {
-    comment.heldForReview = await shouldCommentBeHeldForReview({
-      user: null,
-      video,
-      ownerAutomaticTags: automaticTagsByAccount[video.VideoChannel.accountId]
-    })
-  } else {
-    comment.heldForReview = false
-  }
+  const decision = video.isLocal() || comment.isLocal()
+    ? await getCommentReviewDecision({ user: null, video, automaticTagsPending: true })
+    : { heldForReview: false, pendingAutomaticTags: false }
 
-  return automaticTagsByAccount
+  comment.heldForReview = decision.heldForReview
+
+  return decision
 }
 
 // ---------------------------------------------------------------------------

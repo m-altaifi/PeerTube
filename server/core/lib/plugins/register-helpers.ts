@@ -51,8 +51,8 @@ export class RegisterHelpers {
   private idAndPassAuths: RegisterServerAuthPassOptions[] = []
   private externalAuths: RegisterServerAuthExternalOptions[] = []
 
-  private readonly commentAutoTagger: Record<string, RegisterCommentAutoTaggerOptions['handler'][]> = {}
-  private readonly videoAutoTagger: Record<string, RegisterVideoAutoTaggerOptions['handler'][]> = {}
+  private commentAutoTaggers: RegisterCommentAutoTaggerOptions[] = []
+  private videoAutoTaggers: RegisterVideoAutoTaggerOptions[] = []
 
   private readonly onSettingsChangeCallbacks: SettingsChangeCallback[] = []
 
@@ -198,12 +198,12 @@ export class RegisterHelpers {
 
   // ---------------------------------------------------------------------------
 
-  getCommentAutoTagger () {
-    return this.commentAutoTagger
+  getCommentAutoTaggers () {
+    return this.commentAutoTaggers
   }
 
-  getVideoAutoTagger () {
-    return this.videoAutoTagger
+  getVideoAutoTaggers () {
+    return this.videoAutoTaggers
   }
 
   // ---------------------------------------------------------------------------
@@ -363,33 +363,41 @@ export class RegisterHelpers {
 
   // ---------------------------------------------------------------------------
 
+  private isAutoTaggerValid (options: RegisterCommentAutoTaggerOptions | RegisterVideoAutoTaggerOptions) {
+    if (!Array.isArray(options?.autoTagNames) || options.autoTagNames.length === 0 || typeof options.handler !== 'function') {
+      logger.error('Cannot register auto tagger of plugin %s: autoTagNames or handler are not valid.', this.npmName, { options })
+
+      return false
+    }
+
+    return true
+  }
+
   private buildRegisterCommentAutoTagger () {
     return (options: RegisterCommentAutoTaggerOptions) => {
-      if (!this.commentAutoTagger[options.autoTagName]) this.commentAutoTagger[options.autoTagName] = []
+      if (!this.isAutoTaggerValid(options)) return
 
-      this.commentAutoTagger[options.autoTagName].push(options.handler)
+      this.commentAutoTaggers.push(options)
     }
   }
 
   private buildRegisterVideoAutoTagger () {
     return (options: RegisterVideoAutoTaggerOptions) => {
-      if (!this.videoAutoTagger[options.autoTagName]) this.videoAutoTagger[options.autoTagName] = []
+      if (!this.isAutoTaggerValid(options)) return
 
-      this.videoAutoTagger[options.autoTagName].push(options.handler)
+      this.videoAutoTaggers.push(options)
     }
   }
 
   private buildUnregisterCommentAutoTagger () {
     return (options: RegisterCommentAutoTaggerOptions) => {
-      this.commentAutoTagger[options.autoTagName] = (this.commentAutoTagger[options.autoTagName] || [])
-        .filter(f => f !== options.handler)
+      this.commentAutoTaggers = this.commentAutoTaggers.filter(a => a.handler !== options.handler)
     }
   }
 
   private buildUnregisterVideoAutoTagger () {
     return (options: RegisterVideoAutoTaggerOptions) => {
-      this.videoAutoTagger[options.autoTagName] = (this.videoAutoTagger[options.autoTagName] || [])
-        .filter(f => f !== options.handler)
+      this.videoAutoTaggers = this.videoAutoTaggers.filter(a => a.handler !== options.handler)
     }
   }
 }

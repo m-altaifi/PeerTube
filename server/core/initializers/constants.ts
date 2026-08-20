@@ -230,6 +230,7 @@ export const REMOTE_SCHEME = {
 
 export const JOB_ATTEMPTS: { [id in JobType]: number } = {
   'build-automatic-tags': 1,
+  'build-object-automatic-tags': 2,
   'activitypub-http-broadcast': 1,
   'activitypub-http-broadcast-parallel': 1,
   'activitypub-http-unicast': 1,
@@ -262,6 +263,8 @@ export const JOB_ATTEMPTS: { [id in JobType]: number } = {
 // Excluded keys are jobs that can be configured by admins
 export const JOB_CONCURRENCY: { [id in Exclude<JobType, 'video-transcoding' | 'video-import'>]: number } = {
   'build-automatic-tags': 1,
+  // Auto taggers can be plugins calling a slow external service
+  'build-object-automatic-tags': 5,
   'activitypub-http-broadcast': 1,
   'activitypub-http-broadcast-parallel': 30,
   'activitypub-http-unicast': 30,
@@ -290,7 +293,8 @@ export const JOB_CONCURRENCY: { [id in Exclude<JobType, 'video-transcoding' | 'v
   'video-transcription': 1
 }
 export const JOB_TTL: { [id in JobType]: number } = {
-  'build-automatic-tags': 1000 * 60 * 30, // 30 minutes
+  'build-automatic-tags': 60000 * 60 * 24 * 7, // 7 days: plugin auto taggers can be slow and this job rebuilds every object
+  'build-object-automatic-tags': 1000 * 60 * 30, // 30 minutes
   'activitypub-http-broadcast': 60000 * 10, // 10 minutes
   'activitypub-http-broadcast-parallel': 60000 * 10, // 10 minutes
   'activitypub-http-unicast': 60000 * 10, // 10 minutes

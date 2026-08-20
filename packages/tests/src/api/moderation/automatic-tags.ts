@@ -169,6 +169,7 @@ describe('Test automatic tags', function () {
         // No tags
         {
           await servers[0].comments.createThread({ videoId: videoUUID, text: 'my nautilus' })
+          await waitJobs(servers)
 
           const { data } = await servers[0].comments.listCommentsOnMyVideos()
           expect(data.find(c => c.text === 'my nautilus').automaticTags).to.have.lengthOf(0)
@@ -188,6 +189,8 @@ describe('Test automatic tags', function () {
           await servers[0].comments.createThread({ videoId: videoUUID, text: 'my nautilus 2' })
           await servers[0].comments.createThread({ videoId: videoUUID, text: 'word 1' })
 
+          await waitJobs(servers)
+
           const { data } = await servers[0].comments.listCommentsOnMyVideos()
           // Previous comment has been rebuilt using the new watched words list
           expect(data.find(c => c.text === 'my nautilus').automaticTags).to.have.members([ 'list 3' ])
@@ -203,6 +206,8 @@ describe('Test automatic tags', function () {
 
         await servers[0].comments.createThread({ videoId: videoUUID, text: 'my nautilus 3' })
         await servers[0].comments.createThread({ videoId: videoUUID, text: 'word 2' })
+
+        await waitJobs(servers)
 
         const { data } = await servers[0].comments.listCommentsOnMyVideos()
         expect(data.find(c => c.text === 'my nautilus 3').automaticTags).to.have.lengthOf(0)

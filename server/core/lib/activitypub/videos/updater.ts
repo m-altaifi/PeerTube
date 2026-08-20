@@ -1,6 +1,7 @@
 import { VideoObject, VideoPrivacy } from '@peertube/peertube-models'
 import { resetSequelizeInstance, runInReadCommittedTransaction } from '@server/helpers/database-utils.js'
 import { createLogger } from '@server/helpers/logger.js'
+import { createVideoAutomaticTagsJob } from '@server/lib/automatic-tags/automatic-tags.js'
 import { Notifier } from '@server/lib/notifier/index.js'
 import { PeerTubeSocket } from '@server/lib/peertube-socket.js'
 import { Hooks } from '@server/lib/plugins/hooks.js'
@@ -83,24 +84,29 @@ export class APVideoUpdater extends APVideoAbstractBuilder {
         this.setOrDeleteLive(videoUpdated)
       ])
 
-      const automaticTagsByAccount = await runInReadCommittedTransaction(t => {
-        return this.setAutomaticTags({ video: videoUpdated, transaction: t, oldVideo })
-      })
+      const rebuildAutomaticTags = this.automaticTagsNeedRebuild({ video: videoUpdated, oldVideo })
 
       await runInReadCommittedTransaction(t => this.setCaptions(videoUpdated, t))
 
       await this.updateChapters(videoUpdated)
       await this.upsertPlayerSettings(videoUpdated)
 
+      // The video is already published: don't hold it while its automatic tags are rebuilt, or a simple metadata
+      // update would block it and re-announce it to the subscribers once released
+      // The `build-object-automatic-tags` job applies the auto tag block policies afterwards
       await autoBlacklistVideoIfNeeded({
         video: videoUpdated,
-        automaticTagsByAccount,
+        automaticTagsPending: false,
         user: undefined,
         isRemote: true,
         isNew: false,
         isNewFile: oldInputFileUpdatedAt !== videoUpdated.inputFileUpdatedAt,
         transaction: undefined
       })
+
+      if (rebuildAutomaticTags) {
+        createVideoAutomaticTagsJob({ video: videoUpdated, moderation: 'apply' })
+      }
 
       await updateVideoRates(videoUpdated, this.videoObject)
 

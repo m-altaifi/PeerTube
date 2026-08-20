@@ -10,7 +10,6 @@ import {
 import { auditLoggerFactory, getAuditIdFromUser, VideoAuditView } from '@server/helpers/audit-logger.js'
 import { createLogger } from '@server/helpers/logger.js'
 import { sequelizeTypescript } from '@server/initializers/database.js'
-import { getServerAccount } from '@server/models/application/application.js'
 import { ScheduleVideoUpdateModel } from '@server/models/video/schedule-video-update.js'
 import { VideoChannelActivityModel } from '@server/models/video/video-channel-activity.js'
 import { VideoPasswordModel } from '@server/models/video/video-password.js'
@@ -21,8 +20,7 @@ import { Transaction } from 'sequelize'
 import { sendDeleteVideo } from './activitypub/send/send-delete.js'
 import { changeVideoChannelShare } from './activitypub/share.js'
 import { buildNonDuplicatedFederateVideoJob, isPrivacyForFederation } from './activitypub/videos/index.js'
-import { AutomaticTagger } from './automatic-tags/automatic-tagger.js'
-import { setAndSaveVideoAutomaticTags } from './automatic-tags/automatic-tags.js'
+import { createVideoAutomaticTagsJob } from './automatic-tags/automatic-tags.js'
 import { CreateJobTypeAndPayload, JobQueue } from './job-queue/job-queue.js'
 import { autoBlacklistVideoIfNeeded } from './video-blacklist.js'
 import { replaceChaptersFromDescriptionIfNeeded } from './video-chapters.js'
@@ -100,6 +98,8 @@ export class LocalVideoUpdater {
         if (this.hasSitemapContentChanged({ ...options, oldName, oldDescription })) {
           video.sitemapContentUpdatedAt = new Date()
         }
+
+        const rebuildAutomaticTags = oldName !== video.name || oldDescription !== video.description
 
         if (video.nsfw !== true) {
           video.nsfwFlags = NSFWFlag.NONE
@@ -201,25 +201,21 @@ export class LocalVideoUpdater {
           })
         }
 
-        let automaticTagsByAccount: Record<number, string[]>
-        if (oldName !== video.name || oldDescription !== video.description) {
-          automaticTagsByAccount = await new AutomaticTagger().buildVideoAutomaticTags({
-            serverAccount: await getServerAccount(),
-            video,
-            transaction: t
-          })
-          await setAndSaveVideoAutomaticTags({ video, automaticTagsByAccount, transaction: t })
-        }
-
+        // The video is already published: don't hold it while its automatic tags are rebuilt, or a simple metadata
+        // edit would block it and re-announce it to the subscribers once released
         await autoBlacklistVideoIfNeeded({
           video,
           user: this.user,
           isRemote: false,
           isNew: false,
           isNewFile: false,
-          automaticTagsByAccount,
+          automaticTagsPending: false,
           transaction: t
         })
+
+        if (rebuildAutomaticTags) {
+          createVideoAutomaticTagsJob({ video, moderation: 'apply', transaction: t })
+        }
 
         if (this.user) {
           auditLogger.update(

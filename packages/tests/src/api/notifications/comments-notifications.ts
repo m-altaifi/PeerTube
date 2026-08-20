@@ -197,6 +197,68 @@ describe('Test comments notifications', function () {
       }
     })
 
+    it('Should notify with the final held status when the comment is held while its automatic tags are built', async function () {
+      this.timeout(120000)
+
+      await servers[0].watchedWordsLists.createList({
+        token: userToken,
+        accountName: 'user_1',
+        listName: 'forbidden-list',
+        words: [ 'forbidden' ]
+      })
+
+      await servers[0].autoTags.updateCommentPolicies({ token: userToken, accountName: 'user_1', review: [ 'forbidden-list' ] })
+
+      const { uuid, shortUUID } = await servers[0].videos.upload({ token: userToken, attributes: { name: 'video with review policy' } })
+      await waitJobs(servers)
+
+      // A comment that does not match the policy is released by the job, so it must not be notified as requiring approval
+      {
+        const created = await servers[0].comments.createThread({ videoId: uuid, text: 'a regular comment', token: userToken2 })
+        await waitJobs(servers)
+
+        await checkNewCommentOnMyVideo({
+          ...baseParams,
+          shortUUID,
+          threadId: created.id,
+          commentId: created.id,
+          checkType: 'presence',
+          approval: false
+        })
+
+        const { data } = await servers[0].comments.listForAdmin()
+        expect(data.find(c => c.text === 'a regular comment').heldForReview).to.be.false
+      }
+
+      // A comment that matches it stays held, so it is notified as requiring approval
+      {
+        const created = await servers[0].comments.createThread({ videoId: uuid, text: 'a forbidden comment', token: userToken2 })
+        await waitJobs(servers)
+
+        await checkNewCommentOnMyVideo({
+          ...baseParams,
+          shortUUID,
+          threadId: created.id,
+          commentId: created.id,
+          checkType: 'presence',
+          approval: true
+        })
+
+        const { data } = await servers[0].comments.listForAdmin()
+        expect(data.find(c => c.text === 'a forbidden comment').heldForReview).to.be.true
+      }
+
+      // Exactly one notification per comment: the job must not re-notify a comment already notified at creation
+      {
+        const notifications = baseParams.socketNotifications
+          .filter(n => n.type === UserNotificationType.NEW_COMMENT_ON_MY_VIDEO && n.comment?.video?.shortUUID === shortUUID)
+
+        expect(notifications).to.have.lengthOf(2)
+      }
+
+      await servers[0].autoTags.updateCommentPolicies({ token: userToken, accountName: 'user_1', review: [] })
+    })
+
     it('Should convert markdown in comment to html', async function () {
       this.timeout(60000)
 

@@ -4,6 +4,7 @@ import { VideoJobInfoModel } from '@server/models/video/video-job-info.js'
 import { VideoModel } from '@server/models/video/video.js'
 import { MVideo, MVideoFile, MVideoUUID } from '@server/types/models/index.js'
 import { buildNonDuplicatedFederateVideoJob } from './activitypub/videos/federate.js'
+import { buildNonDuplicatedVideoAutomaticTagsJob } from './automatic-tags/automatic-tags.js'
 import { CreateJobOptions, CreateJobTypeAndPayload, JobQueue } from './job-queue/job-queue.js'
 import { VideoStoryboardJobHandler } from './runners/index.js'
 import { createTranscriptionTaskIfNeeded } from './video-captions.js'
@@ -103,6 +104,10 @@ export async function addVideoJobsAfterCreation (options: {
     },
 
     await buildLocalStoryboardJobIfNeeded({ video, federate: false }),
+
+    // Before the notify/federate jobs so an auto tag block policy is applied before the video is announced
+    // And before the transcoding jobs so a plugin auto tagger analyzes the input file while it is still untouched
+    buildNonDuplicatedVideoAutomaticTagsJob({ video, moderation: 'apply' }),
 
     {
       type: 'notify',

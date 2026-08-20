@@ -1,11 +1,9 @@
 import { BuildAutomaticTagsPayload } from '@peertube/peertube-models'
 import { createLogger } from '@server/helpers/logger.js'
-import { AutomaticTagger } from '@server/lib/automatic-tags/automatic-tagger.js'
-import { setAndSaveCommentAutomaticTags, setAndSaveVideoAutomaticTags } from '@server/lib/automatic-tags/automatic-tags.js'
+import { buildAndSaveCommentAutomaticTags, buildAndSaveVideoAutomaticTags } from '@server/lib/automatic-tags/automatic-tags.js'
 import { getServerAccount } from '@server/models/application/application.js'
 import { VideoCommentModel } from '@server/models/video/video-comment.js'
 import { VideoModel } from '@server/models/video/video.js'
-import { MAccount } from '@server/types/models/index.js'
 import { Job } from 'bullmq'
 
 const logger = createLogger('job-queue')
@@ -55,8 +53,6 @@ async function rebuildComments (options: {
 }) {
   const { videoOwnerId, isServerAccount } = options
 
-  const automaticTagger = new AutomaticTagger()
-
   let rebuilt = 0
   let lastId = 0
 
@@ -68,16 +64,14 @@ async function rebuildComments (options: {
 
     for (const id of ids) {
       const comment = await VideoCommentModel.loadByIdWithVideo(id)
+      if (!comment) continue
 
-      let serverAccount: MAccount
-      let ownerAccount: MAccount
-
-      if (isServerAccount) serverAccount = await getServerAccount()
-      else ownerAccount = comment.Video.VideoChannel.Account
-
-      const automaticTagsByAccount = await automaticTagger.buildCommentsAutomaticTags({ text: comment.text, serverAccount, ownerAccount })
-
-      await setAndSaveCommentAutomaticTags({ comment, automaticTagsByAccount })
+      // Only the account this job runs for changed its watched words/policies: leave the tags of the other account alone
+      await buildAndSaveCommentAutomaticTags({
+        comment,
+        ofServerAccount: isServerAccount,
+        ofOwnerAccount: !isServerAccount
+      })
 
       rebuilt++
     }
@@ -87,8 +81,6 @@ async function rebuildComments (options: {
 }
 
 async function rebuildVideos () {
-  const automaticTagger = new AutomaticTagger()
-
   let rebuilt = 0
   let lastId = 0
 
@@ -100,10 +92,9 @@ async function rebuildVideos () {
 
     for (const id of ids) {
       const video = await VideoModel.load(id)
+      if (!video) continue
 
-      const automaticTagsByAccount = await automaticTagger.buildVideoAutomaticTags({ video, serverAccount: await getServerAccount() })
-
-      await setAndSaveVideoAutomaticTags({ video, automaticTagsByAccount })
+      await buildAndSaveVideoAutomaticTags({ video })
 
       rebuilt++
     }

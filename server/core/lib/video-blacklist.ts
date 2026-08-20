@@ -38,15 +38,19 @@ export async function autoBlacklistVideoIfNeeded (parameters: {
   isRemote: boolean
   isNew: boolean
   isNewFile: boolean
-  automaticTagsByAccount: Record<number, string[]>
+
+  // The automatic tags of the video have not been built yet: we don't know which tags it will have
+  automaticTagsPending: boolean
+  automaticTagsByAccount?: Record<number, string[]>
+
   user?: MUser
   notify?: boolean
   transaction?: Transaction
 }) {
-  const { video, user, isRemote, isNew, isNewFile, automaticTagsByAccount, notify = true, transaction } = parameters
+  const { video, user, isRemote, isNew, isNewFile, automaticTagsPending, automaticTagsByAccount, notify = true, transaction } = parameters
 
   // Already blacklisted
-  if (video.VideoBlacklist) return false
+  if (video.VideoBlacklist) return { blacklisted: true, pendingAutomaticTags: false }
 
   const doAutoBlacklistByInstancePolicy = await Hooks.wrapFun(
     _autoBlacklistByInstancePolicyNeeded,
@@ -57,16 +61,81 @@ export async function autoBlacklistVideoIfNeeded (parameters: {
   if (doAutoBlacklistByInstancePolicy) {
     await _autoBlacklist({ video, notify, user, transaction, type: VideoBlacklistType.AUTO_BY_INSTANCE_POLICY })
 
-    return true
+    return { blacklisted: true, pendingAutomaticTags: false }
   }
 
-  if (await _autoBlacklistByAutoTagPolicyNeeded({ video, user, automaticTagsByAccount, transaction })) {
-    await _autoBlacklist({ video, notify, user, transaction, type: VideoBlacklistType.AUTO_BY_AUTO_TAG_POLICY })
+  if (await _autoBlacklistByAutoTagPolicyNeeded({ video, user, automaticTagsPending, automaticTagsByAccount, transaction })) {
+    // We don't know yet if the video really matches a policy
+    // So don't notify the moderators before the `build-object-automatic-tags` job has confirmed it
+    await _autoBlacklist({
+      video,
+      notify: notify && !automaticTagsPending,
+      user,
+      transaction,
+      type: VideoBlacklistType.AUTO_BY_AUTO_TAG_POLICY
+    })
 
-    return true
+    return { blacklisted: true, pendingAutomaticTags: automaticTagsPending }
   }
 
-  return false
+  return { blacklisted: false, pendingAutomaticTags: false }
+}
+
+// Called by the `build-object-automatic-tags` job for a video that was not put on hold
+// Apply the auto tag block policies using the tags the job has just built
+export async function autoBlacklistVideoByAutoTagPolicyIfNeeded (options: {
+  video: MVideoWithRights
+  automaticTagsByAccount: Record<number, string[]>
+  user?: MUser
+  notify?: boolean
+  transaction?: Transaction
+}) {
+  const { video, automaticTagsByAccount, user, notify = true, transaction } = options
+
+  if (video.VideoBlacklist) return false
+  if (!await _autoBlacklistByAutoTagPolicyNeeded({ video, user, automaticTagsPending: false, automaticTagsByAccount, transaction })) {
+    return false
+  }
+
+  await _autoBlacklist({
+    video,
+    notify,
+    user,
+    transaction,
+    type: VideoBlacklistType.AUTO_BY_AUTO_TAG_POLICY
+  })
+
+  logger.info('Video %s auto-blocked by its automatic tags.', video.uuid)
+
+  return true
+}
+
+// Called by the `build-object-automatic-tags` job for a video that has been auto blocked while waiting for its tags
+// Confirm the block and notify the moderators, or remove it
+export async function resolvePendingAutoTagBlacklist (options: {
+  video: MVideoWithRights
+  automaticTagsByAccount: Record<number, string[]>
+  transaction?: Transaction
+}) {
+  const { video, automaticTagsByAccount, transaction } = options
+
+  const videoBlacklist = await VideoBlacklistModel.loadByVideoId(video.id, transaction)
+  if (!videoBlacklist || videoBlacklist.type !== VideoBlacklistType.AUTO_BY_AUTO_TAG_POLICY) return
+
+  if (await _autoBlacklistByAutoTagPolicyNeeded({ video, automaticTagsPending: false, automaticTagsByAccount, transaction })) {
+    const videoBlacklistWithVideo = videoBlacklist as MVideoBlacklistVideo
+    videoBlacklistWithVideo.Video = video
+
+    afterCommitIfTransaction(transaction, () => Notifier.Instance.notifyOnVideoAutoBlacklist(videoBlacklistWithVideo))
+
+    logger.info('Video %s auto-blocking confirmed by its automatic tags.', video.uuid)
+    return
+  }
+
+  await _removeBlacklist(videoBlacklist, video, transaction)
+  await _releasePendingAutoTagHold(video, transaction)
+
+  logger.info('Removed auto-blocking of video %s: its automatic tags do not match any auto block policy.', video.uuid)
 }
 
 async function _autoBlacklist (options: {
@@ -121,24 +190,36 @@ function _autoBlacklistByInstancePolicyNeeded (parameters: {
 
 async function _autoBlacklistByAutoTagPolicyNeeded (options: {
   video: MVideoWithBlacklistLight
-  transaction: Transaction
-  automaticTagsByAccount: Record<number, string[]>
+  automaticTagsPending: boolean
+  automaticTagsByAccount?: Record<number, string[]>
+  transaction?: Transaction
   user?: MUser
 }) {
-  const { user, video, transaction, automaticTagsByAccount } = options
+  const { user, video, transaction, automaticTagsPending, automaticTagsByAccount } = options
 
-  if (!automaticTagsByAccount || Object.keys(automaticTagsByAccount).length === 0) return false
+  if (!automaticTagsPending && !automaticTagsByAccount) return false
 
   if (video.isLocal() && user?.hasRight(UserRight.MANAGE_VIDEO_BLACKLIST)) return false
 
   const accountId = (await getServerAccount()).id
-  const tags = automaticTagsByAccount[accountId]
+
+  // Block the video if the instance could want to review it
+  // Let the `build-object-automatic-tags` job release it if the tags it ends up with don't match any of its auto block policies
+  if (automaticTagsPending) {
+    return AccountAutomaticTagPolicyModel.hasPolicy({
+      accountId,
+      policy: AutomaticTagPolicy.AUTO_BLACKLIST_VIDEO,
+      transaction
+    })
+  }
+
+  const tags = automaticTagsByAccount?.[accountId]
   if (!tags || tags.length === 0) return false
 
   return AccountAutomaticTagPolicyModel.hasPolicyOnTags({
     accountId,
     policy: AutomaticTagPolicy.AUTO_BLACKLIST_VIDEO,
-    tags: automaticTagsByAccount[accountId],
+    tags,
     transaction
   })
 }
@@ -168,7 +249,17 @@ export async function blacklistVideo (videoInstance: MVideoAccountLight, options
 }
 
 export async function unblacklistVideo (videoBlacklist: MVideoBlacklist, video: MVideoWithRights) {
-  const videoBlacklistType = await sequelizeTypescript.transaction(async t => {
+  const videoBlacklistType = await _removeBlacklist(videoBlacklist, video)
+
+  Notifier.Instance.notifyOnVideoUnblacklist(video)
+
+  if (videoBlacklistType === VideoBlacklistType.AUTO_BY_INSTANCE_POLICY) {
+    await _notifyVideoReleasedFromAutoBlacklist(video)
+  }
+}
+
+function _removeBlacklist (videoBlacklist: MVideoBlacklist, video: MVideoWithRights, transaction?: Transaction) {
+  const run = async (t: Transaction) => {
     const unfederated = videoBlacklist.unfederated
     const videoBlacklistType = videoBlacklist.type
 
@@ -181,18 +272,35 @@ export async function unblacklistVideo (videoBlacklist: MVideoBlacklist, video: 
     }
 
     return videoBlacklistType
-  })
-
-  Notifier.Instance.notifyOnVideoUnblacklist(video)
-
-  if (videoBlacklistType === VideoBlacklistType.AUTO_BY_INSTANCE_POLICY) {
-    const videoWithSchedule = video as MVideoWithRights & MVideoWithSchedule
-    videoWithSchedule.ScheduleVideoUpdate = await videoWithSchedule.$get('ScheduleVideoUpdate')
-
-    Notifier.Instance.notifyOnVideoPublishedAfterRemovedFromAutoBlacklist(videoWithSchedule)
-
-    // Delete on object so new video notifications will send
-    delete video.VideoBlacklist
-    Notifier.Instance.notifyOnNewVideoOrLiveIfNeeded(videoWithSchedule)
   }
+
+  if (transaction) return run(transaction)
+
+  return sequelizeTypescript.transaction(run)
+}
+
+async function _notifyVideoReleasedFromAutoBlacklist (video: MVideoWithRights, transaction?: Transaction) {
+  const videoWithSchedule = video as MVideoWithRights & MVideoWithSchedule
+  videoWithSchedule.ScheduleVideoUpdate = await videoWithSchedule.$get('ScheduleVideoUpdate', { transaction })
+
+  // Delete on object so new video notifications will send
+  delete video.VideoBlacklist
+
+  afterCommitIfTransaction(transaction, () => {
+    Notifier.Instance.notifyOnVideoPublishedAfterRemovedFromAutoBlacklist(videoWithSchedule)
+    Notifier.Instance.notifyOnNewVideoOrLiveIfNeeded(videoWithSchedule)
+  })
+}
+
+// Same as _notifyVideoReleasedFromAutoBlacklist but do not send "removed from auto blacklist" notification
+async function _releasePendingAutoTagHold (video: MVideoWithRights, transaction?: Transaction) {
+  const videoWithSchedule = video as MVideoWithRights & MVideoWithSchedule
+  videoWithSchedule.ScheduleVideoUpdate = await videoWithSchedule.$get('ScheduleVideoUpdate', { transaction })
+
+  // Delete on object so new video notifications will send
+  delete video.VideoBlacklist
+
+  afterCommitIfTransaction(transaction, () => {
+    Notifier.Instance.notifyOnNewVideoOrLiveIfNeeded(videoWithSchedule)
+  })
 }

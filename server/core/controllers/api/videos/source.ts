@@ -6,6 +6,7 @@ import { CreateJobOptions, CreateJobTypeAndPayload, JobQueue } from '@server/lib
 import { Hooks } from '@server/lib/plugins/hooks.js'
 import { regenerateLocalVideoThumbnailsFromVideoIfNeeded } from '@server/lib/thumbnail.js'
 import { setupUploadResumableRoutes } from '@server/lib/uploadx.js'
+import { buildNonDuplicatedVideoAutomaticTagsJob } from '@server/lib/automatic-tags/automatic-tags.js'
 import { autoBlacklistVideoIfNeeded } from '@server/lib/video-blacklist.js'
 import { regenerateTranscriptionTaskIfNeeded } from '@server/lib/video-captions.js'
 import { buildNewFile, createVideoSource } from '@server/lib/video-file.js'
@@ -145,7 +146,8 @@ async function doReplaceVideoSourceResumable (req: express.Request, res: express
       await autoBlacklistVideoIfNeeded({
         video,
         user,
-        automaticTagsByAccount: null,
+        // The name and the description of the video did not change, so its automatic tags are still up to date
+        automaticTagsPending: false,
         isRemote: false,
         isNew: false,
         isNewFile: true,
@@ -200,6 +202,9 @@ async function addVideoJobsAfterUpload (video: MVideoFull, videoFile: MVideoFile
     },
 
     await buildLocalStoryboardJobIfNeeded({ video, federate: false }),
+
+    // The video has a new file to analyze: rebuild its automatic tags before re-federating it
+    buildNonDuplicatedVideoAutomaticTagsJob({ video, moderation: 'apply' }),
 
     buildNonDuplicatedFederateVideoJob({ video })
   ]

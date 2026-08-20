@@ -40,7 +40,32 @@ describe('Test plugin auto taggers', function () {
 
     it('Should list available auto tag names for comments', async function () {
       const { available } = await server.autoTags.getAccountAvailable({ accountName: 'root' })
-      expect(available.map(t => t.name)).to.have.members([ 'external-link', 'plugin comment auto tag' ])
+      expect(available.map(t => t.name)).to.have.members([
+        'external-link',
+        'plugin comment auto tag',
+        'plugin slow comment auto tag'
+      ])
+    })
+
+    it('Should not block the comment creation while a slow auto tagger is running', async function () {
+      this.timeout(30000)
+
+      const before = new Date().getTime()
+      await server.comments.createThread({ videoId: videoUUID, text: 'a comment with plugin-slow-tag-comment' })
+      const duration = new Date().getTime() - before
+
+      expect(duration).to.be.below(2000)
+
+      await waitJobs([ server ])
+
+      {
+        const { data } = await server.comments.listForAdmin()
+        const comment = data.find(c => c.text === 'a comment with plugin-slow-tag-comment')
+
+        expect(comment.automaticTags).to.have.members([ 'plugin slow comment auto tag' ])
+      }
+
+      await server.comments.deleteAllComments({ videoUUID })
     })
 
     it('Should not assign plugin tag if the plugin does not trigger', async function () {
@@ -48,6 +73,8 @@ describe('Test plugin auto taggers', function () {
         videoId: videoUUID,
         text: 'just a normal comment with no trigger'
       })
+
+      await waitJobs([ server ])
 
       {
         const { data } = await server.comments.listForAdmin()
@@ -67,6 +94,8 @@ describe('Test plugin auto taggers', function () {
         videoId: videoUUID,
         text: 'another comment with plugin-tag-comment trigger'
       })
+
+      await waitJobs([ server ])
 
       {
         const { data } = await server.comments.listForAdmin()
@@ -137,11 +166,34 @@ describe('Test plugin auto taggers', function () {
 
     it('Should list available auto tag names for videos', async function () {
       const { available } = await server.autoTags.getServerAvailable()
-      expect(available.map(t => t.name)).to.have.members([ 'plugin video auto tag', 'external-link' ])
+      expect(available.map(t => t.name)).to.have.members([
+        'plugin video auto tag',
+        'plugin video file auto tag',
+        'external-link'
+      ])
+    })
+
+    it('Should assign a tag decided by an auto tagger that analyzed the video file', async function () {
+      this.timeout(60000)
+
+      await server.videos.upload({ attributes: { name: 'video with analyze-video-file', description: 'no trigger' } })
+
+      await waitJobs([ server ])
+
+      {
+        const { data } = await server.videos.listAllForAdmin()
+        const video = data.find(v => v.name === 'video with analyze-video-file')
+
+        expect(video.automaticTags).to.have.members([ 'plugin video file auto tag' ])
+      }
+
+      await server.videos.removeAll()
     })
 
     it('Should not assign plugin tag if no trigger word is in video name or description', async function () {
       await server.videos.upload({ attributes: { name: 'normal video', description: 'normal description' } })
+
+      await waitJobs([ server ])
 
       {
         const { data } = await server.videos.listAllForAdmin()
@@ -156,6 +208,8 @@ describe('Test plugin auto taggers', function () {
         attributes: { name: 'video with plugin-tag-video in name', description: 'no trigger' }
       })
 
+      await waitJobs([ server ])
+
       {
         const { data } = await server.videos.listAllForAdmin()
         expect(data.find(v => v.name === 'video with plugin-tag-video in name').automaticTags).to.have.members([ 'plugin video auto tag' ])
@@ -168,6 +222,8 @@ describe('Test plugin auto taggers', function () {
       await server.videos.upload({
         attributes: { name: 'video desc', description: 'contains plugin-tag-video in description' }
       })
+
+      await waitJobs([ server ])
 
       {
         const { data } = await server.videos.listAllForAdmin()
@@ -189,6 +245,8 @@ describe('Test plugin auto taggers', function () {
         videoId: videoUUID,
         text: 'plugin-tag-comment for helper test'
       })
+
+      await waitJobs([ server ])
 
       {
         const { data } = await server.comments.listForAdmin()
@@ -228,6 +286,8 @@ describe('Test plugin auto taggers', function () {
       await server.videos.upload({
         attributes: { name: 'plugin-tag-video for helper', description: 'test' }
       })
+
+      await waitJobs([ server ])
 
       {
         const { data } = await server.videos.listAllForAdmin()

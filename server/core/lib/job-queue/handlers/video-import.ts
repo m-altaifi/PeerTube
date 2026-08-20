@@ -13,11 +13,13 @@ import {
 import { retryTransactionWrapper } from '@server/helpers/database-utils.js'
 import { YoutubeDLWrapper } from '@server/helpers/youtube-dl/index.js'
 import { CONFIG } from '@server/initializers/config.js'
+import { createVideoAutomaticTagsJob } from '@server/lib/automatic-tags/automatic-tags.js'
 import { isPostImportVideoAccepted } from '@server/lib/moderation.js'
 import { Hooks } from '@server/lib/plugins/hooks.js'
 import { ServerConfigManager } from '@server/lib/server-config-manager.js'
 import { createOptimizeOrMergeAudioJobs } from '@server/lib/transcoding/create-transcoding-job.js'
 import { isUserQuotaValid } from '@server/lib/user.js'
+import { autoBlacklistVideoIfNeeded } from '@server/lib/video-blacklist.js'
 import { createTranscriptionTaskIfNeeded } from '@server/lib/video-captions.js'
 import { replaceChaptersIfNotExist } from '@server/lib/video-chapters.js'
 import { buildNewFile } from '@server/lib/video-file.js'
@@ -28,7 +30,7 @@ import { createTorrentForFile, downloadWebTorrentVideo } from '@server/lib/webto
 import { UserModel } from '@server/models/user/user.js'
 import { VideoCaptionModel } from '@server/models/video/video-caption.js'
 import { VideoInfohashModel } from '@server/models/video/video-infohash.js'
-import { MUserId, MVideoFile, MVideoFull } from '@server/types/models/index.js'
+import { MUser, MUserId, MVideoFile, MVideoFull } from '@server/types/models/index.js'
 import { MVideoImport, MVideoImportDefault, MVideoImportDefaultFiles, MVideoImportVideo } from '@server/types/models/video/video-import.js'
 import { Job } from 'bullmq'
 import { FfprobeData } from 'fluent-ffmpeg'
@@ -300,20 +302,46 @@ async function afterImportSuccess (options: {
   videoImport: MVideoImport
   video: MVideoFull
   videoFile: MVideoFile
-  user: MUserId
+  user: MUser
 
   generateTranscription: boolean
 }) {
   const { video, videoFile, videoImport, user, generateTranscription } = options
 
+  // The file now exists, so plugin auto taggers can analyze it
+  // They can be slow, so let the `build-object-automatic-tags` job run them instead of blocking this queue
+  // Hold the video until it has confirmed or released the hold: the video has not been announced yet
+  // Note the video may already be blocked by the instance policy, applied by `insertFromImportIntoDB`
+  const { pendingAutomaticTags } = await autoBlacklistVideoIfNeeded({
+    video,
+    user,
+    automaticTagsPending: true,
+    isRemote: false,
+    isNew: true,
+    isNewFile: true,
+    notify: false,
+    transaction: undefined
+  })
+
+  createVideoAutomaticTagsJob({
+    video,
+    moderation: pendingAutomaticTags
+      ? 'release-hold'
+      : 'apply'
+  })
+
   Notifier.Instance.notifyOnFinishedVideoImport({ videoImport: Object.assign(videoImport, { Video: video }), success: true })
 
-  if (video.isBlacklisted()) {
-    const videoBlacklist = Object.assign(video.VideoBlacklist, { Video: video })
+  // A video held for its automatic tags is announced by the job instead, which also notifies the moderators if it
+  // ends up confirming the block
+  if (!pendingAutomaticTags) {
+    if (video.isBlacklisted()) {
+      const videoBlacklist = Object.assign(video.VideoBlacklist, { Video: video })
 
-    Notifier.Instance.notifyOnVideoAutoBlacklist(videoBlacklist)
-  } else {
-    Notifier.Instance.notifyOnNewVideoOrLiveIfNeeded(video)
+      Notifier.Instance.notifyOnVideoAutoBlacklist(videoBlacklist)
+    } else {
+      Notifier.Instance.notifyOnNewVideoOrLiveIfNeeded(video)
+    }
   }
 
   // Generate the storyboard in the job queue, and don't forget to federate an update after

@@ -77,6 +77,21 @@ export class AccountAutomaticTagPolicyModel extends SequelizeModel<AccountAutoma
     })
   }
 
+  // Whether the account has at least one policy of this type, whatever the tag
+  static hasPolicy (options: {
+    accountId: number
+    policy: AutomaticTagPolicyType
+    transaction?: Transaction
+  }) {
+    const { accountId, policy, transaction } = options
+
+    const query = `SELECT 1 FROM "accountAutomaticTagPolicy" ` +
+      `WHERE "accountId" = $accountId AND "policy" = $policy ` +
+      `LIMIT 1`
+
+    return doesExist({ sequelize: this.sequelize, query, bind: { accountId, policy }, transaction })
+  }
+
   static hasPolicyOnTags (options: {
     accountId: number
     tags: string[]

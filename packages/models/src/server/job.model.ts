@@ -16,6 +16,7 @@ export type JobType =
   | 'actor-keys'
   | 'after-video-channel-import'
   | 'build-automatic-tags'
+  | 'build-object-automatic-tags'
   | 'create-user-export'
   | 'email'
   | 'federate-video'
@@ -368,4 +369,21 @@ export interface BuildAutomaticTagsPayload {
   accountId: number
   ofComments: boolean
   ofVideos: boolean
+}
+
+// How the job has to handle the moderation policies bound to automatic tags:
+//  * `apply`: nothing is on hold, apply the policies using the tags built by the job
+//  * `release-hold`: the object has been put on hold (comment held for review, video auto blocked) while waiting for
+//     its tags, so the job has to confirm or release that hold
+//  * `none`: only rebuild the tags
+export type AutomaticTagsModeration = 'apply' | 'release-hold' | 'none'
+
+export interface BuildObjectAutomaticTagsPayload {
+  objectType: 'video' | 'comment'
+  objectId: number
+
+  moderation: AutomaticTagsModeration
+
+  // Only supported for comments
+  notify: boolean | null
 }

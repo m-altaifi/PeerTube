@@ -17,7 +17,6 @@ import { retryTransactionWrapper } from '@server/helpers/database-utils.js'
 import { createLogger } from '@server/helpers/logger.js'
 import { CONFIG } from '@server/initializers/config.js'
 import { sequelizeTypescript } from '@server/initializers/database.js'
-import { getServerAccount } from '@server/models/application/application.js'
 import { ScheduleVideoUpdateModel } from '@server/models/video/schedule-video-update.js'
 import { VideoChannelActivityModel } from '@server/models/video/video-channel-activity.js'
 import { VideoLiveReplaySettingModel } from '@server/models/video/video-live-replay-setting.js'
@@ -31,8 +30,7 @@ import { FfprobeData } from 'fluent-ffmpeg'
 import { move } from 'fs-extra/esm'
 import { getLocalVideoActivityPubUrl } from './activitypub/url.js'
 import { scheduleVideoFederation } from './activitypub/videos/federate.js'
-import { AutomaticTagger } from './automatic-tags/automatic-tagger.js'
-import { setAndSaveVideoAutomaticTags } from './automatic-tags/automatic-tags.js'
+import { createVideoAutomaticTagsJob } from './automatic-tags/automatic-tags.js'
 import { Hooks } from './plugins/hooks.js'
 import { createLocalVideoThumbnailsFromImage, createLocalVideoThumbnailsFromVideo } from './thumbnail.js'
 import { autoBlacklistVideoIfNeeded } from './video-blacklist.js'
@@ -179,13 +177,6 @@ export class LocalVideoCreator {
 
         await setVideoTags({ video: this.video, tags: this.videoAttributes.tags, transaction })
 
-        const automaticTagsByAccount = await new AutomaticTagger().buildVideoAutomaticTags({
-          serverAccount: await getServerAccount(),
-          video: this.video,
-          transaction
-        })
-        await setAndSaveVideoAutomaticTags({ video: this.video, automaticTagsByAccount, transaction })
-
         // Schedule an update in the future?
         if (this.videoAttributes.scheduleUpdate) {
           await ScheduleVideoUpdateModel.create({
@@ -203,15 +194,29 @@ export class LocalVideoCreator {
           }
         }
 
-        await autoBlacklistVideoIfNeeded({
+        // A video with a file has its automatic tags built by `addVideoJobsAfterCreation`, before it is announced.
+        // A video without one (live) is federated right away, so hold it until the tagging job has run
+        const holdForAutomaticTags = !this.videoFile
+
+        const { pendingAutomaticTags } = await autoBlacklistVideoIfNeeded({
           video: this.video,
           user: this.options.user,
-          automaticTagsByAccount,
+          automaticTagsPending: holdForAutomaticTags,
           isRemote: false,
           isNew: true,
           isNewFile: true,
           transaction
         })
+
+        if (holdForAutomaticTags) {
+          createVideoAutomaticTagsJob({
+            video: this.video,
+            moderation: pendingAutomaticTags
+              ? 'release-hold'
+              : 'apply',
+            transaction
+          })
+        }
 
         if (this.videoAttributes.privacy === VideoPrivacy.PASSWORD_PROTECTED) {
           await VideoPasswordModel.addPasswords(this.videoAttributes.videoPasswords, this.video.id, transaction)

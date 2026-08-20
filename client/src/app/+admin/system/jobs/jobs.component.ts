@@ -52,6 +52,7 @@ export class JobsComponent {
     'actor-keys',
     'after-video-channel-import',
     'build-automatic-tags',
+    'build-object-automatic-tags',
     'create-user-export',
     'email',
     'federate-video',

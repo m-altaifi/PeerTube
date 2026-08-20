@@ -182,19 +182,18 @@ export class WatchedWordsListModel extends SequelizeModel<WatchedWordsListModel>
 
   // ---------------------------------------------------------------------------
 
+  // Automatic tags are never built inside a transaction, so this doesn't take one
   static async buildWatchedWordsRegexp (options: {
     accountId: number
-    transaction: Transaction
   }) {
-    const { accountId, transaction } = options
+    const { accountId } = options
 
     if (WatchedWordsListModel.regexCache.has(accountId)) {
       return WatchedWordsListModel.regexCache.get(accountId)
     }
 
     const models = await WatchedWordsListModel.findAll<MWatchedWordsList>({
-      where: { accountId },
-      transaction
+      where: { accountId }
     })
 
     const result = models.map(m => ({ listName: m.listName, regex: wordsToRegExp(m.words) }))

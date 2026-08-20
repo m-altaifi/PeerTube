@@ -151,6 +151,7 @@ async function processCreateVideoComment (
   let video: MVideoAccountLightBlacklistAllFiles
   let created: boolean
   let comment: MCommentOwnerVideo
+  let heldPendingAutomaticTags: boolean
 
   try {
     const resolveThreadResult = await resolveThread({ url: commentObject.id, isVideo: false })
@@ -159,6 +160,7 @@ async function processCreateVideoComment (
     video = resolveThreadResult.video
     created = resolveThreadResult.commentCreated
     comment = resolveThreadResult.comment
+    heldPendingAutomaticTags = resolveThreadResult.heldPendingAutomaticTags
   } catch (err) {
     logger.debug(
       'Cannot process video comment because we could not resolve thread %s. Maybe it was not a video thread, so skip it.',
@@ -195,7 +197,8 @@ async function processCreateVideoComment (
     }
   }
 
-  if (created) Notifier.Instance.notifyOnNewComment(comment)
+  // The `build-object-automatic-tags` job notifies once the held status of the comment is final
+  if (created && !heldPendingAutomaticTags) Notifier.Instance.notifyOnNewComment(comment)
 }
 
 // The origin instance re-sends us the comment when we approved the reply

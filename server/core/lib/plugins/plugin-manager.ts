@@ -193,9 +193,9 @@ export class PluginManager implements ServerHook {
         npmName: p.npmName,
         name: p.name,
         version: p.version,
-        autoTaggersPerTagName: p.registerHelpers.getVideoAutoTagger()
+        autoTaggers: p.registerHelpers.getVideoAutoTaggers()
       }))
-      .filter(p => Object.keys(p.autoTaggersPerTagName).length !== 0)
+      .filter(p => p.autoTaggers.length !== 0)
   }
 
   getCommentAutoTaggers () {
@@ -204,9 +204,9 @@ export class PluginManager implements ServerHook {
         npmName: p.npmName,
         name: p.name,
         version: p.version,
-        autoTaggersPerTagName: p.registerHelpers.getCommentAutoTagger()
+        autoTaggers: p.registerHelpers.getCommentAutoTaggers()
       }))
-      .filter(p => Object.keys(p.autoTaggersPerTagName).length !== 0)
+      .filter(p => p.autoTaggers.length !== 0)
   }
 
   // ---------------------------------------------------------------------------

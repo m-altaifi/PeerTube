@@ -1,6 +1,7 @@
 import { VideoObject } from '@peertube/peertube-models'
 import { createLogger } from '@server/helpers/logger.js'
 import { sequelizeTypescript } from '@server/initializers/database.js'
+import { createVideoAutomaticTagsJob } from '@server/lib/automatic-tags/automatic-tags.js'
 import { Hooks } from '@server/lib/plugins/hooks.js'
 import { autoBlacklistVideoIfNeeded } from '@server/lib/video-blacklist.js'
 import { VideoModel } from '@server/models/video/video.js'
@@ -42,18 +43,24 @@ export class APVideoCreator extends APVideoAbstractBuilder {
       await this.insertOrReplaceLive(videoCreated, t)
       await this.insertOrReplaceStoryboard(videoCreated, t)
 
-      const automaticTagsByAccount = await this.setAutomaticTags({ video: videoCreated, transaction: t })
-
       // We added a video in this channel, set it as updated
       await channel.setAsUpdated(t)
 
-      const autoBlacklisted = await autoBlacklistVideoIfNeeded({
+      const { blacklisted: autoBlacklisted, pendingAutomaticTags } = await autoBlacklistVideoIfNeeded({
         video: videoCreated,
-        automaticTagsByAccount,
+        automaticTagsPending: true,
         user: undefined,
         isRemote: true,
         isNew: true,
         isNewFile: true,
+        transaction: t
+      })
+
+      createVideoAutomaticTagsJob({
+        video: videoCreated,
+        moderation: pendingAutomaticTags
+          ? 'release-hold'
+          : 'apply',
         transaction: t
       })
 

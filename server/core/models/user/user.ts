@@ -28,7 +28,7 @@ import {
   MUserNotifSettingChannelDefault,
   MUserWithNotificationSetting
 } from '@server/types/models/index.js'
-import { col, FindOptions, fn, literal, Op, QueryTypes, ScopeOptions, where, WhereOptions } from 'sequelize'
+import { col, FindOptions, fn, literal, Op, QueryTypes, ScopeOptions, Transaction, where, WhereOptions } from 'sequelize'
 import {
   AfterDestroy,
   AfterUpdate,
@@ -859,7 +859,7 @@ export class UserModel extends SequelizeModel<UserModel> {
     })
   }
 
-  static loadByAccountId (accountId: number): Promise<MUserDefault> {
+  static loadByAccountId (accountId: number, transaction?: Transaction): Promise<MUserDefault> {
     const query = {
       include: [
         {
@@ -869,7 +869,8 @@ export class UserModel extends SequelizeModel<UserModel> {
             id: accountId
           }
         }
-      ]
+      ],
+      transaction
     }
 
     return UserModel.findOne(query)

@@ -20,7 +20,6 @@ import { Hooks } from '@server/lib/plugins/hooks.js'
 import { ServerConfigManager } from '@server/lib/server-config-manager.js'
 import { autoBlacklistVideoIfNeeded } from '@server/lib/video-blacklist.js'
 import { setVideoTags } from '@server/lib/video.js'
-import { getServerAccount } from '@server/models/application/application.js'
 import { VideoChannelActivityModel } from '@server/models/video/video-channel-activity.js'
 import { VideoImportModel } from '@server/models/video/video-import.js'
 import { VideoPasswordModel } from '@server/models/video/video-password.js'
@@ -41,8 +40,6 @@ import {
 import express from 'express'
 import { remove } from 'fs-extra/esm'
 import { getLocalVideoActivityPubUrl } from './activitypub/url.js'
-import { AutomaticTagger } from './automatic-tags/automatic-tagger.js'
-import { setAndSaveVideoAutomaticTags } from './automatic-tags/automatic-tags.js'
 import { createLocalVideoThumbnailsFromImage, createLocalVideoThumbnailsFromUrl } from './thumbnail.js'
 import { createLocalCaption } from './video-captions.js'
 import { replaceChapters, replaceChaptersFromDescriptionIfNeeded } from './video-chapters.js'
@@ -78,16 +75,11 @@ export async function insertFromImportIntoDB (parameters: {
       await VideoPasswordModel.addPasswords(videoPasswords, video.id, t)
     }
 
-    const automaticTagsByAccount = await new AutomaticTagger().buildVideoAutomaticTags({
-      serverAccount: await getServerAccount(),
-      video,
-      transaction: t
-    })
-    await setAndSaveVideoAutomaticTags({ video, automaticTagsByAccount, transaction: t })
-
+    // The automatic tags of the video are built once its file has been downloaded, so plugin auto taggers can analyze it
+    // The video stays in the `TO_IMPORT` state until then, so it is neither federated nor notified
     await autoBlacklistVideoIfNeeded({
       video: videoCreated,
-      automaticTagsByAccount,
+      automaticTagsPending: false,
       user,
       notify: false,
       isRemote: false,

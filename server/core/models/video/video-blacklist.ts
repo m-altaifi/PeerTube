@@ -1,6 +1,6 @@
 import { VideoBlacklist, type VideoBlacklistType_Type } from '@peertube/peertube-models'
 import { MVideoBlacklist, MVideoBlacklistFormattable } from '@server/types/models/index.js'
-import { FindOptions } from 'sequelize'
+import { FindOptions, Transaction } from 'sequelize'
 import { AllowNull, BelongsTo, Column, CreatedAt, DataType, Default, ForeignKey, Is, Table, UpdatedAt } from 'sequelize-typescript'
 import {
   isVideoBlacklistReasonValid,
@@ -116,11 +116,12 @@ export class VideoBlacklistModel extends SequelizeModel<VideoBlacklistModel> {
     })
   }
 
-  static loadByVideoId (id: number): Promise<MVideoBlacklist> {
+  static loadByVideoId (id: number, transaction?: Transaction): Promise<MVideoBlacklist> {
     const query = {
       where: {
         videoId: id
-      }
+      },
+      transaction
     }
 
     return VideoBlacklistModel.findOne(query)

@@ -4,12 +4,9 @@ import { isVideoChaptersObjectValid } from '@server/helpers/custom-validators/ac
 import { deleteAllModels, filterNonExistingModels, retryTransactionWrapper } from '@server/helpers/database-utils.js'
 import { createLogger } from '@server/helpers/logger.js'
 import { sequelizeTypescript } from '@server/initializers/database.js'
-import { AutomaticTagger } from '@server/lib/automatic-tags/automatic-tagger.js'
-import { setAndSaveVideoAutomaticTags } from '@server/lib/automatic-tags/automatic-tags.js'
 import { updateRemoteVideoThumbnail } from '@server/lib/thumbnail.js'
 import { replaceChapters } from '@server/lib/video-chapters.js'
 import { setVideoTags } from '@server/lib/video.js'
-import { getServerAccount } from '@server/models/application/application.js'
 import { StoryboardModel } from '@server/models/video/storyboard.js'
 import { VideoCaptionModel } from '@server/models/video/video-caption.js'
 import { VideoFileModel } from '@server/models/video/video-file.js'
@@ -237,23 +234,14 @@ export abstract class APVideoAbstractBuilder {
     playlistModel.VideoFiles = await this.saveFiles({ toCreate, oldFiles: oldStreamingPlaylistFiles, t, mode: 'streaming-playlist' })
   }
 
-  protected async setAutomaticTags (options: {
+  // The automatic tags are built from the name and the description, so they only have to be rebuilt when one changed
+  protected automaticTagsNeedRebuild (options: {
     video: MVideo
     oldVideo?: Pick<MVideo, 'name' | 'description'>
-    transaction: Transaction
   }) {
-    const { video, transaction, oldVideo } = options
+    const { video, oldVideo } = options
 
-    if (video.name === oldVideo?.name && video.description === oldVideo.description) return {}
-
-    const automaticTagsByAccount = await new AutomaticTagger().buildVideoAutomaticTags({
-      serverAccount: await getServerAccount(),
-      video,
-      transaction
-    })
-    await setAndSaveVideoAutomaticTags({ video, automaticTagsByAccount, transaction })
-
-    return automaticTagsByAccount
+    return video.name !== oldVideo?.name || video.description !== oldVideo.description
   }
 
   protected async saveFiles (options: {

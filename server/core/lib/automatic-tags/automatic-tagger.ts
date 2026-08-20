@@ -5,9 +5,8 @@ import { WEBSERVER } from '@server/initializers/constants.js'
 import { getServerAccount } from '@server/models/application/application.js'
 import { AccountAutomaticTagPolicyModel } from '@server/models/automatic-tag/account-automatic-tag-policy.js'
 import { WatchedWordsListModel } from '@server/models/watched-words/watched-words-list.js'
-import { MAccount, MAccountId, MComment, MVideo } from '@server/types/models/index.js'
+import { MAccount, MAccountId, MVideo } from '@server/types/models/index.js'
 import { LinkifyIt } from 'linkify-it'
-import { Transaction } from 'sequelize'
 import { PluginManager } from '../plugins/plugin-manager.js'
 
 const logger = createLogger('automatic-tags')
@@ -19,23 +18,26 @@ export class AutomaticTagger {
     EXTERNAL_LINK: 'external-link'
   }
 
+  // Never run inside a transaction: plugin auto taggers can be slow
   async buildCommentsAutomaticTags (options: {
     serverAccount: MAccount | null
     ownerAccount: MAccount | null
     text: string
-    transaction?: Transaction
   }) {
-    const { text, serverAccount, ownerAccount, transaction } = options
+    const { text, serverAccount, ownerAccount } = options
 
     // accountId -> tags
     const result: Record<number, string[]> = {}
 
     try {
-      const pluginAutoTags = await this.buildPluginAutomaticTags({ video: null, comment: { text } })
+      const pluginAutoTags = await this.runAutoTaggers(
+        PluginManager.Instance.getCommentAutoTaggers(),
+        ({ handler }) => handler({ comment: { text } })
+      )
 
       if (serverAccount) {
         const tags = [
-          ...await this.buildAutomaticTags({ account: serverAccount, text, transaction }),
+          ...await this.buildAutomaticTags({ account: serverAccount, text }),
           ...pluginAutoTags
         ]
 
@@ -44,7 +46,7 @@ export class AutomaticTagger {
 
       if (ownerAccount) {
         const tags = [
-          ...await this.buildAutomaticTags({ account: ownerAccount, text, transaction }),
+          ...await this.buildAutomaticTags({ account: ownerAccount, text }),
           ...pluginAutoTags
         ]
 
@@ -61,18 +63,18 @@ export class AutomaticTagger {
     }
   }
 
+  // See `buildCommentsAutomaticTags`: never run inside a transaction
   async buildVideoAutomaticTags (options: {
     serverAccount: MAccount
-    video: Pick<MVideo, 'name' | 'description'>
-    transaction?: Transaction
+    video: Pick<MVideo, 'id' | 'name' | 'description'>
   }) {
-    const { video, serverAccount, transaction } = options
+    const { video, serverAccount } = options
 
     try {
       const [ videoNameTags, videoDescriptionTags, pluginTags ] = await Promise.all([
-        this.buildAutomaticTags({ account: serverAccount, text: video.name, transaction }),
-        this.buildAutomaticTags({ account: serverAccount, text: video.description, transaction }),
-        this.buildPluginAutomaticTags({ video, comment: null })
+        this.buildAutomaticTags({ account: serverAccount, text: video.name }),
+        this.buildAutomaticTags({ account: serverAccount, text: video.description }),
+        this.runAutoTaggers(PluginManager.Instance.getVideoAutoTaggers(), ({ handler }) => handler({ video }))
       ])
 
       logger.debug('Built automatic tags for video', {
@@ -94,15 +96,14 @@ export class AutomaticTagger {
   private async buildAutomaticTags (options: {
     account: MAccount
     text: string
-    transaction?: Transaction
   }) {
-    const { text, account, transaction } = options
+    const { text, account } = options
 
     const tagsDone = new Set<string>()
     const automaticTags: string[] = []
 
     // Watched words by account that published the video
-    const watchedWords = await WatchedWordsListModel.buildWatchedWordsRegexp({ accountId: account.id, transaction })
+    const watchedWords = await WatchedWordsListModel.buildWatchedWordsRegexp({ accountId: account.id })
 
     logger.debug(`Got watched words regex for account ${account.id}`, {
       listNames: watchedWords.map(r => r.listName)
@@ -131,33 +132,29 @@ export class AutomaticTagger {
     return automaticTags
   }
 
-  private async buildPluginAutomaticTags (options: {
-    video: Pick<MVideo, 'name' | 'description'> | null
-    comment: Pick<MComment, 'text'> | null
-  }) {
-    const { video, comment } = options
-
-    const pluginTags: string[] = []
-
-    const pluginWithAutoTags = video
-      ? PluginManager.Instance.getVideoAutoTaggers()
-      : PluginManager.Instance.getCommentAutoTaggers()
-
-    for (const { npmName, autoTaggersPerTagName } of pluginWithAutoTags) {
-      for (const autoTagName of Object.keys(autoTaggersPerTagName)) {
-        for (const autoTagger of (autoTaggersPerTagName[autoTagName] || [])) {
+  // Auto taggers of plugins can be slow (they may call an external service), so run them in parallel
+  private async runAutoTaggers<T extends { autoTagNames: string[] }> (
+    plugins: { npmName: string, autoTaggers: T[] }[],
+    run: (autoTagger: T) => Promise<{ tags: string[] }>
+  ) {
+    const tagsPerAutoTagger = await Promise.all(
+      plugins.flatMap(({ npmName, autoTaggers }) => {
+        return autoTaggers.map(async autoTagger => {
           try {
-            const { result } = await autoTagger({ video, comment })
+            const { tags } = await run(autoTagger)
 
-            if (result) pluginTags.push(autoTagName)
+            // A plugin can only assign the tags it registered
+            return (tags || []).filter(t => autoTagger.autoTagNames.includes(t))
           } catch (err) {
             logger.error('Cannot execute auto tagger of plugin ' + npmName, { err })
-          }
-        }
-      }
-    }
 
-    return pluginTags
+            return []
+          }
+        })
+      })
+    )
+
+    return tagsPerAutoTagger.flat()
   }
 
   private hasExternalLinks (text: string) {
@@ -215,12 +212,7 @@ export class AutomaticTagger {
       ? PluginManager.Instance.getVideoAutoTaggers()
       : PluginManager.Instance.getCommentAutoTaggers()
 
-    return toLoad
-      .flatMap(({ autoTaggersPerTagName }) => {
-        // Keys that have at least one active auto tagger function
-        return Object.keys(autoTaggersPerTagName)
-          .filter(k => (autoTaggersPerTagName[k] || []).length > 0)
-      })
+    return uniqify(toLoad.flatMap(({ autoTaggers }) => autoTaggers.flatMap(a => a.autoTagNames)))
       .map(name => ({ name, type: 'plugin' as const }))
   }
 }
