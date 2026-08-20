@@ -509,6 +509,10 @@ nsfw_flags_settings:
     __name: PEERTUBE_NSFW_FLAGS_SETTINGS_ENABLED
     __format: json
 
+download:
+  max_total_bytes_per_second: PEERTUBE_DOWNLOAD_MAX_TOTAL_BYTES_PER_SECOND
+  max_bytes_per_ip_per_second: PEERTUBE_DOWNLOAD_MAX_BYTES_PER_IP_PER_SECOND
+
 download_generate_video:
   max_parallel_downloads:
     __name: PEERTUBE_DOWNLOAD_GENERATE_VIDEO_MAX_PARALLEL_DOWNLOADS
