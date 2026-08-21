@@ -1529,8 +1529,9 @@ export async function buildLanguages () {
   languages['el'] = 'Greek'
   languages['tok'] = 'Toki Pona'
 
-  // Override Portuguese label
-  languages['pt'] = 'Portuguese (Brazilian)'
+  // Override Portuguese labels
+  // Keep generic "pt" (ISO-639-1) as plain Portuguese, and use explicit BCP47 codes for regional variants
+  languages['pt-BR'] = 'Portuguese (Brazilian)'
   languages['pt-PT'] = 'Portuguese (Portugal)'
 
   // Override Spanish labels
