@@ -428,6 +428,9 @@ export type VideojsPlayerOptions = Partial<VideojsPlayer['options_']> & {
   poster?: string
   preload?: 'none'
 
+  // Load the poster with `loading="eager"` + `fetchpriority="high"` instead of the video.js `lazy`/`auto` defaults
+  mainContent?: boolean
+
   plugins?: VideoJSPluginOptions
 
   controlBar?: {

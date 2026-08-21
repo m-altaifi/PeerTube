@@ -216,6 +216,8 @@ export class PlayerOptionsBuilder {
 
       theaterButton: false,
 
+      mainContent: true,
+
       serverUrl: getBackendUrl(),
       stunServers: serverConfig.webrtc.stunServers,
       language: navigator.language,

@@ -25,6 +25,9 @@ export type PeerTubePlayerConstructorOptions = {
 
   theaterButton: boolean
 
+  // The player is the main content of the page, so its poster is likely the LCP element
+  mainContent?: boolean
+
   authorizationHeader: () => string
 
   metricsUrl: string

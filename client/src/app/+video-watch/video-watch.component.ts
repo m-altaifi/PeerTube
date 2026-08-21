@@ -854,6 +854,8 @@ export class VideoWatchComponent implements OnInit, OnDestroy {
 
       theaterButton: true,
 
+      mainContent: true,
+
       controls: urlOptions.controls,
       controlBar: urlOptions.controlBar,
 
