@@ -273,7 +273,7 @@
       </trans-unit>
       <trans-unit id="3039775518917590629" datatype="html" xml:space="preserve">
         <source>Contact <x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> administrators</source>
-        <target state="translated">Contacter les administrateurs de <x id="INTERPOLATION" equiv-text="{{ instanceName }}"/></target>
+        <target state="translated">Contacter l'administration de <x id="INTERPOLATION" equiv-text="{{ instanceName }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-contact/about-contact.component.html</context>
           <context context-type="linenumber">2,4</context>
