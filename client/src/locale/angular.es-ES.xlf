@@ -11655,9 +11655,9 @@
           <context context-type="linenumber">124</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="642474058485369474" datatype="html">
+      <trans-unit id="642474058485369474" datatype="html" xml:space="preserve">
         <source>If the image is not in .svg format, it will be resized to 1200x650 pixels.</source>
-        <target state="new">If the image is not in .svg format, it will be resized to 1200x650 pixels.</target>
+        <target state="translated">Si la imagen no está en formato .svg, se redimensionará a 1200 x 650 píxeles.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-logo.component.html</context>
           <context context-type="linenumber">128,129</context>
