@@ -12391,7 +12391,7 @@
       </trans-unit>
       <trans-unit id="4924378635140045267" datatype="html" xml:space="preserve">
         <source>⚠️ This functionality requires a lot of attention and extra moderation</source>
-        <target state="translated">⚠️ Cette fonctionnalité nécessite beaucoup d'attention et une modération supplémentaire</target>
+        <target state="translated">⚠️ Cette fonctionnalité requiert beaucoup d’attention et une modération supplémentaire.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">185</context>
@@ -14123,7 +14123,7 @@
       </trans-unit>
       <trans-unit id="5389274721155083635" datatype="html" xml:space="preserve">
         <source>Primary color</source>
-        <target state="translated">Couleur principale</target>
+        <target state="translated">Couleur primaire</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-customization.component.ts</context>
           <context context-type="linenumber">133</context>
@@ -14151,7 +14151,7 @@
       </trans-unit>
       <trans-unit id="238646176953521330" datatype="html" xml:space="preserve">
         <source>Background color</source>
-        <target state="translated">Couleur d'arrière-plan</target>
+        <target state="translated">Couleur de fond</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-customization.component.ts</context>
           <context context-type="linenumber">136</context>
@@ -29272,7 +29272,7 @@
       </trans-unit>
       <trans-unit id="7556792076818503558" datatype="html" xml:space="preserve">
         <source>violence</source>
-        <target state="translated">violence</target>
+        <target state="translated">Violence</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-main/video/video.service.ts</context>
           <context context-type="linenumber">595</context>
