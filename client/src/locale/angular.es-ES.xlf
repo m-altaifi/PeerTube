@@ -11095,9 +11095,9 @@
           <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5902504074840207881" datatype="html">
+      <trans-unit id="5902504074840207881" datatype="html" xml:space="preserve">
         <source>Local jobs</source>
-        <target state="translated">Trabajos locales</target>
+        <target state="translated">Tareas locales</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/admin-settings.component.ts</context>
           <context context-type="linenumber">144</context>
@@ -11113,7 +11113,7 @@
       </trans-unit>
       <trans-unit id="7366387646685791945" datatype="html" xml:space="preserve">
         <source>Whether they're from channels you own or channels for which you're an editor</source>
-        <target state="translated">Ya sea de canales de los que eres propietario o canales de los que eres editor</target>
+        <target state="translated">Ya sea de canales de los cuales seas propietario o canales de los cuales seas editor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-comment/video-comment-list-admin-owner.component.ts</context>
           <context context-type="linenumber">126</context>
@@ -11183,25 +11183,25 @@
           <context context-type="linenumber">241</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1722554034307231103" datatype="html">
+      <trans-unit id="1722554034307231103" datatype="html" xml:space="preserve">
         <source>Exclude comments from muted accounts</source>
-        <target state="new">Exclude comments from muted accounts</target>
+        <target state="translated">Excluir los comentarios de las cuentas silenciadas</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-comment/video-comment-list-admin-owner.component.ts</context>
           <context context-type="linenumber">256</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2490133524262953633" datatype="html">
+      <trans-unit id="2490133524262953633" datatype="html" xml:space="preserve">
         <source>Commented video scope</source>
-        <target state="new">Commented video scope</target>
+        <target state="translated">Alcance de los vídeos con comentarios</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-comment/video-comment-list-admin-owner.component.ts</context>
           <context context-type="linenumber">261</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1271241007621398467" datatype="html">
+      <trans-unit id="1271241007621398467" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {1 comment deleted.} other {<x id="count"/> comments deleted.}}</source>
-        <target state="translated">{count, plural, =1 {un comentario eliminado.} other {<x id="count"/> comentarios eliminados.}}</target>
+        <target state="translated">{count, plural, =1 {1 comentario eliminado.} other {<x id="count"/> comentarios eliminados.}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-comment/video-comment-list-admin-owner.component.ts</context>
           <context context-type="linenumber">397</context>
