@@ -350,11 +350,13 @@ export async function checkVideoFilesWereRemoved (options: {
     const existingFiles = await readdir(directoryPath)
     for (const existingFile of existingFiles) {
       for (const shouldNotExist of directories[directory]) {
-        // Allow 500ms more for the file to be removed, because sometimes the file is still being removed when we check it
-        await wait(1000)
+        if (existingFile === shouldNotExist) {
+          // Allow 1000ms more for the file to be removed, because sometimes the file is still being removed when we check it
+          await wait(1000)
 
-        if (await pathExists(join(directoryPath, existingFile))) {
-          expect(existingFile, `File ${existingFile} should not exist in ${directoryPath}`).to.not.equal(shouldNotExist)
+          if (await pathExists(join(directoryPath, existingFile))) {
+            expect(existingFile, `File ${existingFile} should not exist in ${directoryPath}`).to.not.equal(shouldNotExist)
+          }
         }
       }
     }

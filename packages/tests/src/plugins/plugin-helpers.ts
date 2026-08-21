@@ -1,14 +1,17 @@
 /* oxlint-disable @typescript-eslint/no-unused-expressions,@typescript-eslint/require-await */
 
 import { HttpStatusCode, VideoPrivacy } from '@peertube/peertube-models'
+import { areMockObjectStorageTestsDisabled } from '@peertube/peertube-node-utils'
 import {
   cleanupTests,
   ConfigCommand,
   createMultipleServers,
+  createSingleServer,
   doubleFollow,
   makeGetRequest,
   makePostBodyRequest,
   makeRawRequest,
+  ObjectStorageCommand,
   PeerTubeServer,
   PluginsCommand,
   setAccessTokensToServers,
@@ -363,6 +366,48 @@ describe('Test plugin helpers', function () {
       }
     })
 
+    it('Should provide a locked video file to the plugin (local storage)', async function () {
+      const { body: filesBody } = await makeGetRequest({
+        url: servers[0].url,
+        path: '/plugins/test-four/router/video-files/' + videoUUID,
+        expectedStatus: HttpStatusCode.OK_200
+      })
+
+      for (const file of [ ...filesBody.webVideo.videoFiles, ...filesBody.hls.videoFiles ]) {
+        const { body } = await makeGetRequest({
+          url: servers[0].url,
+          path: `/plugins/test-four/router/with-file/${videoUUID}/${file.id}`,
+          expectedStatus: HttpStatusCode.OK_200
+        })
+
+        expect(body.path).to.equal(file.path)
+        expect(body.streamsLength).to.equal(2)
+        expect(body.existsDuringCallback).to.be.true
+
+        // Local storage files are not cleaned up after the plugin used them
+        expect(body.existsAfterCallback).to.be.true
+        expect(await pathExists(body.path)).to.be.true
+      }
+    })
+
+    it('Should return 404 when the video file does not belong to the video', async function () {
+      const { uuid: otherUUID } = await servers[0].videos.quickUpload({ name: 'other video' })
+      await waitJobs(servers)
+
+      const { body: filesBody } = await makeGetRequest({
+        url: servers[0].url,
+        path: '/plugins/test-four/router/video-files/' + videoUUID,
+        expectedStatus: HttpStatusCode.OK_200
+      })
+      const fileId = filesBody.webVideo.videoFiles[0].id
+
+      await makeGetRequest({
+        url: servers[0].url,
+        path: `/plugins/test-four/router/with-file/${otherUUID}/${fileId}`,
+        expectedStatus: HttpStatusCode.NOT_FOUND_404
+      })
+    })
+
     it('Should probe a file', async function () {
       const { body } = await makeGetRequest({
         url: servers[0].url,
@@ -435,5 +480,66 @@ describe('Test plugin helpers', function () {
 
   after(async function () {
     await cleanupTests(servers)
+  })
+})
+
+describe('Test plugin helpers videos.withFile with object storage', function () {
+  if (areMockObjectStorageTestsDisabled()) return
+
+  let server: PeerTubeServer
+  let videoUUID: string
+
+  const objectStorage = new ObjectStorageCommand()
+
+  before(async function () {
+    this.timeout(240000)
+
+    await objectStorage.prepareDefaultMockBuckets()
+
+    server = await createSingleServer(1, objectStorage.getDefaultMockConfig())
+    await setAccessTokensToServers([ server ])
+
+    await server.plugins.install({ path: PluginsCommand.getPluginTestPath('-four') })
+
+    await server.config.enableTranscoding({ webVideo: true, hls: true, resolutions: 'max' })
+
+    const res = await server.videos.quickUpload({ name: 'video1' })
+    videoUUID = res.uuid
+
+    await waitJobs([ server ])
+  })
+
+  it('Should provide a locked video file to the plugin, cleaning it up afterwards', async function () {
+    const { body: filesBody } = await makeGetRequest({
+      url: server.url,
+      path: '/plugins/test-four/router/video-files/' + videoUUID,
+      expectedStatus: HttpStatusCode.OK_200
+    })
+
+    // Object storage files do not have a local FS path
+    expect(filesBody.webVideo.videoFiles[0].path).to.be.null
+    expect(filesBody.hls.videoFiles[0].path).to.be.null
+
+    for (const file of [ ...filesBody.webVideo.videoFiles, ...filesBody.hls.videoFiles ]) {
+      const { body } = await makeGetRequest({
+        url: server.url,
+        path: `/plugins/test-four/router/with-file/${videoUUID}/${file.id}`,
+        expectedStatus: HttpStatusCode.OK_200
+      })
+
+      expect(body.path).to.be.a('string')
+      expect(body.streamsLength).to.equal(2)
+      expect(body.existsDuringCallback).to.be.true
+
+      // The file was downloaded from object storage to a tmp destination that must be cleaned up afterwards
+      expect(body.existsAfterCallback).to.be.false
+      expect(await pathExists(body.path)).to.be.false
+    }
+  })
+
+  after(async function () {
+    await objectStorage.cleanupMock()
+
+    await cleanupTests([ server ])
   })
 })

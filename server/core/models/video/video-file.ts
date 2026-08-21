@@ -310,7 +310,7 @@ export class VideoFileModel extends SequelizeModel<VideoFileModel> {
     return VideoFileModel.scope(ScopeNames.WITH_VIDEO).findByPk<MVideoFileVideo>(id, { transaction })
   }
 
-  static loadWithVideoOrPlaylist (id: number, videoIdOrUUID: number | string) {
+  static loadWithVideoOrPlaylist (id: number, videoIdOrUUID: number | string): Promise<MVideoFileVideo | MVideoFileStreamingPlaylistVideo> {
     const whereVideo = validator.default.isUUID(videoIdOrUUID + '')
       ? { uuid: videoIdOrUUID }
       : { id: videoIdOrUUID }

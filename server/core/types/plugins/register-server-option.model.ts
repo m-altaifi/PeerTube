@@ -72,9 +72,21 @@ export type PeerTubeHelpers = {
 
     ffprobe: (path: string) => Promise<any>
 
+    // PeerTube >= 8.3
+    // Make a video file available on disk (downloading it from remote storage if needed) so it can be analyzed
+    // The video files of the video are locked until the promise returned by `cb` is resolved/rejected
+    withFile: <T>(
+      options: {
+        videoId: number | string
+        videoFileId: number
+      },
+      cb: (path: string) => Promise<T> | T
+    ) => Promise<T>
+
     getFiles: (id: number | string) => Promise<{
       webVideo: {
         videoFiles: {
+          id: number
           path: string // Could be null if using remote storage
           url: string
           resolution: number
@@ -85,6 +97,7 @@ export type PeerTubeHelpers = {
 
       hls: {
         videoFiles: {
+          id: number
           path: string // Could be null if using remote storage
           url: string
           resolution: number

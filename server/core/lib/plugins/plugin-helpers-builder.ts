@@ -1,5 +1,6 @@
 import { ffprobePromise } from '@peertube/peertube-ffmpeg'
 import { FileStorage, VideoBlacklistCreate } from '@peertube/peertube-models'
+import { Awaitable } from '@peertube/peertube-typescript-utils'
 import { toCompleteUUID } from '@server/helpers/custom-validators/misc.js'
 import { buildWinstonLogger, createLogger } from '@server/helpers/logger.js'
 import { CONFIG } from '@server/initializers/config.js'
@@ -14,6 +15,7 @@ import { ServerBlocklistModel } from '@server/models/blocklist/server-blocklist.
 import { ServerModel } from '@server/models/server/server.js'
 import { UserModel } from '@server/models/user/user.js'
 import { VideoBlacklistModel } from '@server/models/video/video-blacklist.js'
+import { VideoFileModel } from '@server/models/video/video-file.js'
 import { VideoModel } from '@server/models/video/video.js'
 import { MPlugin, MVideo, UserNotificationModelForApi } from '@server/types/models/index.js'
 import { PeerTubeHelpers } from '@server/types/plugins/index.js'
@@ -115,11 +117,35 @@ function buildVideosHelpers (npmName: string) {
       return ffprobePromise(path)
     },
 
+    withFile: async <T>(
+      options: {
+        videoId: number | string
+        videoFileId: number
+      },
+      cb: (path: string) => Awaitable<T>
+    ) => {
+      const videoFile = await VideoFileModel.loadWithVideoOrPlaylist(options.videoFileId, toCompleteUUID(options.videoId))
+      if (!videoFile) throw new Error('Video file not found')
+
+      const video = videoFile.getVideo()
+
+      return logger.withContext([ npmName, video.uuid ], async () => {
+        const releaser = await VideoPathManager.Instance.lockFiles(video.uuid)
+
+        try {
+          return await VideoPathManager.Instance.makeAvailableVideoFile(videoFile, cb)
+        } finally {
+          releaser()
+        }
+      })
+    },
+
     getFiles: async (id: number | string) => {
       const video = await VideoModel.loadFull(id)
       if (!video) return undefined
 
       const webVideoFiles = (video.VideoFiles || []).map(f => ({
+        id: f.id,
         path: f.storage === FileStorage.FILE_SYSTEM
           ? VideoPathManager.Instance.getFSVideoFileOutputPath(video, f)
           : null,
@@ -135,6 +161,7 @@ function buildVideosHelpers (npmName: string) {
       const hlsVideoFiles = hls
         ? (video.getHLSPlaylist().VideoFiles || []).map(f => {
           return {
+            id: f.id,
             path: f.storage === FileStorage.FILE_SYSTEM
               ? VideoPathManager.Instance.getFSVideoFileOutputPath(hls, f)
               : null,

@@ -142,6 +142,30 @@ async function register ({
       return res.json(result)
     })
 
+    router.get('/with-file/:videoId/:fileId', async (req, res) => {
+      const { existsSync } = require('fs')
+
+      try {
+        const result = await peertubeHelpers.videos.withFile(
+          { videoId: req.params.videoId, videoFileId: parseInt(req.params.fileId) },
+          async path => {
+            const probe = await peertubeHelpers.videos.ffprobe(path)
+
+            return {
+              path,
+              streamsLength: probe.streams.length,
+              existsDuringCallback: existsSync(path)
+            }
+          }
+        )
+
+        return res.json({ ...result, existsAfterCallback: existsSync(result.path) })
+      } catch (err) {
+        logger.error('Error in with-file.', { err })
+        return res.sendStatus(404)
+      }
+    })
+
     router.post('/send-notification', async (req, res) => {
       peertubeHelpers.socket.sendNotification(req.body.userId, {
         type: 1,
