@@ -1,6 +1,6 @@
 /* oxlint-disable @typescript-eslint/no-unused-expressions,@typescript-eslint/no-floating-promises */
 
-import { uuidRegex } from '@peertube/peertube-core-utils'
+import { uuidRegex, wait } from '@peertube/peertube-core-utils'
 import { ffprobePromise } from '@peertube/peertube-ffmpeg'
 import {
   FileStorage,
@@ -350,7 +350,12 @@ export async function checkVideoFilesWereRemoved (options: {
     const existingFiles = await readdir(directoryPath)
     for (const existingFile of existingFiles) {
       for (const shouldNotExist of directories[directory]) {
-        expect(existingFile, `File ${existingFile} should not exist in ${directoryPath}`).to.not.contain(shouldNotExist)
+        // Allow 500ms more for the file to be removed, because sometimes the file is still being removed when we check it
+        await wait(1000)
+
+        if (await pathExists(join(directoryPath, existingFile))) {
+          expect(existingFile, `File ${existingFile} should not exist in ${directoryPath}`).to.not.equal(shouldNotExist)
+        }
       }
     }
   }
