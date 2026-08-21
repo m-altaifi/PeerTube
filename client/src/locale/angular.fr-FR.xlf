@@ -29842,9 +29842,9 @@
           <context context-type="linenumber">1169</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1887788831759691756" datatype="html">
+      <trans-unit id="1887788831759691756" datatype="html" xml:space="preserve">
         <source><x id="PH" equiv-text="this.serverConfig.instance.name"/> - Videos feed</source>
-        <target state="new"><x id="PH" equiv-text="this.serverConfig.instance.name"/> - Videos feed</target>
+        <target state="translated"><x id="PH" equiv-text="this.serverConfig.instance.name"/> - Flux RSS des vidéos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/video-watch.component.ts</context>
           <context context-type="linenumber">1199</context>
@@ -29854,9 +29854,9 @@
           <context context-type="linenumber">1215</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="513070917830516194" datatype="html">
+      <trans-unit id="513070917830516194" datatype="html" xml:space="preserve">
         <source><x id="PH" equiv-text="this.playlist.displayName"/> - Podcast feed</source>
-        <target state="new"><x id="PH" equiv-text="this.playlist.displayName"/> - Podcast feed</target>
+        <target state="translated"><x id="PH" equiv-text="this.playlist.displayName"/> - Flux RSS des Podcasts</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/video-watch.component.ts</context>
           <context context-type="linenumber">1200</context>
@@ -29878,9 +29878,9 @@
           <context context-type="linenumber">1202</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5232693393816852420" datatype="html">
+      <trans-unit id="5232693393816852420" datatype="html" xml:space="preserve">
         <source><x id="PH" equiv-text="video.name"/> - Comments feed</source>
-        <target state="new"><x id="PH" equiv-text="video.name"/> - Comments feed</target>
+        <target state="translated"><x id="PH" equiv-text="video.name"/> - Flux RSS des commentaires</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/video-watch.component.ts</context>
           <context context-type="linenumber">1216</context>
