@@ -20,6 +20,7 @@ type JsonldSchema = {
   url: string
 
   embedUrl?: string
+  contentUrl?: string
   uploadDate?: string
 
   thumbnailUrl?: string
@@ -103,6 +104,8 @@ export type TagsOptions = {
     duration: number
     language: string
     tags: string[]
+
+    contentUrl?: string
 
     views: number
     likes: number
@@ -378,6 +381,9 @@ export class TagsHtml {
             'userInteractionCount': video.dislikes
           }
         ]
+
+        // Google prefers `contentUrl` over `embedUrl` to fetch the video content
+        if (video.contentUrl) schema['contentUrl'] = video.contentUrl
 
         if (video.duration) schema['duration'] = getActivityStreamDuration(video.duration)
         if (video.language) schema['inLanguage'] = video.language

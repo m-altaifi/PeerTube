@@ -1,7 +1,14 @@
 /* oxlint-disable @typescript-eslint/no-unused-expressions,@typescript-eslint/require-await */
 
 import { maxBy, minBy } from '@peertube/peertube-core-utils'
-import { HttpStatusCode, VideoCreateResult, VideoPlaylistCreateResult, VideoPrivacy } from '@peertube/peertube-models'
+import {
+  HttpStatusCode,
+  VideoCreateResult,
+  VideoDetails,
+  VideoPlaylistCreateResult,
+  VideoPrivacy,
+  VideoResolution
+} from '@peertube/peertube-models'
 import {
   PeerTubeServer,
   cleanupTests,
@@ -31,6 +38,14 @@ async function getJSONLD (server: PeerTubeServer, path: string) {
   if (!matches) return null
 
   return JSON.parse(matches[1])
+}
+
+// Web video file the closest to 720p, or the HLS master playlist for HLS only videos
+function getExpectedContentUrl (video: VideoDetails) {
+  const files = video.files.filter(f => f.resolution.id !== VideoResolution.H_NOVIDEO)
+  if (files.length === 0) return video.streamingPlaylists[0]?.playlistUrl
+
+  return minBy(files.map(f => ({ fileUrl: f.fileUrl, distance: Math.abs(f.resolution.id - 720) })), 'distance').fileUrl
 }
 
 describe('Test JSONLD HTML tags', function () {
@@ -121,6 +136,7 @@ describe('Test JSONLD HTML tags', function () {
           'duration': 'PT' + video.duration + 'S',
           'url': server.url + '/w/' + publicVideo.shortUUID,
           'embedUrl': server.url + '/videos/embed/' + publicVideo.shortUUID,
+          'contentUrl': getExpectedContentUrl(video),
 
           'author': {
             '@type': 'Organization',
@@ -205,6 +221,42 @@ describe('Test JSONLD HTML tags', function () {
           'tag2'
         ])
       }
+    })
+
+    it('Should prefer the 720p web video file as content URL', async function () {
+      this.timeout(120000)
+
+      await servers[0].config.enableMinimumTranscoding({ webVideo: true, hls: false })
+
+      const { uuid } = await servers[0].videos.quickUpload({ name: 'transcoded video' })
+      await waitJobs(servers)
+
+      for (const server of servers) {
+        const video = await server.videos.get({ id: uuid })
+        expect(video.files.map(f => f.resolution.id)).to.have.members([ 240, 720 ])
+
+        const jsonld = await getJSONLD(server, getWatchVideoBasePaths()[0] + uuid)
+        expect(jsonld.contentUrl).to.equal(video.files.find(f => f.resolution.id === 720).fileUrl)
+      }
+    })
+
+    it('Should use the HLS playlist as content URL of an HLS only video', async function () {
+      this.timeout(120000)
+
+      await servers[0].config.enableMinimumTranscoding({ webVideo: false, hls: true })
+
+      const { uuid } = await servers[0].videos.quickUpload({ name: 'hls only video' })
+      await waitJobs(servers)
+
+      for (const server of servers) {
+        const video = await server.videos.get({ id: uuid })
+        expect(video.files).to.have.lengthOf(0)
+
+        const jsonld = await getJSONLD(server, getWatchVideoBasePaths()[0] + uuid)
+        expect(jsonld.contentUrl).to.equal(video.streamingPlaylists[0].playlistUrl)
+      }
+
+      await servers[0].config.disableTranscoding()
     })
   })
 

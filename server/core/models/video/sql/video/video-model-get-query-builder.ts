@@ -24,7 +24,7 @@ export type GetType =
   | 'video'
   | 'seo'
 
-const videoFilesInclude = new Set<GetType>([ 'api', 'ap', 'full', 'account-blacklist-files', 'all-files' ])
+const videoFilesInclude = new Set<GetType>([ 'api', 'ap', 'full', 'account-blacklist-files', 'all-files', 'seo' ])
 // Infohashes are only needed to build magnet URIs (API) and P2P media loader tags (AP)
 const infohashesInclude = new Set<GetType>([ 'api', 'ap' ])
 const captionsInclude = new Set<GetType>([ 'ap', 'seo' ])

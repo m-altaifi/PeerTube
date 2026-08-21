@@ -24,6 +24,7 @@ import {
 } from '@peertube/peertube-models'
 import { uuidToShort } from '@peertube/peertube-node-utils'
 import { AttributesOnly } from '@peertube/peertube-typescript-utils'
+import { Memoize } from '@server/helpers/memoize.js'
 import { getPrivaciesForFederation } from '@server/helpers/video.js'
 import { MVideoToFederate, isPrivacyForFederation } from '@server/lib/activitypub/videos/federate.js'
 import { InternalEventEmitter } from '@server/lib/internal-event-emitter.js'
@@ -83,7 +84,7 @@ import {
 } from '../../helpers/custom-validators/videos.js'
 import { createLogger } from '../../helpers/logger.js'
 import { CONFIG } from '../../initializers/config.js'
-import { ACTIVITY_PUB, CONSTRAINTS_FIELDS, WEBSERVER } from '../../initializers/constants.js'
+import { ACTIVITY_PUB, CONSTRAINTS_FIELDS, MEMOIZE_LENGTH, MEMOIZE_TTL, WEBSERVER } from '../../initializers/constants.js'
 import { sendDeleteVideo } from '../../lib/activitypub/send/index.js'
 import type {
   MAccountId,
@@ -1421,10 +1422,13 @@ export class VideoModel extends SequelizeModel<VideoModel> {
     return queryBuilder.queryVideo({ id, transaction, type: 'blacklist' })
   }
 
-  static loadForSEO (id: number | string, transaction?: Transaction): Promise<MVideoSeo> {
+  // Watch/embed page HTML is rebuilt on every request: cache the video so a burst of hits on the same video
+  // doesn't replay the SEO queries (video + web video files + streaming playlist files)
+  @Memoize({ promise: true, max: MEMOIZE_LENGTH.VIDEO_SEO, maxAge: MEMOIZE_TTL.VIDEO_SEO })
+  static loadForSEO (id: number | string): Promise<MVideoSeo> {
     const queryBuilder = new VideoModelGetQueryBuilder(VideoModel.sequelize)
 
-    return queryBuilder.queryVideo({ id, transaction, type: 'seo' })
+    return queryBuilder.queryVideo({ id, type: 'seo' })
   }
 
   static loadImmutableAttributes (id: number | string, t?: Transaction): Promise<MVideoImmutable> {

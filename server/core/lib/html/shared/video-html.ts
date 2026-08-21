@@ -1,5 +1,5 @@
 import { addQueryParams, escapeHTML } from '@peertube/peertube-core-utils'
-import { HttpStatusCode, VideoPrivacy } from '@peertube/peertube-models'
+import { HttpStatusCode, VideoPrivacy, VideoResolution } from '@peertube/peertube-models'
 import { Memoize } from '@server/helpers/memoize.js'
 import { getVideoRSSFeeds } from '@server/lib/rss.js'
 import { VideoCaptionModel } from '@server/models/video/video-caption.js'
@@ -133,6 +133,8 @@ export class VideoHtml {
       video: {
         publishedAt: video.publishedAt.toISOString(),
         duration: video.duration,
+
+        contentUrl: this.getContentUrl(video),
         views: video.views,
         language: video.language,
         dislikes: video.dislikes,
@@ -161,6 +163,29 @@ export class VideoHtml {
         ? getVideoRSSFeeds(video, req)
         : []
     }, { video })
+  }
+
+  // Crawlers prefer a URL they can fetch and probe themselves over the embed page
+  private static getContentUrl (video: MVideoSeo) {
+    const webVideoFile = this.getSEOWebVideoFile(video)
+    if (webVideoFile) return webVideoFile.getFileUrl(video)
+
+    // HLS only video: fallback on the master playlist
+    return video.getHLSPlaylist()?.getMasterPlaylistUrl(video)
+  }
+
+  // Prefer 720p: crawlers get enough to probe the video without us serving them our biggest file
+  private static getSEOWebVideoFile (video: MVideoSeo) {
+    const files = (video.VideoFiles || []).filter(f => f.resolution !== VideoResolution.H_NOVIDEO)
+    if (files.length === 0) return undefined
+
+    return files.sort((a, b) => {
+      const distance = Math.abs(a.resolution - 720) - Math.abs(b.resolution - 720)
+      if (distance !== 0) return distance
+
+      // prefer smaller file
+      return a.resolution - b.resolution
+    })[0]
   }
 
   private static getOEmbedUrl (video: MVideo, currentQuery: Record<string, string>) {

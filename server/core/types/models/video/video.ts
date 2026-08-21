@@ -115,6 +115,8 @@ export type MVideoSeo =
   & Use<'VideoChannel', MChannelAccountLight>
   & Use<'Tags', MTag[]>
   & Use<'VideoCaptions', MVideoCaptionLanguageUrl[]>
+  & Use<'VideoFiles', MVideoFile[]>
+  & Use<'VideoStreamingPlaylists', MStreamingPlaylistFiles[]>
 
 // ############################################################################
 
