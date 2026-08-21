@@ -11239,9 +11239,9 @@
           <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2719284837486030903" datatype="html">
+      <trans-unit id="2719284837486030903" datatype="html" xml:space="preserve">
         <source>Job type</source>
-        <target state="translated">Tipo de trabajo</target>
+        <target state="translated">Tipo de tarea</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/system/jobs/jobs.component.ts</context>
           <context context-type="linenumber">80</context>
@@ -11251,9 +11251,9 @@
           <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6170245880855918780" datatype="html">
+      <trans-unit id="6170245880855918780" datatype="html" xml:space="preserve">
         <source>Job state</source>
-        <target state="translated">Estado del trabajo</target>
+        <target state="translated">Estado de la tarea</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/system/jobs/jobs.component.ts</context>
           <context context-type="linenumber">92</context>
@@ -11325,7 +11325,7 @@
       </trans-unit>
       <trans-unit id="5412611865788148550" datatype="html" xml:space="preserve">
         <source>Filter by type: <x id="PH" equiv-text="type.toLocaleUpperCase()"/></source>
-        <target state="translated">Filtro por tipo: <x id="PH" equiv-text="type.toLocaleUpperCase()"/></target>
+        <target state="translated">Filtrar por tipo: <x id="PH" equiv-text="type.toLocaleUpperCase()"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/system/jobs/jobs.component.ts</context>
           <context context-type="linenumber">168</context>
@@ -11333,15 +11333,15 @@
       </trans-unit>
       <trans-unit id="6417143148487697946" datatype="html" xml:space="preserve">
         <source>Are you sure you want to cancel job <x id="PH" equiv-text="job.id"/>?</source>
-        <target state="translated">¿Seguro que quiere cancelar el trabajo <x id="PH" equiv-text="job.id"/>?</target>
+        <target state="translated">¿Seguro que quieres cancelar la tarea <x id="PH" equiv-text="job.id"/>?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/system/jobs/jobs.component.ts</context>
           <context context-type="linenumber">178</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5200752682405061561" datatype="html">
+      <trans-unit id="5200752682405061561" datatype="html" xml:space="preserve">
         <source>Cancel job</source>
-        <target state="new">Cancel job</target>
+        <target state="translated">Cancela tarea</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/system/jobs/jobs.component.ts</context>
           <context context-type="linenumber">178</context>
@@ -11351,9 +11351,9 @@
           <context context-type="linenumber">179</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7060183792589771743" datatype="html">
+      <trans-unit id="7060183792589771743" datatype="html" xml:space="preserve">
         <source>Keep job</source>
-        <target state="new">Keep job</target>
+        <target state="translated">Mantener tarea</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/system/jobs/jobs.component.ts</context>
           <context context-type="linenumber">180</context>
@@ -11361,7 +11361,7 @@
       </trans-unit>
       <trans-unit id="7072706922467312188" datatype="html" xml:space="preserve">
         <source>Job <x id="PH" equiv-text="job.id"/> cancellation requested</source>
-        <target state="translated">Cancelación pedida del trabajo <x id="PH" equiv-text="job.id"/></target>
+        <target state="translated">Cancelación de la tarea solicitada<x id="PH" equiv-text="job.id"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/system/jobs/jobs.component.ts</context>
           <context context-type="linenumber">188</context>
@@ -11369,7 +11369,7 @@
       </trans-unit>
       <trans-unit id="6971048580938828360" datatype="html" xml:space="preserve">
         <source>Cannot cancel job <x id="PH" equiv-text="job.id"/></source>
-        <target state="translated">No se puede cancelar el tgrabajo <x id="PH" equiv-text="job.id"/></target>
+        <target state="translated">No se puede cancelar la tarea <x id="PH" equiv-text="job.id"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/system/jobs/jobs.component.ts</context>
           <context context-type="linenumber">191</context>
@@ -11493,7 +11493,7 @@
       </trans-unit>
       <trans-unit id="2989122020331473189" datatype="html" xml:space="preserve">
         <source>Square icon is used in the mobile application and can be used on your custom homepage.</source>
-        <target state="translated">El icono cuadrado es usado en la aplicación móvil y puede ser usado en tu página de inicio personalizada.</target>
+        <target state="translated">El icono cuadrado se usa en la aplicación móvil y puede ser usado en tu página de inicio personalizada.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-logo.component.html</context>
           <context context-type="linenumber">15</context>
@@ -11517,15 +11517,15 @@
       </trans-unit>
       <trans-unit id="1702458049569424041" datatype="html" xml:space="preserve">
         <source>Banner is displayed in the about, login and registration pages and be used on your custom homepage.</source>
-        <target state="translated">El banner se muestra en las páginas de acerca de, inicio de sesión y registro y puede ser usado en tu página personal.</target>
+        <target state="translated">El banner se muestra en las páginas de acerca, de inicio de sesión y de registro y puede ser usado en tu página personal.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-logo.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6978211014802048979" datatype="html">
+      <trans-unit id="6978211014802048979" datatype="html" xml:space="preserve">
         <source>It can also be displayed on external websites to promote your instance, such as <x id="START_LINK" ctype="x-a" equiv-text="&lt;a target=&quot;_blank&quot; href=&quot;https://joinpeertube.org/instances&quot;             &gt;"/>JoinPeerTube.org<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </source>
-        <target state="new"> It can also be displayed on external websites to promote your instance, such as <x id="START_LINK" ctype="x-a" equiv-text="&lt;a target=&quot;_blank&quot; href=&quot;https://joinpeertube.org/instances&quot;             &gt;"/>JoinPeerTube.org<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </target>
+        <target state="translated">También se puede mostrar en páginas web externas para promocionar tu instancia, como por ejemplo <x id="START_LINK" ctype="x-a" equiv-text="&lt;a target=&quot;_blank&quot; href=&quot;https://joinpeertube.org/instances&quot;             &gt;"/>JoinPeerTube.org<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-logo.component.html</context>
           <context context-type="linenumber">29</context>
@@ -11567,9 +11567,9 @@
           <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6968024281421956913" datatype="html">
+      <trans-unit id="6968024281421956913" datatype="html" xml:space="preserve">
         <source>If the image is not in .svg format, it will be resized to 32x32 pixels and converted to .png format.</source>
-        <target state="new">If the image is not in .svg format, it will be resized to 32x32 pixels and converted to .png format.</target>
+        <target state="translated">Si la imagen no está en formato .svg, se redimensionará a 32 x 32 píxeles y se convertirá al formato .png.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-logo.component.html</context>
           <context context-type="linenumber">46,47</context>
@@ -11591,9 +11591,9 @@
           <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2548546342283535220" datatype="html">
+      <trans-unit id="2548546342283535220" datatype="html" xml:space="preserve">
         <source>If the image is not in .svg format, its height will be reduced to 48 pixels and the width will be calculated based on the original file ratio.</source>
-        <target state="new">If the image is not in .svg format, its height will be reduced to 48 pixels and the width will be calculated based on the original file ratio.</target>
+        <target state="translated">Si la imagen no está en formato .svg, su altura se reducirá a 48 píxeles y la anchura se calculará en función de la relación de aspecto del archivo original.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-logo.component.html</context>
           <context context-type="linenumber">69,70</context>
