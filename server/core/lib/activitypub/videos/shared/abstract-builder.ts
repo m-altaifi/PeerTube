@@ -235,6 +235,7 @@ export abstract class APVideoAbstractBuilder {
   }
 
   // The automatic tags are built from the name and the description, so they only have to be rebuilt when one changed
+  // TODO: add support if remote file changed
   protected automaticTagsNeedRebuild (options: {
     video: MVideo
     oldVideo?: Pick<MVideo, 'name' | 'description'>

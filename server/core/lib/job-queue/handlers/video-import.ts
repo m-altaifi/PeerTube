@@ -309,13 +309,10 @@ async function afterImportSuccess (options: {
   const { video, videoFile, videoImport, user, generateTranscription } = options
 
   // The file now exists, so plugin auto taggers can analyze it
-  // They can be slow, so let the `build-object-automatic-tags` job run them instead of blocking this queue
-  // Hold the video until it has confirmed or released the hold: the video has not been announced yet
-  // Note the video may already be blocked by the instance policy, applied by `insertFromImportIntoDB`
-  const { pendingAutomaticTags } = await autoBlacklistVideoIfNeeded({
+  const autoBlacklistStatus = await autoBlacklistVideoIfNeeded({
     video,
     user,
-    automaticTagsPending: true,
+    holdIfAutoTagPolicy: true,
     isRemote: false,
     isNew: true,
     isNewFile: true,
@@ -325,7 +322,7 @@ async function afterImportSuccess (options: {
 
   createVideoAutomaticTagsJob({
     video,
-    moderation: pendingAutomaticTags
+    moderation: autoBlacklistStatus === 'held-for-auto-tags'
       ? 'release-hold'
       : 'apply'
   })
@@ -334,14 +331,12 @@ async function afterImportSuccess (options: {
 
   // A video held for its automatic tags is announced by the job instead, which also notifies the moderators if it
   // ends up confirming the block
-  if (!pendingAutomaticTags) {
-    if (video.isBlacklisted()) {
-      const videoBlacklist = Object.assign(video.VideoBlacklist, { Video: video })
+  if (autoBlacklistStatus === 'auto-blacklisted') {
+    const videoBlacklist = Object.assign(video.VideoBlacklist, { Video: video })
 
-      Notifier.Instance.notifyOnVideoAutoBlacklist(videoBlacklist)
-    } else {
-      Notifier.Instance.notifyOnNewVideoOrLiveIfNeeded(video)
-    }
+    Notifier.Instance.notifyOnVideoAutoBlacklist(videoBlacklist)
+  } else if (autoBlacklistStatus === 'not-auto-blacklisted') {
+    Notifier.Instance.notifyOnNewVideoOrLiveIfNeeded(video)
   }
 
   // Generate the storyboard in the job queue, and don't forget to federate an update after

@@ -468,7 +468,6 @@ describe('Test automatic tags', function () {
         await waitJobs(servers)
 
         const { total, data } = await servers[0].videos.listAllForAdmin({ autoTagOneOf: [ 'mickey list v2' ] })
-        console.log(data)
         expect(total).to.equal(0)
         expect(data).to.have.lengthOf(0)
       })

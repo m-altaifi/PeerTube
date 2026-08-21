@@ -79,7 +79,7 @@ export async function insertFromImportIntoDB (parameters: {
     // The video stays in the `TO_IMPORT` state until then, so it is neither federated nor notified
     await autoBlacklistVideoIfNeeded({
       video: videoCreated,
-      automaticTagsPending: false,
+      holdIfAutoTagPolicy: false,
       user,
       notify: false,
       isRemote: false,

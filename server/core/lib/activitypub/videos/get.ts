@@ -2,6 +2,7 @@ import { APObjectId } from '@peertube/peertube-models'
 import { retryTransactionWrapper } from '@server/helpers/database-utils.js'
 import { createLogger } from '@server/helpers/logger.js'
 import { loadVideoByUrl } from '@server/lib/model-loaders/index.js'
+import { AutoBlacklistStatus } from '@server/lib/video-blacklist.js'
 import { MVideoAccountLightBlacklistAllFiles, MVideoImmutable, MVideoThumbnails, MVideoWithBlacklist } from '@server/types/models/index.js'
 import { getAPId } from '../activity.js'
 import { refreshVideoIfNeeded, scheduleVideoRefreshIfNeeded } from './refresh.js'
@@ -12,7 +13,7 @@ const logger = createLogger()
 type GetVideoResult<T> = Promise<{
   video: T
   created: boolean
-  autoBlacklisted?: boolean
+  autoBlacklistStatus?: AutoBlacklistStatus
 }>
 
 type GetVideoParamAll = {
@@ -82,11 +83,11 @@ export async function getOrCreateAPVideo (
 
     try {
       const creator = new APVideoCreator(videoObject)
-      const { autoBlacklisted, videoCreated } = await retryTransactionWrapper(() => creator.create())
+      const { autoBlacklistStatus, videoCreated } = await retryTransactionWrapper(() => creator.create())
 
       await syncVideoExternalAttributes(videoCreated, videoObject, syncParam)
 
-      return { video: videoCreated, created: true, autoBlacklisted }
+      return { video: videoCreated, created: true, autoBlacklistStatus }
     } catch (err) {
       // Maybe a concurrent getOrCreateAPVideo call created this video
       if (err.name === 'SequelizeUniqueConstraintError') {

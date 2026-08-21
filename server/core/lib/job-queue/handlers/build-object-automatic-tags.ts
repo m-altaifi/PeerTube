@@ -5,7 +5,7 @@ import { sequelizeTypescript } from '@server/initializers/database.js'
 import { buildAndSaveCommentAutomaticTags, buildAndSaveVideoAutomaticTags } from '@server/lib/automatic-tags/automatic-tags.js'
 import { Notifier } from '@server/lib/notifier/index.js'
 import { autoBlacklistVideoByAutoTagPolicyIfNeeded, resolvePendingAutoTagBlacklist } from '@server/lib/video-blacklist.js'
-import { approveComment, getCommentReviewDecision } from '@server/lib/video-comment.js'
+import { approveComment, getCommentHoldStatus } from '@server/lib/video-comment.js'
 import { UserModel } from '@server/models/user/user.js'
 import { VideoCommentModel } from '@server/models/video/video-comment.js'
 import { VideoModel } from '@server/models/video/video.js'
@@ -80,17 +80,17 @@ async function buildOfComment (payload: BuildObjectAutomaticTagsPayload) {
       if (commentReloaded.heldForReview) {
         const video = commentReloaded.Video
 
-        const { heldForReview } = await getCommentReviewDecision({
+        const holdStatus = await getCommentHoldStatus({
           user: commentReloaded.accountId
             ? await UserModel.loadByAccountId(commentReloaded.accountId, t)
             : null,
           video,
-          automaticTagsPending: false,
+          holdIfAutoTagPolicy: false,
           ownerAutomaticTags: automaticTagsByAccount[video.VideoChannel.accountId],
           transaction: t
         })
 
-        if (!heldForReview) {
+        if (holdStatus === 'not-held') {
           // The comment was only held while waiting for its automatic tags: its author must not be notified of an approval
           await approveComment(commentReloaded, { notify: false, transaction: t })
           commentReloaded.heldForReview = false
@@ -100,8 +100,7 @@ async function buildOfComment (payload: BuildObjectAutomaticTagsPayload) {
       }
 
       // The video owner has not been notified at creation, because the held status of the comment was not final yet
-      // Notify it even if the comment is still held for review, so it can approve it (same as a comment held by
-      // a `commentsPolicy: REQUIRES_APPROVAL` video, which is notified synchronously at creation)
+      // Notify it even if the comment is still held for review, so it can approve it
       // `notify` is false for a comment that only exists to complete a federated thread (see `resolveThread`)
       if (payload.notify !== false) {
         afterCommitIfTransaction(t, () => Notifier.Instance.notifyOnNewComment(commentReloaded))

@@ -209,7 +209,7 @@ export class LocalVideoUpdater {
           isRemote: false,
           isNew: false,
           isNewFile: false,
-          automaticTagsPending: false,
+          holdIfAutoTagPolicy: false,
           transaction: t
         })
 

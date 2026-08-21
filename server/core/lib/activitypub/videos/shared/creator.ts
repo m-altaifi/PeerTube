@@ -30,7 +30,7 @@ export class APVideoCreator extends APVideoAbstractBuilder {
     const videoData = getVideoAttributesFromObject(channel, this.videoObject, this.videoObject.to)
     const video = VideoModel.build({ ...videoData, likes: 0, dislikes: 0 }) as MVideoThumbnails
 
-    const { autoBlacklisted, videoCreated } = await sequelizeTypescript.transaction(async t => {
+    const { autoBlacklistStatus, videoCreated } = await sequelizeTypescript.transaction(async t => {
       const videoCreated = await video.save({ transaction: t }) as MVideoFull
       videoCreated.VideoChannel = channel
 
@@ -46,9 +46,9 @@ export class APVideoCreator extends APVideoAbstractBuilder {
       // We added a video in this channel, set it as updated
       await channel.setAsUpdated(t)
 
-      const { blacklisted: autoBlacklisted, pendingAutomaticTags } = await autoBlacklistVideoIfNeeded({
+      const autoBlacklistStatus = await autoBlacklistVideoIfNeeded({
         video: videoCreated,
-        automaticTagsPending: true,
+        holdIfAutoTagPolicy: true,
         user: undefined,
         isRemote: true,
         isNew: true,
@@ -58,7 +58,7 @@ export class APVideoCreator extends APVideoAbstractBuilder {
 
       createVideoAutomaticTagsJob({
         video: videoCreated,
-        moderation: pendingAutomaticTags
+        moderation: autoBlacklistStatus === 'held-for-auto-tags'
           ? 'release-hold'
           : 'apply',
         transaction: t
@@ -68,12 +68,12 @@ export class APVideoCreator extends APVideoAbstractBuilder {
 
       Hooks.runAction('action:activity-pub.remote-video.created', { video: videoCreated, videoAPObject: this.videoObject })
 
-      return { autoBlacklisted, videoCreated }
+      return { autoBlacklistStatus, videoCreated }
     })
 
     await this.updateChapters(videoCreated)
     await this.upsertPlayerSettings(videoCreated)
 
-    return { autoBlacklisted, videoCreated }
+    return { autoBlacklistStatus, videoCreated }
   }
 }

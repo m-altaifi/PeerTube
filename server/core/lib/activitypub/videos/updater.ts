@@ -91,12 +91,10 @@ export class APVideoUpdater extends APVideoAbstractBuilder {
       await this.updateChapters(videoUpdated)
       await this.upsertPlayerSettings(videoUpdated)
 
-      // The video is already published: don't hold it while its automatic tags are rebuilt, or a simple metadata
-      // update would block it and re-announce it to the subscribers once released
-      // The `build-object-automatic-tags` job applies the auto tag block policies afterwards
       await autoBlacklistVideoIfNeeded({
         video: videoUpdated,
-        automaticTagsPending: false,
+        // Already published: don't hold it while its automatic tags are rebuilt
+        holdIfAutoTagPolicy: false,
         user: undefined,
         isRemote: true,
         isNew: false,

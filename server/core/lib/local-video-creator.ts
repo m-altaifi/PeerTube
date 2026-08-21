@@ -194,24 +194,23 @@ export class LocalVideoCreator {
           }
         }
 
-        // A video with a file has its automatic tags built by `addVideoJobsAfterCreation`, before it is announced.
-        // A video without one (live) is federated right away, so hold it until the tagging job has run
-        const holdForAutomaticTags = !this.videoFile
-
-        const { pendingAutomaticTags } = await autoBlacklistVideoIfNeeded({
+        const autoBlacklistStatus = await autoBlacklistVideoIfNeeded({
           video: this.video,
           user: this.options.user,
-          automaticTagsPending: holdForAutomaticTags,
+          // A video with a file has its automatic tags built by `addVideoJobsAfterCreation`, before it is announced.
+          // A video without one (live) is federated right away, so hold it until the tagging job has run
+          holdIfAutoTagPolicy: !this.videoFile,
           isRemote: false,
           isNew: true,
           isNewFile: true,
           transaction
         })
 
-        if (holdForAutomaticTags) {
+        // Keep it sync with `holdIfAutoTagPolicy` above
+        if (!this.videoFile) {
           createVideoAutomaticTagsJob({
             video: this.video,
-            moderation: pendingAutomaticTags
+            moderation: autoBlacklistStatus === 'held-for-auto-tags'
               ? 'release-hold'
               : 'apply',
             transaction

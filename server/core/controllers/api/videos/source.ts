@@ -2,11 +2,11 @@ import { buildAspectRatio } from '@peertube/peertube-core-utils'
 import { HttpStatusCode, VideoChannelActivityAction, VideoState } from '@peertube/peertube-models'
 import { sequelizeTypescript } from '@server/initializers/database.js'
 import { buildNonDuplicatedFederateVideoJob } from '@server/lib/activitypub/videos/federate.js'
+import { buildNonDuplicatedVideoAutomaticTagsJob } from '@server/lib/automatic-tags/automatic-tags.js'
 import { CreateJobOptions, CreateJobTypeAndPayload, JobQueue } from '@server/lib/job-queue/index.js'
 import { Hooks } from '@server/lib/plugins/hooks.js'
 import { regenerateLocalVideoThumbnailsFromVideoIfNeeded } from '@server/lib/thumbnail.js'
 import { setupUploadResumableRoutes } from '@server/lib/uploadx.js'
-import { buildNonDuplicatedVideoAutomaticTagsJob } from '@server/lib/automatic-tags/automatic-tags.js'
 import { autoBlacklistVideoIfNeeded } from '@server/lib/video-blacklist.js'
 import { regenerateTranscriptionTaskIfNeeded } from '@server/lib/video-captions.js'
 import { buildNewFile, createVideoSource } from '@server/lib/video-file.js'
@@ -147,7 +147,7 @@ async function doReplaceVideoSourceResumable (req: express.Request, res: express
         video,
         user,
         // The name and the description of the video did not change, so its automatic tags are still up to date
-        automaticTagsPending: false,
+        holdIfAutoTagPolicy: false,
         isRemote: false,
         isNew: false,
         isNewFile: true,

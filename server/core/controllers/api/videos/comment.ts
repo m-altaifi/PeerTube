@@ -287,7 +287,7 @@ async function listVideoCommentReplies (req: express.Request, res: express.Respo
 async function addVideoCommentThread (req: express.Request, res: express.Response) {
   const videoCommentInfo: VideoCommentCreate = req.body
 
-  const { comment, pendingAutomaticTags } = await createLocalVideoComment({
+  const { comment, holdStatus } = await createLocalVideoComment({
     text: videoCommentInfo.text,
     inReplyToComment: null,
     video: res.locals.videoWithRights,
@@ -295,7 +295,8 @@ async function addVideoCommentThread (req: express.Request, res: express.Respons
   })
 
   // The `build-object-automatic-tags` job notifies once the held status of the comment is final
-  if (!pendingAutomaticTags) Notifier.Instance.notifyOnNewComment(comment)
+  if (holdStatus !== 'held-for-auto-tags') Notifier.Instance.notifyOnNewComment(comment)
+
   auditLogger.create(getAuditIdFromRes(res), new CommentAuditView(comment.toFormattedJSON()))
 
   Hooks.runAction('action:api.video-thread.created', { comment, req, res })
@@ -306,7 +307,7 @@ async function addVideoCommentThread (req: express.Request, res: express.Respons
 async function addVideoCommentReply (req: express.Request, res: express.Response) {
   const videoCommentInfo: VideoCommentCreate = req.body
 
-  const { comment, pendingAutomaticTags } = await createLocalVideoComment({
+  const { comment, holdStatus } = await createLocalVideoComment({
     text: videoCommentInfo.text,
     inReplyToComment: res.locals.videoCommentFull,
     video: res.locals.videoWithRights,
@@ -314,7 +315,8 @@ async function addVideoCommentReply (req: express.Request, res: express.Response
   })
 
   // The `build-object-automatic-tags` job notifies once the held status of the comment is final
-  if (!pendingAutomaticTags) Notifier.Instance.notifyOnNewComment(comment)
+  if (holdStatus !== 'held-for-auto-tags') Notifier.Instance.notifyOnNewComment(comment)
+
   auditLogger.create(getAuditIdFromRes(res), new CommentAuditView(comment.toFormattedJSON()))
 
   Hooks.runAction('action:api.video-comment-reply.created', { comment, req, res })

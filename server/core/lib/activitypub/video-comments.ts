@@ -15,7 +15,7 @@ import {
 import { createCommentAutomaticTagsJob } from '../automatic-tags/automatic-tags.js'
 import { isRemoteVideoCommentAccepted } from '../moderation.js'
 import { Hooks } from '../plugins/hooks.js'
-import { CommentReviewDecision, getCommentReviewDecision } from '../video-comment.js'
+import { CommentHoldStatus, getCommentHoldStatus } from '../video-comment.js'
 import { fetchAP } from './activity.js'
 import { getOrCreateAPActor } from './actors/index.js'
 import { checkUrlsSameHost } from './url.js'
@@ -33,7 +33,7 @@ type ResolveThreadResult = Promise<{
   video: MVideoAccountLightBlacklistAllFiles
   comment: MCommentOwnerVideo
   commentCreated: boolean
-  heldPendingAutomaticTags: boolean
+  heldForAutoTags: boolean
 }>
 
 export async function addVideoComments (commentUrls: string[]) {
@@ -55,6 +55,11 @@ export async function addVideoComments (commentUrls: string[]) {
   }, { concurrency: CRAWL_REQUEST_CONCURRENCY })
 }
 
+// Resolves a full AP comment thread starting from `url`, walking up the `inReplyTo` chain until it hits
+// either a comment already stored locally or the video the thread is attached to.
+//
+// `params.comments` accumulates the chain: index 0 ends up being the comment `url` originally pointed to
+// and the last index is the comment directly replying to the video (the thread root)
 export async function resolveThread (params: ResolveThreadParams): ResolveThreadResult {
   const { url, isVideo } = params
 
@@ -92,13 +97,14 @@ async function resolveCommentFromDB (params: ResolveThreadParams) {
 
   let parentComments = comments.concat([ commentFromDatabase ])
 
-  // Speed up things and resolve directly the thread
+  // The rest of the thread above this comment is already in DB too: append it instead of re-fetching each ancestor from the remote instance
   if (commentFromDatabase.InReplyToVideoComment) {
     const data = await VideoCommentModel.listThreadParentComments({ comment: commentFromDatabase, order: 'DESC' })
 
     parentComments = parentComments.concat(data)
   }
 
+  // We know the video already, so skip straight to it instead of walking inReplyTo comment by comment
   return resolveThread({
     url: commentFromDatabase.Video.url,
     comments: parentComments,
@@ -109,6 +115,7 @@ async function resolveCommentFromDB (params: ResolveThreadParams) {
 
 // ---------------------------------------------------------------------------
 
+// Once the video is reached the whole chain is known and gets persisted root-first
 async function tryToResolveThreadFromVideo (params: ResolveThreadParams) {
   const { url, comments, commentCreated } = params
 
@@ -128,9 +135,11 @@ async function tryToResolveThreadFromVideo (params: ResolveThreadParams) {
   let resultComment: MCommentOwnerVideo
   // comments[0] is the comment the thread was resolved for: only its held status is reported back to the caller,
   // the other comments in the array are ancestors synthesized to complete the thread
-  let resultCommentHeldPendingAutomaticTags = false
+  let resultCommentHeldForAutoTags = false
 
   if (comments.length !== 0) {
+    // Process root-first (comments.length - 1 down to 0): each comment needs its parent's real DB id for
+    // inReplyToCommentId/originCommentId, which only exists once the parent has been saved
     const firstReply = comments[comments.length - 1] as MCommentOwnerVideo
     firstReply.inReplyToCommentId = null
     firstReply.originCommentId = null
@@ -142,15 +151,16 @@ async function tryToResolveThreadFromVideo (params: ResolveThreadParams) {
       return undefined
     }
 
-    const firstReplyDecision = await assignReviewIfNew(firstReply, video)
+    const { isNew: firstReplyIsNew, holdStatus: firstReplyHoldStatus } = await assignReviewIfNew(firstReply, video)
     comments[comments.length - 1] = await firstReply.save()
 
-    if (firstReplyDecision) {
-      if (comments.length === 1) resultCommentHeldPendingAutomaticTags = firstReplyDecision.pendingAutomaticTags
+    // New comment: process auto tags
+    if (firstReplyIsNew) {
+      if (comments.length === 1) resultCommentHeldForAutoTags = firstReplyHoldStatus === 'held-for-auto-tags'
 
       createCommentAutomaticTagsJob({
         comment: firstReply,
-        moderation: firstReplyDecision.pendingAutomaticTags
+        moderation: firstReplyHoldStatus === 'held-for-auto-tags'
           ? 'release-hold'
           : 'none',
         // Only the comment the thread was resolved for (comments[0]) must notify the video owner: the other ones
@@ -171,16 +181,17 @@ async function tryToResolveThreadFromVideo (params: ResolveThreadParams) {
         return undefined
       }
 
-      const decision = await assignReviewIfNew(comment, video)
+      const { isNew, holdStatus } = await assignReviewIfNew(comment, video)
 
       comments[i] = await comment.save()
 
-      if (decision) {
-        if (i === 0) resultCommentHeldPendingAutomaticTags = decision.pendingAutomaticTags
+      // New comment: process auto tags
+      if (isNew) {
+        if (i === 0) resultCommentHeldForAutoTags = holdStatus === 'held-for-auto-tags'
 
         createCommentAutomaticTagsJob({
           comment,
-          moderation: decision.pendingAutomaticTags
+          moderation: holdStatus === 'held-for-auto-tags'
             ? 'release-hold'
             : 'none',
           // comments[0] is the comment the thread was resolved for: only it must notify the video owner
@@ -192,31 +203,38 @@ async function tryToResolveThreadFromVideo (params: ResolveThreadParams) {
     resultComment = comments[0] as MCommentOwnerVideo
   }
 
-  return { video, comment: resultComment, commentCreated, heldPendingAutomaticTags: resultCommentHeldPendingAutomaticTags }
+  return { video, comment: resultComment, commentCreated, heldForAutoTags: resultCommentHeldForAutoTags }
 }
 
-// Assign the held for review status of the comment if it's a new one, and return the decision (undefined if not new)
+// Assign the held for review status of the comment if it's a new one
+// `holdStatus` is only set for a new comment: an existing one keeps the status it already has in database
 // Automatic tags are built by a job, so a comment is held as soon as the account has a review policy
 // The job then releases it if the tags it ends up with don't match any of them
-async function assignReviewIfNew (comment: MComment, video: MVideoAccountLight): Promise<CommentReviewDecision> {
+async function assignReviewIfNew (comment: MComment, video: MVideoAccountLight): Promise<{
+  isNew: boolean
+  holdStatus?: CommentHoldStatus
+}> {
   // Remote comment already exists in database -> we don't need to rebuild automatic tags
-  if (comment.id) return undefined
+  if (comment.id) return { isNew: false }
 
   // Third parties rely on origin, so if origin has the comment it's not held for review
-  const decision = video.isLocal() || comment.isLocal()
-    ? await getCommentReviewDecision({ user: null, video, automaticTagsPending: true })
-    : { heldForReview: false, pendingAutomaticTags: false }
+  const holdStatus: CommentHoldStatus = video.isLocal() || comment.isLocal()
+    ? await getCommentHoldStatus({ user: null, video, holdIfAutoTagPolicy: true })
+    : 'not-held'
 
-  comment.heldForReview = decision.heldForReview
+  comment.heldForReview = holdStatus !== 'not-held'
 
-  return decision
+  return { isNew: true, holdStatus }
 }
 
 // ---------------------------------------------------------------------------
 
+// Despite the name, this also resolves the original leaf/target comment on the first call, not just
+// its ancestors: it's the fallback once DB lookup and video resolution have both failed for `url`
 async function resolveRemoteParentComment (params: ResolveThreadParams) {
   const { url, comments } = params
 
+  // Guard against unbounded/malicious inReplyTo chains
   if (comments.length > ACTIVITY_PUB.MAX_RECURSION_COMMENTS) {
     throw new Error('Recursion limit reached when resolving a thread')
   }
@@ -230,10 +248,12 @@ async function resolveRemoteParentComment (params: ResolveThreadParams) {
   const actorUrl = body.attributedTo
   if (!actorUrl && body.type !== 'Tombstone') throw new Error('Miss attributed to in comment')
 
+  // An actor hosted on another server can't author a comment on this one (identity spoofing guard)
   if (actorUrl && checkUrlsSameHost(url, actorUrl) !== true) {
     throw new Error(`Actor url ${actorUrl} has not the same host than the comment url ${url}`)
   }
 
+  // The fetched object must claim an id on the same host it was fetched from
   if (checkUrlsSameHost(body.id, url) !== true) {
     throw new Error(`Comment url ${url} host is different from the AP object id ${body.id}`)
   }

@@ -1,5 +1,6 @@
 import { AutomaticTagPolicyType, AutomaticTagsModeration, BuildObjectAutomaticTagsPayload } from '@peertube/peertube-models'
-import { afterCommitIfTransaction } from '@server/helpers/database-utils.js'
+import { afterCommitIfTransaction, retryTransactionWrapper } from '@server/helpers/database-utils.js'
+import { sequelizeTypescript } from '@server/initializers/database.js'
 import { getServerAccount } from '@server/models/application/application.js'
 import { AccountAutomaticTagPolicyModel } from '@server/models/automatic-tag/account-automatic-tag-policy.js'
 import { AutomaticTagModel } from '@server/models/automatic-tag/automatic-tag.js'
@@ -65,33 +66,37 @@ export async function setAndSaveVideoAutomaticTags (options: {
 
   if (Object.keys(automaticTagsByAccount).length === 0) return
 
-  const { toCreateItems, toDeleteItems } = await _buildAutomaticTagItems({
-    automaticTagsByAccount,
+  await retryTransactionWrapper(() => {
+    return sequelizeTypescript.transaction(async transaction => {
+      const { toCreateItems, toDeleteItems } = await _buildAutomaticTagItems({
+        automaticTagsByAccount,
 
-    existingAutomaticTagsGetter: accountIds => {
-      return VideoAutomaticTagModel.listByAccountIdsAndVideoId({ videoId: video.id, accountIds })
-    }
-  })
+        existingAutomaticTagsGetter: accountIds => {
+          return VideoAutomaticTagModel.listByAccountIdsAndVideoId({ videoId: video.id, accountIds, transaction })
+        }
+      })
 
-  for (const item of toDeleteItems) {
-    await item.destroy()
-  }
+      for (const item of toDeleteItems) {
+        await item.destroy({ transaction })
+      }
 
-  const videoAutomaticTags: MVideoAutomaticTagWithTag[] = []
+      const videoAutomaticTags: MVideoAutomaticTagWithTag[] = []
 
-  for (const tag of toCreateItems) {
-    const automaticTagInstance = await AutomaticTagModel.findOrCreateAutomaticTag({ tag: tag.name })
+      for (const tag of toCreateItems) {
+        const automaticTagInstance = await AutomaticTagModel.findOrCreateAutomaticTag({ tag: tag.name, transaction })
 
-    const [ videoAutomaticTag ] = await VideoAutomaticTagModel.upsert({
-      accountId: tag.accountId,
-      automaticTagId: automaticTagInstance.id,
-      videoId: video.id
+        const [ videoAutomaticTag ] = await VideoAutomaticTagModel.upsert({
+          accountId: tag.accountId,
+          automaticTagId: automaticTagInstance.id,
+          videoId: video.id
+        }, { transaction })
+
+        videoAutomaticTag.AutomaticTag = automaticTagInstance
+
+        videoAutomaticTags.push(videoAutomaticTag)
+      }
     })
-
-    videoAutomaticTag.AutomaticTag = automaticTagInstance
-
-    videoAutomaticTags.push(videoAutomaticTag)
-  }
+  })
 }
 
 async function _buildAutomaticTagItems<T extends MCommentAutomaticTagWithTag | MVideoAutomaticTagWithTag> (options: {

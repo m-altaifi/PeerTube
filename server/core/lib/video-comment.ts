@@ -94,10 +94,10 @@ export async function createLocalVideoComment (options: {
   return sequelizeTypescript.transaction(async transaction => {
     const account = await AccountModel.load(user.Account.id, transaction)
 
-    const { heldForReview, pendingAutomaticTags } = await getCommentReviewDecision({
+    const holdStatus = await getCommentHoldStatus({
       user,
       video,
-      automaticTagsPending: true,
+      holdIfAutoTagPolicy: true,
       transaction
     })
 
@@ -107,7 +107,7 @@ export async function createLocalVideoComment (options: {
       inReplyToCommentId,
       videoId: video.id,
       accountId: account.id,
-      heldForReview,
+      heldForReview: holdStatus !== 'not-held',
       url: new Date().toISOString()
     }, { transaction, validate: false })
 
@@ -117,7 +117,7 @@ export async function createLocalVideoComment (options: {
 
     createCommentAutomaticTagsJob({
       comment: savedComment,
-      moderation: pendingAutomaticTags
+      moderation: holdStatus === 'held-for-auto-tags'
         ? 'release-hold'
         : 'none',
       notify: true,
@@ -130,7 +130,7 @@ export async function createLocalVideoComment (options: {
 
     await sendCreateVideoCommentIfNeeded(savedComment, transaction)
 
-    return { comment: savedComment, pendingAutomaticTags }
+    return { comment: savedComment, holdStatus }
   })
 }
 
@@ -186,59 +186,59 @@ export function buildFormattedCommentTree (options: {
   }
 }
 
-export type CommentReviewDecision = {
-  heldForReview: boolean
+export type CommentHoldStatus = 'held-for-review' | 'held-for-auto-tags' | 'not-held'
 
-  // The comment is only held because its automatic tags are not built yet
-  // The `build-object-automatic-tags` job confirms or releases that hold, and is in charge of notifying the video owner of the new comment
-  pendingAutomaticTags: boolean
-}
-
-export async function getCommentReviewDecision (options: {
+export async function getCommentHoldStatus (options: {
   user: MUserAccountId
   video: MVideoAccountIdUrl
 
   // The automatic tags of the comment have not been built yet: we don't know which tags it will have
-  automaticTagsPending: boolean
+  holdIfAutoTagPolicy: boolean
   ownerAutomaticTags?: string[]
 
   transaction?: Transaction
-}): Promise<CommentReviewDecision> {
-  const { user, video, transaction, automaticTagsPending, ownerAutomaticTags } = options
+}): Promise<CommentHoldStatus> {
+  const { user, video, transaction, holdIfAutoTagPolicy, ownerAutomaticTags } = options
 
-  const notHeld = { heldForReview: false, pendingAutomaticTags: false }
-
+  // User bypass check
   if (video.isLocal() && user) {
-    if (user.hasRight(UserRight.MANAGE_ANY_VIDEO_COMMENT)) return notHeld
-    if (user.Account.id === video.VideoChannel.accountId) return notHeld
+    if (user.hasRight(UserRight.MANAGE_ANY_VIDEO_COMMENT)) return 'not-held'
+    if (user.Account.id === video.VideoChannel.accountId) return 'not-held'
   }
 
+  // Global owner policy
   if (video.commentsPolicy === VideoCommentPolicy.REQUIRES_APPROVAL) {
-    return { heldForReview: true, pendingAutomaticTags: false }
+    return 'held-for-review'
   }
 
-  if (video.isLocal() !== true) return notHeld
+  // Don't check auto tags policy on remote videos
+  if (video.isLocal() !== true) return 'not-held'
 
   // Hold the comment if the account could want to review it
   // Let the `build-object-automatic-tags` job release it if the tags it ends up with don't match any of its review policies
-  if (automaticTagsPending) {
+  if (holdIfAutoTagPolicy) {
     const hasPolicy = await AccountAutomaticTagPolicyModel.hasPolicy({
       accountId: video.VideoChannel.accountId,
       policy: AutomaticTagPolicy.REVIEW_COMMENT,
       transaction
     })
 
-    return { heldForReview: hasPolicy, pendingAutomaticTags: hasPolicy }
+    return hasPolicy
+      ? 'held-for-auto-tags'
+      : 'not-held'
   }
 
-  if (!ownerAutomaticTags || ownerAutomaticTags.length === 0) return notHeld
+  if (!ownerAutomaticTags || ownerAutomaticTags.length === 0) return 'not-held'
 
-  const heldForReview = await AccountAutomaticTagPolicyModel.hasPolicyOnTags({
+  // Check on specific auto tags provided
+  const hasPolicy = await AccountAutomaticTagPolicyModel.hasPolicyOnTags({
     accountId: video.VideoChannel.accountId,
     policy: AutomaticTagPolicy.REVIEW_COMMENT,
     tags: ownerAutomaticTags,
     transaction
   })
 
-  return { heldForReview, pendingAutomaticTags: false }
+  return hasPolicy
+    ? 'held-for-review'
+    : 'not-held'
 }

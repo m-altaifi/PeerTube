@@ -33,6 +33,8 @@ import { Hooks } from './plugins/hooks.js'
 
 const logger = createLogger('blacklist')
 
+export type AutoBlacklistStatus = 'auto-blacklisted' | 'held-for-auto-tags' | 'not-auto-blacklisted'
+
 export async function autoBlacklistVideoIfNeeded (parameters: {
   video: MVideoWithBlacklistLight
   isRemote: boolean
@@ -40,17 +42,17 @@ export async function autoBlacklistVideoIfNeeded (parameters: {
   isNewFile: boolean
 
   // The automatic tags of the video have not been built yet: we don't know which tags it will have
-  automaticTagsPending: boolean
+  holdIfAutoTagPolicy: boolean
   automaticTagsByAccount?: Record<number, string[]>
 
   user?: MUser
   notify?: boolean
   transaction?: Transaction
-}) {
-  const { video, user, isRemote, isNew, isNewFile, automaticTagsPending, automaticTagsByAccount, notify = true, transaction } = parameters
+}): Promise<AutoBlacklistStatus> {
+  const { video, user, isRemote, isNew, isNewFile, holdIfAutoTagPolicy, automaticTagsByAccount, notify = true, transaction } = parameters
 
   // Already blacklisted
-  if (video.VideoBlacklist) return { blacklisted: true, pendingAutomaticTags: false }
+  if (video.VideoBlacklist) return 'auto-blacklisted'
 
   const doAutoBlacklistByInstancePolicy = await Hooks.wrapFun(
     _autoBlacklistByInstancePolicyNeeded,
@@ -58,27 +60,42 @@ export async function autoBlacklistVideoIfNeeded (parameters: {
     'filter:video.auto-blacklist.result'
   )
 
+  // Global instance policy
   if (doAutoBlacklistByInstancePolicy) {
     await _autoBlacklist({ video, notify, user, transaction, type: VideoBlacklistType.AUTO_BY_INSTANCE_POLICY })
 
-    return { blacklisted: true, pendingAutomaticTags: false }
+    return 'auto-blacklisted'
   }
 
-  if (await _autoBlacklistByAutoTagPolicyNeeded({ video, user, automaticTagsPending, automaticTagsByAccount, transaction })) {
-    // We don't know yet if the video really matches a policy
-    // So don't notify the moderators before the `build-object-automatic-tags` job has confirmed it
+  // Special hold mode if the instance has auto tag policies that could block the video,
+  // and the automatic tags of the video have not been built: block the video if the instance could want to review it
+  // Let the `build-object-automatic-tags` job release it if the tags it ends up with don't match any of its auto block policies
+  if (holdIfAutoTagPolicy && await _shouldHoldForAutoTagPolicy({ video, user, transaction })) {
     await _autoBlacklist({
       video,
-      notify: notify && !automaticTagsPending,
+      notify: false, // Don't notify, build auto tag job will notify if the video is really blocked
       user,
       transaction,
       type: VideoBlacklistType.AUTO_BY_AUTO_TAG_POLICY
     })
 
-    return { blacklisted: true, pendingAutomaticTags: automaticTagsPending }
+    return 'held-for-auto-tags'
   }
 
-  return { blacklisted: false, pendingAutomaticTags: false }
+  // Not in hold mode: auto blacklist the video if its automatic tags match an auto block policy
+  if (await _shouldAutoBlacklistByAutoTagPolicy({ video, user, automaticTagsByAccount, transaction })) {
+    await _autoBlacklist({
+      video,
+      notify,
+      user,
+      transaction,
+      type: VideoBlacklistType.AUTO_BY_AUTO_TAG_POLICY
+    })
+
+    return 'auto-blacklisted'
+  }
+
+  return 'not-auto-blacklisted'
 }
 
 // Called by the `build-object-automatic-tags` job for a video that was not put on hold
@@ -93,9 +110,7 @@ export async function autoBlacklistVideoByAutoTagPolicyIfNeeded (options: {
   const { video, automaticTagsByAccount, user, notify = true, transaction } = options
 
   if (video.VideoBlacklist) return false
-  if (!await _autoBlacklistByAutoTagPolicyNeeded({ video, user, automaticTagsPending: false, automaticTagsByAccount, transaction })) {
-    return false
-  }
+  if (!await _shouldAutoBlacklistByAutoTagPolicy({ video, user, automaticTagsByAccount, transaction })) return false
 
   await _autoBlacklist({
     video,
@@ -122,7 +137,7 @@ export async function resolvePendingAutoTagBlacklist (options: {
   const videoBlacklist = await VideoBlacklistModel.loadByVideoId(video.id, transaction)
   if (!videoBlacklist || videoBlacklist.type !== VideoBlacklistType.AUTO_BY_AUTO_TAG_POLICY) return
 
-  if (await _autoBlacklistByAutoTagPolicyNeeded({ video, automaticTagsPending: false, automaticTagsByAccount, transaction })) {
+  if (await _shouldAutoBlacklistByAutoTagPolicy({ video, automaticTagsByAccount, transaction })) {
     const videoBlacklistWithVideo = videoBlacklist as MVideoBlacklistVideo
     videoBlacklistWithVideo.Video = video
 
@@ -188,30 +203,37 @@ function _autoBlacklistByInstancePolicyNeeded (parameters: {
   return true
 }
 
-async function _autoBlacklistByAutoTagPolicyNeeded (options: {
+async function _shouldHoldForAutoTagPolicy (options: {
   video: MVideoWithBlacklistLight
-  automaticTagsPending: boolean
-  automaticTagsByAccount?: Record<number, string[]>
   transaction?: Transaction
   user?: MUser
 }) {
-  const { user, video, transaction, automaticTagsPending, automaticTagsByAccount } = options
-
-  if (!automaticTagsPending && !automaticTagsByAccount) return false
+  const { user, video, transaction } = options
 
   if (video.isLocal() && user?.hasRight(UserRight.MANAGE_VIDEO_BLACKLIST)) return false
 
   const accountId = (await getServerAccount()).id
 
-  // Block the video if the instance could want to review it
-  // Let the `build-object-automatic-tags` job release it if the tags it ends up with don't match any of its auto block policies
-  if (automaticTagsPending) {
-    return AccountAutomaticTagPolicyModel.hasPolicy({
-      accountId,
-      policy: AutomaticTagPolicy.AUTO_BLACKLIST_VIDEO,
-      transaction
-    })
-  }
+  return AccountAutomaticTagPolicyModel.hasPolicy({
+    accountId,
+    policy: AutomaticTagPolicy.AUTO_BLACKLIST_VIDEO,
+    transaction
+  })
+}
+
+async function _shouldAutoBlacklistByAutoTagPolicy (options: {
+  video: MVideoWithBlacklistLight
+  automaticTagsByAccount?: Record<number, string[]>
+  transaction?: Transaction
+  user?: MUser
+}) {
+  const { user, video, transaction, automaticTagsByAccount } = options
+
+  if (!automaticTagsByAccount) return false
+
+  if (video.isLocal() && user?.hasRight(UserRight.MANAGE_VIDEO_BLACKLIST)) return false
+
+  const accountId = (await getServerAccount()).id
 
   const tags = automaticTagsByAccount?.[accountId]
   if (!tags || tags.length === 0) return false
