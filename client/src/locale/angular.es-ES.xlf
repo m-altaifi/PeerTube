@@ -12635,9 +12635,9 @@
           <context context-type="linenumber">399</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5959922792614518034" datatype="html">
+      <trans-unit id="5959922792614518034" datatype="html" xml:space="preserve">
         <source>BROWSE VIDEOS</source>
-        <target state="new">BROWSE VIDEOS</target>
+        <target state="translated">BUSCAR VIDEOS</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">61</context>
@@ -13007,9 +13007,9 @@
           <context context-type="linenumber">96</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4519166881363617842" datatype="html">
+      <trans-unit id="4519166881363617842" datatype="html" xml:space="preserve">
         <source>⚠️ This functionality depends heavily on the moderation of platforms followed by the search index you select</source>
-        <target state="new">⚠️ This functionality depends heavily on the moderation of platforms followed by the search index you select</target>
+        <target state="translated">⚠️ Esta funcionalidad depende fuertemente de la moderación de las plataformas seguido por el índice de búsqueda que elijas</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">804</context>
