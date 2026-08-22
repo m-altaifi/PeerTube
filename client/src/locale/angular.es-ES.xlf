@@ -13143,17 +13143,17 @@
           <context context-type="linenumber">715,716</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2709958363414972972" datatype="html">
+      <trans-unit id="2709958363414972972" datatype="html" xml:space="preserve">
         <source>PLAYER</source>
-        <target state="new">PLAYER</target>
+        <target state="translated">REPRODUCTOR</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">726</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="286395473992592179" datatype="html">
+      <trans-unit id="286395473992592179" datatype="html" xml:space="preserve">
         <source>Automatically play videos in the player</source>
-        <target state="new">Automatically play videos in the player</target>
+        <target state="translated">Automáticamente reproducir vídeos en el reproductor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">737</context>
