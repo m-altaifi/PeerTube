@@ -807,9 +807,9 @@
           <context context-type="linenumber">347,348</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4310216892495659501" datatype="html">
+      <trans-unit id="4310216892495659501" datatype="html" xml:space="preserve">
         <source>{VAR_PLURAL, plural, =1 {1 account} other {<x id="INTERPOLATION"/> accounts}}</source>
-        <target state="new">{VAR_PLURAL, plural, =1 {1 account} other {<x id="INTERPOLATION"/> accounts}}</target>
+        <target state="translated">{VAR_PLURAL, plural, =1 {1 account} other {<x id="INTERPOLATION"/> accounts}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-notifications/user-notification-content.component.html</context>
           <context context-type="linenumber">347</context>
@@ -1007,17 +1007,17 @@
           <context context-type="linenumber">192</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2541208579604639843" datatype="html">
+      <trans-unit id="2541208579604639843" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {Video added to <x id="playlistName"/>} other {<x id="count"/> videos added to <x id="playlistName"/>}}</source>
-        <target state="new">{count, plural, =1 {Video added to <x id="playlistName"/>} other {<x id="count"/> videos added to <x id="playlistName"/>}}</target>
+        <target state="translated">{count, plural, =1 {Video toegevoegd aan <x id="playlistName"/>} other {<x id="count"/> video's toegevoegd aan <x id="playlistName"/>}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-playlist/bulk-update-videos-in-playlist-modal.component.ts</context>
           <context context-type="linenumber">229</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2674770304057463868" datatype="html">
+      <trans-unit id="2674770304057463868" datatype="html" xml:space="preserve">
         <source>{count, plural, =1 {Video removed from <x id="playlistName"/>} other {<x id="count"/> videos removed from <x id="playlistName"/>}}</source>
-        <target state="new">{count, plural, =1 {Video removed from <x id="playlistName"/>} other {<x id="count"/> videos removed from <x id="playlistName"/>}}</target>
+        <target state="translated">{count, plural, =1 {Video verwijderd uit <x id="playlistName"/>} other {<x id="count"/> video's verwijderd uit <x id="playlistName"/>}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-playlist/bulk-update-videos-in-playlist-modal.component.ts</context>
           <context context-type="linenumber">250</context>
@@ -5896,9 +5896,9 @@ Dit zal een bestaande ondertiteling vervangen!</target>
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6741450303391308175" datatype="html">
+      <trans-unit id="6741450303391308175" datatype="html" xml:space="preserve">
         <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Drag and drop your new video file here<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> or click on the button below to replace your video: </source>
-        <target state="new"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Drag and drop your new video file here<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> or click on the button below to replace your video: </target>
+        <target state="translated"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Veeg het nieuwe videobestand hierheen<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> of klik op de knop hieronder om je video te vervangen: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/replace-file/video-replace-file.component.html</context>
           <context context-type="linenumber">20,23</context>
@@ -8412,9 +8412,9 @@ Geen ondertiteling voor nu.</target>
           <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8135904866638934226" datatype="html">
+      <trans-unit id="8135904866638934226" datatype="html" xml:space="preserve">
         <source>This video will be published on <x id="INTERPOLATION" equiv-text="{{ video().scheduledUpdate.updateAt | ptDate: 'full'  }}"/>. </source>
-        <target state="new"> This video will be published on <x id="INTERPOLATION" equiv-text="{{ video().scheduledUpdate.updateAt | ptDate: 'full'  }}"/>. </target>
+        <target state="translated">Deze video zal gepubliceerd worden op <x id="INTERPOLATION" equiv-text="{{ video().scheduledUpdate.updateAt | ptDate: 'full'  }}"/>. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/shared/information/video-alert.component.html</context>
           <context context-type="linenumber">3,7</context>
@@ -8436,25 +8436,25 @@ Geen ondertiteling voor nu.</target>
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1598621320854281428" datatype="html">
+      <trans-unit id="1598621320854281428" datatype="html" xml:space="preserve">
         <source>This live has ended.</source>
-        <target state="new"> This live has ended. </target>
+        <target state="translated">Deze live-uitzending is beëindigd.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/shared/information/video-alert.component.html</context>
           <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="701669367074099795" datatype="html">
+      <trans-unit id="701669367074099795" datatype="html" xml:space="preserve">
         <source>There are no videos available in this playlist.</source>
-        <target state="new"> There are no videos available in this playlist. </target>
+        <target state="translated">Er zijn geen video's beschikbaar in deze afspeellijst.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/shared/information/video-alert.component.html</context>
           <context context-type="linenumber">47,48</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="13907554132985944" datatype="html">
+      <trans-unit id="13907554132985944" datatype="html" xml:space="preserve">
         <source>This video is password protected.</source>
-        <target state="new"> This video is password protected. </target>
+        <target state="translated">Deze video is beschermd met een wachtwoord.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/shared/information/video-alert.component.html</context>
           <context context-type="linenumber">53,54</context>
@@ -15118,9 +15118,9 @@ Geen ondertiteling voor nu.</target>
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8372007266188249803" datatype="html">
+      <trans-unit id="8372007266188249803" datatype="html" xml:space="preserve">
         <source>Never</source>
-        <target state="new">Never</target>
+        <target state="translated">Nooit</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/my-video-channel-syncs/my-video-channel-syncs.component.html</context>
           <context context-type="linenumber">47</context>
@@ -21776,9 +21776,9 @@ Geen ondertiteling voor nu.</target>
           <context context-type="linenumber">166</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2605658322936929408" datatype="html">
+      <trans-unit id="2605658322936929408" datatype="html" xml:space="preserve">
         <source>Podcast</source>
-        <target state="new">Podcast</target>
+        <target state="translated">Podcast</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/+my-video-channels/edit/pages/video-channel-edit-podcast.component.html</context>
           <context context-type="linenumber">4</context>
@@ -21828,9 +21828,9 @@ Geen ondertiteling voor nu.</target>
           <context context-type="linenumber">30,31</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3553943539005020318" datatype="html">
+      <trans-unit id="3553943539005020318" datatype="html" xml:space="preserve">
         <source>APPLE PODCAST</source>
-        <target state="new">APPLE PODCAST</target>
+        <target state="translated">APPLE PODCAST</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/+my-video-channels/edit/pages/video-channel-edit-podcast.component.html</context>
           <context context-type="linenumber">38,39</context>
@@ -21868,9 +21868,9 @@ Geen ondertiteling voor nu.</target>
           <context context-type="linenumber">65,66</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7922077976297336450" datatype="html">
+      <trans-unit id="7922077976297336450" datatype="html" xml:space="preserve">
         <source>Apple Podcast - Video</source>
-        <target state="new">Apple Podcast - Video</target>
+        <target state="translated">Apple Podcast - Video</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/+my-video-channels/edit/pages/video-channel-edit-podcast.component.html</context>
           <context context-type="linenumber">71,73</context>
@@ -21892,9 +21892,9 @@ Geen ondertiteling voor nu.</target>
           <context context-type="linenumber">85,86</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1560657119807970004" datatype="html">
+      <trans-unit id="1560657119807970004" datatype="html" xml:space="preserve">
         <source>PODCAST SETTINGS</source>
-        <target state="new">PODCAST SETTINGS</target>
+        <target state="translated">PODCAST-INSTELLINGEN</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/+my-video-channels/edit/pages/video-channel-edit-podcast.component.html</context>
           <context context-type="linenumber">94,95</context>
@@ -21908,9 +21908,9 @@ Geen ondertiteling voor nu.</target>
           <context context-type="linenumber">99,101</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6643639902470840501" datatype="html">
+      <trans-unit id="6643639902470840501" datatype="html" xml:space="preserve">
         <source>This email will be publicly exposed in podcast RSS feeds, allowing you to prove ownership of your feed. This is required to submit your podcast to Apple Podcast</source>
-        <target state="new"> This email will be publicly exposed in podcast RSS feeds, allowing you to prove ownership of your feed. This is required to submit your podcast to Apple Podcast </target>
+        <target state="translated">Dit e-mailadres zal voor iedereen toegankelijk zijn via de RSS-feed, wat jouw zeggenschap over die feed kan aantonen. Dit is vereist om je podcast te publiceren op Apple Podcasts</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/+my-video-channels/edit/pages/video-channel-edit-podcast.component.html</context>
           <context context-type="linenumber">102,103</context>
@@ -27741,9 +27741,9 @@ Geen ondertiteling voor nu.</target>
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5392341774767336507" datatype="html">
+      <trans-unit id="5392341774767336507" datatype="html" xml:space="preserve">
         <source>Copied!</source>
-        <target state="new">Copied!</target>
+        <target state="translated">Gekopieerd!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-forms/input-text.component.ts</context>
           <context context-type="linenumber">38</context>
