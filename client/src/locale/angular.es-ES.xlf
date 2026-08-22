@@ -385,7 +385,7 @@
       </trans-unit>
       <trans-unit id="1081216658260150122" datatype="html" xml:space="preserve">
         <source>A new <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>video abuse<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> has been created on video <x id="INTERPOLATION" equiv-text="{{ n.payload.abuse.video.name }}"/></source>
-        <target state="translated">Un nuevo<x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>abuso de video<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> ha sido creado para este video<x id="INTERPOLATION" equiv-text="{{ n.payload.abuse.video.name }}"/></target>
+        <target state="translated">Se ha creado un nuevo<x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>abuso de video<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> para este video<x id="INTERPOLATION" equiv-text="{{ n.payload.abuse.video.name }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-notifications/user-notification-content.component.html</context>
           <context context-type="linenumber">33</context>
@@ -393,7 +393,7 @@
       </trans-unit>
       <trans-unit id="6165006255556366679" datatype="html" xml:space="preserve">
         <source>A new <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>comment abuse<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> has been created on video <x id="INTERPOLATION" equiv-text="{{ n.payload.abuse.comment.video.name }}"/></source>
-        <target state="translated">Se ha creaddo un nuevo <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>abuso de comentario<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> para este video <x id="INTERPOLATION" equiv-text="{{ n.payload.abuse.comment.video.name }}"/></target>
+        <target state="translated">Se ha creado un nuevo <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>abuso de comentario<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> para este video <x id="INTERPOLATION" equiv-text="{{ n.payload.abuse.comment.video.name }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-notifications/user-notification-content.component.html</context>
           <context context-type="linenumber">35</context>
@@ -401,7 +401,7 @@
       </trans-unit>
       <trans-unit id="5910794384138018825" datatype="html" xml:space="preserve">
         <source>A new <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>account abuse<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> has been created on account <x id="INTERPOLATION" equiv-text="{{ n.payload.abuse.account.displayName }}"/></source>
-        <target state="translated">Un nuevo <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>abuso de cuenta<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> ha sido creado en su cuenta<x id="INTERPOLATION" equiv-text="{{ n.payload.abuse.account.displayName }}"/></target>
+        <target state="translated">Se ha creado un nuevo <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>abuso de cuenta<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> en su cuenta<x id="INTERPOLATION" equiv-text="{{ n.payload.abuse.account.displayName }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-notifications/user-notification-content.component.html</context>
           <context context-type="linenumber">37</context>
@@ -409,7 +409,7 @@
       </trans-unit>
       <trans-unit id="4506409188003413837" datatype="html" xml:space="preserve">
         <source>A new <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>abuse<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> has been created</source>
-        <target state="translated">Una nueva <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>denuncia<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> ha sido creada</target>
+        <target state="translated">Se ha creado una nueva <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>denuncia<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-notifications/user-notification-content.component.html</context>
           <context context-type="linenumber">39</context>
@@ -8165,7 +8165,7 @@
       </trans-unit>
       <trans-unit id="3946683396888479808" datatype="html" xml:space="preserve">
         <source>Blocklist URL is required.</source>
-        <target state="translated">Se necesita un  URL de la lista de bloqueo.</target>
+        <target state="translated">Se necesita un URL de la lista de bloqueo.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/moderation/instance-blocklist/instance-blocklist-subscriptions.component.ts</context>
           <context context-type="linenumber">49</context>
@@ -8673,7 +8673,7 @@
       </trans-unit>
       <trans-unit id="7484733722080653014" datatype="html" xml:space="preserve">
         <source>You can comment using an account on any ActivityPub-compatible instance (PeerTube/Mastodon account for example).</source>
-        <target state="translated">Puede comentar usando una cuenta de cualquier instancia compatible con ActivityPub  (Por ejemplo PeerTube/Mastodon).</target>
+        <target state="translated">Puede comentar usando una cuenta de cualquier instancia compatible con ActivityPub (Por ejemplo PeerTube/Mastodon).</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+video-watch/shared/comment/video-comment-add.component.html</context>
           <context context-type="linenumber">72,73</context>
@@ -10593,7 +10593,7 @@
       </trans-unit>
       <trans-unit id="3109314382334906782" datatype="html" xml:space="preserve">
         <source>Reportee</source>
-        <target state="translated">Denunciante</target>
+        <target state="translated">Denunciado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-abuse-list/abuse-details.component.html</context>
           <context context-type="linenumber">31</context>
@@ -10773,7 +10773,7 @@
       </trans-unit>
       <trans-unit id="9645096038052385" datatype="html" xml:space="preserve">
         <source>{VAR_PLURAL, plural, =0 {No subscription} =1 {1 subscription} other {<x id="INTERPOLATION"/> subscriptions}}</source>
-        <target state="translated">{VAR_PLURAL, plural, =0 {No subscription} =1 {1 subscription} other {<x id="INTERPOLATION"/> suscripciones}}</target>
+        <target state="translated">{VAR_PLURAL, plural, =0 {No subscription} =1 {1 subscription} otras {<x id="INTERPOLATION"/> suscripciones}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/follows/following-list/following-list.component.html</context>
           <context context-type="linenumber">15</context>
@@ -11525,7 +11525,7 @@
       </trans-unit>
       <trans-unit id="6978211014802048979" datatype="html" xml:space="preserve">
         <source>It can also be displayed on external websites to promote your instance, such as <x id="START_LINK" ctype="x-a" equiv-text="&lt;a target=&quot;_blank&quot; href=&quot;https://joinpeertube.org/instances&quot;             &gt;"/>JoinPeerTube.org<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </source>
-        <target state="translated">También se puede mostrar en páginas web externas para promocionar tu instancia, como por ejemplo <x id="START_LINK" ctype="x-a" equiv-text="&lt;a target=&quot;_blank&quot; href=&quot;https://joinpeertube.org/instances&quot;             &gt;"/>JoinPeerTube.org<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </target>
+        <target state="translated">También se puede mostrar en páginas web externas para promocionar su instancia, como por ejemplo <x id="START_LINK" ctype="x-a" equiv-text="&lt;a target=&quot;_blank&quot; href=&quot;https://joinpeertube.org/instances&quot;             &gt;"/>JoinPeerTube.org<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-logo.component.html</context>
           <context context-type="linenumber">29</context>
@@ -11609,7 +11609,7 @@
       </trans-unit>
       <trans-unit id="3324015640819511842" datatype="html" xml:space="preserve">
         <source>Useful for example if your "Desktop header logo" already includes your platform name</source>
-        <target state="translated">Esto resulta útil, por ejemplo, si tu «logotipo de cabecera del escritorio» ya incluye el nombre de tu plataforma</target>
+        <target state="translated">Esto resulta útil, por ejemplo, si su «logotipo de cabecera del escritorio» ya incluye el nombre de su plataforma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-logo.component.html</context>
           <context context-type="linenumber">91</context>
@@ -11641,7 +11641,7 @@
       </trans-unit>
       <trans-unit id="1557050723140613812" datatype="html" xml:space="preserve">
         <source>Social media logo</source>
-        <target state="translated">Logotipo de las redes sociales</target>
+        <target state="translated">Logotipo de redes sociales</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-logo.component.html</context>
           <context context-type="linenumber">120</context>
@@ -11873,7 +11873,7 @@
       </trans-unit>
       <trans-unit id="5509417153332543255" datatype="html" xml:space="preserve">
         <source>Who moderates the instance? What is the policy regarding sensitive content? Political videos? etc</source>
-        <target state="translated">¿Quién modera la instancia? ¿Cuál es la política respecto a contenido sensible? ¿Videos políticos? Etc...</target>
+        <target state="translated">¿Quién modera la instancia? ¿Cuál es la política respecto a contenido sensible? ¿Videos políticos? etc...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-information.component.html</context>
           <context context-type="linenumber">277</context>
@@ -12269,7 +12269,7 @@
       </trans-unit>
       <trans-unit id="8147283395759737895" datatype="html" xml:space="preserve">
         <source>Display a message on your platform</source>
-        <target state="translated">Mostrar un mensaje en tu plataforma</target>
+        <target state="translated">Mostrar un mensaje en su plataforma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">116</context>
@@ -12643,9 +12643,9 @@
           <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5668816720700287117" datatype="html">
+      <trans-unit id="5668816720700287117" datatype="html" xml:space="preserve">
         <source>Default sort</source>
-        <target state="new">Default sort</target>
+        <target state="translated">Ordenación predeterminada</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">68</context>
@@ -13009,7 +13009,7 @@
       </trans-unit>
       <trans-unit id="4519166881363617842" datatype="html" xml:space="preserve">
         <source>⚠️ This functionality depends heavily on the moderation of platforms followed by the search index you select</source>
-        <target state="translated">⚠️ Esta funcionalidad depende fuertemente de la moderación de las plataformas seguido por el índice de búsqueda que elijas</target>
+        <target state="translated">⚠️ Esta funcionalidad depende fuertemente de la moderación de las plataformas seguido por el índice de búsqueda que elija</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">804</context>
@@ -13049,7 +13049,7 @@
       </trans-unit>
       <trans-unit id="735929773748569631" datatype="html" xml:space="preserve">
         <source>Remote actors can follow channels of your platform</source>
-        <target state="translated">Actores remotos pueden seguir canales de tu plataforma</target>
+        <target state="translated">Actores remotos pueden seguir canales de su plataforma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">610</context>
@@ -13065,7 +13065,7 @@
       </trans-unit>
       <trans-unit id="4707019046470605528" datatype="html" xml:space="preserve">
         <source>Remote actors can follow your platform</source>
-        <target state="translated">Actores remotos pueden seguir tu plataforma</target>
+        <target state="translated">Actores remotos pueden seguir su plataforma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">625</context>
@@ -13153,7 +13153,7 @@
       </trans-unit>
       <trans-unit id="286395473992592179" datatype="html" xml:space="preserve">
         <source>Automatically play videos in the player</source>
-        <target state="translated">Automáticamente reproducir vídeos en el reproductor</target>
+        <target state="translated">Reproducir vídeos automáticamente en el reproductor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">737</context>
@@ -13569,7 +13569,7 @@
       </trans-unit>
       <trans-unit id="210131859223873198" datatype="html" xml:space="preserve">
         <source>Edit your platform homepage</source>
-        <target state="translated">Editar la página de bienvenida de tu plataforma</target>
+        <target state="translated">Editar la página de bienvenida de su plataforma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/config.routes.ts</context>
           <context context-type="linenumber">100</context>
@@ -14037,7 +14037,7 @@
       </trans-unit>
       <trans-unit id="1671557140564655234" datatype="html" xml:space="preserve">
         <source>Automatically enable HLS transcoding because at least 1 output format must be enabled when transcoding is enabled</source>
-        <target state="translated">Activar automáticamente transcoding HLS porque al menos 1 formato de salida debe estar activo cuando el transcoding está activado</target>
+        <target state="translated">Activar automáticamente transcodificación HLS porque al menos un formato de salida debe estar activo cuando el transcodificación está activado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-vod.component.ts</context>
           <context context-type="linenumber">260</context>
@@ -15846,7 +15846,7 @@
       </trans-unit>
       <trans-unit id="8557236926089115309" datatype="html" xml:space="preserve">
         <source>Resend your verification email</source>
-        <target state="translated">Reenviar tu verificación email</target>
+        <target state="translated">Reenviar su verificación de correo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-account/my-account-settings/my-account-change-email/my-account-change-email.component.html</context>
           <context context-type="linenumber">17</context>
@@ -15946,7 +15946,7 @@
       </trans-unit>
       <trans-unit id="6239458663385170891" datatype="html" xml:space="preserve">
         <source>Manage video channel</source>
-        <target state="translated">Gestionar canal de video</target>
+        <target state="translated">Gestionar canal de vídeo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+my-library/+my-video-channels/routes.ts</context>
           <context context-type="linenumber">79</context>
@@ -23005,9 +23005,9 @@
           <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3858880927114551513" datatype="html">
+      <trans-unit id="3858880927114551513" datatype="html" xml:space="preserve">
         <source>The current video will be overwritten by this edited video and &lt;strong&gt;you won't be able to recover it&lt;/strong&gt;.&lt;br /&gt;&lt;br /&gt;</source>
-        <target state="translated">El video actual será sobrescrito por este video editado y &lt;strong&gt;no podrás recuperarlo&lt;/strong&gt;.&lt;br&gt;&lt;br /&gt;</target>
+        <target state="translated">El vídeo actual sera sobrescrito por este vídeo editado y &lt;strong&gt;no será posible recuperarlo&lt;/strong&gt;.&lt;br /&gt;&lt;br /&gt;</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/video-manage-controller.service.ts</context>
           <context context-type="linenumber">427</context>
