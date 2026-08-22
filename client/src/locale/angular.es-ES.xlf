@@ -13047,9 +13047,9 @@
           <context context-type="linenumber">597</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="735929773748569631" datatype="html">
+      <trans-unit id="735929773748569631" datatype="html" xml:space="preserve">
         <source>Remote actors can follow channels of your platform</source>
-        <target state="new">Remote actors can follow channels of your platform</target>
+        <target state="translated">Actores remotos pueden seguir canales de tu plataforma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">610</context>
