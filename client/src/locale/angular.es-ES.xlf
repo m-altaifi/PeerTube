@@ -16180,9 +16180,9 @@
           <context context-type="linenumber">160</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5910845130937645353" datatype="html">
+      <trans-unit id="5910845130937645353" datatype="html" xml:space="preserve">
         <source>Clients</source>
-        <target state="new">Clients</target>
+        <target state="translated">Clientes</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+videos-publish-manage/shared-manage/stats/video-stats.component.ts</context>
           <context context-type="linenumber">165</context>
