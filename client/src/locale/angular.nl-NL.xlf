@@ -1653,9 +1653,9 @@
           <context context-type="linenumber">81,82</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3885497195825665706" datatype="html">
+      <trans-unit id="3885497195825665706" datatype="html" xml:space="preserve">
         <source>Next</source>
-        <target state="new">Next</target>
+        <target state="translated">Volgende</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">104</context>
@@ -1669,9 +1669,9 @@
           <context context-type="linenumber">111,115</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2337568529008297902" datatype="html">
+      <trans-unit id="2337568529008297902" datatype="html" xml:space="preserve">
         <source>{VAR_PLURAL, plural, =1 {field} other {fields}}</source>
-        <target state="new">{VAR_PLURAL, plural, =1 {field} other {fields}}</target>
+        <target state="translated">{VAR_PLURAL, plural, =1 {veld} other {velden}}</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video/bulk-update-videos-modal.component.html</context>
           <context context-type="linenumber">111</context>
