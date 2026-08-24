@@ -12,7 +12,7 @@ import {
 } from '@app/shared/form-validators/video-playlist-validators'
 import { FormReactiveService } from '@app/shared/shared-forms/form-reactive.service'
 import { PeertubeCheckboxComponent } from '@app/shared/shared-forms/peertube-checkbox.component'
-import { listChannelsForSelect } from '@app/shared/shared-forms/select/channel/select-channel-helpers'
+import { isSameOwnerForAccountId, listChannelsForSelect } from '@app/shared/shared-forms/select/channel/select-channel-helpers'
 import { SelectChannelUserComponent } from '@app/shared/shared-forms/select/channel/select-channel-user.component'
 import { AlertComponent } from '@app/shared/shared-main/common/alert.component'
 import { VideoPlaylistService } from '@app/shared/shared-video-playlist/video-playlist.service'
@@ -94,7 +94,16 @@ export class MyVideoPlaylistUpdateComponent extends MyVideoPlaylistEdit implemen
         next: ([ { videoPlaylist, channels }, videoPlaylistPrivacies ]) => {
           this.videoPlaylistToUpdate = videoPlaylist
           this.videoPlaylistPrivacies = videoPlaylistPrivacies
-          this.channels = channels.filter(c => c.ownerAccountId === this.videoPlaylistToUpdate.ownerAccount.id)
+
+          const user = this.authService.getUser()
+
+          this.channels = channels.filter(c => {
+            return isSameOwnerForAccountId({
+              user,
+              channel: c,
+              accountId: this.videoPlaylistToUpdate.ownerAccount.id
+            })
+          })
 
           this.hydrateFormFromPlaylist()
         },

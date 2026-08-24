@@ -58,11 +58,26 @@ export function formatChannelForSelect (channel: UserVideoChannel, options: {
     imageUrl: getAvatarFileUrl(channel),
 
     displayName: channel.displayName,
+
+    // Not filled for owned channels
     ownerAccountId: channel.ownerAccountId,
     ownerAccountName: channel.ownerAccountName,
 
     updatedAt: channel.updatedAt
   }
+}
+
+export function isSameOwnerForAccountId (options: {
+  user: { account: { id: number } }
+  channel: Pick<SelectChannelItem, 'owner' | 'ownerAccountId'>
+  accountId: number
+}) {
+  const { user, channel, accountId } = options
+
+  // ownerAccountId is not filled for owned channels
+  if (channel.owner) return user.account.id === accountId
+
+  return channel.ownerAccountId && channel.ownerAccountId === accountId
 }
 
 // ---------------------------------------------------------------------------
