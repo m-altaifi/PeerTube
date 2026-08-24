@@ -4,6 +4,7 @@ import {
   ClientDoAction,
   ClientHookName,
   clientHookObject,
+  ClientRouter,
   ClientScriptJSON,
   HTMLServerConfig,
   PluginClientScope,
@@ -77,6 +78,7 @@ class PluginsManager {
     'moderation': new ReplaySubject<boolean>(1)
   }
 
+  private readonly router: ClientRouter
   private readonly doAction: ClientDoAction
   private readonly peertubeHelpersFactory: PeertubeHelpersFactory
   private readonly onFormFields: OnFormFields
@@ -85,6 +87,7 @@ class PluginsManager {
   private readonly backendUrl: string
 
   constructor (options: {
+    router?: ClientRouter
     doAction?: ClientDoAction
     peertubeHelpersFactory: PeertubeHelpersFactory
     onFormFields?: OnFormFields
@@ -92,6 +95,7 @@ class PluginsManager {
     onClientRoute?: OnClientRoute
     backendUrl?: string
   }) {
+    this.router = options.router
     this.doAction = options.doAction
     this.peertubeHelpersFactory = options.peertubeHelpersFactory
     this.onFormFields = options.onFormFields
@@ -286,6 +290,7 @@ class PluginsManager {
     return dynamicImport(absURL)
       .then((script: ClientScript) => {
         return script.register({
+          router: this.router,
           doAction,
           registerHook,
           registerVideoField,
