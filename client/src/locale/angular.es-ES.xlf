@@ -2305,9 +2305,9 @@
           <context context-type="linenumber">518</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6626477897309620236" datatype="html">
+      <trans-unit id="6626477897309620236" datatype="html" xml:space="preserve">
         <source>Retry video import of "<x id="PH" equiv-text="video.name"/>" requested.</source>
-        <target state="new">Retry video import of "<x id="PH" equiv-text="video.name"/>" requested.</target>
+        <target state="translated">Reintentando importación del video"<x id="PH" equiv-text="video.name"/>" solicitado.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-video-miniature/video-actions-dropdown.component.ts</context>
           <context context-type="linenumber">531</context>
@@ -6741,9 +6741,9 @@
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1268292519317944726" datatype="html">
+      <trans-unit id="1268292519317944726" datatype="html" xml:space="preserve">
         <source>Imported from a watched words subscription</source>
-        <target state="new">Imported from a watched words subscription</target>
+        <target state="translated">Importado de una suscripción de palabras vigiladas</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-watched-words/watched-words-list-admin-owner.component.html</context>
           <context context-type="linenumber">29</context>
