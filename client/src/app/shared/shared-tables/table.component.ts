@@ -191,6 +191,9 @@ export class TableComponent<
 
   search: string
 
+  private defaultPagination: RestPagination
+  private defaultTableSort: SortMeta
+
   loaded = false
   loading = false
 
@@ -212,6 +215,10 @@ export class TableComponent<
     }
 
     this.loadTableSettings()
+
+    this.defaultPagination = { ...this.pagination }
+    this.defaultTableSort = { ...this.sort }
+
     this.loadSelectedColumns()
     this.subscribeToQueryChanges()
   }
@@ -453,11 +460,25 @@ export class TableComponent<
   private parseQueryParams (queryParams: QueryParams) {
     debugLogger('Parse query params', { queryParams })
 
-    if (queryParams.search !== undefined) this.search = queryParams.search
-    if (queryParams.start !== undefined) this.pagination.start = +queryParams.start
-    if (queryParams.count !== undefined) this.pagination.count = +queryParams.count
-    if (queryParams.sortOrder !== undefined) this.sort.order = +queryParams.sortOrder
-    if (queryParams.sortField !== undefined) this.sort.field = queryParams.sortField
+    this.search = queryParams.search !== undefined
+      ? queryParams.search
+      : undefined
+
+    this.pagination.start = queryParams.start !== undefined
+      ? +queryParams.start
+      : this.defaultPagination.start
+
+    this.pagination.count = queryParams.count !== undefined
+      ? +queryParams.count
+      : this.defaultPagination.count
+
+    this.sort.order = queryParams.sortOrder !== undefined
+      ? +queryParams.sortOrder
+      : this.defaultTableSort.order
+
+    this.sort.field = queryParams.sortField !== undefined
+      ? queryParams.sortField
+      : this.defaultTableSort.field
 
     if (this.inputFilters()) {
       this.loadFilters(
