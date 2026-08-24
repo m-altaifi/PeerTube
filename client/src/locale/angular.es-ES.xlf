@@ -12691,17 +12691,17 @@
           <context context-type="linenumber">456</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2791679701370281550" datatype="html">
+      <trans-unit id="2791679701370281550" datatype="html" xml:space="preserve">
         <source>Enable remote runners to generate storyboards</source>
-        <target state="new">Enable remote runners to generate storyboards</target>
+        <target state="translated">Habilitar ejecutables remotos para generar storyboards</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">465</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3150443263101390303" datatype="html">
+      <trans-unit id="3150443263101390303" datatype="html" xml:space="preserve">
         <source>Use <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/admin/settings/system/runners/runners-list&quot;&gt;"/>remote runners<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> to generate storyboards.</source>
-        <target state="new">Use <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/admin/settings/system/runners/runners-list&quot;&gt;"/>remote runners<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> to generate storyboards.</target>
+        <target state="translated">Usar <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/admin/settings/system/runners/runners-list&quot;&gt;"/>ejecutables remotos<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>  para generar storyboards.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">468</context>
@@ -12709,7 +12709,7 @@
       </trans-unit>
       <trans-unit id="9163699669526337385" datatype="html" xml:space="preserve">
         <source>Remote runners have to register on your instance first.</source>
-        <target state="translated">Los ejecutables remotos se deben registrarse primero en su instancia.</target>
+        <target state="translated">Los ejecutables remotos deben registrarse primero en su instancia.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">469</context>
