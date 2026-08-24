@@ -12,6 +12,7 @@ const logger = createLogger('rate-limit')
 const whitelistRoles = new Set<UserRoleType>([ UserRole.ADMINISTRATOR, UserRole.MODERATOR ])
 
 export function buildRateLimiter (options: {
+  enabled?: boolean // Default: true
   windowMs: number
   max: number
   skipFailedRequests?: boolean
@@ -19,9 +20,13 @@ export function buildRateLimiter (options: {
   // Key the counter on the authenticated user instead of the source IP
   perUserKey?: boolean
 }) {
+  if (options.enabled === false) {
+    return (req: express.Request, res: express.Response, next: express.NextFunction) => next()
+  }
+
   return RateLimit({
     windowMs: options.windowMs,
-    max: options.max,
+    limit: options.max,
     skipFailedRequests: options.skipFailedRequests,
 
     keyGenerator: options.perUserKey === true
@@ -58,17 +63,20 @@ export function buildRateLimiter (options: {
 }
 
 export const apiRateLimiter = buildRateLimiter({
+  enabled: CONFIG.RATES_LIMIT.API.ENABLED,
   windowMs: CONFIG.RATES_LIMIT.API.WINDOW_MS,
   max: CONFIG.RATES_LIMIT.API.MAX
 })
 
 // Endpoints that consume a token sent by email or generated for the user (reset password, verify email, confirm 2FA)
 export const confirmTokenRateLimiter = buildRateLimiter({
+  enabled: CONFIG.RATES_LIMIT.CONFIRM_TOKEN.ENABLED,
   windowMs: CONFIG.RATES_LIMIT.CONFIRM_TOKEN.WINDOW_MS,
   max: CONFIG.RATES_LIMIT.CONFIRM_TOKEN.MAX
 })
 
 export const activityPubRateLimiter = buildRateLimiter({
+  enabled: CONFIG.RATES_LIMIT.ACTIVITY_PUB.ENABLED,
   windowMs: CONFIG.RATES_LIMIT.ACTIVITY_PUB.WINDOW_MS,
   max: CONFIG.RATES_LIMIT.ACTIVITY_PUB.MAX
 })

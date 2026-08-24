@@ -42,6 +42,7 @@ abuseRouter.use(apiRateLimiter)
 // Each accepted report notifies every moderator (in-app + email) and can federate a Flag activity
 // So also limit reports per user
 const reportAbuseRateLimiter = buildRateLimiter({
+  enabled: CONFIG.RATES_LIMIT.REPORT_ABUSE.ENABLED,
   windowMs: CONFIG.RATES_LIMIT.REPORT_ABUSE.WINDOW_MS,
   max: CONFIG.RATES_LIMIT.REPORT_ABUSE.MAX,
   perUserKey: true

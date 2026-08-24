@@ -22,6 +22,7 @@ const sendFileOptions = {
 const pluginsRouter = express.Router()
 
 const pluginsRateLimiter = buildRateLimiter({
+  enabled: CONFIG.RATES_LIMIT.PLUGINS.ENABLED,
   windowMs: CONFIG.RATES_LIMIT.PLUGINS.WINDOW_MS,
   max: CONFIG.RATES_LIMIT.PLUGINS.MAX
 })

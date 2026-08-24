@@ -47,6 +47,7 @@ const logger = createLogger()
 const auditLogger = auditLoggerFactory('users')
 
 const registrationRateLimiter = buildRateLimiter({
+  enabled: CONFIG.RATES_LIMIT.SIGNUP.ENABLED,
   windowMs: CONFIG.RATES_LIMIT.SIGNUP.WINDOW_MS,
   max: CONFIG.RATES_LIMIT.SIGNUP.MAX,
   skipFailedRequests: true

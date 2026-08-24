@@ -449,62 +449,77 @@ const CONFIG = {
   },
   RATES_LIMIT: {
     API: {
+      ENABLED: config.get<boolean>('rates_limit.api.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.api.window')),
       MAX: config.get<number>('rates_limit.api.max')
     },
     SIGNUP: {
+      ENABLED: config.get<boolean>('rates_limit.signup.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.signup.window')),
       MAX: config.get<number>('rates_limit.signup.max')
     },
     LOGIN: {
+      ENABLED: config.get<boolean>('rates_limit.login.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.login.window')),
       MAX: config.get<number>('rates_limit.login.max')
     },
     RECEIVE_CLIENT_LOG: {
+      ENABLED: config.get<boolean>('rates_limit.receive_client_log.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.receive_client_log.window')),
       MAX: config.get<number>('rates_limit.receive_client_log.max')
     },
     ASK_SEND_EMAIL: {
+      ENABLED: config.get<boolean>('rates_limit.ask_send_email.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.ask_send_email.window')),
       MAX: config.get<number>('rates_limit.ask_send_email.max')
     },
     CONFIRM_TOKEN: {
+      ENABLED: config.get<boolean>('rates_limit.confirm_token.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.confirm_token.window')),
       MAX: config.get<number>('rates_limit.confirm_token.max')
     },
     PLUGINS: {
+      ENABLED: config.get<boolean>('rates_limit.plugins.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.plugins.window')),
       MAX: config.get<number>('rates_limit.plugins.max')
     },
     WELL_KNOWN: {
+      ENABLED: config.get<boolean>('rates_limit.well_known.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.well_known.window')),
       MAX: config.get<number>('rates_limit.well_known.max')
     },
     FEEDS: {
+      ENABLED: config.get<boolean>('rates_limit.feeds.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.feeds.window')),
       MAX: config.get<number>('rates_limit.feeds.max')
     },
     ACTIVITY_PUB: {
+      ENABLED: config.get<boolean>('rates_limit.activity_pub.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.activity_pub.window')),
       MAX: config.get<number>('rates_limit.activity_pub.max')
     },
     CLIENT: {
+      ENABLED: config.get<boolean>('rates_limit.client.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.client.window')),
       MAX: config.get<number>('rates_limit.client.max')
     },
     DOWNLOAD_GENERATE_VIDEO: {
+      ENABLED: config.get<boolean>('rates_limit.download_generate_video.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.download_generate_video.window')),
       MAX: config.get<number>('rates_limit.download_generate_video.max')
     },
     REPORT_ABUSE: {
+      ENABLED: config.get<boolean>('rates_limit.report_abuse.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.report_abuse.window')),
       MAX: config.get<number>('rates_limit.report_abuse.max')
     },
     CREATE_COMMENT: {
+      ENABLED: config.get<boolean>('rates_limit.create_comment.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.create_comment.window')),
       MAX: config.get<number>('rates_limit.create_comment.max')
     },
     LOGIN_LOCKOUT: {
+      ENABLED: config.get<boolean>('rates_limit.login_lockout.enabled'),
       WINDOW_MS: parseDurationToMs(config.get<string>('rates_limit.login_lockout.window')),
       MAX: config.get<number>('rates_limit.login_lockout.max'),
       MAX_PER_IP: config.get<number>('rates_limit.login_lockout.max_per_ip')

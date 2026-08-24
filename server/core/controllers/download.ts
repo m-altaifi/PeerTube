@@ -67,6 +67,7 @@ downloadRouter.use(
 )
 
 const downloadGenerateRateLimiter = buildRateLimiter({
+  enabled: CONFIG.RATES_LIMIT.DOWNLOAD_GENERATE_VIDEO.ENABLED,
   windowMs: CONFIG.RATES_LIMIT.DOWNLOAD_GENERATE_VIDEO.WINDOW_MS,
   max: CONFIG.RATES_LIMIT.DOWNLOAD_GENERATE_VIDEO.MAX,
   skipFailedRequests: true

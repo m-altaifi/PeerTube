@@ -30,6 +30,7 @@ const logger = createLogger()
 const tokensRouter = express.Router()
 
 const loginRateLimiter = buildRateLimiter({
+  enabled: CONFIG.RATES_LIMIT.LOGIN.ENABLED,
   windowMs: CONFIG.RATES_LIMIT.LOGIN.WINDOW_MS,
   max: CONFIG.RATES_LIMIT.LOGIN.MAX
 })

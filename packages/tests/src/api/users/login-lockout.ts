@@ -24,6 +24,7 @@ describe('Test login lockout', function () {
   let userToken: string
 
   const emails: object[] = []
+  let emailPort: number
 
   // Sync with rates_limit.login_lockout in config/test.yaml (window is 5 seconds on a test instance)
   const maxFailures = 10
@@ -86,7 +87,7 @@ describe('Test login lockout', function () {
   before(async function () {
     this.timeout(30000)
 
-    const port = await MockSmtpServer.Instance.collectEmails(emails)
+    emailPort = await MockSmtpServer.Instance.collectEmails(emails)
 
     // Increase the IP based login rate limit so this test only triggers the per-account lockout
     server = await createSingleServer(1, {
@@ -96,7 +97,7 @@ describe('Test login lockout', function () {
           max: 1000
         }
       },
-      ...ConfigCommand.getEmailOverrideConfig(port)
+      ...ConfigCommand.getEmailOverrideConfig(emailPort)
     })
 
     await setAccessTokensToServers([ server ])
@@ -230,6 +231,75 @@ describe('Test login lockout', function () {
 
     // The previous lock (password failures) already sent 1 email, this OTP-triggered lock sends a 2nd one
     expectLockedAccountEmailsCount(2)
+  })
+
+  // Login lockout is disabled by default
+  describe('When login lockout is disabled', function () {
+    it('Should never lock an account however many failures it gets', async function () {
+      this.timeout(30000)
+
+      await server.kill()
+      await server.run({
+        rates_limit: {
+          login: { window: '5 minutes', max: 1000 },
+          login_lockout: { enabled: false }
+        },
+        ...ConfigCommand.getEmailOverrideConfig(emailPort)
+      })
+
+      const { password: otherUserPassword } = await server.users.generate('user2')
+
+      const emailsCountBefore = emails.length
+
+      for (let i = 0; i < maxFailures * 2; i++) {
+        await server.login.loginAndGetResponse({
+          user: { username: 'user2', password: 'invalid password' },
+          xForwardedFor: xForwardedForAt(i),
+          expectedStatus: HttpStatusCode.BAD_REQUEST_400
+        })
+      }
+
+      await server.login.login({
+        user: { username: 'user2', password: otherUserPassword },
+        expectedStatus: HttpStatusCode.OK_200
+      })
+
+      await waitJobs(server)
+
+      expect(emails).to.have.lengthOf(emailsCountBefore)
+    })
+  })
+
+  describe('When root auth is disabled', function () {
+    it('Should not send a login lockout notification for repeated failed root logins', async function () {
+      this.timeout(30000)
+
+      await server.kill()
+      await server.run({
+        user: { disable_root_auth: true },
+        rates_limit: {
+          login: { window: '5 minutes', max: 1000 }
+        },
+        ...ConfigCommand.getEmailOverrideConfig(emailPort)
+      })
+
+      const emailsCountBefore = emails.length
+
+      for (let i = 0; i < maxFailures * 2; i++) {
+        const { body } = await server.login.loginAndGetResponse({
+          user: { username: 'root', password: 'whatever password' },
+          xForwardedFor: xForwardedForAt(i),
+          expectedStatus: HttpStatusCode.BAD_REQUEST_400
+        })
+
+        expectGenericInvalidGrant(body)
+      }
+
+      // Can't use waitJobs because root tokens were invalidated
+      await wait(2000)
+
+      expect(emails).to.have.lengthOf(emailsCountBefore)
+    })
   })
 
   after(async function () {

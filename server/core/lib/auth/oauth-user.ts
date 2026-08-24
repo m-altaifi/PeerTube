@@ -83,14 +83,16 @@ export async function getUserOrThrow (options: {
   // Check the per-account login failures counter so a locked account cannot have its password/OTP brute-forced
   // Throw the exact same generic error as invalid credentials: a distinct error/status here would let an
   // attacker use the lockout itself as a username-enumeration oracle (try N failed logins, see if it flips)
-  if (await Redis.Instance.getLoginFailures(user.id) >= CONFIG.RATES_LIMIT.LOGIN_LOCKOUT.MAX) {
+  if (CONFIG.RATES_LIMIT.LOGIN_LOCKOUT.ENABLED && await Redis.Instance.getLoginFailures(user.id) >= CONFIG.RATES_LIMIT.LOGIN_LOCKOUT.MAX) {
     throwInvalidGrantError()
   }
 
   const passwordMatch = await user.isPasswordMatch(password)
   if (passwordMatch !== true) {
-    const failures = await Redis.Instance.addLoginFailure(user.id, req.ip)
-    await notifyAccountLockedIfNeeded(user, failures, req.ip)
+    if (CONFIG.RATES_LIMIT.LOGIN_LOCKOUT.ENABLED) {
+      const failures = await Redis.Instance.addLoginFailure(user.id, req.ip)
+      await notifyAccountLockedIfNeeded(user, failures, req.ip)
+    }
 
     throwInvalidGrantError()
   }
@@ -108,8 +110,10 @@ export async function getUserOrThrow (options: {
     }
 
     if (await isOTPValid({ encryptedSecret: user.otpSecret, token: oauthHeaders[OTP.HEADER_NAME] }) !== true) {
-      const failures = await Redis.Instance.addLoginFailure(user.id, req.ip)
-      await notifyAccountLockedIfNeeded(user, failures, req.ip)
+      if (CONFIG.RATES_LIMIT.LOGIN_LOCKOUT.ENABLED) {
+        const failures = await Redis.Instance.addLoginFailure(user.id, req.ip)
+        await notifyAccountLockedIfNeeded(user, failures, req.ip)
+      }
 
       throw new InvalidTwoFactorError(req.t('Invalid two factor header'))
     }

@@ -49,6 +49,7 @@ const videoCommentRouter = express.Router()
 // Each comment fans out notifications and ActivityPub deliveries to followers
 // So also limit comment creation per user
 const createCommentRateLimiter = buildRateLimiter({
+  enabled: CONFIG.RATES_LIMIT.CREATE_COMMENT.ENABLED,
   windowMs: CONFIG.RATES_LIMIT.CREATE_COMMENT.WINDOW_MS,
   max: CONFIG.RATES_LIMIT.CREATE_COMMENT.MAX,
   perUserKey: true

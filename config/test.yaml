@@ -29,6 +29,7 @@ rates_limit:
     window: 10 seconds
     max: 500
   login_lockout:
+    enabled: true
     window: 5 seconds
     max: 10
     max_per_ip: 3

@@ -12,6 +12,7 @@ import {
 } from '../../../middlewares/validators/index.js'
 
 const askSendEmailLimiter = buildRateLimiter({
+  enabled: CONFIG.RATES_LIMIT.ASK_SEND_EMAIL.ENABLED,
   windowMs: CONFIG.RATES_LIMIT.ASK_SEND_EMAIL.WINDOW_MS,
   max: CONFIG.RATES_LIMIT.ASK_SEND_EMAIL.MAX
 })

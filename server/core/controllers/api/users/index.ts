@@ -58,6 +58,7 @@ const logger = createLogger('api', 'users')
 const auditLogger = auditLoggerFactory('users')
 
 const askResetPasswordRateLimiter = buildRateLimiter({
+  enabled: CONFIG.RATES_LIMIT.ASK_SEND_EMAIL.ENABLED,
   windowMs: CONFIG.RATES_LIMIT.ASK_SEND_EMAIL.WINDOW_MS,
   max: CONFIG.RATES_LIMIT.ASK_SEND_EMAIL.MAX
 })
