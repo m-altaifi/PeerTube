@@ -11803,9 +11803,9 @@
           <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="575474399125992547" datatype="html">
+      <trans-unit id="575474399125992547" datatype="html" xml:space="preserve">
         <source>When a video ends, follow up with the next suggested video.</source>
-        <target state="translated">Cuando termine un vídeo, reproducir el siguiente vídeo sugerido.</target>
+        <target state="translated">Cuando se termine un vídeo, reproducir el siguiente vídeo sugerido.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-user-settings/user-video-settings.component.html</context>
           <context context-type="linenumber">94</context>
@@ -11955,17 +11955,17 @@
           <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="942983518498739506" datatype="html">
+      <trans-unit id="942983518498739506" datatype="html" xml:space="preserve">
         <source>Public blocklist</source>
-        <target state="new">Public blocklist</target>
+        <target state="translated">Lista pública de bloqueos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/children/about-instance-moderation.component.html</context>
           <context context-type="linenumber">18,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9164499273325954926" datatype="html">
+      <trans-unit id="9164499273325954926" datatype="html" xml:space="preserve">
         <source><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> publicly shares <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;/api/v1/server/blocklist/public-log&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;"/>its instance blocklist <x id="START_TAG_MY_GLOBAL_ICON" ctype="x-my_global_icon" equiv-text="&lt;my-global-icon iconName=&quot;external-link&quot;&gt;"/><x id="CLOSE_TAG_MY_GLOBAL_ICON" ctype="x-my_global_icon" equiv-text="&lt;/my-global-icon&gt;"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </source>
-        <target state="new"><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> publicly shares <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;/api/v1/server/blocklist/public-log&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;"/>its instance blocklist <x id="START_TAG_MY_GLOBAL_ICON" ctype="x-my_global_icon" equiv-text="&lt;my-global-icon iconName=&quot;external-link&quot;&gt;"/><x id="CLOSE_TAG_MY_GLOBAL_ICON" ctype="x-my_global_icon" equiv-text="&lt;/my-global-icon&gt;"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </target>
+        <target state="translated"><x id="INTERPOLATION" equiv-text="{{ instanceName }}"/> comparte públicamente <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;/api/v1/server/blocklist/public-log&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;"/>its instance blocklist <x id="START_TAG_MY_GLOBAL_ICON" ctype="x-my_global_icon" equiv-text="&lt;my-global-icon iconName=&quot;external-link&quot;&gt;"/><x id="CLOSE_TAG_MY_GLOBAL_ICON" ctype="x-my_global_icon" equiv-text="&lt;/my-global-icon&gt;"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+about/about-instance/children/about-instance-moderation.component.html</context>
           <context context-type="linenumber">22,24</context>
@@ -12035,9 +12035,9 @@
           <context context-type="linenumber">316</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6722472563287778070" datatype="html">
+      <trans-unit id="6722472563287778070" datatype="html" xml:space="preserve">
         <source>It's important to know for users who want to register on your instance</source>
-        <target state="translated">Es importante saber para los usuarios que desean registrarse en la instancia</target>
+        <target state="translated">Es importante saber para los usuarios que desean registrarse en tu instancia</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-information.component.html</context>
           <context context-type="linenumber">317</context>
@@ -12091,9 +12091,9 @@
           <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4096396973250090478" datatype="html">
+      <trans-unit id="4096396973250090478" datatype="html" xml:space="preserve">
         <source>Landing page</source>
-        <target state="translated">Página de destino</target>
+        <target state="translated">Página de inicio</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">18</context>
@@ -12107,9 +12107,9 @@
           <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="554741830445276244" datatype="html">
+      <trans-unit id="554741830445276244" datatype="html" xml:space="preserve">
         <source>Hot videos</source>
-        <target state="translated">Videos calientes</target>
+        <target state="translated">Videos populares</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">96</context>
@@ -12139,9 +12139,9 @@
           <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5862227717871131052" datatype="html">
+      <trans-unit id="5862227717871131052" datatype="html" xml:space="preserve">
         <source>Prefer author display name in video miniature</source>
-        <target state="translated">Prefiero el nombre para mostrar del autor en miniatura de video</target>
+        <target state="translated">Prefiero mostrar el nombre del autor en la miniatura del video</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-customization.component.html</context>
           <context context-type="linenumber">23</context>
@@ -12165,7 +12165,7 @@
       </trans-unit>
       <trans-unit id="8239083179530818601" datatype="html" xml:space="preserve">
         <source>Only used by the web player</source>
-        <target state="translated">Usado solamente por el reproductor web</target>
+        <target state="translated">Usado unicamente por el reproductor web</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-customization.component.html</context>
           <context context-type="linenumber">33</context>
@@ -12189,7 +12189,7 @@
       </trans-unit>
       <trans-unit id="246592664950440386" datatype="html" xml:space="preserve">
         <source>Use <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary&quot; routerLink=&quot;/admin/settings/plugins&quot;&gt;"/>plugins &amp; themes<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> for more involved changes </source>
-        <target state="translated">Use <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary&quot; routerLink=&quot;/admin/settings/plugins&quot;&gt;"/>complementos &amp; temas<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> para más cambios. </target>
+        <target state="translated">Usar <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;link-primary&quot; routerLink=&quot;/admin/settings/plugins&quot;&gt;"/>plugins &amp; temas<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> para más cambios. </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-customization.component.html</context>
           <context context-type="linenumber">47</context>
