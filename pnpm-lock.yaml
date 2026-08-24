@@ -149,9 +149,6 @@ importers:
       bytes:
         specifier: ^3.1.2
         version: 3.1.2
-      chokidar:
-        specifier: ^5.0.0
-        version: 5.0.0
       commander:
         specifier: ^15.0.0
         version: 15.0.0

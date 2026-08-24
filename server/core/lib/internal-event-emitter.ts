@@ -1,5 +1,5 @@
+import { TypedEventEmitter } from '@peertube/peertube-node-utils'
 import { MChannel, MVideo, MVideoImmutable, MVideoPlaylist, MVideoPlaylistElement } from '@server/types/models/index.js'
-import { EventEmitter } from 'events'
 
 export interface PeerTubeInternalEvents {
   'video-created': (options: { video: MVideo }) => void
@@ -21,21 +21,7 @@ export interface PeerTubeInternalEvents {
   'chapters-updated': (options: { video: MVideoImmutable }) => void
 }
 
-// oxlint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
-declare interface InternalEventEmitter {
-  on<U extends keyof PeerTubeInternalEvents>(
-    event: U,
-    listener: PeerTubeInternalEvents[U]
-  ): this
-
-  emit<U extends keyof PeerTubeInternalEvents>(
-    event: U,
-    ...args: Parameters<PeerTubeInternalEvents[U]>
-  ): boolean
-}
-
-// oxlint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
-class InternalEventEmitter extends EventEmitter {
+class InternalEventEmitter extends TypedEventEmitter<PeerTubeInternalEvents> {
   private static instance: InternalEventEmitter
 
   static get Instance () {

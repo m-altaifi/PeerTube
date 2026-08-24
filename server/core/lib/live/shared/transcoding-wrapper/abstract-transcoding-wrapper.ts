@@ -1,25 +1,12 @@
 import { LiveVideoErrorType } from '@peertube/peertube-models'
+import { TypedEventEmitter } from '@peertube/peertube-node-utils'
 import { MStreamingPlaylistVideo, MVideoLiveVideo } from '@server/types/models/index.js'
-import EventEmitter from 'events'
 import { FfprobeData } from 'fluent-ffmpeg'
 
 interface TranscodingWrapperEvents {
   'end': () => void
 
   'error': (options: { err: Error }) => void
-}
-
-// oxlint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
-declare interface AbstractTranscodingWrapper {
-  on<U extends keyof TranscodingWrapperEvents>(
-    event: U,
-    listener: TranscodingWrapperEvents[U]
-  ): this
-
-  emit<U extends keyof TranscodingWrapperEvents>(
-    event: U,
-    ...args: Parameters<TranscodingWrapperEvents[U]>
-  ): boolean
 }
 
 interface AbstractTranscodingWrapperOptions {
@@ -48,8 +35,7 @@ interface AbstractTranscodingWrapperOptions {
   outDirectory: string
 }
 
-// oxlint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
-abstract class AbstractTranscodingWrapper extends EventEmitter {
+abstract class AbstractTranscodingWrapper extends TypedEventEmitter<TranscodingWrapperEvents> {
   protected readonly videoLive: MVideoLiveVideo
 
   protected readonly toTranscode: {

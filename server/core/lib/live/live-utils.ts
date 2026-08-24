@@ -1,4 +1,4 @@
-import { wait } from '@peertube/peertube-core-utils'
+import { LIVE_PLAYLIST_EXTENSION, LIVE_SEGMENT_EXTENSION, wait } from '@peertube/peertube-core-utils'
 import { FileStorage, LiveVideoLatencyMode, LiveVideoLatencyModeType, VideoState } from '@peertube/peertube-models'
 import { createLogger } from '@server/helpers/logger.js'
 import { CONFIG } from '@server/initializers/config.js'
@@ -95,8 +95,8 @@ export function getLiveSegmentListSize (options: {
 // ---------------------------------------------------------------------------
 
 function isTMPLiveFile (name: string) {
-  return name.endsWith('.ts') ||
-    name.endsWith('.m3u8') ||
+  return name.endsWith(LIVE_PLAYLIST_EXTENSION) ||
+    name.endsWith(LIVE_SEGMENT_EXTENSION) ||
     name.endsWith('.json') ||
     name.endsWith('.mpd') ||
     name.endsWith('.m4s') ||

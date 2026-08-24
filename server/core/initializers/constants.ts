@@ -1,4 +1,4 @@
-import { randomInt } from '@peertube/peertube-core-utils'
+import { LIVE_SEGMENT_EXTENSION, randomInt } from '@peertube/peertube-core-utils'
 import {
   AbuseState,
   AbuseStateType,
@@ -1214,7 +1214,7 @@ export const DIRECTORIES = {
 export const RESUMABLE_UPLOAD_SESSION_LIFETIME = SCHEDULER_INTERVALS_MS.REMOVE_DANGLING_RESUMABLE_UPLOADS
 
 export const VIDEO_LIVE = {
-  EXTENSION: '.ts',
+  EXTENSION: LIVE_SEGMENT_EXTENSION,
   CLEANUP_DELAY: 1000 * 60 * 5, // 5 minutes
   // Delay before aborting a session on RTMP disconnection, so we kill ffmpeg even if it still has data to process
   ABORT_DELAY_ON_RTMP_DISCONNECT: 2000, // 2 seconds
@@ -1607,6 +1607,10 @@ function buildVideoMimetypeExt () {
         'video/vnd.dlna.mpeg-tts': '.mts',
 
         'video/m2ts': '.m2ts',
+
+        // Some OS recognize .ts files as text, so we need to add a specific mimetype for them
+        // See https://stackoverflow.com/questions/14230396/ts-files-always-get-recognized-as-text-vnd-trolltech-linguist-and-never-as-vide
+        'text/vnd.trolltech.linguist': '.ts',
 
         // Old formats reliant on MPEG-1/MPEG-2
         'video/mpv': '.mpv',

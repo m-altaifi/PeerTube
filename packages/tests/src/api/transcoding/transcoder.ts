@@ -153,7 +153,7 @@ describe('Test video transcoding', function () {
     it('Should accept and transcode additional extensions', async function () {
       this.timeout(300_000)
 
-      for (const fixture of [ 'video_short.mkv', 'video_short.avi' ]) {
+      for (const fixture of [ 'video_short.mkv', 'video_short.avi', 'video_short.ts' ]) {
         const attributes = {
           name: fixture,
           fixture
