@@ -12749,7 +12749,7 @@
       </trans-unit>
       <trans-unit id="776440228653665977" datatype="html" xml:space="preserve">
         <source>Enable remote runners for transcription</source>
-        <target state="translated">Habilitar codificadores remotos para la transcripción</target>
+        <target state="translated">Habilitar ejecutables remotos para la transcripción</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">492</context>
@@ -12757,7 +12757,7 @@
       </trans-unit>
       <trans-unit id="5060595856718581647" datatype="html" xml:space="preserve">
         <source>Use <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/admin/settings/system/runners/runners-list&quot;&gt;"/>remote runners<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> to process transcription tasks.</source>
-        <target state="translated">Use <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/admin/settings/system/runners/runners-list&quot;&gt;"/>ejecutables remotos<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> para procesar las tareas de transcripción.</target>
+        <target state="translated">Usar <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/admin/settings/system/runners/runners-list&quot;&gt;"/>ejecutables remotos<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> para procesar las tareas de transcripción.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">495</context>
@@ -12789,7 +12789,7 @@
       </trans-unit>
       <trans-unit id="6375285763528205588" datatype="html" xml:space="preserve">
         <source>Default download policy</source>
-        <target state="translated">Política de descargas predeterminada</target>
+        <target state="translated">Política de descargas por defecto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">538</context>
@@ -12803,9 +12803,9 @@
           <context context-type="linenumber">553</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7026684190224451991" datatype="html">
+      <trans-unit id="7026684190224451991" datatype="html" xml:space="preserve">
         <source>Max video channels per user</source>
-        <target state="translated">Canales de video máx. Por usuario</target>
+        <target state="translated">Canales de video máximo por usuario</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">558</context>
