@@ -386,7 +386,8 @@ export class VideoMainInfoComponent implements OnInit, OnDestroy {
         MESSAGES: {}
       }
 
-      pluginDefaults[name] = pluginData?.[name] ?? setting.commonOptions.default
+      // FormValidatorService falls back to '' when building the control, so mirror that here
+      pluginDefaults[name] = pluginData?.[name] ?? setting.commonOptions.default ?? ''
     }
 
     this.pluginDataFormGroup = new FormGroup<any>({})
