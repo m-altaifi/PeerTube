@@ -12269,7 +12269,7 @@
       </trans-unit>
       <trans-unit id="8147283395759737895" datatype="html" xml:space="preserve">
         <source>Display a message on your platform</source>
-        <target state="translated">Mostrar un mensaje en su plataforma</target>
+        <target state="translated">Mostrar un mensaje en tu plataforma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">116</context>
@@ -12349,7 +12349,7 @@
       </trans-unit>
       <trans-unit id="8766972676494797493" datatype="html" xml:space="preserve">
         <source>Signup won't be limited to a fixed number of users</source>
-        <target state="translated">Las inscripciones no se limitarán a un número fijo de usuaries</target>
+        <target state="translated">Las inscripciones no se limitarán a un número fijo de usuarios</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">235</context>
@@ -12595,9 +12595,9 @@
           <context context-type="linenumber">362</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6801844913630625451" datatype="html">
+      <trans-unit id="6801844913630625451" datatype="html" xml:space="preserve">
         <source>⚠️ We don't recommend to enable this feature if you don't trust your users</source>
-        <target state="translated">⚠️ No recomendamos habilitar esta función si no confía en sus usuarios</target>
+        <target state="translated">⚠️ No recomendamos habilitar esta función si no confías en tus usuarios</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">365</context>
@@ -12611,9 +12611,9 @@
           <context context-type="linenumber">377</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7404104645798703279" datatype="html">
+      <trans-unit id="7404104645798703279" datatype="html" xml:space="preserve">
         <source>⛔ You need to allow import with HTTP URL to be able to activate this feature.</source>
-        <target state="translated">⛔ Debe permitir la importación con URL HTTP para poder activar esta función.</target>
+        <target state="translated">⛔ Debes permitir la importación con URL HTTP para poder activar esta función.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">381</context>
@@ -12621,7 +12621,7 @@
       </trans-unit>
       <trans-unit id="5239500638742740142" datatype="html" xml:space="preserve">
         <source>Max channel synchronization per user</source>
-        <target state="translated">Sincronización máxima del canal por usuarie</target>
+        <target state="translated">Sincronización máxima del canal por usuario</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/+admin/config/pages/admin-config-general.component.html</context>
           <context context-type="linenumber">388</context>
