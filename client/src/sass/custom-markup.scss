@@ -8,7 +8,8 @@ peertube-container {
     flex-wrap: wrap;
     gap: 2rem;
 
-    > *:not(.header) {
+    > peertube-video-embed,
+    > peertube-playlist-embed {
       flex-grow: 1;
     }
   }
