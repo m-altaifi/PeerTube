@@ -15,6 +15,7 @@ import {
   PeerTubeServer,
   cleanupTests,
   createSingleServer,
+  doubleFollow,
   makeDeleteRequest,
   makeGetRequest,
   makePutBodyRequest,
@@ -31,6 +32,7 @@ import { expect } from 'chai'
 describe('Test videos API validator', function () {
   const path = '/api/v1/videos/'
   let server: PeerTubeServer
+  let remoteServer: PeerTubeServer
 
   let userAccessToken: string
   let editorToken: string
@@ -45,16 +47,20 @@ describe('Test videos API validator', function () {
 
   let video: VideoCreateResult
   let privateVideo: VideoCreateResult
+  let remoteVideo: VideoCreateResult
 
   // ---------------------------------------------------------------
 
   before(async function () {
-    this.timeout(30000)
+    this.timeout(120000)
 
     server = await createSingleServer(1)
+    remoteServer = await createSingleServer(2)
 
-    await setAccessTokensToServers([ server ])
-    await setDefaultVideoChannel([ server ])
+    await setAccessTokensToServers([ server, remoteServer ])
+    await setDefaultVideoChannel([ server, remoteServer ])
+
+    await doubleFollow(server, remoteServer)
 
     userAccessToken = await server.users.generateUserAndToken('user1')
     editorToken = await server.channelCollaborators.createEditor('editor', 'root_channel')
@@ -83,6 +89,12 @@ describe('Test videos API validator', function () {
 
     {
       privateVideo = await server.videos.quickUpload({ name: 'private video', privacy: VideoPrivacy.PRIVATE })
+    }
+
+    {
+      remoteVideo = await remoteServer.videos.quickUpload({ name: 'remote video' })
+
+      await waitJobs([ server, remoteServer ])
     }
   })
 
@@ -878,7 +890,17 @@ describe('Test videos API validator', function () {
       })
     })
 
-    it('Should fail with a video of another server')
+    it('Should fail with a video of another server', async function () {
+      const fields = baseCorrectParams
+
+      await makePutBodyRequest({
+        url: server.url,
+        path: path + remoteVideo.uuid,
+        token: server.accessToken,
+        fields,
+        expectedStatus: HttpStatusCode.FORBIDDEN_403
+      })
+    })
 
     it('Should report the appropriate error', async function () {
       const fields = { ...baseCorrectParams, licence: 125 }
@@ -958,7 +980,7 @@ describe('Test videos API validator', function () {
       })
 
       expect(res.body.data).to.be.an('array')
-      expect(res.body.data.length).to.equal(9)
+      expect(res.body.data.length).to.equal(10)
     })
 
     it('Should fail without a correct uuid', async function () {
@@ -1107,6 +1129,6 @@ describe('Test videos API validator', function () {
   })
 
   after(async function () {
-    await cleanupTests([ server ])
+    await cleanupTests([ server, remoteServer ])
   })
 })
