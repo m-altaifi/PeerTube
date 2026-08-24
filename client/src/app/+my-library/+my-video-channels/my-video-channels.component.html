@@ -85,9 +85,7 @@
           <div class="buttons">
             <my-edit-button i18n-label label="Manage" [ptRouterLink]="[ '/my-library/video-channels/manage', videoChannel.nameWithHost ]"></my-edit-button>
 
-            @if (isOwned(videoChannel)) {
-              <my-delete-button label (click)="deleteVideoChannel(videoChannel)"></my-delete-button>
-            }
+            <my-delete-button [class.opacity-0]="!isOwned(videoChannel)" label (click)="deleteVideoChannel(videoChannel)"></my-delete-button>
           </div>
         </div>
       </div>
