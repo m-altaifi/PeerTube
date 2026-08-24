@@ -793,7 +793,7 @@
       </trans-unit>
       <trans-unit id="6613185794814600468" datatype="html" xml:space="preserve">
         <source>Automatic blocklist update:</source>
-        <target state="translated">Mise à jour automatique de la liste de blocage:</target>
+        <target state="translated">Mise à jour automatique de la liste de blocage :</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/shared-notifications/user-notification-content.component.html</context>
           <context context-type="linenumber">344</context>
