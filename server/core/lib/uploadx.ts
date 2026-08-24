@@ -1,6 +1,7 @@
 import { install } from '@logtape/adaptor-winston'
 import { buildWinstonLogger } from '@server/helpers/logger.js'
 import { getResumableUploadPath } from '@server/helpers/upload.js'
+import { WEBSERVER } from '@server/initializers/constants.js'
 import { authenticate } from '@server/middlewares/auth.js'
 import { resumableInitValidator } from '@server/middlewares/validators/resumable-upload.js'
 import { FileQuery, Uploadx, Metadata as UploadXMetadata } from '@uploadx/core'
@@ -24,7 +25,9 @@ export const uploadx = new Uploadx({
     return res.locals.oauth.token.user.id + ''
   },
 
-  filename: file => `${file.userId}-${file.id}${extname(file.metadata.filename)}`
+  filename: file => `${file.userId}-${file.id}${extname(file.metadata.filename)}`,
+
+  baseUrl: WEBSERVER.SCHEME + '://' + WEBSERVER.HOST
 })
 
 export function safeUploadXCleanup (file: FileQuery) {
