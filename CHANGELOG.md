@@ -70,7 +70,6 @@
     * New *Moderation → Watched words → Subscriptions* admin page (instance-wide lists) and a matching subscriptions page in *My library* (per-account lists) to add/remove subscriptions and see their sync state and imported word count
     * Subscribed lists are periodically fetched and synchronized, automatically adding/removing words
     * Existing videos and comments are automatically re-tagged in the background when a subscribed list changes
-    * https://docs.joinpeertube.org/admin/moderation#mute-list-subscription
  * :tada: Admins can configure automatic tag policies to automatically block videos with a specific label :tada:
  * Add ability for moderators to set an internal note on blocked videos
  * Send an email notification on account login from a new device [#7737](https://github.com/Chocobozzz/PeerTube/pull/7737)
