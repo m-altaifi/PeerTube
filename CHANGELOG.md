@@ -1,5 +1,134 @@
 # Changelog
 
+## v8.3.0-rc.1
+
+### IMPORTANT NOTES
+
+ * PeerTube requires PostgreSQL >= 14
+ * Comment API change: `GET /api/v1/videos/{id}/comment-threads/{threadId}` no longer returns the full comment tree
+    * It now returns at most 10 direct replies per comment, down to 5 levels of nesting, by default
+    * Each node in the returned tree now has a `totalChildren` field: compare it against `children.length` to know if replies were cut off
+    * To fetch the rest, call the new endpoint: `GET /api/v1/videos/{id}/comments/{commentId}/replies`
+    * If you're a plugin author: `filter:api.video-thread-comments.list.result` now sees only the truncated tree. Two new hooks, `filter:api.video-comment-replies.list.params` / `.result`, cover the new replies endpoint
+
+### SECURITY
+
+ * Security hardening:
+    * Time safe comparison when checking email verification strings
+    * Prevent replaying an email check request
+    * Don't leak account existence in the login endpoint
+    * Introduce per-account rate limiting for abuse creation and comment creation
+    * Add specific rate limit for "Confirm token" endpoints (reset password, verify email, confirm 2FA)
+    * Introduce account login lockout, disabled by default, when there are too many failed attempts for a specific account across multiple IPs. An email is sent to the account owner when the account login is locked
+    * Migrate OTP encryption to GCM
+    * Add `nosniff` `X-Content-Type-Options` HTTP response header
+    * Sanitize uploaded SVG files (SVG uploads are only allowed via admin endpoints for now)
+    * Force downloading SVG files using the `Content-Disposition` header to prevent XSS injections
+
+### Sysadmin
+
+ * A JSON Schema is available for the YAML configuration in `config/config-schema.json`
+
+### Configuration
+
+*This section is not exhaustive*
+
+ * Add explicit Redis socket configuration in `redis.socket` to provide the redis socket path
+ * Add `user.allow_cross_provider_auth` configuration to support multiple auth plugins for the same PeerTube user [#7655](https://github.com/Chocobozzz/PeerTube/pull/7655)
+ * Add opt-in configuration to automatically add the username and HTTP request id as tags in the log file: `log.tag_requests`
+
+### Plugins/Themes/Embed API
+
+ * Add server plugin hooks (https://docs.joinpeertube.org/api/plugins):
+    * `filter:api.video-comment-replies.list.params` and `filter:api.video-comment-replies.list.result` for the new `/api/v1/videos/{id}/comments/{commentId}/replies` comment endpoint
+ * Add client plugin hooks (https://docs.joinpeertube.org/api/plugins):
+    * `filter:api.video-watch.video-comment-replies.list.params` and `filter:api.video-watch.video-comment-replies.list.result` when loading more replies of a comment
+ * Add server plugin helpers:
+    * `peertubeHelpers.email.createJob({ ... })` to send an email
+    * `peertubeHelpers.videos.updateVideo({ ... })` to update video metadata
+    * `peertubeHelpers.videos.withFile({ ... })` to fetch a video file
+ * Add server registration features to add automatic tags to videos or comments:
+    * `registerCommentAutoTagger: (options: RegisterCommentAutoTaggerOptions) => void`
+    * `registerVideoAutoTagger: (options: RegisterVideoAutoTaggerOptions) => void`
+    * `unregisterCommentAutoTagger: (options: RegisterCommentAutoTaggerOptions) => void`
+    * `unregisterVideoAutoTagger: (options: RegisterVideoAutoTaggerOptions) => void`
+ * Add support for `externalId` when returning the user from an auth plugin, so it no longer needs to rely on the user's email to map the auth provider user to a PeerTube user
+ * Add support for `language` when returning the user from an auth plugin
+ * Expose `req.cookies` in the `onLogout` hook of the `registerExternalAuth` plugin helper
+
+### Features
+
+ * :tada: Add ability to subscribe to a remote blocklist to automatically mute/unmute accounts and servers :tada:
+    * New *Moderation → Blocklist → Subscriptions* admin page to add/remove blocklist subscriptions and see their sync state
+    * Subscriptions are periodically refreshed, automatically muting/unmuting accounts and servers to match the remote list
+    * Add a notification when a subscription sync mutes or unmutes accounts/servers
+    * Expose your own instance's blocklist as a public log (`blocklist.public_log.enabled` configuration) so other admins can subscribe to it
+ * :tada: Add ability to subscribe to a remote watched words list, at both the platform and account level :tada:
+    * New *Moderation → Watched words → Subscriptions* admin page (instance-wide lists) and a matching subscriptions page in *My library* (per-account lists) to add/remove subscriptions and see their sync state and imported word count
+    * Subscribed lists are periodically fetched and synchronized, automatically adding/removing words
+    * Existing videos and comments are automatically re-tagged in the background when a subscribed list changes
+    * https://docs.joinpeertube.org/admin/moderation#mute-list-subscription
+ * :tada: Admins can configure automatic tag policies to automatically block videos with a specific label :tada:
+ * Add ability for moderators to set an internal note on blocked videos
+ * Send an email notification on account login from a new device [#7737](https://github.com/Chocobozzz/PeerTube/pull/7737)
+ * Add bulk actions to add/remove videos in a playlist in *My Videos*
+ * Add ability to bulk update some video metadata in *My Videos* and *Admin Videos Overview*
+ * Add ability for users to retry video imports and filter them by *State*
+ * Users can specify the default privacy for imported videos of a channel synchronization
+ * Admins/moderators have a special channel picker when updating a video, so they can easily move any local video to another user's channel
+ * Admins can cancel a local transcoding job
+ * Allow users to choose the stats interval when listing their channels [#7750](https://github.com/Chocobozzz/PeerTube/pull/7750)
+ * Add "Nobody can embed this video" setting to videos [#7716](https://github.com/Chocobozzz/PeerTube/pull/7716)
+ * Improve local video search by allowing search through the first 1000 characters of descriptions [#7612](https://github.com/Chocobozzz/PeerTube/pull/7612)
+ * Various SEO improvements, including a `lastmod` field in sitemap entries [#7738](https://github.com/Chocobozzz/PeerTube/pull/7738)
+ * Support the `host-meta` well-known endpoint for remote subscriptions
+ * Transcription widget:
+    * Make the transcription widget header sticky to ensure the search function remains easily accessible
+    * Don't auto-scroll transcription to the current segment after a manual user scroll
+    * Add a "Sync with video" button after a manual user scroll to restore auto scroll
+    * Restore transcription widget when refreshing the page
+ * Improve podcast UX for channels:
+    * Add a new "Podcast" page when managing a channel to display podcast URLs and information
+    * The channel now accepts a "Public email" configuration so that the user's email address is not used
+ * UI & accessibility:
+    * Improve video stats styling and add quick date filters
+    * Fade player when video is paused and user becomes inactive [#7725](https://github.com/Chocobozzz/PeerTube/pull/7725)
+    * Underline badges that are filters or links
+    * Improve video miniature accessibility when listing videos
+    * Add `...` suffix to actions that lead to another step
+    * Improve notifier error message when server returns a `502` HTTP status
+    * Hide non-existing metadata in the video watch page
+ * Performance:
+    * Faster comment rendering in the web browser
+    * Limit the number of replies when fetching replies of a thread
+    * Reduce number of rows returned by the user SQL query
+    * Reduce server CPU usage when handling multiple lives with a large DVR window
+
+
+### Bug fixes
+
+ * Stick live to 1x playback rate
+ * Correctly cleanup lives on error
+ * Prevent memory leak in the live segment sha store
+ * Use correct CSS variable for big play button color [#7733](https://github.com/Chocobozzz/PeerTube/pull/7733)
+ * Fix juddery video with variable fps input
+ * Abort ffmpeg and HTTP requests on job timeout
+ * Fix broken byte range request support for video download endpoints when throttling is enabled
+ * Owner/admin can bypass the download enabled setting
+ * Fix S3 base url with forced path style
+ * Prevent duplicated thumbnails
+ * Support federation to other fediverse platforms that do not support the shared inbox
+ * More robust channel sync: don't miss videos on the next sync when the previous one was aborted because of a sync error
+ * Fix videos feed sort for playlists and respect `originallyPublishedAt` for videos
+ * Fix broken views on an instance if the GeoIP request is stuck
+ * Don't notify again when a video is re-published
+ * Allow admin to update the default "Prevent email from being sent to the user" behaviour when processing a registration request
+ * Add all user attributes to audit logs on create/update [#7695](https://github.com/Chocobozzz/PeerTube/pull/7695)
+ * Correctly hide the mobile message if disabled by the admin
+ * Fix missing sourcemap asset requests [#7696](https://github.com/Chocobozzz/PeerTube/pull/7696)
+
+
+
 ## v8.2.4
 
 ### SECURITY
