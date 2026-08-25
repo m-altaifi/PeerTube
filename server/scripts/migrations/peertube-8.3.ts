@@ -27,8 +27,7 @@ async function fillVideoSearchTable () {
     INSERT INTO "videoSearch" ("videoId", "searchVector")
     SELECT "id", video_search_vector(name, description)
     FROM "video"
-    ON CONFLICT ("videoId") DO UPDATE SET
-      "searchVector" = EXCLUDED."searchVector"
+    ON CONFLICT ("videoId") DO NOTHING
   `)
 
   console.log('videoSearch table filled.\n')
@@ -60,7 +59,8 @@ async function migrateVideoInfohashes () {
 
   await sequelizeTypescript.query(
     `INSERT INTO "videoInfohash" ("infohash", "videoFileId") ` +
-      `SELECT safe_decode_hex("infoHash"), "id" FROM "videoFile" WHERE "infoHash" IS NOT NULL AND safe_decode_hex("infoHash") IS NOT NULL`
+      `SELECT safe_decode_hex("infoHash"), "id" FROM "videoFile" WHERE "infoHash" IS NOT NULL AND safe_decode_hex("infoHash") IS NOT NULL ` +
+      `ON CONFLICT DO NOTHING`
   )
 
   await sequelizeTypescript.query(`DROP FUNCTION safe_decode_hex(text);`)

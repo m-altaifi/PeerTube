@@ -4,6 +4,7 @@
 
 ### IMPORTANT NOTES
 
+  * If your instance has many videos (local or federated) in the database, automatic migrations at next startup can take several minutes to finish. Plan for a short period of downtime during this upgrade
   * You need to manually execute a migration script **after upgrading**, while PeerTube is running and the database migration is complete (`Migrations finished. New migration version schema: 1125` in PeerTube startup logs):
     * Classic installation: `cd /var/www/peertube/peertube-latest && sudo -u peertube NODE_CONFIG_DIR=/var/www/peertube/config NODE_ENV=production node dist/scripts/migrations/peertube-8.3.js`
     * Docker installation: `cd /var/www/peertube-docker && docker compose exec -u peertube peertube node dist/scripts/migrations/peertube-8.3.js`
