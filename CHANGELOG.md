@@ -4,6 +4,9 @@
 
 ### IMPORTANT NOTES
 
+  * You need to manually execute a migration script **after upgrading**, while PeerTube is running and the database migration is complete (`Migrations finished. New migration version schema: 1125` in PeerTube startup logs):
+    * Classic installation: `cd /var/www/peertube/peertube-latest && sudo -u peertube NODE_CONFIG_DIR=/var/www/peertube/config NODE_ENV=production node dist/scripts/migrations/peertube-8.3.js`
+    * Docker installation: `cd /var/www/peertube-docker && docker compose exec -u peertube peertube node dist/scripts/migrations/peertube-8.3.js`
  * PeerTube requires PostgreSQL >= 14
  * Comment API change: `GET /api/v1/videos/{id}/comment-threads/{threadId}` no longer returns the full comment tree
     * It now returns at most 10 direct replies per comment, down to 5 levels of nesting, by default
