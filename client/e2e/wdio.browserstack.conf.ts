@@ -77,7 +77,7 @@ module.exports = {
       },
       {
         browserName: 'Safari',
-        browserVersion: '14',
+        browserVersion: '15',
 
         ...buildBStackDesktopOptions({ sessionName: 'Safari Desktop', resolution: '1280x1024' })
       },

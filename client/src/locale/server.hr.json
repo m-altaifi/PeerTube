@@ -241,7 +241,7 @@
     "Panjabi": "Pandžapski",
     "Pakistan Sign Language": "Pakistanski znakovni jezik",
     "Polish": "Poljski",
-    "Portuguese (Brazilian)": "Portuguese (Brazilian)",
+    "Portuguese": "Portugalski",
     "Pushto": "Paštunski",
     "Quechua": "Kečuanski",
     "Romansh": "Retoromanski",
@@ -301,6 +301,7 @@
     "Zulu": "Zulu",
     "No linguistic content": "Nema jezičnog sadržaja",
     "Toki Pona": "Toki Pona",
+    "Portuguese (Brazilian)": "Portuguese (Brazilian)",
     "Portuguese (Portugal)": "Portuguese (Portugal)",
     "Spanish (Latin America)": "Spanish (Latin America)",
     "Simplified Chinese": "Kineski, pojednostavljeni",
@@ -310,7 +311,6 @@
     "Guianese Creole French": "Guianese Creole French",
     "Copyrighted - All Rights Reserved": "Zaštićeno autorskim pravima – Sva prava pridržana",
     "To edit*": "Za uređivanje*",
-    "Portuguese": "Portugalski",
     "Spanish": "Španjolski",
     "Misc": "Razno"
 }

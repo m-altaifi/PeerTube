@@ -241,7 +241,7 @@
     "Panjabi": "Panjabi",
     "Pakistan Sign Language": "Lingua de signos paquistaní",
     "Polish": "Polaco",
-    "Portuguese (Brazilian)": "Portuguese (Brazilian)",
+    "Portuguese": "Portugués",
     "Pushto": "Pushto",
     "Quechua": "Quechua",
     "Romansh": "Romansh",
@@ -301,6 +301,7 @@
     "Zulu": "Zulú",
     "No linguistic content": "No linguistic content",
     "Toki Pona": "Toki Pona",
+    "Portuguese (Brazilian)": "Portuguese (Brazilian)",
     "Portuguese (Portugal)": "Portuguese (Portugal)",
     "Spanish (Latin America)": "Spanish (Latin America)",
     "Simplified Chinese": "Simplified Chinese",
@@ -310,7 +311,6 @@
     "Guianese Creole French": "Guianese Creole French",
     "Copyrighted - All Rights Reserved": "Copyrighted - All Rights Reserved",
     "To edit*": "Editar*",
-    "Portuguese": "Portugués",
     "Spanish": "Español",
     "Misc": "Variado"
 }
