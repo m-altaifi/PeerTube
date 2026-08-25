@@ -112,7 +112,7 @@ export class MyAccountPage {
   }
 
   async updatePlaylistPrivacy (playlistUUID: string, privacy: 'Public' | 'Private' | 'Unlisted') {
-    go('/my-library/video-playlists/update/' + playlistUUID)
+    await go('/my-library/video-playlists/update/' + playlistUUID)
 
     await $('a[href*="/my-library/video-playlists/update/"]').waitForDisplayed()
 

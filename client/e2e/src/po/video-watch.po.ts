@@ -176,7 +176,7 @@ export class VideoWatchPage {
     await displayName().waitForDisplayed()
     await displayName().setValue(name)
 
-    return $('.new-playlist-block input[type=submit]').click()
+    return $('my-playlist-create-block input[type=submit]').click()
   }
 
   async saveToPlaylist (name: string) {

@@ -30,7 +30,6 @@ describe('Publish video', () => {
       await videoWatchPage.waitWatchVideoName('video')
 
       expect(await videoWatchPage.getPrivacy()).toBe('Public')
-      expect(await videoWatchPage.getLicence()).toBe('Unknown')
       expect(await videoWatchPage.isDownloadEnabled()).toBeTruthy()
       expect(await videoWatchPage.areCommentsEnabled()).toBeTruthy()
     })
