@@ -3,16 +3,16 @@
  * Chocobozzz
  * Rigel Kent
  * Hồ Nhất Duy
- * T.S
  * Jeff Huang
+ * T.S
  * Milo Ivir
  * DignifiedSilence
  * Александр
  * josé m
  * fran secs
+ * Leif-Jöran Olsson
  * Payman Moghadam
  * Ihor Hordiichuk
- * Leif-Jöran Olsson
  * kontrollanten
  * Filip Bengtsson
  * Berto Te
@@ -31,10 +31,11 @@
  * Ewout van Mansom
  * Aitor Salaberria
  * Jiří Podhorecký
+ * Lefteris T.
+ * Oliwier Jaszczyszyn
  * Clemens Schielicke
  * Luca Calcaterra
- * Oliwier Jaszczyszyn
- * Lefteris T.
+ * Ricardo Simões
  * Racida S
  * Balázs Meskó
  * Blood Axe
@@ -42,14 +43,14 @@
  * John Livingston
  * Wicklow
  * Eivind Ødegård
+ * Aarón Guillén
  * Tirifto
  * Kim
  * Wuzzy
+ * Fjuro
  * Vodoyo Kamal
  * 偶尔来巡山
  * ButterflyOfFire
- * Fjuro
- * Ricardo Simões
  * Armin
  * Fontan 030
  * Mohamad Reza
@@ -61,22 +62,21 @@
  * Frank Sträter
  * dxuser514
  * Andrea Gavioli
- * Mürteza MERT
  * Eric Guichaoua
+ * Mürteza MERT
  * Gérald Niel
- * Aarón Guillén
  * Duy
  * Ghost of Sparta
+ * Manuel Viens
  * Renne Rocha
  * Sergej Jaskiewicz
  * Slimane Selyan AMIRI
+ * alex gabilondo
  * Booteille
  * Dingzhong Chen
  * Filip Hanes
  * Julien Maulny
- * Manuel Viens
  * Mark Van den Borre
- * alex gabilondo
  * x
  * Ignacio Carrera González
  * Jorropo
@@ -86,6 +86,7 @@
  * vachan
  * AP
  * Elegant Codes
+ * Fanch Le Roux
  * Florian CUNY
  * Francesc
  * mando laress
@@ -120,10 +121,13 @@
  * Alexander Ivanov
  * Balázs Úr
  * Echo Kilo
+ * Framasoft Weblate user 1402
  * Jan Keromnes
  * Kachel Kaiser
  * NorbiPeti
  * Siourdakis Thanos
+ * Voxel
+ * Weka Kamakule
  * Yaron Shahrabani
  * knuxify
  * tray
@@ -133,16 +137,15 @@
  * Cirnos
  * David Soh
  * Diazepan Medina
+ * Francisco Molinero
  * Jason Zhou
  * Loukas Stamellos
  * Ms Kimsible
  * Paolo Mauri
  * Sergey Zigachev
  * Txopi
- * Voxel
  * Benjamin Bouvier
  * Cavernosa
- * Framasoft Weblate user 1402
  * Joe Bill
  * Julien
  * Jure Repinc
@@ -167,6 +170,7 @@
  * Thomas Kuntz
  * Tzafrir Cohen
  * Vri
+ * camegone
  * jinsoo
  * miro
  * nexi
@@ -202,6 +206,7 @@
  * William Lahti
  * Wirebrass
  * Yury Bulka
+ * Zoe
  * boris joeson
  * frankstrater
  * mater
@@ -240,6 +245,7 @@
  * Okhin
  * Osama
  * Pierre-Alain TORET
+ * Pro Decentralization
  * Serge Victor
  * Théo Le Calvar
  * Ugaitz
@@ -294,10 +300,12 @@
  * Lukas Winkler
  * M Z
  * Manuela Silva
+ * Marc
  * Marian
  * Marius Monnier
  * Morpheus Tao
  * Mélanie Chauvel
+ * Nairolf
  * Natsuki Tsukishiro
  * Nico198X
  * Pedro
@@ -305,6 +313,7 @@
  * Petr Balíček
  * Piotr Sikora
  * Shalabh Agarwal
+ * Sourav Sarkar
  * Stardream
  * Stefan Keks
  * Tom Wellington
@@ -373,6 +382,7 @@
  * Hugo Peixoto
  * HybridGlucose
  * J C Worm
+ * JC François
  * Jakob Meier
  * Jan Ainali
  * Jan Hartig
@@ -418,6 +428,7 @@
  * Tsuki
  * Túlio Simões Martins Padilha
  * Valvin
+ * Weblate
  * XblateX
  * YiDai
  * Yogesh K S
@@ -425,6 +436,7 @@
  * amlor
  * bopol
  * brucekomike
+ * cinereal
  * darek
  * dingycle
  * framail
@@ -512,6 +524,7 @@
  * E
  * Edouard SCHWEISGUTH
  * Edwin Alberto Amado Baron
+ * Egon
  * Emmanuel Pret
  * Enfong Cao
  * Eric Brehault
@@ -589,6 +602,7 @@
  * LiPeK
  * Lint
  * LoveIsGrief
+ * Luc Novalès
  * Luca B
  * Lucian I. Last
  * Lucien A
@@ -621,6 +635,7 @@
  * Milo van der Linden
  * Moby Mikes 💻
  * MrGiga
+ * Mradul Pal
  * Mélanie Pin
  * Nataly Rocha
  * Nathanaël J
@@ -686,6 +701,7 @@
  * TA
  * Tanguy BERNARD
  * Thavarasa Prasanth
+ * TheRealOnyx
  * Theodore R. Smith
  * Thomas
  * Timo Gurr
@@ -699,10 +715,10 @@
  * Varik Valefor
  * Vegard Fjeldberg
  * VeryREAL
+ * Viacheslav Komarov
  * Vik
  * Vincent Stakenburg
  * Viny Brun Kriesang
- * Weblate
  * WhiredPlanck
  * William Cliff
  * WingsLikeEagles
@@ -728,9 +744,9 @@
  * ceasermikes002
  * chagai95
  * chaoliang yan
- * cinereal
  * ctlaltdefeat
  * decentral1se
+ * devteam@cappital.co
  * djblu2003dk-tech
  * eduard pintilie
  * framabr
@@ -766,6 +782,7 @@
  * paulienm
  * peppe namir
  * philippe lhardy
+ * pierre durand
  * pitchum
  * potedeo
  * rdxuan
@@ -788,6 +805,7 @@
  * treac1e
  * tuxayo
  * ukuk
+ * valeron90
  * victor-long
  * xcffl
  * zacharystenger
