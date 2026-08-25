@@ -13,7 +13,7 @@ patchedDependencies:
     hash: 6360e5a7ee3bb2fcc71d0f3c8a8532b01555e32108f8ec2eedcbfaba4ea25704
     path: pnpm-patches/sharp.patch
   tinykeys:
-    hash: 6855931e9590b29110de8402432514ff7aa294934a067557e96dc7eb46f365e3
+    hash: 286ec06b460cf7b02035c2e64f11f165dcc17e4141d0c185bbee2a5a9d3b35b9
     path: pnpm-patches/tinykeys.patch
   video.js:
     hash: 66459642658d85da52b45ff0472242e9daade1ff3dd765974103db72a7c55377
@@ -810,7 +810,7 @@ importers:
         version: 8.1.1(stylelint@17.14.1(typescript@6.0.3))
       tinykeys:
         specifier: ^4.0.0
-        version: 4.0.0(patch_hash=6855931e9590b29110de8402432514ff7aa294934a067557e96dc7eb46f365e3)
+        version: 4.0.0(patch_hash=286ec06b460cf7b02035c2e64f11f165dcc17e4141d0c185bbee2a5a9d3b35b9)
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@swc/core@1.15.47)(@types/node@20.19.43)(typescript@6.0.3)
@@ -23016,7 +23016,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.5)
       picomatch: 4.0.5
 
-  tinykeys@4.0.0(patch_hash=6855931e9590b29110de8402432514ff7aa294934a067557e96dc7eb46f365e3): {}
+  tinykeys@4.0.0(patch_hash=286ec06b460cf7b02035c2e64f11f165dcc17e4141d0c185bbee2a5a9d3b35b9): {}
 
   tinyrainbow@1.2.0: {}
 
