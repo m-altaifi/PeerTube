@@ -115,6 +115,7 @@ class Redis {
         sentinels: CONFIG.REDIS.SENTINEL.SENTINELS,
         name: CONFIG.REDIS.SENTINEL.MASTER_NAME,
         sentinelTLS,
+        keepAlive: 30000,
         ...options
       }
     }
@@ -150,6 +151,7 @@ class Redis {
       port: CONFIG.REDIS.PORT,
       path: CONFIG.REDIS.SOCKET,
       showFriendlyErrorStack: true,
+      keepAlive: 30000,
       tls,
       ...options
     }

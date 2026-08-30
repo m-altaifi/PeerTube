@@ -230,7 +230,7 @@ class JobQueue {
     }
 
     this.flowProducer = new FlowProducer({
-      connection: Redis.getRedisClientOptions('FlowProducer'),
+      connection: Redis.getRedisClientOptions('FlowProducer', { maxRetriesPerRequest: null, enableReadyCheck: false }),
       prefix: this.jobRedisPrefix
     })
     this.flowProducer.on('error', err => {
@@ -251,7 +251,7 @@ class JobQueue {
       autorun: false,
       concurrency: this.getJobConcurrency(handlerName),
       prefix: this.jobRedisPrefix,
-      connection: Redis.getRedisClientOptions('Worker'),
+      connection: Redis.getRedisClientOptions('Worker', { maxRetriesPerRequest: null, enableReadyCheck: false }),
       maxStalledCount: 10
     }
 
@@ -302,7 +302,7 @@ class JobQueue {
 
   private buildQueue (handlerName: JobType) {
     const queueOptions: QueueOptions = {
-      connection: Redis.getRedisClientOptions('Queue'),
+      connection: Redis.getRedisClientOptions('Queue', { maxRetriesPerRequest: null, enableReadyCheck: false }),
       prefix: this.jobRedisPrefix
     }
 
@@ -320,7 +320,7 @@ class JobQueue {
   private buildQueueEvent (handlerName: JobType) {
     const queueEventsOptions: QueueEventsOptions = {
       autorun: false,
-      connection: Redis.getRedisClientOptions('QueueEvent'),
+      connection: Redis.getRedisClientOptions('QueueEvent', { maxRetriesPerRequest: null, enableReadyCheck: false }),
       prefix: this.jobRedisPrefix
     }
 
