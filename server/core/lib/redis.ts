@@ -82,6 +82,7 @@ class Redis {
   static getRedisClientOptions (name?: string, options: RedisOptions = {}, logOptions = false): RedisOptions {
     const connectionName = [ 'PeerTube', name ].join('')
     const connectTimeout = 20000 // Could be slow since node use sync call to compile PeerTube
+    const keepAlive = 30000 // Probe idle connections so dead sockets are detected instead of hanging until ETIMEDOUT
 
     if (CONFIG.REDIS.SENTINEL.ENABLED) {
       if (logOptions) {
@@ -115,7 +116,7 @@ class Redis {
         sentinels: CONFIG.REDIS.SENTINEL.SENTINELS,
         name: CONFIG.REDIS.SENTINEL.MASTER_NAME,
         sentinelTLS,
-        keepAlive: 30000,
+        keepAlive,
         ...options
       }
     }
@@ -151,7 +152,7 @@ class Redis {
       port: CONFIG.REDIS.PORT,
       path: CONFIG.REDIS.SOCKET,
       showFriendlyErrorStack: true,
-      keepAlive: 30000,
+      keepAlive,
       tls,
       ...options
     }
